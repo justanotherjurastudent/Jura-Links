@@ -225,6 +225,14 @@ test.each([
 		input: `§§ 53, 273, 7, 3 BGB`,
 		expected: `§§ [53](https://www.dejure.org/gesetze/bgb/53.html), [273](https://www.dejure.org/gesetze/bgb/273.html), [7](https://www.dejure.org/gesetze/bgb/7.html), [3](https://www.dejure.org/gesetze/bgb/3.html) BGB`,
 	},
+	{
+		input: `§ [32 I, II Alt. 1 oder 2](https://rewis.io/gesetze/stgb/p/stgb%2D32) StGB`,
+		expected: `§ [32 I, II Alt. 1 oder 2](https://rewis.io/gesetze/stgb/p/stgb%2D32) StGB`,
+	},
+	{
+		input: `[BeckRS 2017, 130506](https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=BeckRS%202017%2C%20130506)`,
+		expected: `[BeckRS 2017, 130506](https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=BeckRS%202017%2C%20130506)`,
+	}
 ])(
 	"findAndLinkLawReferences: should transform $input to $expected",
 	(testData) => {
