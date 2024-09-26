@@ -100,14 +100,14 @@ function replaceLast(
 	newString: string,
 	string: string
 ): string {
-	var lastIndex = string.lastIndexOf(oldString);
+	const lastIndex = string.lastIndexOf(oldString);
 
 	if (lastIndex === -1) {
 		return string;
 	}
 
-	var beginString = string.substring(0, lastIndex);
-	var endString = string.substring(lastIndex + oldString.length);
+	const beginString = string.substring(0, lastIndex);
+	const endString = string.substring(lastIndex + oldString.length);
 
 	return beginString + newString + endString;
 }
