@@ -2868,7 +2868,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"72a": "461987,115",
 			},
 		},
-		"LJagdG 1996 BW": {
+		"LJagdG BW": {
 			title: "Landesjagdgesetz",
 			norms: {
 				"1": "173856,2",
@@ -4783,7 +4783,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 			title: "Pass-,Personalausweis-,eID-KarteG-Ausf\u00fchrungsgesetz",
 			norms: { "1": "9690298,2", "2": "9690298,3" },
 		},
-		"PolG 1992 BW": {
+		"PolG BW": {
 			title: "Polizeigesetz",
 			norms: {
 				"1": "173939,2",
@@ -11936,11 +11936,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 		},
 	},
 	Berlin: {
-		"AG-BImSchG BE": {
+		"AG-BImSchG Bln": {
 			title: "AG Bundes-ImmissionsschutzG",
 			norms: { "1": "167535,2", "2": "167535,3" },
 		},
-		"AGInsO BE": {
+		"AGInsO Bln": {
 			title: "AG InsolvenzO",
 			norms: {
 				"1": "167539,2",
@@ -11953,7 +11953,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8": "167539,9",
 			},
 		},
-		"ASOG Bln BE": {
+		"ASOG Bln": {
 			title: "Allgemeines Sicherheits- und Ordnungsgesetz",
 			norms: {
 				"1": "167553,2",
@@ -12049,7 +12049,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				ASOG: "167553,81",
 			},
 		},
-		"AZG BE": {
+		"AZG Bln": {
 			title: "Allgemeines Zust\u00e4ndigkeitsgesetz",
 			norms: {
 				"1": "145252,2",
@@ -12097,7 +12097,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8b": "145252,46",
 			},
 		},
-		"AZVO BE": {
+		"AZVO Bln": {
 			title: "Arbeitszeitverordnung",
 			norms: {
 				"1": "145253,2",
@@ -12121,11 +12121,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4a": "145253,7",
 			},
 		},
-		"FachkArbGB BE": {
+		"FachkArbGB Bln": {
 			title: "ArbGFachkammerV",
 			norms: { "1": "167627,2", "2": "167627,3" },
 		},
-		"ArchGB BE": {
+		"ArchGB Bln": {
 			title: "Archivgesetz des Landes Berlin",
 			norms: {
 				"1": "7525464,2",
@@ -12141,7 +12141,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"11": "7525464,12",
 			},
 		},
-		"AGBauGB BE": {
+		"AGBauGB Bln": {
 			title: "Ausf\u00fchrungsgesetz-Baugesetzbuch",
 			norms: {
 				"1": "167537,2",
@@ -12188,7 +12188,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"30c": "167537,43",
 			},
 		},
-		"AGVwGO BE": {
+		"AGVwGO Bln": {
 			title: "Ausf\u00fchrungsgesetz-Verwaltungsgerichtsordnung",
 			norms: {
 				"1": "145243,2",
@@ -12201,7 +12201,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5a": "145243,11",
 			},
 		},
-		"BauO Bln BE": {
+		"BauO Bln": {
 			title: "Bauordnung Berlin",
 			norms: {
 				"1": "641427,2",
@@ -12307,7 +12307,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"86a": "641427,98",
 			},
 		},
-		"BlnAGBMG BE": {
+		"BlnAGBMG Bln": {
 			title: "Berliner Ausf\u00fchrungsgesetz-BMG",
 			norms: {
 				"1": "7618147,2",
@@ -12320,7 +12320,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8": "7618147,9",
 			},
 		},
-		"BerlAVG BE": {
+		"BerlAVG Bln": {
 			title: "Berliner Ausschreibungs- und Vergabegesetz",
 			norms: {
 				"1": "9593363,2",
@@ -12344,7 +12344,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"19": "9593363,2",
 			},
 		},
-		"BerlBG BE": {
+		"BerlBG Bln": {
 			title: "Berliner Betriebe-Gesetz",
 			norms: {
 				"1": "2217818,2",
@@ -12379,7 +12379,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"30": "2217818,31",
 			},
 		},
-		"BiZeitG BE": {
+		"BiZeitG Bln": {
 			title: "Berliner Bildungszeitgesetz",
 			norms: {
 				"1": "9825281,2",
@@ -12396,7 +12396,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"12": "9825281,13",
 			},
 		},
-		"Bln BodSchG BE": {
+		"Bln BodSchG Bln": {
 			title: "Berliner Bodenschutzgesetz",
 			norms: {
 				"1": "331002,2",
@@ -12415,7 +12415,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8b": "331002,17",
 			},
 		},
-		"BlnDSG BE": {
+		"BlnDSG Bln": {
 			title: "Berliner Datenschutzgesetz",
 			norms: {
 				"1": "8088457,2",
@@ -12494,7 +12494,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"35a": "8088457,75",
 			},
 		},
-		"GerZustG BE": {
+		"GerZustG Bln": {
 			title: "Berliner Gerichte-Zust\u00e4ndigkeitsgesetz",
 			norms: {
 				"1": "167656,2",
@@ -12504,7 +12504,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "167656,6",
 			},
 		},
-		"UVPG-Bln BE": {
+		"UVPG-Bln": {
 			title: "Berliner Gesetz \u00fcber die Umweltvertr\u00e4glichkeitspr\u00fcfung",
 			norms: {
 				"1": "3095326,2",
@@ -12523,7 +12523,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"3b": "3095326,16",
 			},
 		},
-		"BerlHG BE": {
+		"BerlHG Bln": {
 			title: "Berliner Hochschulgesetz",
 			norms: {
 				"1": "167583,2",
@@ -12713,7 +12713,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"93a": "167583,185",
 			},
 		},
-		"IFG BE": {
+		"IFG Bln": {
 			title: "Berliner Informationsfreiheitsgesetz",
 			norms: {
 				"1": "145292,2",
@@ -12744,7 +12744,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7a": "145292,26",
 			},
 		},
-		"JAG BE": {
+		"JAG Bln": {
 			title: "Berliner Juristenausbildungsgesetz",
 			norms: {
 				"1": "216050,2",
@@ -12775,7 +12775,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"10a": "216050,27",
 			},
 		},
-		"JAO BE": {
+		"JAO Bln": {
 			title: "Berliner Juristenausbildungsordnung",
 			norms: {
 				"1": "245734,2",
@@ -12818,7 +12818,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"32a": "245734,39",
 			},
 		},
-		"BlnMobG BE": {
+		"BlnMobG Bln": {
 			title: "Berliner Mobilit\u00e4tsgesetz",
 			norms: {
 				"1": "8092752,2",
@@ -12895,7 +12895,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"50a": "8092752,54",
 			},
 		},
-		"NatSchG Bln BE": {
+		"NatSchG Bln": {
 			title: "Berliner Naturschutzgesetz",
 			norms: {
 				"1": "5749266,2",
@@ -12964,7 +12964,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"64": "5749266,65",
 			},
 		},
-		"RiGBln BE": {
+		"RiGBln Bln": {
 			title: "Berliner Richtergesetz",
 			norms: {
 				"1": "4424300,2",
@@ -13072,7 +13072,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"103": "4424300,104",
 			},
 		},
-		"BS\u00dcG BE": {
+		"BS\u00dcG Bln": {
 			title: "Berliner Sicherheits\u00fcberpr\u00fcfungsgesetz",
 			norms: {
 				"1": "167598,2",
@@ -13116,7 +13116,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"33b": "167598,4",
 			},
 		},
-		"SpkG BE": {
+		"SpkG Bln": {
 			title: "Berliner SparkassenG",
 			norms: {
 				"1": "566181,2",
@@ -13136,7 +13136,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"15": "566181,16",
 			},
 		},
-		"StiftG Bln BE": {
+		"StiftG Bln": {
 			title: "Berliner Stiftungsgesetz",
 			norms: {
 				"1": "10564645,2",
@@ -13150,7 +13150,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"9": "10564645,1",
 			},
 		},
-		"VwVfGBln BE": {
+		"VwVfGBln Bln": {
 			title: "Berliner Verwaltungsverfahrensgesetz",
 			norms: {
 				"1": "7541444,2",
@@ -13167,7 +13167,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"12": "7541444,13",
 			},
 		},
-		"BWG BE": {
+		"BWG Bln": {
 			title: "Berliner Wassergesetz",
 			norms: {
 				"1": "167599,2",
@@ -13331,11 +13331,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"71a": "167599,162",
 			},
 		},
-		"BebiG BE": {
+		"BebiG Bln": {
 			title: "BerufsbildungsG",
 			norms: { "1": "145256,2", "2": "145256,3" },
 		},
-		"BestG BE": {
+		"BestG Bln": {
 			title: "Bestattungsgesetz",
 			norms: {
 				"1": "167587,2",
@@ -13369,7 +13369,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"10a": "167587,3",
 			},
 		},
-		"BAMG BE": {
+		"BAMG Bln": {
 			title: "Bezirksamtsmitgliedergesetz",
 			norms: {
 				"1": "145255,2",
@@ -13389,7 +13389,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4a": "145255,8",
 			},
 		},
-		"BezVerwG BE": {
+		"BezVerwG Bln": {
 			title: "Bezirksverwaltungsgesetz",
 			norms: {
 				"1": "145262,2",
@@ -13451,7 +13451,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"": "145262,59",
 			},
 		},
-		"DSchG Bln BE": {
+		"DSchG Bln": {
 			title: "Denkmalschutzgesetz Berlin",
 			norms: {
 				"1": "167607,2",
@@ -13479,7 +13479,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"23": "167607,24",
 			},
 		},
-		"DR\u00c4ndG BE": {
+		"DR\u00c4ndG Bln": {
 			title: "Dienstrechts\u00e4nderungsgesetz",
 			norms: {
 				"1": "3552593,2",
@@ -13497,7 +13497,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"13": "3552593,14",
 			},
 		},
-		"DiszG BE": {
+		"DiszG Bln": {
 			title: "Disziplinargesetz",
 			norms: {
 				"1": "346340,2",
@@ -13552,7 +13552,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"50": "346340,51",
 			},
 		},
-		"DVO-BauGB BE": {
+		"DVO-BauGB Bln": {
 			title: "Durchf\u00fchrungsverordnung-Baugesetzbuch",
 			norms: {
 				"1": "8085997,2",
@@ -13580,7 +13580,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"": "8085997,23",
 			},
 		},
-		"EigG BE": {
+		"EigG Bln": {
 			title: "EigenbetriebeG",
 			norms: {
 				"1": "145273,2",
@@ -13618,7 +13618,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"33": "145273,34",
 			},
 		},
-		"FeiertG BE": {
+		"FeiertG Bln": {
 			title: "Feiertagsgesetz",
 			norms: {
 				"1": "167629,2",
@@ -13629,7 +13629,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6": "167629,7",
 			},
 		},
-		"FSchVO BE": {
+		"FSchVO Bln": {
 			title: "Feiertagsschutz-V",
 			norms: {
 				"1": "422117,2",
@@ -13641,7 +13641,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7": "422117,8",
 			},
 		},
-		"FraktG BE": {
+		"FraktG Bln": {
 			title: "Fraktionsgesetz",
 			norms: {
 				"1": "167633,2",
@@ -13668,11 +13668,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"22": "167633,23",
 			},
 		},
-		"25. LB\u00c4G BE": {
+		"25. LB\u00c4G Bln": {
 			title: "F\u00fcnfundzwanzigstes Landesbeamtenrechts\u00e4nderungsgesetz",
 			norms: { "1": "553421,2", "2": "553421,3", "3": "553421,4" },
 		},
-		"Art29VerfG BE": {
+		"Art29VerfG Bln": {
 			title: "G zu Art. 29 der Verfassung",
 			norms: {
 				"1": "470123,2",
@@ -13683,7 +13683,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6": "470123,7",
 			},
 		},
-		"GO VerfGH BE": {
+		"GO VerfGH Bln": {
 			title: "Gesch\u00e4ftsordnung Verfassungsgerichtshof",
 			norms: {
 				"1": "7511135,2",
@@ -13705,7 +13705,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"17": "7511135,18",
 			},
 		},
-		"GDG BE": {
+		"GDG Bln": {
 			title: "Gesundheitsdienst-Gesetz",
 			norms: {
 				"1": "2196611,2",
@@ -13740,7 +13740,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"9b": "2196611,29",
 			},
 		},
-		"HzG BE": {
+		"HzG Bln": {
 			title: "Hoheitszeichengesetz",
 			norms: {
 				"1": "3288902,2",
@@ -13753,8 +13753,8 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8": "3288902,9",
 			},
 		},
-		"IngG BE": { title: "Ingenieurgesetz", norms: {} },
-		"JVKostG Bln BE": {
+		"IngG Bln": { title: "Ingenieurgesetz", norms: {} },
+		"JVKostG Bln": {
 			title: "Justizverwaltungskostengesetz",
 			norms: {
 				"1": "526677,2",
@@ -13769,7 +13769,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"10": "526677,12",
 			},
 		},
-		"KatSG BE": {
+		"KatSG Bln": {
 			title: "Katastrophenschutzgesetz",
 			norms: {
 				"1": "9811807,2",
@@ -13810,7 +13810,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"36": "9811807,37",
 			},
 		},
-		"KitaF\u00f6G BE": {
+		"KitaF\u00f6G Bln": {
 			title: "Kindertagesf\u00f6rderungsgesetz",
 			norms: {
 				"1": "555531,2",
@@ -13844,7 +13844,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5a": "555531,3",
 			},
 		},
-		"KiStG BE": {
+		"KiStG Bln": {
 			title: "Kirchensteuergesetz",
 			norms: {
 				"1": "3501712,3",
@@ -13863,7 +13863,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"12a": "3501712,16",
 			},
 		},
-		"KrW-/AbfGBln BE": {
+		"KrW-/AbfGBln Bln": {
 			title: "Kreislaufwirtschafts- und Abfallgesetz Berlin",
 			norms: {
 				"1": "167709,2",
@@ -13899,7 +13899,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"31": "167709,32",
 			},
 		},
-		"LAbgG BE": {
+		"LAbgG Bln": {
 			title: "Landesabgeordnetengesetz",
 			norms: {
 				"1": "9463069,2",
@@ -13952,7 +13952,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5a": "9463069,7",
 			},
 		},
-		"LBG 2003 BE": {
+		"LBG 2003 Bln": {
 			title: "LandesbeamtenG",
 			norms: {
 				"1": "167719,2",
@@ -14100,7 +14100,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"81a": "167719,103",
 			},
 		},
-		"LBG BE": {
+		"LBG Bln": {
 			title: "Landesbeamtengesetz",
 			norms: {
 				"1": "3552066,2",
@@ -14230,7 +14230,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8a": "3552066,126",
 			},
 		},
-		"LBesG BE": {
+		"LBesG Bln": {
 			title: "Landesbesoldungsgesetz",
 			norms: {
 				"1": "167718,2",
@@ -14251,7 +14251,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"3b": "167718,15",
 			},
 		},
-		"LFischG BE": {
+		"LFischG Bln": {
 			title: "Landesfischereigesetz",
 			norms: {
 				"1": "167727,2",
@@ -14309,7 +14309,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"53": "167727,54",
 			},
 		},
-		"LGBG BE": {
+		"LGBG Bln": {
 			title: "Landesgleichberechtigungsgesetz",
 			norms: {
 				"1": "9870980,2",
@@ -14349,7 +14349,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"35": "9870980,36",
 			},
 		},
-		"LGG BE": {
+		"LGG Bln": {
 			title: "Landesgleichstellungsgesetz",
 			norms: {
 				"1": "145310,2",
@@ -14382,7 +14382,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"1b": "145310,33",
 			},
 		},
-		"LHO BE": {
+		"LHO Bln": {
 			title: "Landeshaushaltsordnung",
 			norms: {
 				"1": "167730,2",
@@ -14515,7 +14515,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7a": "167730,9",
 			},
 		},
-		"LJagdG Bln BE": {
+		"LJagdG Bln": {
 			title: "Landesjagdgesetz Berlin",
 			norms: {
 				"1": "167731,2",
@@ -14574,7 +14574,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"49a": "167731,51",
 			},
 		},
-		"LKG BE": {
+		"LKG Bln": {
 			title: "Landeskrankenhausgesetz",
 			norms: {
 				"1": "4538308,2",
@@ -14612,7 +14612,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"33": "4538308,34",
 			},
 		},
-		"LPflegEG BE": {
+		"LPflegEG Bln": {
 			title: "Landespflegeeinrichtungsgesetz",
 			norms: {
 				"1": "167735,2",
@@ -14629,7 +14629,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"12": "167735,13",
 			},
 		},
-		"LPflGG BE": {
+		"LPflGG Bln": {
 			title: "Landespflegegeldgesetz",
 			norms: {
 				"1": "279015,2",
@@ -14646,7 +14646,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"12": "279015,13",
 			},
 		},
-		"LSeilbG BE": {
+		"LSeilbG Bln": {
 			title: "Landesseilbahngesetz",
 			norms: {
 				"1": "305772,2",
@@ -14675,7 +14675,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"24": "305772,25",
 			},
 		},
-		"LStatG BE": {
+		"LStatG Bln": {
 			title: "Landesstatistikgesetz",
 			norms: {
 				"1": "167741,2",
@@ -14708,7 +14708,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"3a": "167741,29",
 			},
 		},
-		"LWahlG BE": {
+		"LWahlG Bln": {
 			title: "Landeswahlgesetz",
 			norms: {
 				"1": "167745,2",
@@ -14753,7 +14753,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6a": "167745,41",
 			},
 		},
-		"LWaldG BE": {
+		"LWaldG Bln": {
 			title: "Landeswaldgesetz",
 			norms: {
 				"1": "410707,2",
@@ -14788,7 +14788,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"28a": "410707,32",
 			},
 		},
-		"LfbG BE": {
+		"LfbG Bln": {
 			title: "Laufbahngesetz",
 			norms: {
 				"1": "4425237,2",
@@ -14835,7 +14835,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"23a": "4425237,44",
 			},
 		},
-		"NachbG Bln BE": {
+		"NachbG Bln": {
 			title: "NachbarrechtsG",
 			norms: {
 				"1": "167754,2",
@@ -14879,7 +14879,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"16a": "167754,4",
 			},
 		},
-		"NRSG BE": {
+		"NRSG Bln": {
 			title: "Nichtraucherschutzgesetz",
 			norms: {
 				"1": "3292955,2",
@@ -14893,8 +14893,8 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4a": "3292955,11",
 			},
 		},
-		"PersVG BE": { title: "Personalvertretungsgesetz", norms: {} },
-		"PresseG BE": {
+		"PersVG Bln": { title: "Personalvertretungsgesetz", norms: {} },
+		"PresseG Bln": {
 			title: "Pressegesetz",
 			norms: {
 				"1": "167772,2",
@@ -14925,11 +14925,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7a": "167772,9",
 			},
 		},
-		"RDG-ZustV BE": {
+		"RDG-ZustV Bln": {
 			title: "RDG-Zust\u00e4ndigkeitsverordnung",
 			norms: { "1": "3385663,2", "2": "3385663,3" },
 		},
-		"RHG BE": {
+		"RHG Bln": {
 			title: "Rechnungshofgesetz",
 			norms: {
 				"1": "167797,2",
@@ -14948,7 +14948,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"14": "167797,15",
 			},
 		},
-		"RAVG Bln BE": {
+		"RAVG Bln": {
 			title: "Rechtsanwaltsversorgungsgesetz",
 			norms: {
 				"1": "145326,2",
@@ -14971,15 +14971,15 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"18": "145326,19",
 			},
 		},
-		"RDLG\u00dcbtrV BE": {
+		"RDLG\u00dcbtrV Bln": {
 			title: "Rechtsdienstleistungsgesetz-\u00dcbertragungsverordnung",
 			norms: { "1": "3375940,2", "2": "3375940,3" },
 		},
-		"SGBXIIRSV BE": {
+		"SGBXIIRSV Bln": {
 			title: "Regelsatzfestsetzungsverordnung",
 			norms: { "1": "3745707,2", "2": "3745707,3" },
 		},
-		"RDG BE": {
+		"RDG Bln": {
 			title: "Rettungsdienstgesetz",
 			norms: {
 				"1": "167791,2",
@@ -15013,11 +15013,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8b": "167791,29",
 			},
 		},
-		"SchBG BE": {
+		"SchBG Bln": {
 			title: "Schuldbuch-Gesetz",
 			norms: { "1": "3486015,3", "2": "3486015,4", "3": "3486015,5" },
 		},
-		"SchulG BE": {
+		"SchulG Bln": {
 			title: "Schulgesetz",
 			norms: {
 				"1": "293668,2",
@@ -15168,8 +15168,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"84a": "293668,147",
 			},
 		},
-		"SenG BE": { title: "Senatorengesetz", norms: {} },
-		"BerlStrG BE": {
+		"BerlStrG Bln": {
 			title: "Stra\u00dfengesetz",
 			norms: {
 				"1": "167586,2",
@@ -15208,7 +15207,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"27a": "167586,34",
 			},
 		},
-		"StudVVO-Stift BE": {
+		"StudVVO-Stift Bln": {
 			title: "Studienplatzvergabeverordnung Stiftung",
 			norms: {
 				"1": "9510105,2",
@@ -15234,7 +15233,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"21": "9510105,22",
 			},
 		},
-		"UKBVO BE": {
+		"UKBVO Bln": {
 			title: "UnfallkassenV",
 			norms: {
 				"1": "145351,2",
@@ -15247,7 +15246,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8": "145351,9",
 			},
 		},
-		"UntAG BE": {
+		"UntAG Bln": {
 			title: "Untersuchungsausschussgesetz",
 			norms: {
 				"1": "4448125,2",
@@ -15288,7 +15287,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"36": "4448125,37",
 			},
 		},
-		"GBmaschV BE": {
+		"GBmaschV Bln": {
 			title: "V maschinelles Grundbuch",
 			norms: {
 				"1": "167649,2",
@@ -15300,7 +15299,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7": "167649,8",
 			},
 		},
-		"VvB BE": {
+		"VvB Bln": {
 			title: "Verfassung",
 			norms: {
 				"1": "641395,2",
@@ -15409,7 +15408,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"99a": "641395,103",
 			},
 		},
-		"VerfGHG BE": {
+		"VerfGHG Bln": {
 			title: "Verfassungsgerichtshofgesetz",
 			norms: {
 				"1": "167858,2",
@@ -15485,7 +15484,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"58d": "167858,69",
 			},
 		},
-		"VSG Bln BE": {
+		"VSG Bln": {
 			title: "Verfassungsschutzgesetz Berlin",
 			norms: {
 				"1": "167874,2",
@@ -15532,7 +15531,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"9a": "167874,11",
 			},
 		},
-		"VersFG BE BE": {
+		"VersFG Bln": {
 			title: "Versammlungsfreiheitsgesetz Berlin",
 			norms: {
 				"1": "9750805,2",
@@ -15570,7 +15569,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				VersFG: "9750805,34",
 			},
 		},
-		"VersR\u00fccklG BE": {
+		"VersR\u00fccklG Bln": {
 			title: "Versorgungsr\u00fccklagegesetz",
 			norms: {
 				"1": "167863,2",
@@ -15589,7 +15588,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7a": "167863,15",
 			},
 		},
-		"VGebO BE": {
+		"VGebO Bln": {
 			title: "Verwaltungsgeb\u00fchrenordnung",
 			norms: {
 				"1": "3910674,2",
@@ -29984,7 +29983,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"1a": "278625,18",
 			},
 		},
-		"HBO 2011 HE": {
+		"HBO HE": {
 			title: "Hessische Bauordnung",
 			norms: {
 				"1": "169492,2",
@@ -45140,7 +45139,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 		},
 	},
 	"Nordrhein-Westfalen": {
-		"2. BStrStraffG NW": {
+		"2. BStrStraffG NRW": {
 			title: "2. Beh\u00f6rden-Straffungsgesetz",
 			norms: {
 				"1": "3296484,2",
@@ -45172,7 +45171,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"27": "3296484,28",
 			},
 		},
-		"6. SchulR\u00c4ndG NW": {
+		"6. SchulR\u00c4ndG NRW": {
 			title: "6. Schulrechts\u00e4nderungsgesetz",
 			norms: {
 				"1": "4602035,2",
@@ -45181,7 +45180,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "4602035,5",
 			},
 		},
-		"9. SchulR\u00c4ndG NW": {
+		"9. SchulR\u00c4ndG NRW": {
 			title: "9. Schulrechts\u00e4nderungsgesetz",
 			norms: {
 				"1": "5882796,2",
@@ -45190,7 +45189,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "5882796,5",
 			},
 		},
-		"AC-G NW": {
+		"AC-G NRW": {
 			title: "Aachen-Gesetz",
 			norms: {
 				"1": "3345019,2",
@@ -45202,7 +45201,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7": "3345019,8",
 			},
 		},
-		"AbgG NRW NW": {
+		"AbgG NRW": {
 			title: "Abgeordnetengesetz NRW",
 			norms: {
 				"1": "512855,2",
@@ -45248,7 +45247,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"31a": "512855,38",
 			},
 		},
-		"AbgrabG NW": {
+		"AbgrabG NRW": {
 			title: "Abgrabungsgesetz",
 			norms: {
 				"1": "166690,2",
@@ -45269,7 +45268,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"16": "166690,17",
 			},
 		},
-		"AWKG NW": {
+		"AWKG NRW": {
 			title: "Akademie Wissenschaften/K\u00fcnste-Gesetz",
 			norms: {
 				"1": "166711,2",
@@ -45286,7 +45285,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"12": "166711,13",
 			},
 		},
-		"AkGradV NW": {
+		"AkGradV NRW": {
 			title: "Akademische Grade-Verordnung",
 			norms: {
 				"1": "3369264,2",
@@ -45296,7 +45295,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "3369264,7",
 			},
 		},
-		"AVwGebO NRW NW": {
+		"AVwGebO NRW": {
 			title: "Allgemeine Verwaltungsgeb\u00fchrenordnung NRW",
 			norms: {
 				"1": "10385563,2",
@@ -45315,7 +45314,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"14": "10385563,26",
 			},
 		},
-		"APG NRW NW": {
+		"APG NRW": {
 			title: "Alten- und Pflegegesetz Nordrhein-Westfalen",
 			norms: {
 				"1": "7162323,2",
@@ -45343,7 +45342,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"23": "7162323,24",
 			},
 		},
-		"APG DVO NRW NW": {
+		"APG DVO NRW": {
 			title: "Alten- und Pflegegesetz-Durchf\u00fchrungsverordnung NRW",
 			norms: {
 				"1": "7228296,2",
@@ -45384,7 +45383,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				APG: "7228296,35",
 			},
 		},
-		"AltPflG NW": {
+		"AltPflG NRW": {
 			title: "AltenpflegeG",
 			norms: {
 				"1": "146563,2",
@@ -45403,15 +45402,15 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"10a": "146563,12",
 			},
 		},
-		"ARVZustV NW": {
+		"ARVZustV NRW": {
 			title: "Amts-/Rechtshilfeverkehr-Zust\u00e4ndigkeitsverordnung",
 			norms: { "1": "3481565,3", "2": "3481565,4", "3": "3481565,5" },
 		},
-		"\u00c4ndStV StBV NW": {
+		"\u00c4ndStV StBV NRW": {
 			title: "\u00c4nderungsstaatsvertrag zur Versorgung der Steuerberater in Th\u00fcringen",
 			norms: { "1": "3321169,2", "2": "3321169,3" },
 		},
-		"VAwS NW": {
+		"VAwS NRW": {
 			title: "Anlagenverordnung",
 			norms: {
 				"1": "327345,2",
@@ -45435,7 +45434,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"19": "327345,2",
 			},
 		},
-		"APO VwB 2009 NW": {
+		"APO VwB 2009 NRW": {
 			title: "APO Verwaltungsberufe",
 			norms: {
 				"1": "3818746,2",
@@ -45456,7 +45455,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"16": "3818746,17",
 			},
 		},
-		"APO VFA NW": {
+		"APO VFA NRW": {
 			title: "APO Verwaltungsfachangestellte",
 			norms: {
 				"1": "7086913,2",
@@ -45488,7 +45487,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"27": "539437,28",
 			},
 		},
-		"AWbG NW": {
+		"AWbG NRW": {
 			title: "Arbeitnehmerweiterbildungsgesetz",
 			norms: {
 				"1": "146586,2",
@@ -45507,7 +45506,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"12a": "146586,15",
 			},
 		},
-		"AZVO NW": {
+		"AZVO NRW": {
 			title: "Arbeitszeitverordnung",
 			norms: {
 				"1": "2221273,2",
@@ -45533,7 +45532,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"14a": "2221273,24",
 			},
 		},
-		"AZVOPol NW": {
+		"AZVOPol NRW": {
 			title: "Arbeitszeitverordnung Polizei",
 			norms: {
 				"1": "7873574,2",
@@ -45567,11 +45566,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"27a": "7873574,3",
 			},
 		},
-		"ArchivG NRW NW": {
+		"ArchivG NRW": {
 			title: "Archivgesetz Nordrhein-Westfalen",
 			norms: {},
 		},
-		"ArchivNGO NRW NW": {
+		"ArchivNGO NRW": {
 			title: "Archivnutzungs- und Geb\u00fchrenordnung Nordrhein-Westfalen",
 			norms: {
 				"1": "7409435,2",
@@ -45591,7 +45590,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				ArchivNGO: "7409435,16",
 			},
 		},
-		"ArznMBevV NW": {
+		"ArznMBevV NRW": {
 			title: "Arzneimittelbevorratungsverordnung",
 			norms: {
 				"1": "146572,2",
@@ -45601,7 +45600,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "146572,6",
 			},
 		},
-		"AG AsylbLG NW": {
+		"AG AsylbLG NRW": {
 			title: "Asylbewerberleistungsgesetz-Ausf\u00fchrungsgesetz",
 			norms: {
 				"1": "146553,2",
@@ -45610,7 +45609,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "146553,5",
 			},
 		},
-		"AufbewJustVO NRW NW": {
+		"AufbewJustVO NRW": {
 			title: "Aufbewahrungsverordnung der Justiz Nordrhein-Westfalen",
 			norms: {
 				"1": "10252321,2",
@@ -45623,7 +45622,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				AufbewJustVO: "10252321,9",
 			},
 		},
-		"LKAAufgVO NW": {
+		"LKAAufgVO NRW": {
 			title: "Aufgabenverordnung LKA",
 			norms: {
 				"1": "9730824,2",
@@ -45636,7 +45635,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8": "9730824,9",
 			},
 		},
-		"AufwdeckV NW": {
+		"AufwdeckV NRW": {
 			title: "Aufwandsdeckungsverordnung",
 			norms: {
 				"1": "305929,2",
@@ -45646,7 +45645,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "305929,6",
 			},
 		},
-		"AEV BBM NW": {
+		"AEV BBM NRW": {
 			title: "Aufwandsentsch\u00e4digungsverordnung Bezirksbrandmeister",
 			norms: {
 				"1": "7290489,2",
@@ -45655,7 +45654,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "7290489,5",
 			},
 		},
-		"APO-BK NW": {
+		"APO-BK NRW": {
 			title: "Ausbildungs- und Pr\u00fcfungsordnung Berufskolleg",
 			norms: {
 				"1": "166717,2",
@@ -45701,7 +45700,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				E: "166717,92",
 			},
 		},
-		"APO-GOSt NW": {
+		"APO-GOSt NRW": {
 			title: "Ausbildungs- und Pr\u00fcfungsordnung Gymnasiale Oberstufe",
 			norms: {
 				"1": "166719,2",
@@ -45757,7 +45756,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"40a": "166719,45",
 			},
 		},
-		"APO-OS NW": {
+		"APO-OS NRW": {
 			title: "Ausbildungs- und Pr\u00fcfungsordnung Oberstufen-Kolleg",
 			norms: {
 				"1": "166720,2",
@@ -45815,7 +45814,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"46f": "166720,54",
 			},
 		},
-		"APO-S I NW": {
+		"APO-S I NRW": {
 			title: "Ausbildungs- und Pr\u00fcfungsordnung Sekundarstufe I",
 			norms: {
 				"1": "5282785,2",
@@ -45884,7 +45883,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"9a": "5282785,74",
 			},
 		},
-		"APO-WbK NW": {
+		"APO-WbK NRW": {
 			title: "Ausbildungs- und Pr\u00fcfungsordnung Weiterbildungskolleg",
 			norms: {
 				"1": "166723,2",
@@ -45961,7 +45960,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"26c": "166723,69",
 			},
 		},
-		"VAPbD LG 2.2 NW": {
+		"VAPbD LG 2.2 NRW": {
 			title: "Ausbildungs- und Pr\u00fcfungsverordnung Bau 2.2",
 			norms: {
 				"1": "9932459,2",
@@ -45997,7 +45996,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"31": "9932459,32",
 			},
 		},
-		"VAPh\u00f6hDL 1991 NW": {
+		"VAPh\u00f6hDL 1991 NRW": {
 			title: "Ausbildungs- und Pr\u00fcfungsverordnung h\u00f6herer Dienst-Landespflege",
 			norms: {
 				"1": "167398,2",
@@ -46031,7 +46030,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"29": "167398,3",
 			},
 		},
-		"VAP L 2.2 NW": {
+		"VAP L 2.2 NRW": {
 			title: "Ausbildungs- und Pr\u00fcfungsverordnung Landespflege 2.2",
 			norms: {
 				"1": "8217682,2",
@@ -46065,7 +46064,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"29": "8217682,3",
 			},
 		},
-		"AO-GS NW": {
+		"AO-GS NRW": {
 			title: "Ausbildungsordnung Grundschule",
 			norms: {
 				"1": "552119,2",
@@ -46080,7 +46079,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8a": "552119,12",
 			},
 		},
-		"AO-SF NW": {
+		"AO-SF NRW": {
 			title: "Ausbildungsordnung sonderp\u00e4dagogische F\u00f6rderung",
 			norms: {
 				"1": "551110,2",
@@ -46133,7 +46132,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"48": "551110,49",
 			},
 		},
-		"VAPhbD 2016 NW": {
+		"VAPhbD 2016 NRW": {
 			title: "Ausbildungsverordnung h\u00f6herer bautechnischer Verwaltungsdienst",
 			norms: {
 				"1": "7588315,2",
@@ -46167,7 +46166,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"29": "7588315,3",
 			},
 		},
-		"AG BAf\u00f6G NRW NW": {
+		"AG BAf\u00f6G NRW": {
 			title: "Ausf\u00fchrungsgesetz BAf\u00f6G NRW",
 			norms: {
 				"1": "146554,2",
@@ -46179,7 +46178,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7": "146554,8",
 			},
 		},
-		"AG InsO NW": {
+		"AG InsO NRW": {
 			title: "Ausf\u00fchrungsgesetz-Insolvenzordnung",
 			norms: {
 				"1": "8241043,2",
@@ -46191,7 +46190,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7": "8241043,8",
 			},
 		},
-		"AG-KJHG NW": {
+		"AG-KJHG NRW": {
 			title: "Ausf\u00fchrungsgesetz-KJHG",
 			norms: {
 				"1": "146558,2",
@@ -46228,7 +46227,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"1a": "146558,33",
 			},
 		},
-		"AG-SGB II NRW NW": {
+		"AG-SGB II NRW": {
 			title: "Ausf\u00fchrungsgesetz-SGB II NRW",
 			norms: {
 				"1": "454829,2",
@@ -46245,7 +46244,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7a": "454829,14",
 			},
 		},
-		"AG-SGB XII NRW NW": {
+		"AG-SGB XII NRW": {
 			title: "Ausf\u00fchrungsgesetz-SGB XII NRW",
 			norms: {
 				"1": "454739,2",
@@ -46263,7 +46262,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7a": "454739,14",
 			},
 		},
-		"AG TierGesG TierNebG NRW NW": {
+		"AG TierGesG TierNebG NRW": {
 			title: "Ausf\u00fchrungsgesetz-Tiergesundheitsgesetz/Tierische Nebenprodukte-Bes...",
 			norms: {
 				"1": "3418123,3",
@@ -46302,7 +46301,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"2a": "3418123,36",
 			},
 		},
-		"VO VwVG NRW NW": {
+		"VO VwVG NRW": {
 			title: "Ausf\u00fchrungsverordnung VwVG",
 			norms: {
 				"1": "3916077,2",
@@ -46333,7 +46332,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"26": "3916077,27",
 			},
 		},
-		"ZustAVO NW": {
+		"ZustAVO NRW": {
 			title: "Ausl\u00e4nderwesen-Zust\u00e4ndigkeitsverordnung",
 			norms: {
 				"1": "167505,2",
@@ -46348,7 +46347,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"10": "167505,11",
 			},
 		},
-		"AKEVO NW": {
+		"AKEVO NRW": {
 			title: "Auslandskostenerstattungsverordnung",
 			norms: {
 				"1": "3805047,2",
@@ -46364,7 +46363,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"": "3805047,13",
 			},
 		},
-		"AMEG NW": {
+		"AMEG NRW": {
 			title: "Ausschussmitglieder-Entsch\u00e4digungsgesetz",
 			norms: {
 				"1": "356852,2",
@@ -46378,12 +46377,12 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"9": "356852,1",
 			},
 		},
-		"AuswVfG NW": {
+		"AuswVfG NRW": {
 			title: "AuswahlverfahrensG",
 			norms: { "1": "452657,2", "2": "452657,3", "3": "452657,4" },
 		},
 		VO: {
-			title: "B/M,NW - V Bachelor/Master",
+			title: "B/M,NRW - V Bachelor/Master",
 			norms: {
 				"1": "167431,2",
 				"2": "167431,3",
@@ -46404,7 +46403,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"17": "167431,18",
 			},
 		},
-		"BITVNRW NW": {
+		"BITVNRW": {
 			title: "Barrierefreie-Informationstechnik-Verordnung Nordrhein-Westfalen",
 			norms: {
 				"1": "9265006,2",
@@ -46427,7 +46426,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"18": "9265006,19",
 			},
 		},
-		"BLBG NW": {
+		"BLBG NRW": {
 			title: "Bau- und Liegenschaftsbetriebsgesetz",
 			norms: {
 				"1": "146605,2",
@@ -46447,7 +46446,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"15": "146605,16",
 			},
 		},
-		"BauGB-AG NRW NW": {
+		"BauGB-AG NRW": {
 			title: "Baugesetzbuch-Ausf\u00fchrungsgesetz NRW",
 			norms: {
 				"1": "7284546,2",
@@ -46457,7 +46456,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "7284546,6",
 			},
 		},
-		"DVO BauKaG NRW NW": {
+		"DVO BauKaG NRW": {
 			title: "Baukammerndurchf\u00fchrungsverordnung",
 			norms: {
 				"1": "10108132,2",
@@ -46481,7 +46480,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"19": "10108132,2",
 			},
 		},
-		"BauKaG NRW 2003 NW": {
+		"BauKaG NRW 2003 NRW": {
 			title: "Baukammerngesetz",
 			norms: {
 				"1": "279092,2",
@@ -46590,7 +46589,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"30a": "279092,105",
 			},
 		},
-		"BauPAVO NRW NW": {
+		"BauPAVO NRW": {
 			title: "Bauprodukte- und Bauartenverordnung",
 			norms: {
 				"1": "3915287,2",
@@ -46610,7 +46609,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"15": "3915287,16",
 			},
 		},
-		"BauPr\u00fcfVO NW": {
+		"BauPr\u00fcfVO NRW": {
 			title: "Bautechnische Pr\u00fcfungsverordnung",
 			norms: {
 				"1": "166766,2",
@@ -46647,7 +46646,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"9a": "166766,34",
 			},
 		},
-		"ZustVO des Ministeriums f\u00fcr Verkehr NW": {
+		"ZustVO des Ministeriums f\u00fcr Verkehr NRW": {
 			title: "Beamten- und Disziplinarzust\u00e4ndigkeitsverordnung des Min...",
 			norms: {
 				"1": "7999358,2",
@@ -46658,7 +46657,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6": "7999358,7",
 			},
 		},
-		"ZustVO JM NW": {
+		"ZustVO JM NRW": {
 			title: "Beamten- und Disziplinarzust\u00e4ndigkeitsverordnung JM",
 			norms: {
 				"1": "3305574,2",
@@ -46675,7 +46674,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"12": "3305574,14",
 			},
 		},
-		"BeamtDiszZustVO MFKJKS NW": {
+		"BeamtDiszZustVO MFKJKS NRW": {
 			title: "Beamten- und Disziplinarzust\u00e4ndigkeitsverordnung MFKJKS",
 			norms: {
 				"1": "5606289,2",
@@ -46686,7 +46685,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6": "5606289,7",
 			},
 		},
-		"BeamtdiszZustVO MKULNV NW": {
+		"BeamtdiszZustVO MKULNV NRW": {
 			title: "Beamten- und Disziplinarzust\u00e4ndigkeitsverordnung MKULNV",
 			norms: {
 				"1": "7824446,2",
@@ -46699,7 +46698,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8": "7824446,9",
 			},
 		},
-		"ZustVO MWEIMH NW": {
+		"ZustVO MWEIMH NRW": {
 			title: "Beamten- und Disziplinarzust\u00e4ndigkeitsverordnung MWEIMH",
 			norms: {
 				"1": "5855741,2",
@@ -46712,7 +46711,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8": "5855741,9",
 			},
 		},
-		"BeamtZustV FM NW": {
+		"BeamtZustV FM NRW": {
 			title: "Beamtenzust\u00e4ndigkeitsverordnung Finanzministerium",
 			norms: {
 				"1": "7277666,2",
@@ -46725,20 +46724,20 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8": "7277666,9",
 			},
 		},
-		"BeamtZustVO LRH NW": {
+		"BeamtZustVO LRH NRW": {
 			title: "Beamtenzust\u00e4ndigkeitsverordnung LRH",
 			norms: { "1": "10419626,2", "2": "10419626,3", "3": "10419626,4" },
 		},
-		"BedGewV NW": {
+		"BedGewV NRW": {
 			title: "Bedarfsgewerbeverordnung",
 			norms: { "1": "146591,2", "2": "146591,3" },
 		},
-		"BeglV NW": {
+		"BeglV NRW": {
 			title: "Beglaubigungsverordnung",
 			norms: { "1": "146596,2", "2": "146596,3" },
 		},
-		"BeVO NW": { title: "Beherbergungsst\u00e4ttenV", norms: {} },
-		"BGG NRW NW": {
+		"BeVO NRW": { title: "Beherbergungsst\u00e4ttenV", norms: {} },
+		"BGG NRW": {
 			title: "Behindertengleichstellungsgesetz Nordrhein-Westfalen",
 			norms: {
 				"1": "279087,2",
@@ -46762,7 +46761,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"10e": "279087,2",
 			},
 		},
-		"BVO 1975 NW": {
+		"BVO 1975 NRW": {
 			title: "Beihilfenverordnung",
 			norms: {
 				"1": "146607,2",
@@ -46791,7 +46790,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6a": "146607,21",
 			},
 		},
-		"BVO NRW NW": {
+		"BVO NRW": {
 			title: "Beihilfenverordnung NRW",
 			norms: {
 				"1": "3909013,2",
@@ -46837,7 +46836,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6d": "3909013,49",
 			},
 		},
-		"BVOTb NRW NW": {
+		"BVOTb NRW": {
 			title: "Beihilfenverordnung Tarifbesch\u00e4ftigte",
 			norms: {
 				"1": "4616406,2",
@@ -46847,7 +46846,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "4616406,6",
 			},
 		},
-		"BekanntmVO NW": {
+		"BekanntmVO NRW": {
 			title: "Bekanntmachungsverordnung",
 			norms: {
 				"1": "146599,2",
@@ -46862,11 +46861,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"10": "146599,11",
 			},
 		},
-		"B\u00a722cGVGVO NW": {
+		"B\u00a722cGVGVO NRW": {
 			title: "Bereitschaftsdienst - VO - \u00a7 22c GVG",
 			norms: { "1": "278763,2", "2": "278763,3", "3": "278763,4" },
 		},
-		"BVSG NW NW": {
+		"BVSG NRW NRW": {
 			title: "Bergmannsversorgungsscheingesetz",
 			norms: {
 				"1": "146610,2",
@@ -46891,7 +46890,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"20": "146610,21",
 			},
 		},
-		"BBHZVO NW": {
+		"BBHZVO NRW": {
 			title: "Berufsbildungshochschulzugangsverordnung",
 			norms: {
 				"1": "7668421,2",
@@ -46908,11 +46907,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"12": "7668421,13",
 			},
 		},
-		"AGBVormVG NW": {
+		"AGBVormVG NRW": {
 			title: "Berufsvorm\u00fcnderausf\u00fchrungsgesetz",
 			norms: { "1": "146559,2", "2": "146559,3", "3": "146559,4" },
 		},
-		"BesVersAnpG 2008 NRW NW": {
+		"BesVersAnpG 2008 NRW": {
 			title: "Besoldungs- und Versorgungsanpassungsgesetz 2008 Nordrhein-Westfalen",
 			norms: {
 				"1": "3308328,2",
@@ -46921,7 +46920,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "3308328,5",
 			},
 		},
-		"BesVersAnpG 2009/2010 NRW NW": {
+		"BesVersAnpG 2009/2010 NRW": {
 			title: "Besoldungs- und Versorgungsanpassungsgesetz 2009/2010 Nordrhein-We...",
 			norms: {
 				"1": "3907592,2",
@@ -46930,7 +46929,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "3907592,5",
 			},
 		},
-		"BesVersAnpG 2011/2012 NRW NW": {
+		"BesVersAnpG 2011/2012 NRW": {
 			title: "Besoldungs- und Versorgungsanpassungsgesetz 2011/2012 Nordrhein-We...",
 			norms: {
 				"1": "4382993,2",
@@ -46944,7 +46943,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"9": "4382993,1",
 			},
 		},
-		"BesVersAnpG 2013/2014 NRW NW": {
+		"BesVersAnpG 2013/2014 NRW": {
 			title: "Besoldungs- und Versorgungsanpassungsgesetz 2013/2014 Nordrhein-We...",
 			norms: {
 				"1": "5786495,2",
@@ -46954,7 +46953,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "5786495,6",
 			},
 		},
-		"BesVersAnpG 2015/2016 NRW NW": {
+		"BesVersAnpG 2015/2016 NRW": {
 			title: "Besoldungs- und Versorgungsanpassungsgesetz 2015/2016 Nordrhein-We...",
 			norms: {
 				"1": "7477736,2",
@@ -46964,7 +46963,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "7477736,6",
 			},
 		},
-		"BestG NRW NW": {
+		"BestG NRW": {
 			title: "Bestattungsgesetz",
 			norms: {
 				"1": "214593,2",
@@ -46992,11 +46991,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4a": "214593,26",
 			},
 		},
-		"BZRLPBefugV NW": {
+		"BZRLPBefugV NRW": {
 			title: "Bezirksregierungs-BefugnisV bez\u00fcglich Lehramtspr\u00fcfungen",
 			norms: { "1": "246065,2", "2": "246065,3", "3": "246065,4" },
 		},
-		"AG BGB NW": {
+		"AG BGB NRW": {
 			title: "BGB-Ausf\u00fchrungsgesetz",
 			norms: {
 				"1": "422150,2",
@@ -47092,7 +47091,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"91": "422150,92",
 			},
 		},
-		"GHBG NW": {
+		"GHBG NRW": {
 			title: "Blinden-/Geh\u00f6rlosenhilfe-Gesetz",
 			norms: {
 				"1": "146679,2",
@@ -47107,7 +47106,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5a": "146679,12",
 			},
 		},
-		"SU-BodAV NRW NW": {
+		"SU-BodAV NRW": {
 			title: "Bodenschutz-Sachverst\u00e4ndigenverordnung",
 			norms: {
 				"1": "7150442,2",
@@ -47127,7 +47126,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"15": "7150442,16",
 			},
 		},
-		"B\u00f6rsVO NRW NW": {
+		"B\u00f6rsVO NRW": {
 			title: "B\u00f6rsenverordnung NRW",
 			norms: {
 				"1": "3990519,2",
@@ -47167,7 +47166,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"35": "3990519,36",
 			},
 		},
-		"BHKG NW": {
+		"BHKG NRW": {
 			title: "Brandschutz-, Hilfeleistungs- und Katastrophenschutzgesetz",
 			norms: {
 				"1": "7477744,2",
@@ -47231,7 +47230,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"59": "7477744,6",
 			},
 		},
-		"BNotOAV NW": {
+		"BNotOAV NRW": {
 			title: "Bundesnotarordnung-Ausf\u00fchrungsverordnung",
 			norms: {
 				"1": "166812,2",
@@ -47240,7 +47239,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "166812,5",
 			},
 		},
-		"BRAOAV NW": {
+		"BRAOAV NRW": {
 			title: "Bundesrechtsanwaltsordnung-Ausf\u00fchrungsverordnung",
 			norms: {
 				"1": "3372196,2",
@@ -47250,7 +47249,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "3372196,6",
 			},
 		},
-		"B\u00fcrgEntschDV NW": {
+		"B\u00fcrgEntschDV NRW": {
 			title: "B\u00fcrgerentscheidDVO",
 			norms: {
 				"1": "415682,2",
@@ -47265,7 +47264,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"10": "415682,11",
 			},
 		},
-		"1. B\u00fcrokAbbG NW": {
+		"1. B\u00fcrokAbbG NRW": {
 			title: "B\u00fcrokratieabbaugesetz I",
 			norms: {
 				"1": "2898310,2",
@@ -47275,7 +47274,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "2898310,6",
 			},
 		},
-		"CW VO NW": {
+		"CW VO NRW": {
 			title: "Camping- und Wochenendplatzverordnung",
 			norms: {
 				"1": "4382554,2",
@@ -47291,7 +47290,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"11": "4382554,12",
 			},
 		},
-		"DSG NRW NW": {
+		"DSG NRW": {
 			title: "Datenschutzgesetz Nordrhein-Westfalen",
 			norms: {
 				"1": "8080989,2",
@@ -47368,7 +47367,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"72": "8080989,73",
 			},
 		},
-		"VO-DV II NW": {
+		"VO-DV II NRW": {
 			title: "Datenverarbeitungsverordnung Lehrer",
 			norms: {
 				"1": "167380,2",
@@ -47384,7 +47383,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"11": "167380,18",
 			},
 		},
-		"VO-DV I NW": {
+		"VO-DV I NRW": {
 			title: "Datenverarbeitungsverordnung Sch\u00fcler",
 			norms: {
 				"1": "3205327,2",
@@ -47400,7 +47399,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"11": "3205327,12",
 			},
 		},
-		"DSchG 1980 NW": {
+		"DSchG 1980 NRW": {
 			title: "Denkmalschutzgesetz",
 			norms: {
 				"1": "166852,2",
@@ -47449,7 +47448,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"44": "10124309,45",
 			},
 		},
-		"DenkmalVO NRW NW": {
+		"DenkmalVO NRW": {
 			title: "Denkmalverordnung Nordrhein-Westfalen",
 			norms: {
 				"1": "10197848,2",
@@ -47469,19 +47468,19 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"15": "10197848,16",
 			},
 		},
-		"DesignStrZV NW": {
+		"DesignStrZV NRW": {
 			title: "Designstreitsachen-Zusammenfassungsverordnung",
 			norms: { "1": "4537654,2", "2": "4537654,3", "3": "4537654,4" },
 		},
-		"DIBt-\u00dctVO NW": {
+		"DIBt-\u00dctVO NRW": {
 			title: "DIBt-\u00dcbertragungsverordnung",
 			norms: { "1": "8241076,2", "2": "8241076,3", "3": "8241076,4" },
 		},
-		"DAufsRegelG NW": {
+		"DAufsRegelG NRW": {
 			title: "DienstaufsichtsregelungsG",
 			norms: { "1": "146612,2", "2": "146612,3", "3": "146612,4" },
 		},
-		"DrogenkV NW": {
+		"DrogenkV NRW": {
 			title: "Drogenkonsumraumverordnung",
 			norms: {
 				"1": "166851,2",
@@ -47500,7 +47499,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"14": "166851,15",
 			},
 		},
-		"DVO VIVBVEG NW": {
+		"DVO VIVBVEG NRW": {
 			title: "Durchf\u00fchrungsverordnung VIVBVEG",
 			norms: {
 				"1": "425391,2",
@@ -47538,7 +47537,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6c": "425391,35",
 			},
 		},
-		"EGovG NRW NW": {
+		"EGovG NRW": {
 			title: "E-Government-Gesetz Nordrhein-Westfalen",
 			norms: {
 				"1": "7617986,2",
@@ -47573,7 +47572,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7a": "7617986,28",
 			},
 		},
-		"EigJapV NW": {
+		"EigJapV NRW": {
 			title: "Eigenbetriebe-Jahresabschlusspr\u00fcfungsverordnung",
 			norms: {
 				"1": "146734,2",
@@ -47584,7 +47583,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6": "146734,7",
 			},
 		},
-		"EigVO NRW NW": {
+		"EigVO NRW": {
 			title: "Eigenbetriebsverordnung NRW",
 			norms: {
 				"1": "451292,2",
@@ -47616,7 +47615,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"27": "451292,28",
 			},
 		},
-		"EingrVO NW": {
+		"EingrVO NRW": {
 			title: "Eingruppierungsverordnung",
 			norms: {
 				"1": "146635,2",
@@ -47631,7 +47630,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"10": "146635,11",
 			},
 		},
-		"EStGemAntVO 2024  2025 und 2026 NW": {
+		"EStGemAntVO 2024  2025 und 2026 NRW": {
 			title: "Einkommensteuer-Gemeindeanteil-Verordnung 2024, 2025 und 2026",
 			norms: {
 				"1": "10556779,2",
@@ -47644,11 +47643,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8": "10556779,9",
 			},
 		},
-		"ERVkErmV NW": {
+		"ERVkErmV NRW": {
 			title: "Elektronischer Rechtsverkehr ErmV",
 			norms: { "1": "279086,2", "2": "279086,3" },
 		},
-		"EZVO NW": {
+		"EZVO NRW": {
 			title: "Elternzeitverordnung",
 			norms: {
 				"1": "3369474,2",
@@ -47660,7 +47659,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7": "3369474,8",
 			},
 		},
-		"AbwEmissionV NW": {
+		"AbwEmissionV NRW": {
 			title: "Emissionserkl\u00e4rungsverordnung - Abwasser",
 			norms: {
 				"1": "166694,2",
@@ -47671,7 +47670,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6": "166694,7",
 			},
 		},
-		"EntschVO NRW NW": {
+		"EntschVO NRW": {
 			title: "Entsch\u00e4digungsverordnung Nordrhein-Westfalen",
 			norms: {
 				"1": "10419879,2",
@@ -47687,11 +47686,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"11": "10419879,12",
 			},
 		},
-		"ErmittPersV NW": {
+		"ErmittPersV NRW": {
 			title: "Ermittlungspersonenverordnung",
 			norms: { "1": "167015,2", "2": "167015,3", "3": "167015,4" },
 		},
-		"EEZV NW": {
+		"EEZV NRW": {
 			title: "Ernennungs-/Entlassungs-/Zurruhesetzungsverordnung",
 			norms: {
 				"1": "6995563,2",
@@ -47703,7 +47702,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7": "6995563,8",
 			},
 		},
-		"FESchVO NW": {
+		"FESchVO NRW": {
 			title: "Ersatzschulfinanzierungsverordnung",
 			norms: {
 				"1": "510702,2",
@@ -47742,7 +47741,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8.1a": "510702,46",
 			},
 		},
-		"ESchVO NW": {
+		"ESchVO NRW": {
 			title: "Ersatzschulverordnung",
 			norms: {
 				"1": "2898549,2",
@@ -47762,15 +47761,15 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"15": "2898549,16",
 			},
 		},
-		"EuRAG-JMV NW": {
+		"EuRAG-JMV NRW": {
 			title: "EuRAG-JustizministeriumsV",
 			norms: { "1": "166893,2", "2": "166893,3" },
 		},
-		"EuRAG\u00dcbertV NW": {
+		"EuRAG\u00dcbertV NRW": {
 			title: "EuRAG-\u00dcbertragungsV",
 			norms: { "1": "166894,2", "2": "166894,3" },
 		},
-		"PO-Externe-A NW": {
+		"PO-Externe-A NRW": {
 			title: "Externen-Abiturpr\u00fcfungsordnung",
 			norms: {
 				"1": "167217,2",
@@ -47800,7 +47799,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"23a": "167217,27",
 			},
 		},
-		"FHG\u00f6D NW": {
+		"FHG\u00f6D NRW": {
 			title: "Fachhochschulgesetz \u00f6ffentlicher Dienst",
 			norms: {
 				"1": "146646,2",
@@ -47853,11 +47852,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5a": "146646,46",
 			},
 		},
-		"FamZuwV NW": {
+		"FamZuwV NRW": {
 			title: "Familiensachen-Zuweisungsverordnung",
 			norms: { "1": "311900,2", "2": "311900,3" },
 		},
-		"Fehl\u00c4ndG NRW NW": {
+		"Fehl\u00c4ndG NRW": {
 			title: "Fehlbelegungsrechts\u00e4nderungsG",
 			norms: {
 				"1": "2186810,2",
@@ -47866,7 +47865,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "2186810,5",
 			},
 		},
-		"FeiertG NW": {
+		"FeiertG NRW": {
 			title: "FeiertagsG",
 			norms: {
 				"1": "166902,2",
@@ -47885,7 +47884,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"14": "166902,15",
 			},
 		},
-		"PO-FeP-Hochschule NW": {
+		"PO-FeP-Hochschule NRW": {
 			title: "Feststellungspr\u00fcfungsordnung Hochschule",
 			norms: {
 				"1": "3936055,2",
@@ -47909,7 +47908,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"19": "3936055,2",
 			},
 		},
-		"FeuVO NRW NW": {
+		"FeuVO NRW": {
 			title: "Feuerungsverordnung",
 			norms: {
 				"1": "8180312,2",
@@ -47929,7 +47928,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"15": "8180312,16",
 			},
 		},
-		"FHNeuordG NW": {
+		"FHNeuordG NRW": {
 			title: "FH NeuordnungsG",
 			norms: {
 				"1": "166917,2",
@@ -47938,7 +47937,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "166917,5",
 			},
 		},
-		"FA-ZVO NW": {
+		"FA-ZVO NRW": {
 			title: "Finanzamtszust\u00e4ndigkeitsverordnung",
 			norms: {
 				"1": "5771000,2",
@@ -47978,7 +47977,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"2a": "5771000,35",
 			},
 		},
-		"FinV MRV NW": {
+		"FinV MRV NRW": {
 			title: "Finanzierungsverordnung MRV",
 			norms: {
 				"1": "166923,2",
@@ -47992,7 +47991,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"9": "166923,1",
 			},
 		},
-		"Fl\u00fcAG NW": {
+		"Fl\u00fcAG NRW": {
 			title: "Fl\u00fcchtlingsaufnahmegesetz",
 			norms: {
 				"1": "146648,2",
@@ -48008,12 +48007,12 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5a": "146648,14",
 			},
 		},
-		"Fl\u00fcAG\u00c4ndG NW": {
+		"Fl\u00fcAG\u00c4ndG NRW": {
 			title: "Fl\u00fcchtlingsaufnahmegesetzes \u00c4ndG",
 			norms: { "1": "483009,2", "2": "483009,3", "3": "483009,4" },
 		},
-		"FDAG NW NW": {
-			title: "ForstdienstausbildungsG NW",
+		"FDAG NRW NRW": {
+			title: "ForstdienstausbildungsG NRW",
 			norms: {
 				"1": "166901,2",
 				"2": "166901,3",
@@ -48028,7 +48027,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"11": "166901,12",
 			},
 		},
-		"FraktG NRW NW": {
+		"FraktG NRW": {
 			title: "Fraktionsgesetz",
 			norms: {
 				"1": "166941,2",
@@ -48046,7 +48045,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"13": "166941,14",
 			},
 		},
-		"FrUrlV NRW NW": {
+		"FrUrlV NRW": {
 			title: "Freistellungs- und Urlaubsverordnung NRW",
 			norms: {
 				"1": "4643623,2",
@@ -48095,11 +48094,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"20a": "4643623,44",
 			},
 		},
-		"FundRZustV NW": {
+		"FundRZustV NRW": {
 			title: "Fundrecht-Zust\u00e4ndigkeitsverordnung",
 			norms: { "1": "525301,2", "2": "525301,3" },
 		},
-		"GarVO NW": {
+		"GarVO NRW": {
 			title: "GaragenV",
 			norms: {
 				"1": "166952,2",
@@ -48129,7 +48128,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"25": "166952,26",
 			},
 		},
-		"GebG NRW NW": {
+		"GebG NRW": {
 			title: "Geb\u00fchrengesetz NRW",
 			norms: {
 				"1": "146655,2",
@@ -48166,7 +48165,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"32": "146655,33",
 			},
 		},
-		"GeldStrTV NW": {
+		"GeldStrTV NRW": {
 			title: "Geldstrafentilgungsverordnung",
 			norms: {
 				"1": "4198844,2",
@@ -48180,7 +48179,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"9": "4198844,1",
 			},
 		},
-		"GemHVO NW": {
+		"GemHVO NRW": {
 			title: "GemeindehaushaltsV",
 			norms: {
 				"1": "146663,2",
@@ -48232,7 +48231,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"47": "146663,48",
 			},
 		},
-		"GemKVO NW": {
+		"GemKVO NRW": {
 			title: "GemeindekassenV",
 			norms: {
 				"1": "146665,2",
@@ -48285,7 +48284,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"48": "146665,49",
 			},
 		},
-		"GemKHBVO NRW NW": {
+		"GemKHBVO NRW": {
 			title: "Gemeindekrankenhausbetriebsverordnung Nordrhein-Westfalen",
 			norms: {
 				"1": "3815227,2",
@@ -48315,7 +48314,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"18b": "3815227,26",
 			},
 		},
-		"GO NRW NW": {
+		"GO NRW": {
 			title: "Gemeindeordnung NRW",
 			norms: {
 				"1": "146702,2",
@@ -48466,7 +48465,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"96a": "146702,143",
 			},
 		},
-		"GPAG NW": {
+		"GPAG NRW": {
 			title: "Gemeindepr\u00fcfungsanstaltsgesetz",
 			norms: {
 				"1": "166981,2",
@@ -48486,11 +48485,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"2a": "166981,16",
 			},
 		},
-		"GemMStrZV NW": {
+		"GemMStrZV NRW": {
 			title: "Gemeinschaftsmarkenstreitsachen-Zuweisungsverordnung",
 			norms: { "1": "4537345,2", "2": "4537345,3" },
 		},
-		"GVEntschVO 1998 NW": {
+		"GVEntschVO 1998 NRW": {
 			title: "Gerichtsvollzieherentsch\u00e4digungsverordnung",
 			norms: {
 				"1": "167002,2",
@@ -48502,7 +48501,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7": "167002,8",
 			},
 		},
-		"GVVergVO NW": {
+		"GVVergVO NRW": {
 			title: "Gerichtsvollzieherverg\u00fctungsverordnung",
 			norms: {
 				"1": "7257258,2",
@@ -48517,7 +48516,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"10": "7257258,11",
 			},
 		},
-		"GDSG NW NW": {
+		"GDSG NRW NRW": {
 			title: "Gesundheitsdatenschutzgesetz",
 			norms: {
 				"1": "146653,2",
@@ -48549,7 +48548,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"27": "146653,28",
 			},
 		},
-		"GewRV NW": {
+		"GewRV NRW": {
 			title: "Gewerberechtsverordnung",
 			norms: {
 				"1": "3910628,2",
@@ -48559,7 +48558,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"": "3910628,6",
 			},
 		},
-		"GlVO NW": {
+		"GlVO NRW": {
 			title: "Gleichwertigkeitsverordnung",
 			norms: {
 				"1": "7106745,2",
@@ -48576,7 +48575,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"12": "7106745,13",
 			},
 		},
-		"GnO NW NW": {
+		"GnO NRW NRW": {
 			title: "GnadenO",
 			norms: {
 				"1": "146701,2",
@@ -48628,7 +48627,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"18a": "146701,2",
 			},
 		},
-		"GO-RefG NW": {
+		"GO-RefG NRW": {
 			title: "GO-Reformgesetz",
 			norms: {
 				"1": "3284327,2",
@@ -48645,7 +48644,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"12": "3284327,13",
 			},
 		},
-		"GrundbAutV NW": {
+		"GrundbAutV NRW": {
 			title: "Grundbuch-Automations-Verordnung",
 			norms: {
 				"1": "3958964,2",
@@ -48659,11 +48658,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"9": "3958964,1",
 			},
 		},
-		"GBBerG\u00a76VO NW": {
+		"GBBerG\u00a76VO NRW": {
 			title: "Grundbuchbereinigungsgesetz \u00a7 6-Verordnung",
 			norms: { "1": "166990,2", "2": "166990,3" },
 		},
-		"GrundWertVO NRW NW": {
+		"GrundWertVO NRW": {
 			title: "Grundst\u00fcckswertermittlungsverordnung Nordrhein-Westfalen",
 			norms: {
 				"1": "9728482,2",
@@ -48727,7 +48726,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"59": "9728482,6",
 			},
 		},
-		"HaSiG NW": {
+		"HaSiG NRW": {
 			title: "Hafensicherheitsgesetz",
 			norms: {
 				"1": "7477755,2",
@@ -48758,7 +48757,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"26": "7477755,27",
 			},
 		},
-		"HFKVO NW": {
+		"HFKVO NRW": {
 			title: "H\u00e4rtefallkommissionsverordnung",
 			norms: {
 				"1": "454748,2",
@@ -48772,7 +48771,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"9": "454748,1",
 			},
 		},
-		"HWVO NRW NW": {
+		"HWVO NRW": {
 			title: "Haushalts- und Wirtschaftsf\u00fchrungs-Verordnung der Studierendenschaften NRW",
 			norms: {
 				"1": "1493624,2",
@@ -48803,7 +48802,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"26": "1493624,27",
 			},
 		},
-		"HG 2007 NW": {
+		"HG 2007 NRW": {
 			title: "Haushaltsgesetz 2007",
 			norms: {
 				"1": "2613334,2",
@@ -48840,7 +48839,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"32": "2613334,33",
 			},
 		},
-		"HG 2008 NW": {
+		"HG 2008 NRW": {
 			title: "Haushaltsgesetz 2008",
 			norms: {
 				"1": "3308941,2",
@@ -48877,7 +48876,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"32": "3308941,33",
 			},
 		},
-		"HG 2009 NW": {
+		"HG 2009 NRW": {
 			title: "Haushaltsgesetz 2009",
 			norms: {
 				"1": "3511058,2",
@@ -48914,7 +48913,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"32": "3511058,33",
 			},
 		},
-		"HG 2010 NW": {
+		"HG 2010 NRW": {
 			title: "Haushaltsgesetz 2010",
 			norms: {
 				"1": "3917704,2",
@@ -48951,7 +48950,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"32": "3917704,33",
 			},
 		},
-		"HG 2011 NW": {
+		"HG 2011 NRW": {
 			title: "Haushaltsgesetz 2011",
 			norms: {
 				"1": "4401257,2",
@@ -48988,7 +48987,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"32": "4401257,33",
 			},
 		},
-		"HG 2012 NW": {
+		"HG 2012 NRW": {
 			title: "Haushaltsgesetz 2012",
 			norms: {
 				"1": "5382416,2",
@@ -49025,7 +49024,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"32": "5382416,33",
 			},
 		},
-		"HG 2013 NW": {
+		"HG 2013 NRW": {
 			title: "Haushaltsgesetz 2013",
 			norms: {
 				"1": "5586767,2",
@@ -49062,7 +49061,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"32": "5586767,33",
 			},
 		},
-		"HG 2014 NW": {
+		"HG 2014 NRW": {
 			title: "Haushaltsgesetz 2014",
 			norms: {
 				"1": "5901390,2",
@@ -49100,7 +49099,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"29a": "5901390,35",
 			},
 		},
-		"HG 2015 NW": {
+		"HG 2015 NRW": {
 			title: "Haushaltsgesetz 2015",
 			norms: {
 				"1": "7257346,2",
@@ -49137,7 +49136,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"32": "7257346,33",
 			},
 		},
-		"HHG 2016 NW": {
+		"HHG 2016 NRW": {
 			title: "Haushaltsgesetz 2016",
 			norms: {
 				"1": "7473392,2",
@@ -49175,7 +49174,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				HHG: "7473392,34",
 			},
 		},
-		"HHG 2017 NW": {
+		"HHG 2017 NRW": {
 			title: "Haushaltsgesetz 2017",
 			norms: {
 				"1": "7785805,2",
@@ -49215,7 +49214,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				HHG: "7785805,36",
 			},
 		},
-		"HHG 2018 NW": {
+		"HHG 2018 NRW": {
 			title: "Haushaltsgesetz 2018",
 			norms: {
 				"1": "8034848,2",
@@ -49254,7 +49253,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				HHG: "8034848,35",
 			},
 		},
-		"HHG 2019 NW": {
+		"HHG 2019 NRW": {
 			title: "Haushaltsgesetz 2019",
 			norms: {
 				"1": "8189372,2",
@@ -49293,7 +49292,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				HHG: "8189372,35",
 			},
 		},
-		"HHG 2020 NW": {
+		"HHG 2020 NRW": {
 			title: "Haushaltsgesetz 2020",
 			norms: {
 				"1": "9498240,2",
@@ -49336,7 +49335,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				HHG: "9498240,35",
 			},
 		},
-		"HHG 2021 NW": {
+		"HHG 2021 NRW": {
 			title: "Haushaltsgesetz 2021",
 			norms: {
 				"1": "9731120,2",
@@ -49384,7 +49383,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				HHG: "9731120,41",
 			},
 		},
-		"HHG 2022 NW": {
+		"HHG 2022 NRW": {
 			title: "Haushaltsgesetz 2022",
 			norms: {
 				"1": "9957967,2",
@@ -49429,7 +49428,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				HHG: "9957967,41",
 			},
 		},
-		"HHG 2023 NW": {
+		"HHG 2023 NRW": {
 			title: "Haushaltsgesetz 2023",
 			norms: {
 				"1": "10263562,2",
@@ -49473,7 +49472,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				HHG: "10263562,4",
 			},
 		},
-		"HHG 2024 NW": {
+		"HHG 2024 NRW": {
 			title: "Haushaltsgesetz 2024",
 			norms: {
 				"1": "10471645,2",
@@ -49514,7 +49513,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				HHG: "10471645,37",
 			},
 		},
-		"HebBO NRW NW": {
+		"HebBO NRW": {
 			title: "Hebammenberufsordnung NRW",
 			norms: {
 				"1": "7893028,2",
@@ -49530,11 +49529,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				HebBO: "7893028,12",
 			},
 		},
-		"HBadHolzhAnVfg NW": {
+		"HBadHolzhAnVfg NRW": {
 			title: "Heilbad Holzhausen Anerkennungsverf\u00fcgung",
 			norms: { "1": "3344725,3", "2": "3344725,4" },
 		},
-		"HeilBerG NW": {
+		"HeilBerG NRW": {
 			title: "Heilberufsgesetz",
 			norms: {
 				"1": "167009,2",
@@ -49672,7 +49671,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6a": "167009,12",
 			},
 		},
-		"HochhVO NW": {
+		"HochhVO NRW": {
 			title: "HochhausV",
 			norms: {
 				"1": "167019,2",
@@ -49694,7 +49693,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"17": "167019,18",
 			},
 		},
-		"HAbgG NRW NW": {
+		"HAbgG NRW": {
 			title: "Hochschulabgabengesetz",
 			norms: {
 				"1": "2141847,2",
@@ -49721,7 +49720,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"22": "2141847,23",
 			},
 		},
-		"HAbg-VO NW": {
+		"HAbg-VO NRW": {
 			title: "Hochschulabgabenverordnung",
 			norms: {
 				"1": "7399957,2",
@@ -49740,7 +49739,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"14": "7399957,15",
 			},
 		},
-		"HFG NW": {
+		"HFG NRW": {
 			title: "Hochschulfreiheitsgesetz",
 			norms: {
 				"1": "2578799,2",
@@ -49753,7 +49752,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8": "2578799,9",
 			},
 		},
-		"HG 2006 NW": {
+		"HG NRW": {
 			title: "Hochschulgesetz",
 			norms: {
 				"1": "2566366,2",
@@ -49877,7 +49876,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"82a": "7148215,121",
 			},
 		},
-		"HG 2004 NW": {
+		"HG 2004 NRW": {
 			title: "Hochschulgesetz 2004",
 			norms: {
 				"1": "167012,2",
@@ -50016,7 +50015,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"84a": "167012,134",
 			},
 		},
-		"HLeistBVO NW": {
+		"HLeistBVO NRW": {
 			title: "Hochschul-Leistungsbez\u00fcgeverordnung",
 			norms: {
 				"1": "452652,2",
@@ -50030,7 +50029,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"9": "452652,1",
 			},
 		},
-		"HMG NW": {
+		"HMG NRW": {
 			title: "Hochschulmedizingesetz",
 			norms: {
 				"1": "3308326,2",
@@ -50040,7 +50039,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "3308326,6",
 			},
 		},
-		"HNtV NW": {
+		"HNtV NRW": {
 			title: "Hochschulnebent\u00e4tigkeitsverordnung",
 			norms: {
 				"1": "7277670,2",
@@ -50061,7 +50060,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"16": "7277670,17",
 			},
 		},
-		"HRWG NW": {
+		"HRWG NRW": {
 			title: "Hochschulreform-WeiterentwicklungsG",
 			norms: {
 				"1": "454749,2",
@@ -50080,7 +50079,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"14": "454749,15",
 			},
 		},
-		"HZG NW 1993 NW": {
+		"HZG NRW 1993 NRW": {
 			title: "HochschulzulassungsG",
 			norms: {
 				"1": "167029,2",
@@ -50098,7 +50097,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"13": "167029,14",
 			},
 		},
-		"HZG 2008 NW": {
+		"HZG 2008 NRW": {
 			title: "Hochschulzulassungsgesetz",
 			norms: {
 				"1": "3481026,3",
@@ -50111,7 +50110,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8": "3481026,1",
 			},
 		},
-		"HZG NW": {
+		"HZG NRW": {
 			title: "Hochschulzulassungsgesetz 2019",
 			norms: {
 				"1": "9483230,2",
@@ -50129,11 +50128,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"13": "9483230,14",
 			},
 		},
-		"HSP\u00f6V NRW-FbV NW": {
+		"HSP\u00f6V NRW-FbV NRW": {
 			title: "HSP\u00f6V NRW-Fachbereichsverordnung",
 			norms: { "1": "7256602,2", "2": "7256602,3", "3": "7256602,4" },
 		},
-		"HygieneV NW": {
+		"HygieneV NRW": {
 			title: "Hygiene-Verordnung",
 			norms: {
 				"1": "167028,2",
@@ -50146,7 +50145,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8": "167028,9",
 			},
 		},
-		"IHKG NW": {
+		"IHKG NRW": {
 			title: "Industrie- und Handelskammern-Gesetz",
 			norms: {
 				"1": "167030,2",
@@ -50158,7 +50157,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7": "167030,8",
 			},
 		},
-		"ZVO-IfSG NW": {
+		"ZVO-IfSG NRW": {
 			title: "Infektionsschutzzust\u00e4ndigkeitsverordnung",
 			norms: {
 				"1": "10263561,2",
@@ -50174,7 +50173,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"11": "10263561,12",
 			},
 		},
-		"IFG NRW NW": {
+		"IFG NRW": {
 			title: "Informationsfreiheitsgesetz Nordrhein-Westfalen",
 			norms: {
 				"1": "146728,2",
@@ -50193,7 +50192,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"14": "146728,15",
 			},
 		},
-		"IngG NW": {
+		"IngG NRW": {
 			title: "Ingenieurgesetz",
 			norms: {
 				"1": "167035,2",
@@ -50208,7 +50207,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5a": "167035,7",
 			},
 		},
-		"IGG NRW NW": {
+		"IGG NRW": {
 			title: "Inklusionsgrunds\u00e4tzegesetz NRW",
 			norms: {
 				"1": "7608791,2",
@@ -50226,7 +50225,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"13": "7608791,14",
 			},
 		},
-		"JAVollzG NRW NW": {
+		"JAVollzG NRW": {
 			title: "Jugendarrestvollzugsgesetz Nordrhein-Westfalen",
 			norms: {
 				"1": "5629568,2",
@@ -50269,7 +50268,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"38": "5629568,39",
 			},
 		},
-		"JStVollzG NRW NW": {
+		"JStVollzG NRW": {
 			title: "Jugendstrafvollzugsgesetz Nordrhein-Westfalen",
 			norms: {
 				"1": "7869639,2",
@@ -50350,7 +50349,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"76": "7869639,77",
 			},
 		},
-		"ZuVO JuWo NW": {
+		"ZuVO JuWo NRW": {
 			title: "Jugendwohlfahrtszust\u00e4ndigkeitsverordnung",
 			norms: {
 				"1": "3907952,2",
@@ -50363,7 +50362,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8": "3907952,9",
 			},
 		},
-		"JAG NRW NW": {
+		"JAG NRW": {
 			title: "Juristenausbildungsgesetz Nordrhein-Westfalen",
 			norms: {
 				"1": "167041,2",
@@ -50441,7 +50440,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"56a": "167041,7",
 			},
 		},
-		"JustG NRW\u00a7123Bef\u00dcV NW": {
+		"JustG NRW\u00a7123Bef\u00dcV NRW": {
 			title: "JustG NRW \u00a7 123-Befugnis\u00fcbertragungsverordnung",
 			norms: {
 				"1": "5098606,2",
@@ -50451,7 +50450,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "5098606,6",
 			},
 		},
-		"JustG NRW NW": {
+		"JustG NRW": {
 			title: "Justizgesetz Nordrhein-Westfalen",
 			norms: {
 				"1": "3934047,2",
@@ -50609,7 +50608,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"43a": "3934047,156",
 			},
 		},
-		"JVollzDSG NRW NW": {
+		"JVollzDSG NRW": {
 			title: "Justizvollzugsdatenschutzgesetz Nordrhein-Westfalen",
 			norms: {
 				"1": "8158224,2",
@@ -50662,7 +50661,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"25a": "8158224,49",
 			},
 		},
-		"JVollzMoG NW": {
+		"JVollzMoG NRW": {
 			title: "Justizvollzugsmodernisierungsgesetz",
 			norms: {
 				"1": "3199609,2",
@@ -50673,7 +50672,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6": "3199609,7",
 			},
 		},
-		"KampfmittelVO NRW NW": {
+		"KampfmittelVO NRW": {
 			title: "Kampfmittelverordnung des Landes Nordrhein-Westfalen",
 			norms: {
 				"1": "278744,2",
@@ -50685,7 +50684,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7": "278744,8",
 			},
 		},
-		"KapVO NW": {
+		"KapVO NRW": {
 			title: "Kapazit\u00e4tsverordnung",
 			norms: {
 				"1": "167053,2",
@@ -50714,7 +50713,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"17a": "167053,28",
 			},
 		},
-		"KapVO NRW 2017 NW": {
+		"KapVO NRW 2017 NRW": {
 			title: "Kapazit\u00e4tsverordnung Nordrhein-Westfalen 2017",
 			norms: {
 				"1": "7879711,2",
@@ -50732,7 +50731,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"13": "7879711,14",
 			},
 		},
-		"KartGBV NW": {
+		"KartGBV NRW": {
 			title: "Kartellgerichte-Bildungsverordnung",
 			norms: {
 				"1": "4537655,2",
@@ -50741,7 +50740,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "4537655,5",
 			},
 		},
-		"KiBiz NW": {
+		"KiBiz NRW": {
 			title: "Kinderbildungsgesetz",
 			norms: {
 				"1": "9566021,2",
@@ -50822,7 +50821,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"": "9566021,57",
 			},
 		},
-		"KiAustrG NW": {
+		"KiAustrG NRW": {
 			title: "Kirchenaustrittsgesetz",
 			norms: {
 				"1": "3370733,2",
@@ -50835,7 +50834,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8": "3370733,9",
 			},
 		},
-		"KiStG NW": {
+		"KiStG NRW": {
 			title: "Kirchensteuergesetz",
 			norms: {
 				"1": "167059,2",
@@ -50859,7 +50858,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"19": "167059,2",
 			},
 		},
-		"KiStGDV NW": {
+		"KiStGDV NRW": {
 			title: "Kirchensteuergesetzdurchf\u00fchrungsverordnung",
 			norms: {
 				"1": "3486303,2",
@@ -50875,7 +50874,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 			},
 		},
 		"3. AG-KJHG": {
-			title: "KJF\u00f6G,NW - Drittes Ausf\u00fchrungsgesetz-KJHG - KJF\u00f6G",
+			title: "KJF\u00f6G,NRW - Drittes Ausf\u00fchrungsgesetz-KJHG - KJF\u00f6G",
 			norms: {
 				"1": "432202,2",
 				"2": "432202,3",
@@ -50901,7 +50900,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"22": "432202,23",
 			},
 		},
-		"KAG NW": {
+		"KAG NRW": {
 			title: "Kommunalabgabengesetz",
 			norms: {
 				"1": "167050,2",
@@ -50935,7 +50934,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8a": "167050,29",
 			},
 		},
-		"KomAbwV NW": {
+		"KomAbwV NRW": {
 			title: "Kommunalabwasserverordnung",
 			norms: {
 				"1": "167066,2",
@@ -50952,7 +50951,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"12": "167066,13",
 			},
 		},
-		"GkG NRW NW": {
+		"GkG NRW": {
 			title: "Kommunale Gemeinschaftsarbeit-Gesetz",
 			norms: {
 				"1": "146782,2",
@@ -50995,11 +50994,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"22a": "146782,38",
 			},
 		},
-		"KomHVO NRW NW": {
+		"KomHVO NRW": {
 			title: "Kommunalhaushaltsverordnung Nordrhein-Westfalen",
 			norms: {},
 		},
-		"KUV NW": {
+		"KUV NRW": {
 			title: "Kommunalunternehmensverordnung",
 			norms: {
 				"1": "146802,2",
@@ -51033,7 +51032,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"29": "146802,3",
 			},
 		},
-		"KWahlG NW": {
+		"KWahlG NRW": {
 			title: "Kommunalwahlgesetz",
 			norms: {
 				"1": "146804,2",
@@ -51102,7 +51101,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"46k": "146804,64",
 			},
 		},
-		"KWahlO NW": {
+		"KWahlO NRW": {
 			title: "Kommunalwahlordnung",
 			norms: {
 				"1": "146805,2",
@@ -51272,7 +51271,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"9d": "146805,168",
 			},
 		},
-		"KHV NRW NW": {
+		"KHV NRW": {
 			title: "Kommunikationsunterst\u00fctzungsverordnung Nordrhein-Westfalen",
 			norms: {
 				"1": "331050,2",
@@ -51283,11 +51282,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6": "331050,7",
 			},
 		},
-		"KonzentratV NW": {
+		"KonzentratV NRW": {
 			title: "Konzentrations-VO - \u00a7 1077 ZPO, \u00a7 10 BerHG",
 			norms: { "1": "526753,2", "2": "526753,3", "3": "526753,4" },
 		},
-		"KonzVO GSR NW": {
+		"KonzVO GSR NRW": {
 			title: "KonzentrationsVO Gesellschaftsrecht",
 			norms: {
 				"1": "3995764,2",
@@ -51296,7 +51295,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "3995764,5",
 			},
 		},
-		"KorruptionsbG NW": {
+		"KorruptionsbG NRW": {
 			title: "Korruptionsbek\u00e4mpfungsgesetz",
 			norms: {
 				"1": "472061,2",
@@ -51323,11 +51322,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"22": "472061,23",
 			},
 		},
-		"KoG-IfSG NW": {
+		"KoG-IfSG NRW": {
 			title: "KostenG-Infektionsschutzgesetz",
 			norms: { "1": "146790,2", "2": "146790,3", "3": "146790,4" },
 		},
-		"KHG NRW NW": {
+		"KHG NRW": {
 			title: "KrankenhausG",
 			norms: {
 				"1": "146784,2",
@@ -51375,7 +51374,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"43": "146784,44",
 			},
 		},
-		"KHGG NRW NW": {
+		"KHGG NRW": {
 			title: "Krankenhausgestaltungsgesetz NRW",
 			norms: {
 				"1": "3308035,2",
@@ -51423,7 +51422,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"34c": "3308035,45",
 			},
 		},
-		"KHZVV NW": {
+		"KHZVV NRW": {
 			title: "Krankenhauswesen Zust\u00e4ndigkeits-/Verfahrensverordnung",
 			norms: {
 				"1": "3473558,3",
@@ -51442,7 +51441,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"14": "3473558,16",
 			},
 		},
-		"KHZV NW": {
+		"KHZV NRW": {
 			title: "Krankenhauszust\u00e4ndigkeitsV",
 			norms: {
 				"1": "146786,2",
@@ -51452,7 +51451,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "146786,6",
 			},
 		},
-		"KrO NRW NW": {
+		"KrO NRW": {
 			title: "Kreisordnung NRW",
 			norms: {
 				"1": "146800,2",
@@ -51530,11 +51529,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"56c": "146800,7",
 			},
 		},
-		"KPBVO NW": {
+		"KPBVO NRW": {
 			title: "Kreispolizeibeh\u00f6rdenverordnung",
 			norms: { "1": "167072,2", "2": "167072,3", "3": "167072,4" },
 		},
-		"KrStBV NW": {
+		"KrStBV NRW": {
 			title: "Kreisst\u00e4dte-Klassifizierungsverordnung",
 			norms: {
 				"1": "146801,2",
@@ -51543,7 +51542,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "146801,5",
 			},
 		},
-		"KHSt-VO NW": {
+		"KHSt-VO NRW": {
 			title: "Kriminalhauptstellen-Verordnung",
 			norms: {
 				"1": "5815282,2",
@@ -51557,7 +51556,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"9": "5815282,1",
 			},
 		},
-		"KulturGB NRW NW": {
+		"KulturGB NRW": {
 			title: "Kulturgesetzbuch",
 			norms: {
 				"1": "9933834,2",
@@ -51630,7 +51629,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"68": "9933834,69",
 			},
 		},
-		"KunstHG 1987 NW": {
+		"KunstHG 1987 NRW": {
 			title: "KunsthochschulG",
 			norms: {
 				"1": "167075,2",
@@ -51693,7 +51692,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"58": "167075,59",
 			},
 		},
-		"KunstHG NW": {
+		"KunstHG NRW": {
 			title: "Kunsthochschulgesetz",
 			norms: {
 				"1": "3351787,2",
@@ -51784,7 +51783,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"73a": "3351787,87",
 			},
 		},
-		"KunstHRNRG NW": {
+		"KunstHRNRG NRW": {
 			title: "Kunsthochschulrecht-Neuregelungsgesetz",
 			norms: {
 				"1": "3350038,2",
@@ -51795,7 +51794,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6": "3350038,7",
 			},
 		},
-		"KOG NW": {
+		"KOG NRW": {
 			title: "Kurortegesetz",
 			norms: {
 				"1": "3321284,2",
@@ -51825,7 +51824,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"25": "3321284,26",
 			},
 		},
-		"L\u00d6G NRW NW": {
+		"L\u00d6G NRW": {
 			title: "Laden\u00f6ffnungsgesetz",
 			norms: {
 				"1": "2562622,2",
@@ -51844,7 +51843,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"14": "2562622,15",
 			},
 		},
-		"AltPflG-NRW NW": {
+		"AltPflG-NRW": {
 			title: "Landesaltenpflegegesetz",
 			norms: {
 				"1": "146563,2",
@@ -51863,7 +51862,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"10a": "146563,12",
 			},
 		},
-		"LAV-NRW NW": {
+		"LAV-NRW": {
 			title: "LandesarzneimittelV",
 			norms: {
 				"1": "167088,2",
@@ -51876,7 +51875,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8": "167088,9",
 			},
 		},
-		"LAGPflB NW": {
+		"LAGPflB NRW": {
 			title: "Landesausf\u00fchrungsgesetz Pflegeberufe",
 			norms: {
 				"1": "8187753,2",
@@ -51887,7 +51886,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6": "8187753,7",
 			},
 		},
-		"LandesbankG NW": {
+		"LandesbankG NRW": {
 			title: "LandesbankG",
 			norms: {
 				"1": "167084,2",
@@ -51907,7 +51906,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"15": "167084,16",
 			},
 		},
-		"BauO NRW 2018 NW": {
+		"BauO NRW 2018 NRW": {
 			title: "Landesbauordnung 2018",
 			norms: {
 				"1": "8101994,2",
@@ -52004,7 +52003,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"42a": "8101994,93",
 			},
 		},
-		"LBG NRW 1981 NW": {
+		"LBG NRW 1981 NRW": {
 			title: "Landesbeamtengesetz",
 			norms: {
 				"1": "167092,2",
@@ -52283,7 +52282,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"91a": "7606566,141",
 			},
 		},
-		"LBesG NRW NW": {
+		"LBesG NRW": {
 			title: "Landesbesoldungsgesetz",
 			norms: {
 				"1": "7609310,2",
@@ -52392,7 +52391,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"1.0": "167090,23",
 			},
 		},
-		"LBtG NW": {
+		"LBtG NRW": {
 			title: "Landesbetreuungsgesetz",
 			norms: {
 				"1": "146808,2",
@@ -52406,7 +52405,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6a": "146808,1",
 			},
 		},
-		"LBodSchG NW": {
+		"LBodSchG NRW": {
 			title: "Landesbodenschutzgesetz",
 			norms: {
 				"1": "167093,2",
@@ -52432,7 +52431,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"21": "167093,22",
 			},
 		},
-		"LDG NRW NW": {
+		"LDG NRW": {
 			title: "Landesdisziplinargesetz",
 			norms: {
 				"1": "454746,2",
@@ -52521,7 +52520,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"84": "454746,85",
 			},
 		},
-		"EEG NRW NW": {
+		"EEG NRW": {
 			title: "Landesenteignungs- und -entsch\u00e4digungsgesetz",
 			norms: {
 				"1": "146624,2",
@@ -52579,11 +52578,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"53": "146624,54",
 			},
 		},
-		"LFKV NW": {
+		"LFKV NRW": {
 			title: "Landesfamilienkassenverordnung",
 			norms: { "1": "369738,2", "2": "369738,3", "3": "369738,4" },
 		},
-		"LFischG NW": {
+		"LFischG NRW": {
 			title: "Landesfischereigesetz",
 			norms: {
 				"1": "167108,2",
@@ -52653,11 +52652,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"59a": "167108,66",
 			},
 		},
-		"LFoG NW": {
+		"LFoG NRW": {
 			title: "Landesforstgesetz",
 			norms: { "1": "369738,2", "2": "369738,3", "3": "369738,4" },
 		},
-		"LGG NW": {
+		"LGG NRW": {
 			title: "Landesgleichstellungsgesetz",
 			norms: {
 				"1": "146811,2",
@@ -52692,7 +52691,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6a": "146811,29",
 			},
 		},
-		"LHO NW": {
+		"LHO NRW": {
 			title: "Landeshaushaltsordnung",
 			norms: {
 				"1": "167119,2",
@@ -52830,7 +52829,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"71a": "167119,75",
 			},
 		},
-		"LHebG NRW NW": {
+		"LHebG NRW": {
 			title: "Landeshebammengesetz",
 			norms: {
 				"1": "167118,2",
@@ -52840,7 +52839,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "167118,6",
 			},
 		},
-		"LHundG NRW NW": {
+		"LHundG NRW": {
 			title: "Landeshundegesetz",
 			norms: {
 				"1": "167120,2",
@@ -52868,7 +52867,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"23": "167120,24",
 			},
 		},
-		"DVO LHundG NRW NW": {
+		"DVO LHundG NRW": {
 			title: "Landeshundegesetz NRW-Durchf\u00fchrungsverordnung",
 			norms: {
 				"1": "293761,2",
@@ -52879,7 +52878,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6": "293761,7",
 			},
 		},
-		"LImschG NW": {
+		"LImschG NRW": {
 			title: "Landes-Immissionsschutzgesetz",
 			norms: {
 				"1": "167123,2",
@@ -52908,7 +52907,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"13a": "167123,25",
 			},
 		},
-		"LJG-NRW NW": {
+		"LJG-NRW": {
 			title: "Landesjagdgesetz NRW",
 			norms: {
 				"1": "167126,2",
@@ -52976,7 +52975,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"28a": "167126,64",
 			},
 		},
-		"LKRG NRW NW": {
+		"LKRG NRW": {
 			title: "Landeskrebsregistergesetz",
 			norms: {
 				"1": "7516552,2",
@@ -53013,7 +53012,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				LKRG: "7516552,31",
 			},
 		},
-		"LKrWG NW": {
+		"LKrWG NRW": {
 			title: "Landeskreislaufwirtschaftsgesetz",
 			norms: {
 				"1": "167077,2",
@@ -53074,7 +53073,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5c": "167077,1",
 			},
 		},
-		"LMG NRW NW": {
+		"LMG NRW": {
 			title: "Landesmediengesetz NRW",
 			norms: {
 				"1": "167133,2",
@@ -53225,7 +53224,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"58a": "167133,145",
 			},
 		},
-		"LMinG NW": {
+		"LMinG NRW": {
 			title: "Landesministergesetz",
 			norms: {
 				"1": "167134,2",
@@ -53253,7 +53252,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4c": "167134,26",
 			},
 		},
-		"LNatSchG NRW NW": {
+		"LNatSchG NRW": {
 			title: "Landesnaturschutzgesetz",
 			norms: {
 				"1": "167116,2",
@@ -53343,7 +53342,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"50a": "167116,118",
 			},
 		},
-		"LoBUntLBEinG NW": {
+		"LoBUntLBEinG NRW": {
 			title: "Landesoberbeh\u00f6rden u. Untere Landesbeh\u00f6rden-EinG",
 			norms: {
 				"1": "146815,2",
@@ -53353,7 +53352,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "146815,6",
 			},
 		},
-		"LOG NRW NW": {
+		"LOG NRW": {
 			title: "Landesorganisationsgesetz",
 			norms: {
 				"1": "146816,2",
@@ -53389,7 +53388,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"14a": "146816,16",
 			},
 		},
-		"LPVG NW": {
+		"LPVG NRW": {
 			title: "Landespersonalvertretungsgesetz",
 			norms: {
 				"1": "146819,2",
@@ -53512,11 +53511,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"72a": "146819,74",
 			},
 		},
-		"RiLPVGVO NW": {
+		"RiLPVGVO NRW": {
 			title: "Landespersonalvertretungsgesetz-Richterberufungsverordnung",
 			norms: { "1": "247966,2", "2": "247966,3" },
 		},
-		"LPlG NW": {
+		"LPlG NRW": {
 			title: "Landesplanungsgesetz",
 			norms: {
 				"1": "526315,2",
@@ -53567,7 +53566,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"9a": "526315,55",
 			},
 		},
-		"LPrG NW": {
+		"LPrG NRW": {
 			title: "Landespressegesetz NRW",
 			norms: {
 				"1": "167140,2",
@@ -53599,7 +53598,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"27": "167140,28",
 			},
 		},
-		"LRHG NW": {
+		"LRHG NRW": {
 			title: "Landesrechnungshof-Gesetz",
 			norms: {
 				"1": "167142,2",
@@ -53618,11 +53617,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"14": "167142,15",
 			},
 		},
-		"LRegErmV NW": {
+		"LRegErmV NRW": {
 			title: "Landesregierungserm\u00e4chtigungsV",
 			norms: { "1": "625588,2", "2": "625588,3" },
 		},
-		"LRKG NW": {
+		"LRKG NRW": {
 			title: "Landesreisekostengesetz",
 			norms: {
 				"1": "9933835,2",
@@ -53650,7 +53649,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"3a": "167144,25",
 			},
 		},
-		"LRiStaG NW": {
+		"LRiStaG NRW": {
 			title: "Landesrichter- und Staatsanw\u00e4ltegesetz",
 			norms: {
 				"1": "7475531,2",
@@ -53762,7 +53761,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"14a": "7475531,107",
 			},
 		},
-		"LSchV NW": {
+		"LSchV NRW": {
 			title: "LandesschiedsstellenV",
 			norms: {
 				"1": "167145,2",
@@ -53788,7 +53787,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"21": "167145,22",
 			},
 		},
-		"LSchuWG NW": {
+		"LSchuWG NRW": {
 			title: "Landesschuldenwesengesetz",
 			norms: {
 				"1": "3481072,3",
@@ -53800,7 +53799,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7": "3481072,9",
 			},
 		},
-		"LStatG NRW NW": {
+		"LStatG NRW": {
 			title: "Landesstatistikgesetz",
 			norms: {
 				"1": "9285805,2",
@@ -53830,7 +53829,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"25": "9285805,26",
 			},
 		},
-		"LStrAusbauG NW": {
+		"LStrAusbauG NRW": {
 			title: "Landesstra\u00dfenausbauG",
 			norms: {
 				"1": "167148,2",
@@ -53843,11 +53842,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8": "167148,9",
 			},
 		},
-		"LSubvG NW": {
+		"LSubvG NRW": {
 			title: "Landessubventionsgesetz",
 			norms: { "1": "585581,2", "2": "585581,3" },
 		},
-		"UVPG NRW NW": {
+		"UVPG NRW": {
 			title: "Landesumweltvertr\u00e4glichkeitspr\u00fcfungsgesetz",
 			norms: {
 				"1": "167377,2",
@@ -53859,11 +53858,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4a": "167377,1",
 			},
 		},
-		"LUKG NW": {
+		"LUKG NRW": {
 			title: "Landesumzugskostengesetz",
 			norms: { "1": "167153,2", "2": "167153,3", "3": "167153,4" },
 		},
-		"LVLG NW": {
+		"LVLG NRW": {
 			title: "Landesverband Lippe-Gesetz",
 			norms: {
 				"1": "146825,2",
@@ -53889,7 +53888,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4a": "146825,21",
 			},
 		},
-		"VOFF NRW NW": {
+		"VOFF NRW": {
 			title: "Landesverordnung Freiwillige Feuerwehr",
 			norms: {
 				"1": "7879381,2",
@@ -53920,7 +53919,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"26": "7879381,27",
 			},
 		},
-		"LWahlG NW": {
+		"LWahlG NRW": {
 			title: "Landeswahlgesetz",
 			norms: {
 				"1": "167158,2",
@@ -53974,7 +53973,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"46a": "167158,5",
 			},
 		},
-		"LWahlO NW": {
+		"LWahlO NRW": {
 			title: "Landeswahlordnung",
 			norms: {
 				"1": "167160,2",
@@ -54062,7 +54061,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"9b": "167160,83",
 			},
 		},
-		"LWG NW": {
+		"LWG NRW": {
 			title: "Landeswassergesetz",
 			norms: {
 				"1": "167162,2",
@@ -54194,7 +54193,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"22a": "167162,213",
 			},
 		},
-		"LZG NRW NW": {
+		"LZG NRW": {
 			title: "Landeszustellungsgesetz",
 			norms: {
 				"1": "2128130,2",
@@ -54212,7 +54211,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5a": "2128130,14",
 			},
 		},
-		"LVerbO NW": {
+		"LVerbO NRW": {
 			title: "Landschaftsverbandsordnung",
 			norms: {
 				"1": "146832,2",
@@ -54262,11 +54261,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8b": "146832,44",
 			},
 		},
-		"LWKGFBezBestV NW": {
+		"LWKGFBezBestV NRW": {
 			title: "Landwirtschaftskammer Gesch\u00e4ftsf\u00fchrer-Bezirksbestimmungsverordnung",
 			norms: { "1": "1323867,2", "2": "1323867,3" },
 		},
-		"LWKG NW": {
+		"LWKG NRW": {
 			title: "Landwirtschaftskammergesetz",
 			norms: {
 				"1": "10108136,2",
@@ -54298,11 +54297,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"27": "10108136,28",
 			},
 		},
-		"LwK-ProbAV NW": {
+		"LwK-ProbAV NRW": {
 			title: "Landwirtschaftskammer-Probeamtsverordnung",
 			norms: { "1": "3553894,2", "2": "3553894,3" },
 		},
-		"LBAV NW": {
+		"LBAV NRW": {
 			title: "Laufbahnbef\u00e4higungsanerkennungsverordnung",
 			norms: {
 				"1": "7459951,2",
@@ -54321,7 +54320,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"LBAV,": "7459951,15",
 			},
 		},
-		"LVO NW": {
+		"LVO NRW": {
 			title: "Laufbahnverordnung",
 			norms: {
 				"1": "7609070,2",
@@ -54382,7 +54381,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"56": "7609070,57",
 			},
 		},
-		"LVOPol NW": {
+		"LVOPol NRW": {
 			title: "Laufbahnverordnung der Polizei",
 			norms: {
 				"1": "9803263,2",
@@ -54419,15 +54418,15 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"": "9803263,33",
 			},
 		},
-		"LBS NordWest-StV NW": {
+		"LBS NordWest-StV NRW": {
 			title: "LBS NordWest-Staatsvertrag",
 			norms: {},
 		},
-		"LBS NordWest-StVG NW": {
+		"LBS NordWest-StVG NRW": {
 			title: "LBS NordWest-Staatsvertragsgesetz",
 			norms: { "1": "10360948,2", LBS: "10360948,3" },
 		},
-		"LFBRVG NRW NW": {
+		"LFBRVG NRW": {
 			title: "Lebensmittel-/Futtermittel-/Bedarfsgegenst\u00e4nderecht-Vollzugsgesetz",
 			norms: {
 				"1": "167132,2",
@@ -54446,7 +54445,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"14": "167132,15",
 			},
 		},
-		"LPO 2003 NW": {
+		"LPO 2003 NRW": {
 			title: "Lehramtspr\u00fcfungsordnung",
 			norms: {
 				"1": "242825,2",
@@ -54505,7 +54504,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"54": "242825,55",
 			},
 		},
-		"LZV NW": {
+		"LZV NRW": {
 			title: "Lehramtszugangsverordnung",
 			norms: {
 				"1": "7574500,2",
@@ -54524,7 +54523,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"14": "7574500,15",
 			},
 		},
-		"LABG 2002 NW": {
+		"LABG 2002 NRW": {
 			title: "Lehrerausbildungsgesetz",
 			norms: {
 				"1": "167078,2",
@@ -54559,11 +54558,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"30": "167078,31",
 			},
 		},
-		"PersVLehrV NW": {
+		"PersVLehrV NRW": {
 			title: "Lehrerpersonalvertretungsverordnung",
 			norms: { "1": "312717,2", "2": "312717,3", "3": "312717,4" },
 		},
-		"LVV NW": {
+		"LVV NRW": {
 			title: "Lehrverpflichtungsverordnung",
 			norms: {
 				"1": "3804662,2",
@@ -54578,7 +54577,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"1a": "3804662,11",
 			},
 		},
-		"LAVO IT.NRW NW": {
+		"LAVO IT.NRW": {
 			title: "LeistungsabnahmeVO IT.NRW",
 			norms: {
 				"1": "167079,2",
@@ -54587,7 +54586,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "167079,5",
 			},
 		},
-		"LPZVO NW": {
+		"LPZVO NRW": {
 			title: "Leistungspr\u00e4mien- und -zulagenverordnung",
 			norms: {
 				"1": "167141,2",
@@ -54599,7 +54598,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7": "167141,8",
 			},
 		},
-		"EEZV-LRH NW": {
+		"EEZV-LRH NRW": {
 			title: "LRH-ErnennungsV",
 			norms: {
 				"1": "166876,2",
@@ -54608,7 +54607,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "166876,5",
 			},
 		},
-		"MaschMahnVO NW": {
+		"MaschMahnVO NRW": {
 			title: "Maschinelles Mahnverfahren-Verordnung",
 			norms: {
 				"1": "167172,2",
@@ -54617,7 +54616,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "167172,5",
 			},
 		},
-		"MRVG NW": {
+		"MRVG NRW": {
 			title: "Ma\u00dfregelvollzugsgesetz",
 			norms: {
 				"1": "146846,2",
@@ -54662,7 +54661,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"21a": "146846,41",
 			},
 		},
-		"HygMedVO NW": {
+		"HygMedVO NRW": {
 			title: "Medizinische Hygieneverordnung",
 			norms: {
 				"1": "4878561,2",
@@ -54677,7 +54676,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"10": "4878561,11",
 			},
 		},
-		"MeldD\u00dcV NRW NW": {
+		"MeldD\u00dcV NRW": {
 			title: "Meldedaten\u00fcbermittlungsverordnung",
 			norms: {
 				"1": "7437726,2",
@@ -54715,7 +54714,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"22a": "7437726,33",
 			},
 		},
-		"MG NRW NW": {
+		"MG NRW": {
 			title: "Meldegesetz NRW",
 			norms: {
 				"1": "167178,2",
@@ -54732,11 +54731,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"12": "167178,14",
 			},
 		},
-		"MietSchVO NRW NW": {
+		"MietSchVO NRW": {
 			title: "Mieterschutzverordnung",
 			norms: { "1": "9622165,2", "2": "9622165,3" },
 		},
-		"MKWZustVO NW": {
+		"MKWZustVO NRW": {
 			title: "MKW Zust\u00e4ndigkeitsverordnung",
 			norms: {
 				"1": "3963956,2",
@@ -54752,7 +54751,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"11": "3963956,12",
 			},
 		},
-		"NachbG NRW NW": {
+		"NachbG NRW": {
 			title: "Nachbarrechtsgesetz",
 			norms: {
 				"1": "167190,2",
@@ -54813,7 +54812,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"23a": "167190,57",
 			},
 		},
-		"NtV NW": {
+		"NtV NRW": {
 			title: "Nebent\u00e4tigkeitsverordnung",
 			norms: {
 				"1": "167197,2",
@@ -54843,7 +54842,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"25": "167197,26",
 			},
 		},
-		"NiSchG NRW NW": {
+		"NiSchG NRW": {
 			title: "Nichtraucherschutzgesetz NRW",
 			norms: {
 				"1": "3308324,2",
@@ -54854,7 +54853,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6": "3308324,7",
 			},
 		},
-		"NKFEG NRW NW": {
+		"NKFEG NRW": {
 			title: "NKF Einf\u00fchrungsG NRW",
 			norms: {
 				"1": "454742,2",
@@ -54869,7 +54868,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"10": "454742,11",
 			},
 		},
-		"NotVO NRW NW": {
+		"NotVO NRW": {
 			title: "Notarverordnung NRW",
 			norms: {
 				"1": "7668964,2",
@@ -54896,7 +54895,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"15a": "7668964,23",
 			},
 		},
-		"NotRettLfzZV NW": {
+		"NotRettLfzZV NRW": {
 			title: "Notfallrettung durch Luftfahrzeuge ZustV",
 			norms: {
 				"1": "305923,2",
@@ -54905,7 +54904,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "305923,5",
 			},
 		},
-		"NRW.BANK G NW": {
+		"NRW.BANK G NRW": {
 			title: "NRW.BANK Gesetz",
 			norms: {
 				"1": "305927,2",
@@ -54931,7 +54930,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"9d": "305927,22",
 			},
 		},
-		"\u00d6GDG NRW NW": {
+		"\u00d6GDG NRW": {
 			title: "\u00d6ffentlicher Gesundheitsdienst-Gesetz NRW",
 			norms: {
 				"1": "146870,2",
@@ -54966,11 +54965,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"30": "146870,31",
 			},
 		},
-		"OLGHE\u00dcbertrVO NW": {
+		"OLGHE\u00dcbertrVO NRW": {
 			title: "OLG Hamm-Entscheidungs\u00fcbertragungsverordnung",
 			norms: { "1": "146877,2", "2": "146877,3", "3": "146877,4" },
 		},
-		"\u00d6PNVG NRW NW": {
+		"\u00d6PNVG NRW": {
 			title: "\u00d6PNV-Gesetz NRW",
 			norms: {
 				"1": "167203,2",
@@ -54995,7 +54994,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5a": "167203,21",
 			},
 		},
-		"OVP NW": {
+		"OVP NRW": {
 			title: "Ordnung des Vorbereitungsdienstes und der Staatspr\u00fcfung",
 			norms: {
 				"1": "4386223,55",
@@ -55054,7 +55053,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8a": "4386223,57",
 			},
 		},
-		"OBG NW": {
+		"OBG NRW": {
 			title: "Ordnungsbeh\u00f6rdengesetz",
 			norms: {
 				"1": "167198,2",
@@ -55111,7 +55110,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"52": "167198,53",
 			},
 		},
-		"PStSAG NW": {
+		"PStSAG NRW": {
 			title: "Parlamentarischer Staatssekret\u00e4r-Amtsgesetz",
 			norms: {
 				"1": "146878,2",
@@ -55125,7 +55124,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"9": "146878,1",
 			},
 		},
-		"PauschV NW": {
+		"PauschV NRW": {
 			title: "PauschalierungsV",
 			norms: {
 				"1": "146880,2",
@@ -55140,7 +55139,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"10": "146880,11",
 			},
 		},
-		"PFoG NW": {
+		"PFoG NRW": {
 			title: "Pensionsfondsgesetz Nordrhein-Westfalen",
 			norms: {
 				"1": "7516544,2",
@@ -55160,7 +55159,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"15": "7516544,16",
 			},
 		},
-		"PStVO NRW NW": {
+		"PStVO NRW": {
 			title: "Personenstandsverordnung NRW",
 			norms: {
 				"1": "3484957,2",
@@ -55172,7 +55171,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7": "3484957,8",
 			},
 		},
-		"PolG NRW NW": {
+		"PolG NRW": {
 			title: "Polizeigesetz NRW",
 			norms: {
 				"1": "167231,2",
@@ -55266,7 +55265,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6a": "167231,8",
 			},
 		},
-		"FHVOPol NW": {
+		"FHVOPol NRW": {
 			title: "Polizei-Heilf\u00fcrsorgeverordnung",
 			norms: {
 				"1": "3916381,2",
@@ -55286,7 +55285,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"15": "3916381,16",
 			},
 		},
-		"DHPolG NW": {
+		"DHPolG NRW": {
 			title: "PolizeihochschulG",
 			norms: {
 				"1": "489589,2",
@@ -55334,7 +55333,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"43": "489589,44",
 			},
 		},
-		"POG NRW NW": {
+		"POG NRW": {
 			title: "Polizeiorganisationsgesetz",
 			norms: {
 				"1": "167220,2",
@@ -55362,7 +55361,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"13b": "167220,24",
 			},
 		},
-		"Preis\u00dcZustV NW": {
+		"Preis\u00dcZustV NRW": {
 			title: "Preis\u00fcberwachung-Zust\u00e4ndigkeitsverordnung",
 			norms: {
 				"1": "167236,2",
@@ -55371,7 +55370,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "167236,5",
 			},
 		},
-		"PSVO NW": {
+		"PSVO NRW": {
 			title: "Pr\u00fcfungs- und Schlichtungsverordnung",
 			norms: {
 				"1": "4180972,2",
@@ -55411,7 +55410,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"35": "4180972,36",
 			},
 		},
-		"PO-Waldorf NW": {
+		"PO-Waldorf NRW": {
 			title: "Pr\u00fcfungsordnung-Waldorfschulen",
 			norms: {
 				"1": "167218,2",
@@ -55444,7 +55443,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"26a": "167218,29",
 			},
 		},
-		"Pr\u00fcfVO NRW NW": {
+		"Pr\u00fcfVO NRW": {
 			title: "Pr\u00fcfverordnung",
 			norms: {
 				"1": "3915288,2",
@@ -55463,7 +55462,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5a": "3915288,15",
 			},
 		},
-		"PsychKG NW": {
+		"PsychKG NRW": {
 			title: "Psychisch-Kranken-Gesetz",
 			norms: {
 				"1": "146892,2",
@@ -55508,11 +55507,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"10a": "146892,39",
 			},
 		},
-		"RDGZustV NW": {
+		"RDGZustV NRW": {
 			title: "RDG-Zust\u00e4ndigkeitsverordnung",
 			norms: { "1": "3380788,2", "2": "3380788,3", "3": "3380788,4" },
 		},
-		"RSteuZustG NW": {
+		"RSteuZustG NRW": {
 			title: "Realsteuerzust\u00e4ndigkeitsgesetz",
 			norms: {
 				"1": "167268,2",
@@ -55521,7 +55520,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "167268,5",
 			},
 		},
-		"RAVG NW NW": {
+		"RAVG NRW NRW": {
 			title: "Rechtsanwaltsversorgungsgesetz",
 			norms: {
 				"1": "167247,2",
@@ -55544,11 +55543,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7a": "167247,9",
 			},
 		},
-		"RD-ZustV NW": {
+		"RD-ZustV NRW": {
 			title: "Rechtsdienstleistung-Zust\u00e4ndigkeitsverordnung",
 			norms: { "1": "3385943,2", "2": "3385943,3" },
 		},
-		"RVRG NW": {
+		"RVRG NRW": {
 			title: "Regionalverband Ruhr-Gesetz",
 			norms: {
 				"1": "146803,2",
@@ -55586,7 +55585,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"26a": "146803,41",
 			},
 		},
-		"RettG NRW NW": {
+		"RettG NRW": {
 			title: "Rettungsgesetz NRW",
 			norms: {
 				"1": "146899,2",
@@ -55624,7 +55623,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7a": "146899,36",
 			},
 		},
-		"RettAPO 2012 NW": {
+		"RettAPO 2012 NRW": {
 			title: "Rettungssanit\u00e4ter-Ausbildungs- und Pr\u00fcfungsverordnung",
 			norms: {
 				"1": "5050616,2",
@@ -55648,7 +55647,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"19": "8012082,2",
 			},
 		},
-		"RettAPrVO NRW NW": {
+		"RettAPrVO NRW": {
 			title: "Rettungssanit\u00e4ter-Ausbildungs- und Pr\u00fcfungsverordnung NRW",
 			norms: {
 				"1": "10118077,2",
@@ -55676,7 +55675,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"23": "10118077,24",
 			},
 		},
-		"RSpkAPO NW": {
+		"RSpkAPO NRW": {
 			title: "Rheinische Sparkassenakademie-Pr\u00fcfungsordnung",
 			norms: {
 				"1": "3943085,2",
@@ -55710,11 +55709,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"29": "3943085,3",
 			},
 		},
-		"RiBPersVGVO NW": {
+		"RiBPersVGVO NRW": {
 			title: "RichterInnen n. BPVG VO",
 			norms: { "1": "247967,2", "2": "247967,3" },
 		},
-		"RohrLeitErrG NW": {
+		"RohrLeitErrG NRW": {
 			title: "Rohrleitung ErrichtungsG",
 			norms: {
 				"1": "369731,2",
@@ -55724,7 +55723,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "369731,6",
 			},
 		},
-		"SV-VO NW": {
+		"SV-VO NRW": {
 			title: "Sachverst\u00e4ndigen-Verordnung",
 			norms: {
 				"1": "167329,2",
@@ -55755,7 +55754,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"26": "167329,28",
 			},
 		},
-		"SchAG NRW NW": {
+		"SchAG NRW": {
 			title: "Schiedsamtsgesetz",
 			norms: {
 				"1": "146908,2",
@@ -55812,7 +55811,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7a": "146908,54",
 			},
 		},
-		"SchV-KHG NW": {
+		"SchV-KHG NRW": {
 			title: "Schiedsstellenverordnung",
 			norms: {
 				"1": "167289,2",
@@ -55827,7 +55826,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"10": "167289,11",
 			},
 		},
-		"SchulG NW": {
+		"SchulG NRW": {
 			title: "Schulgesetz NRW",
 			norms: {
 				"1": "492252,2",
@@ -55970,7 +55969,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"78a": "492252,139",
 			},
 		},
-		"Schul\u00c4ndG03 NW": {
+		"Schul\u00c4ndG03 NRW": {
 			title: "Schulrechts\u00e4nderungsG 2003",
 			norms: {
 				"1": "242821,2",
@@ -55993,7 +55992,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"18": "242821,19",
 			},
 		},
-		"SeilbG NRW NW": {
+		"SeilbG NRW": {
 			title: "Seilbahngesetz NRW",
 			norms: {
 				"1": "279088,2",
@@ -56022,7 +56021,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"24": "279088,25",
 			},
 		},
-		"S\u00dcG NRW NW": {
+		"S\u00dcG NRW": {
 			title: "Sicherheits\u00fcberpr\u00fcfungsgesetz Nordrhein-Westfalen",
 			norms: {
 				"1": "10104650,2",
@@ -56070,7 +56069,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"43": "10104650,44",
 			},
 		},
-		"SVVollzG NRW NW": {
+		"SVVollzG NRW": {
 			title: "Sicherungsverwahrungsvollzugsgesetz Nordrhein-Westfalen",
 			norms: {
 				"1": "5632836,2",
@@ -56188,7 +56187,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"113": "5632836,114",
 			},
 		},
-		"SBauVO NW": {
+		"SBauVO NRW": {
 			title: "Sonderbauverordnung",
 			norms: {
 				"1": "7805141,2",
@@ -56343,7 +56342,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"150": "7805141,151",
 			},
 		},
-		"SondUrlaubG NW": {
+		"SondUrlaubG NRW": {
 			title: "SonderurlaubsG",
 			norms: {
 				"1": "245825,2",
@@ -56358,7 +56357,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"10": "245825,11",
 			},
 		},
-		"SpkG NW": {
+		"SpkG NRW": {
 			title: "Sparkassengesetz",
 			norms: {
 				"1": "3478107,2",
@@ -56409,7 +56408,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"46": "3478107,48",
 			},
 		},
-		"SpielbG NRW NW": {
+		"SpielbG NRW": {
 			title: "Spielbankgesetz NRW",
 			norms: {
 				"1": "9616378,2",
@@ -56450,7 +56449,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"19a": "5294455,21",
 			},
 		},
-		"StBVG NW NW": {
+		"StBVG NRW NRW": {
 			title: "Steuerberaterversorgungsgesetz",
 			norms: {
 				"1": "305901,2",
@@ -56473,7 +56472,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"18": "305901,19",
 			},
 		},
-		"StiftG NRW NW": {
+		"StiftG NRW": {
 			title: "Stiftungsgesetz NRW",
 			norms: {
 				"1": "10342938,2",
@@ -56492,7 +56491,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"14": "10342938,15",
 			},
 		},
-		"StrUG NRW NW": {
+		"StrUG NRW": {
 			title: "Strafrechtsbezogenes Unterbringungsgesetz NRW",
 			norms: {
 				"1": "9965394,2",
@@ -56561,7 +56560,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"64": "9965394,65",
 			},
 		},
-		"StVollstrO NW": {
+		"StVollstrO NRW": {
 			title: "Strafvollstreckungsordnung",
 			norms: {
 				"1": "4456494,2",
@@ -56664,7 +56663,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"77a": "4456494,1",
 			},
 		},
-		"StVollzG NRW NW": {
+		"StVollzG NRW": {
 			title: "Strafvollzugsgesetz Nordrhein-Westfalen",
 			norms: {
 				"1": "7272579,2",
@@ -56799,7 +56798,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"130": "7272579,131",
 			},
 		},
-		"StrWG NRW NW": {
+		"StrWG NRW": {
 			title: "Stra\u00dfen- und Wegegesetz NRW",
 			norms: {
 				"1": "167317,2",
@@ -56888,7 +56887,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"9b": "167317,85",
 			},
 		},
-		"StrEKrRZustV NW": {
+		"StrEKrRZustV NRW": {
 			title: "Stra\u00dfen-/Eisenbahnkreuzungsrecht-Zust\u00e4ndigkeitsverordnung",
 			norms: {
 				"1": "3936056,2",
@@ -56901,7 +56900,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8": "3936056,9",
 			},
 		},
-		"StrReinG NRW NW": {
+		"StrReinG NRW": {
 			title: "Stra\u00dfenreinigungsgesetz NRW",
 			norms: {
 				"1": "146931,2",
@@ -56911,7 +56910,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "146931,6",
 			},
 		},
-		"StVZustV NW": {
+		"StVZustV NRW": {
 			title: "Stra\u00dfenverkehrszust\u00e4ndigkeitsverordnung",
 			norms: {
 				"1": "7615385,2",
@@ -56976,7 +56975,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"52a": "7615385,61",
 			},
 		},
-		"StuStrRefVO NW": {
+		"StuStrRefVO NRW": {
 			title: "StudienstrukturreformVO",
 			norms: {
 				"1": "167024,2",
@@ -56989,7 +56988,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8": "167024,9",
 			},
 		},
-		"StWG NW": {
+		"StWG NRW": {
 			title: "Studierendenwerksgesetz",
 			norms: {
 				"1": "7150442,2",
@@ -57009,7 +57008,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"15": "7150442,16",
 			},
 		},
-		"TIntG NW": {
+		"TIntG NRW": {
 			title: "Teilhabe- und Integrationsgesetz",
 			norms: {
 				"1": "9913395,2",
@@ -57034,11 +57033,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"20": "9913395,21",
 			},
 		},
-		"ZVTranspRL NW": {
+		"ZVTranspRL NRW": {
 			title: "Transparenzrichtlinie-Zust\u00e4ndigkeitsverordnung",
 			norms: { "1": "244692,6", "2": "244692,7", "3": "244692,8" },
 		},
-		"AG-TPG NW": {
+		"AG-TPG NRW": {
 			title: "Transplantationsgesetz-Ausf\u00fchrungsgesetz",
 			norms: {
 				"1": "166706,2",
@@ -57050,7 +57049,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7": "166706,8",
 			},
 		},
-		"\u00dcberlassV NW": {
+		"\u00dcberlassV NRW": {
 			title: "\u00dcberlassungsverordnung",
 			norms: {
 				"1": "167345,2",
@@ -57059,11 +57058,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "167345,5",
 			},
 		},
-		"UmglVGH NW": {
+		"UmglVGH NRW": {
 			title: "Umgliederungs-V Gelsenkirchen - Herne",
 			norms: { "1": "167350,2", "2": "167350,3", "3": "167350,4" },
 		},
-		"UmlageVO NW": {
+		"UmlageVO NRW": {
 			title: "UmlageV",
 			norms: {
 				"1": "146936,2",
@@ -57072,7 +57071,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "146936,5",
 			},
 		},
-		"UStAufteilVO NW": {
+		"UStAufteilVO NRW": {
 			title: "Umsatzsteuer-Aufteilungsverordnung",
 			norms: {
 				"1": "10469707,2",
@@ -57083,7 +57082,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6": "9728476,7",
 			},
 		},
-		"UIG NRW NW": {
+		"UIG NRW": {
 			title: "Umweltinformationsgesetz NRW",
 			norms: {
 				"1": "2910094,2",
@@ -57095,7 +57094,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7": "2910094,8",
 			},
 		},
-		"UmSchAnzV NW": {
+		"UmSchAnzV NRW": {
 			title: "Umwelt-Schadensanzeige-Verordnung",
 			norms: {
 				"1": "167352,2",
@@ -57106,7 +57105,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6": "167352,7",
 			},
 		},
-		"USAusschG NW": {
+		"USAusschG NRW": {
 			title: "UntersuchungsausschussG",
 			norms: {
 				"1": "167373,2",
@@ -57141,7 +57140,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4b": "167373,7",
 			},
 		},
-		"UVollzG NRW NW": {
+		"UVollzG NRW": {
 			title: "Untersuchungshaftvollzugsgesetz Nordrhein-Westfalen",
 			norms: {
 				"1": "3902161,2",
@@ -57225,7 +57224,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"79": "3902161,8",
 			},
 		},
-		"EltBauVO NW": {
+		"EltBauVO NRW": {
 			title: "V. \u00fc. d. Bau v. Betriebsr\u00e4umen f. elektr. Anlagen",
 			norms: {
 				"1": "166884,2",
@@ -57239,15 +57238,15 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"9": "166884,1",
 			},
 		},
-		"ZustVKleing NW": {
+		"ZustVKleing NRW": {
 			title: "V. \u00fc. Zust. auf dem Gebiet des Kleingartenwesens",
 			norms: { "1": "146997,2", "2": "146997,3" },
 		},
-		"VereinZustV NW": {
+		"VereinZustV NRW": {
 			title: "Vereinswesen-Zust\u00e4ndigkeitsverordnung",
 			norms: { "1": "167411,2", "2": "167411,3", "3": "167411,4" },
 		},
-		"Verf NW": {
+		"Verf NRW": {
 			title: "Verfassung",
 			norms: {
 				"1": "167412,2",
@@ -57349,7 +57348,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"77a": "167412,82",
 			},
 		},
-		"VerfGHGO NW": {
+		"VerfGHGO NRW": {
 			title: "Verfassungsgerichtshof-Gesch\u00e4ftsordnung",
 			norms: {
 				"1": "10225447,2",
@@ -57378,7 +57377,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"24": "10225447,25",
 			},
 		},
-		"VerfGHG NRW NW": {
+		"VerfGHG NRW": {
 			title: "Verfassungsgerichtshofgesetz",
 			norms: {
 				"1": "167426,2",
@@ -57458,7 +57457,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"63e": "167426,77",
 			},
 		},
-		"VSG NRW NW": {
+		"VSG NRW": {
 			title: "Verfassungsschutzgesetz Nordrhein-Westfalen",
 			norms: {
 				"1": "167440,2",
@@ -57502,7 +57501,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7c": "167440,36",
 			},
 		},
-		"VkVO NW": {
+		"VkVO NRW": {
 			title: "Verkaufsst\u00e4ttenV",
 			norms: {
 				"1": "167429,2",
@@ -57538,7 +57537,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"31": "167429,32",
 			},
 		},
-		"VermKatG NRW NW": {
+		"VermKatG NRW": {
 			title: "Vermessungs- und Katastergesetz",
 			norms: {
 				"1": "495192,2",
@@ -57574,11 +57573,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"31": "495192,32",
 			},
 		},
-		"VermFRegG NW": {
+		"VermFRegG NRW": {
 			title: "Verm\u00f6gensrechtliche Folgen-RegelungsG",
 			norms: { "1": "146937,2", "2": "146937,3" },
 		},
-		"VBD NRW NW": {
+		"VBD NRW": {
 			title: "Verordnung \u00fcber barrierefreie Dokumente",
 			norms: {
 				"1": "333367,2",
@@ -57590,7 +57589,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7": "333367,8",
 			},
 		},
-		"EinigStV NW": {
+		"EinigStV NRW": {
 			title: "Verordnung \u00fcber Einigungsstellen",
 			norms: {
 				"1": "166883,2",
@@ -57609,7 +57608,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"14": "166883,15",
 			},
 		},
-		"VO MRVG NW": {
+		"VO MRVG NRW": {
 			title: "Verordnung-Ma\u00dfregelvollzugsgesetz",
 			norms: {
 				"1": "3907594,2",
@@ -57631,7 +57630,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"17": "3907594,18",
 			},
 		},
-		"VersG NRW NW": {
+		"VersG NRW": {
 			title: "Versammlungsgesetz NRW",
 			norms: {
 				"1": "9988722,2",
@@ -57671,7 +57670,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"35": "9988722,36",
 			},
 		},
-		"VSt\u00e4ttVO NW": {
+		"VSt\u00e4ttVO NRW": {
 			title: "Versammlungsst\u00e4ttenV",
 			norms: {
 				"1": "167441,2",
@@ -57724,7 +57723,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"48": "167441,56",
 			},
 		},
-		"Vers\u00c4EinglG NW": {
+		"Vers\u00c4EinglG NRW": {
 			title: "Versorgungs\u00e4mter-Eingliederungsgesetz",
 			norms: {
 				"1": "3297155,2",
@@ -57758,7 +57757,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"29": "3297155,38",
 			},
 		},
-		"VersWerk\u00c4ndG NRW NW": {
+		"VersWerk\u00c4ndG NRW": {
 			title: "Versorgungswerks-\u00c4nderungsgesetz NRW",
 			norms: {
 				"1": "3321171,2",
@@ -57768,7 +57767,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "3321171,6",
 			},
 		},
-		"VerwGebO IFG NRW NW": {
+		"VerwGebO IFG NRW": {
 			title: "Verwaltungsgeb\u00fchrenordnung-IFG NRW",
 			norms: {
 				"1": "146942,2",
@@ -57777,7 +57776,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "146942,5",
 			},
 		},
-		"VwVfG NRW NW": {
+		"VwVfG NRW": {
 			title: "Verwaltungsverfahrensgesetz NRW",
 			norms: {
 				"1": "146963,2",
@@ -57897,7 +57896,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8e": "146963,114",
 			},
 		},
-		"VwVG NRW NW": {
+		"VwVG NRW": {
 			title: "Verwaltungsvollstreckungsgesetz NRW",
 			norms: {
 				"1": "146966,2",
@@ -57991,7 +57990,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6a": "146966,9",
 			},
 		},
-		"SchulG\u00a796V NW": {
+		"SchulG\u00a796V NRW": {
 			title: "VO zu \u00a7 96 Abs. 5 SchulG",
 			norms: {
 				"1": "492252,2",
@@ -58134,7 +58133,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"78a": "492252,139",
 			},
 		},
-		"VIVBVEG NW": {
+		"VIVBVEG NRW": {
 			title: "Volksabstimmungsgesetz",
 			norms: {
 				"1": "146945,2",
@@ -58175,7 +58174,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"31a": "146945,38",
 			},
 		},
-		"VorVfG NW": {
+		"VorVfG NRW": {
 			title: "VorschaltverfahrensG",
 			norms: {
 				"1": "146951,2",
@@ -58185,7 +58184,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "146951,6",
 			},
 		},
-		"WaffGDVO NW": {
+		"WaffGDVO NRW": {
 			title: "Waffengesetz-Durchf\u00fchrungsverordnung",
 			norms: {
 				"1": "167461,2",
@@ -58197,7 +58196,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7": "167461,8",
 			},
 		},
-		"WO-LPVG NW": {
+		"WO-LPVG NRW": {
 			title: "Wahlordnung-LPVG",
 			norms: {
 				"1": "167481,2",
@@ -58253,8 +58252,8 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"49a": "167481,51",
 			},
 		},
-		"Wahlpr\u00fcfG NW": {
-			title: "Wahlpr\u00fcfungsgesetz NW",
+		"Wahlpr\u00fcfG NRW": {
+			title: "Wahlpr\u00fcfungsgesetz NRW",
 			norms: {
 				"1": "167463,2",
 				"2": "167463,3",
@@ -58273,11 +58272,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"13a": "167463,16",
 			},
 		},
-		"WSPVO NW": {
+		"WSPVO NRW": {
 			title: "Wasserschutzpolizeiverordnung",
 			norms: { "1": "3906132,2", "2": "3906132,3", "3": "3906132,4" },
 		},
-		"WDRG NW": {
+		"WDRG NRW": {
 			title: "WDR-Gesetz",
 			norms: {
 				"1": "167470,2",
@@ -58360,7 +58359,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8a": "167470,17",
 			},
 		},
-		"WbG NW": {
+		"WbG NRW": {
 			title: "Weiterbildungsgesetz",
 			norms: {
 				"1": "167467,2",
@@ -58395,7 +58394,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"16a": "167467,33",
 			},
 		},
-		"Wp\u00dcGKonzV NW": {
+		"Wp\u00dcGKonzV NRW": {
 			title: "Wertpapiererwerbs- und \u00dcbernahmesachen - Konzentrations-VO - \u00a7 66 Wp\u00dcG",
 			norms: {
 				"1": "167487,2",
@@ -58404,7 +58403,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "167487,5",
 			},
 		},
-		"WROWiZustV NW": {
+		"WROWiZustV NRW": {
 			title: "Wirtschaftsrechtliche Ordnungswidrigkeiten-Zust\u00e4ndigkeitsverordnung",
 			norms: {
 				"1": "7035316,2",
@@ -58413,7 +58412,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "7035316,5",
 			},
 		},
-		"WTG DVO NW": {
+		"WTG DVO NRW": {
 			title: "Wohn- und Teilhabegesetz-Durchf\u00fchrungsverordnung",
 			norms: {
 				"1": "7230777,2",
@@ -58465,7 +58464,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"47": "7230777,48",
 			},
 		},
-		"WFNG NRW NW": {
+		"WFNG NRW": {
 			title: "Wohnraumf\u00f6rderungs-/-nutzungsgesetz NRW",
 			norms: {
 				"1": "3916076,2",
@@ -58515,7 +58514,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"45": "3916076,46",
 			},
 		},
-		"WoZustV NW": {
+		"WoZustV NRW": {
 			title: "Wohnraumf\u00f6rderung-Zust\u00e4ndigkeitsverordnung",
 			norms: {
 				"1": "146975,2",
@@ -58527,11 +58526,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7": "146975,8",
 			},
 		},
-		"ZVGV NW": {
+		"ZVGV NRW": {
 			title: "Zentrales Vollstreckungsgericht-Verordnung",
 			norms: { "1": "5294454,2", "2": "5294454,3" },
 		},
-		"ZZV hF WS 08/09 NW": {
+		"ZZV hF WS 08/09 NRW": {
 			title: "Zulassungszahlenverordnung h\u00f6here Fachsemester WS 2008/2009",
 			norms: {
 				"1": "3410699,2",
@@ -58540,7 +58539,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "3410699,5",
 			},
 		},
-		"ZZV hF WS 09/10 NW": {
+		"ZZV hF WS 09/10 NRW": {
 			title: "Zulassungszahlenverordnung h\u00f6here Fachsemester WS 2009/2010",
 			norms: {
 				"1": "3822212,2",
@@ -58549,7 +58548,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "3822212,5",
 			},
 		},
-		"ZZV hF WS 10/11 NW": {
+		"ZZV hF WS 10/11 NRW": {
 			title: "Zulassungszahlenverordnung h\u00f6here Fachsemester WS 2010/2011",
 			norms: {
 				"1": "4064735,2",
@@ -58558,7 +58557,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "4064735,5",
 			},
 		},
-		"ZZV hF WS 11/12 NW": {
+		"ZZV hF WS 11/12 NRW": {
 			title: "Zulassungszahlenverordnung h\u00f6here Fachsemester WS 2011/2012",
 			norms: {
 				"1": "4529283,2",
@@ -58567,7 +58566,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "4529283,5",
 			},
 		},
-		"ZZV hF WS 12/13 NW": {
+		"ZZV hF WS 12/13 NRW": {
 			title: "Zulassungszahlenverordnung h\u00f6here Fachsemester WS 2012/2013",
 			norms: {
 				"1": "5098602,2",
@@ -58576,7 +58575,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "5098602,5",
 			},
 		},
-		"ZZV hF WS 13/14 NW": {
+		"ZZV hF WS 13/14 NRW": {
 			title: "Zulassungszahlenverordnung h\u00f6here Fachsemester WS 2013/2014",
 			norms: {
 				"1": "5832746,2",
@@ -58585,7 +58584,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "5832746,5",
 			},
 		},
-		"ZZV hF WS 14/15 NW": {
+		"ZZV hF WS 14/15 NRW": {
 			title: "Zulassungszahlenverordnung h\u00f6here Fachsemester WS 2014/2015",
 			norms: {
 				"1": "7126543,2",
@@ -58596,7 +58595,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6": "7126543,11",
 			},
 		},
-		"ZZV hF WS 15/16 NW": {
+		"ZZV hF WS 15/16 NRW": {
 			title: "Zulassungszahlenverordnung h\u00f6here Fachsemester WS 2015/2016",
 			norms: {
 				"1": "7407522,2",
@@ -58607,7 +58606,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6": "7407522,11",
 			},
 		},
-		"ZZV hF WS 16/17 NW": {
+		"ZZV hF WS 16/17 NRW": {
 			title: "Zulassungszahlenverordnung h\u00f6here Fachsemester WS 2016/2017",
 			norms: {
 				"1": "7648112,2",
@@ -58619,7 +58618,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				ZZV: "7648112,12",
 			},
 		},
-		"ZZV hF WS 17/18 NW": {
+		"ZZV hF WS 17/18 NRW": {
 			title: "Zulassungszahlenverordnung h\u00f6here Fachsemester WS 2017/2018",
 			norms: {
 				"1": "7922487,2",
@@ -58631,7 +58630,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				ZZV: "7922487,12",
 			},
 		},
-		"ZZV hF WS 18/19 NW": {
+		"ZZV hF WS 18/19 NRW": {
 			title: "Zulassungszahlenverordnung h\u00f6here Fachsemester WS 2018/2019",
 			norms: {
 				"1": "8134958,2",
@@ -58643,7 +58642,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				ZZV: "8134958,12",
 			},
 		},
-		"ZZV hF WS 19/20 NW": {
+		"ZZV hF WS 19/20 NRW": {
 			title: "Zulassungszahlenverordnung h\u00f6here Fachsemester WS 2019/2020",
 			norms: {
 				"1": "9330041,2",
@@ -58655,7 +58654,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7": "9330041,12",
 			},
 		},
-		"ZZV hF WS 20/21 NW": {
+		"ZZV hF WS 20/21 NRW": {
 			title: "Zulassungszahlenverordnung h\u00f6here Fachsemester WS 2020/2021",
 			norms: {
 				"1": "9672466,2",
@@ -58667,7 +58666,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7": "9672466,12",
 			},
 		},
-		"ZZV hF WS 21/22 NW": {
+		"ZZV hF WS 21/22 NRW": {
 			title: "Zulassungszahlenverordnung h\u00f6here Fachsemester WS 2021/2022",
 			norms: {
 				"1": "9851314,2",
@@ -58679,7 +58678,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7": "9851314,12",
 			},
 		},
-		"ZZV hF WS 22/23 NW": {
+		"ZZV hF WS 22/23 NRW": {
 			title: "Zulassungszahlenverordnung h\u00f6here Fachsemester WS 2022/2023",
 			norms: {
 				"1": "10197847,2",
@@ -58691,7 +58690,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7": "10197847,12",
 			},
 		},
-		"ZZV hF WS 23/24 NW": {
+		"ZZV hF WS 23/24 NRW": {
 			title: "Zulassungszahlenverordnung h\u00f6here Fachsemester WS 2023/2024",
 			norms: {
 				"1": "10399842,2",
@@ -58703,7 +58702,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"7": "10399842,12",
 			},
 		},
-		"ZZV SS2008 NW": {
+		"ZZV SS2008 NRW": {
 			title: "Zulassungszahlenverordnung SS 2008",
 			norms: {
 				"1": "3321278,2",
@@ -58713,7 +58712,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "3321278,6",
 			},
 		},
-		"ZZV SS2009 NW": {
+		"ZZV SS2009 NRW": {
 			title: "Zulassungszahlenverordnung SS 2009",
 			norms: {
 				"1": "3491585,2",
@@ -58723,7 +58722,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "3491585,6",
 			},
 		},
-		"ZZV SS 2010 NW": {
+		"ZZV SS 2010 NRW": {
 			title: "Zulassungszahlenverordnung SS 2010",
 			norms: {
 				"1": "3925707,2",
@@ -58732,7 +58731,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "3925707,5",
 			},
 		},
-		"ZZV SS 2011 NW": {
+		"ZZV SS 2011 NRW": {
 			title: "Zulassungszahlenverordnung SS 2011",
 			norms: {
 				"1": "4200366,2",
@@ -58742,7 +58741,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "4200366,6",
 			},
 		},
-		"ZZV SS 2012 NW": {
+		"ZZV SS 2012 NRW": {
 			title: "Zulassungszahlenverordnung SS 2012",
 			norms: {
 				"1": "4623688,2",
@@ -58752,7 +58751,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "4623688,6",
 			},
 		},
-		"ZZV SS 2013 NW": {
+		"ZZV SS 2013 NRW": {
 			title: "Zulassungszahlenverordnung SS 2013",
 			norms: {
 				"1": "5464573,2",
@@ -58762,7 +58761,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "5464573,6",
 			},
 		},
-		"ZZV SS 2014 NW": {
+		"ZZV SS 2014 NRW": {
 			title: "Zulassungszahlenverordnung SS 2014",
 			norms: {
 				"1": "5918109,2",
@@ -58772,7 +58771,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "5918109,6",
 			},
 		},
-		"ZZV SS 2015 NW": {
+		"ZZV SS 2015 NRW": {
 			title: "Zulassungszahlenverordnung SS 2015",
 			norms: {
 				"1": "7269598,2",
@@ -58782,7 +58781,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "7269598,6",
 			},
 		},
-		"ZZV SS 2016 NW": {
+		"ZZV SS 2016 NRW": {
 			title: "Zulassungszahlenverordnung SS 2016",
 			norms: {
 				"1": "7488520,2",
@@ -58792,7 +58791,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "7488520,6",
 			},
 		},
-		"ZZV SS 2017 NW": {
+		"ZZV SS 2017 NRW": {
 			title: "Zulassungszahlenverordnung SS 2017",
 			norms: {
 				"1": "7805163,2",
@@ -58802,7 +58801,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "7805163,6",
 			},
 		},
-		"ZZV SS 2018 NW": {
+		"ZZV SS 2018 NRW": {
 			title: "Zulassungszahlenverordnung SS 2018",
 			norms: {
 				"1": "8024570,2",
@@ -58812,7 +58811,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "8024570,6",
 			},
 		},
-		"ZZV SS 2019 NW": {
+		"ZZV SS 2019 NRW": {
 			title: "Zulassungszahlenverordnung SS 2019",
 			norms: {
 				"1": "8204611,2",
@@ -58822,7 +58821,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "8204611,6",
 			},
 		},
-		"ZZV SS 2020 NW": {
+		"ZZV SS 2020 NRW": {
 			title: "Zulassungszahlenverordnung SS 2020",
 			norms: {
 				"1": "9567119,2",
@@ -58832,7 +58831,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "9567119,6",
 			},
 		},
-		"ZZV SS 2021 NW": {
+		"ZZV SS 2021 NRW": {
 			title: "Zulassungszahlenverordnung SS 2021",
 			norms: {
 				"1": "9745099,2",
@@ -58842,7 +58841,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "9745099,6",
 			},
 		},
-		"ZZV SS 2022 NW": {
+		"ZZV SS 2022 NRW": {
 			title: "Zulassungszahlenverordnung SS 2022",
 			norms: {
 				"1": "9998585,2",
@@ -58852,7 +58851,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "9998585,6",
 			},
 		},
-		"ZZV SS 2023 NW": {
+		"ZZV SS 2023 NRW": {
 			title: "Zulassungszahlenverordnung SS 2023",
 			norms: {
 				"1": "10280977,2",
@@ -58862,7 +58861,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "10280977,6",
 			},
 		},
-		"ZZV SS 2024 NW": {
+		"ZZV SS 2024 NRW": {
 			title: "Zulassungszahlenverordnung SS 2024",
 			norms: {
 				"1": "10478572,2",
@@ -58872,7 +58871,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "10478572,6",
 			},
 		},
-		"ZZV WS 2008/2009 NW": {
+		"ZZV WS 2008/2009 NRW": {
 			title: "Zulassungszahlenverordnung WS 2008/2009",
 			norms: {
 				"1": "3391503,2",
@@ -58882,7 +58881,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "3391503,6",
 			},
 		},
-		"ZZV WS 2009/2010 NW": {
+		"ZZV WS 2009/2010 NRW": {
 			title: "Zulassungszahlenverordnung WS 2009/2010",
 			norms: {
 				"1": "3789801,2",
@@ -58892,7 +58891,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "3789801,6",
 			},
 		},
-		"ZZV WS 2010/2011 NW": {
+		"ZZV WS 2010/2011 NRW": {
 			title: "Zulassungszahlenverordnung WS 2010/2011",
 			norms: {
 				"1": "4032585,2",
@@ -58902,7 +58901,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "4032585,6",
 			},
 		},
-		"ZZV WS 2011/2012 NW": {
+		"ZZV WS 2011/2012 NRW": {
 			title: "Zulassungszahlenverordnung WS 2011/2012",
 			norms: {
 				"1": "4447097,2",
@@ -58912,7 +58911,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "4447097,6",
 			},
 		},
-		"ZZV WS 2012/2013 NW": {
+		"ZZV WS 2012/2013 NRW": {
 			title: "Zulassungszahlenverordnung WS 2012/2013",
 			norms: {
 				"1": "5045636,2",
@@ -58922,7 +58921,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "5045636,6",
 			},
 		},
-		"ZZV WS 2013/2014 NW": {
+		"ZZV WS 2013/2014 NRW": {
 			title: "Zulassungszahlenverordnung WS 2013/2014",
 			norms: {
 				"1": "5782469,2",
@@ -58932,7 +58931,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "5782469,6",
 			},
 		},
-		"ZZV WS 2014/2015 NW": {
+		"ZZV WS 2014/2015 NRW": {
 			title: "Zulassungszahlenverordnung WS 2014/2015",
 			norms: {
 				"1": "7094976,2",
@@ -58942,7 +58941,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "7094976,6",
 			},
 		},
-		"ZZV WS 2015/2016 NW": {
+		"ZZV WS 2015/2016 NRW": {
 			title: "Zulassungszahlenverordnung WS 2015/2016",
 			norms: {
 				"1": "7385113,2",
@@ -58952,7 +58951,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "7385113,6",
 			},
 		},
-		"ZZV WS 2016/2017 NW": {
+		"ZZV WS 2016/2017 NRW": {
 			title: "Zulassungszahlenverordnung WS 2016/2017",
 			norms: {
 				"1": "7613943,2",
@@ -58962,7 +58961,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "7613943,6",
 			},
 		},
-		"ZZV WS 2017/2018 NW": {
+		"ZZV WS 2017/2018 NRW": {
 			title: "Zulassungszahlenverordnung WS 2017/2018",
 			norms: {
 				"1": "7896173,2",
@@ -58972,7 +58971,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "7896173,6",
 			},
 		},
-		"ZZV WS 2018/2019 NW": {
+		"ZZV WS 2018/2019 NRW": {
 			title: "Zulassungszahlenverordnung WS 2018/2019",
 			norms: {
 				"1": "8094353,2",
@@ -58982,7 +58981,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "8094353,6",
 			},
 		},
-		"ZZV WS 2019/2020 NW": {
+		"ZZV WS 2019/2020 NRW": {
 			title: "Zulassungszahlenverordnung WS 2019/2020",
 			norms: {
 				"1": "9265000,2",
@@ -58992,7 +58991,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "9265000,6",
 			},
 		},
-		"ZZV WS 2020/2021 NW": {
+		"ZZV WS 2020/2021 NRW": {
 			title: "Zulassungszahlenverordnung WS 2020/2021",
 			norms: {
 				"1": "9648234,2",
@@ -59002,7 +59001,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "9648234,6",
 			},
 		},
-		"ZZV WS 2021/2022 NW": {
+		"ZZV WS 2021/2022 NRW": {
 			title: "Zulassungszahlenverordnung WS 2021/2022",
 			norms: {
 				"1": "9828899,2",
@@ -59012,7 +59011,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "9828899,6",
 			},
 		},
-		"ZZV WS 2022/2023 NW": {
+		"ZZV WS 2022/2023 NRW": {
 			title: "Zulassungszahlenverordnung WS 2022/2023",
 			norms: {
 				"1": "10174939,2",
@@ -59022,7 +59021,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "10174939,6",
 			},
 		},
-		"ZZV WS 2023/2024 NW": {
+		"ZZV WS 2023/2024 NRW": {
 			title: "Zulassungszahlenverordnung WS 2023/2024",
 			norms: {
 				"1": "10365096,2",
@@ -59032,7 +59031,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "10365096,6",
 			},
 		},
-		"ZZV WS 2024/2025 NW": {
+		"ZZV WS 2024/2025 NRW": {
 			title: "Zulassungszahlenverordnung WS 2024/2025",
 			norms: {
 				"1": "10564691,2",
@@ -59042,7 +59041,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "10564691,6",
 			},
 		},
-		"ZqualBLV NW": {
+		"ZqualBLV NRW": {
 			title: "ZusatzqualifikationsV",
 			norms: {
 				"1": "167505,2",
@@ -59057,7 +59056,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"10": "167505,11",
 			},
 		},
-		"ZustVOAgrar NW": {
+		"ZustVOAgrar NRW": {
 			title: "Zust\u00e4ndigkeitsverordnung Agrar",
 			norms: {
 				"1": "8241044,2",
@@ -59070,7 +59069,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"8": "8241044,9",
 			},
 		},
-		"ZustVO AG Straf NW": {
+		"ZustVO AG Straf NRW": {
 			title: "Zust\u00e4ndigkeitsverordnung Amtsgerichte Strafsachen",
 			norms: {
 				"1": "4041588,2",
@@ -59095,7 +59094,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"20": "4041588,21",
 			},
 		},
-		"ZustVO ArbtG NW": {
+		"ZustVO ArbtG NRW": {
 			title: "Zust\u00e4ndigkeitsverordnung Arbeits- und technischer Gefahrenschutz",
 			norms: {
 				"1": "4041588,2",
@@ -59120,7 +59119,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"20": "4041588,21",
 			},
 		},
-		"ZustVO HumanAM NW": {
+		"ZustVO HumanAM NRW": {
 			title: "Zust\u00e4ndigkeitsverordnung Humanarzneimittel",
 			norms: {
 				"1": "10077707,2",
@@ -59129,11 +59128,11 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"4": "10077707,5",
 			},
 		},
-		"ZustVOSchAuf NW": {
+		"ZustVOSchAuf NRW": {
 			title: "Zust\u00e4ndigkeitsverordnung Schulaufsicht",
 			norms: { "1": "4175114,2", "2": "4175114,3", "3": "4175114,4" },
 		},
-		"ZustVO Schule NRW NW": {
+		"ZustVO Schule NRW": {
 			title: "Zust\u00e4ndigkeitsverordnung Schulbereich Nordrhein-Westfalen",
 			norms: {
 				"1": "8159149,2",
@@ -59150,7 +59149,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"12": "8159149,13",
 			},
 		},
-		"ZustVO SGB IX SchwbR NW": {
+		"ZustVO SGB IX SchwbR NRW": {
 			title: "Zust\u00e4ndigkeitsverordnung SGB IX-Schwerbehindertenrecht",
 			norms: {
 				"1": "147001,2",
@@ -59161,7 +59160,7 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"6": "147001,7",
 			},
 		},
-		"ZustVO TierAM NW": {
+		"ZustVO TierAM NRW": {
 			title: "Zust\u00e4ndigkeitsverordnung Tierarzneimittel",
 			norms: {
 				"1": "10077724,2",
@@ -59171,19 +59170,19 @@ export const lexsoftGesetze: LexsoftGesetze = {
 				"5": "10077724,6",
 			},
 		},
-		"ZustVO PStG NW": {
+		"ZustVO PStG NRW": {
 			title: "Zust\u00e4ndigkeitsVO PStG",
 			norms: { "1": "3375838,2", "2": "3375838,3" },
 		},
-		"ZustVO-KGS NRW NW": {
+		"ZustVO-KGS NRW": {
 			title: "ZustVO-Kulturgutschutz NRW",
 			norms: { "1": "9204947,2", "2": "9204947,3" },
 		},
-		"2. \u00c4ndStV StBVBek NW": {
+		"2. \u00c4ndStV StBVBek NRW": {
 			title: "Zweiter \u00c4nderungsstaatsvertrag zur Versorgung der Steuerberater in Th\u00fcring...",
 			norms: { "1": "10533931,2", "2.": "10533931,3" },
 		},
-		"2. \u00c4ndStV StBV NW": {
+		"2. \u00c4ndStV StBV NRW": {
 			title: "Zweiter \u00c4nderungsstaatsvertrag zur Versorgung der Steuerberater in Th\u00fcringen",
 			norms: { "1": "10534300,2", "2": "10534300,3" },
 		},
