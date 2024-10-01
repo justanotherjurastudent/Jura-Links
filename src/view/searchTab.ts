@@ -4,6 +4,7 @@ import {
 	DropdownComponent,
 	ButtonComponent,
 	Setting,
+	Notice,
 } from "obsidian";
 import { lexsoftGesetze } from "../static/lexsoftGesetze";
 import { dejureGesetze } from "../static/dejureGesetze";
@@ -230,22 +231,41 @@ export class SearchTabView extends ItemView {
 		this.clearResults();
 		const resultContainer = this.containerEl.querySelector(".law-results");
 		if (!resultContainer) return;
-
+	
 		const scrollContainer = resultContainer.createEl("div", {
 			cls: "scroll-container",
 		});
-
+	
 		const gesetze = lexsoftGesetze[bundesland];
-		if (gesetze) {
-			const table = scrollContainer.createEl("table", { cls: "gesetz-table" });
-			Object.entries(gesetze).forEach(([key, value]) => {
-				const row = table.createEl("tr");
-				row.createEl("td", { text: `${key}:`, cls: "key-cell" });
-				row.createEl("td", { text: value.title, cls: "value-cell" });
-			});
-				}
-		scrollContainer.createEl("div", { cls: "bottom-spacer" });
-	}
+if (gesetze) {
+    const table = scrollContainer.createEl("table", { cls: "gesetz-table" });
+    Object.entries(gesetze).forEach(([key, value]) => {
+        const row = table.createEl("tr");
+
+        // Abkürzung Zelle
+        const abbrCell = row.createEl("td", { cls: "key-cell" });
+        abbrCell.createEl("span", { text: key });
+
+        // Clipboard Button
+        const copyButton = abbrCell.createEl("button", { cls: "copy-button" });
+
+        // Lucide Icon Container
+        const clipboardIcon = copyButton.createEl("span", { cls: "icon lucide-icon lucide-clipboard-copy" });
+
+        // Beim Klick den Text in die Zwischenablage kopieren
+        copyButton.onclick = () => {
+            navigator.clipboard.writeText(key).then(() => {
+                new Notice(`Abkürzung ${key} wurde kopiert!`);
+            }).catch(() => {
+                new Notice("Fehler beim Kopieren der Abkürzung.");
+            });
+        };
+
+        // Titel Zelle
+        row.createEl("td", { text: value.title, cls: "value-cell" });
+    });
+}}
+	
 
 	createAnbieterFilter(dropdown: DropdownComponent): void {
 		dropdown.addOption("", "Wählen Sie einen Anbieter");
@@ -310,12 +330,37 @@ export class SearchTabView extends ItemView {
 	createLawTable(laws: string[], container: HTMLElement): void {
 		const table = container.createEl("table", { cls: "gesetz-table" });
 		laws.forEach((law) => {
-			const [abbr, title] = law.split(': ');
+			const [abbr, ...titleParts] = law.split(': ');
+			const title = titleParts.join(': ');
+	
 			const row = table.createEl("tr");
-			row.createEl("td", { text: abbr, cls: "key-cell" });
+	
+			// Abkürzung Zelle
+			const abbrCell = row.createEl("td", { cls: "key-cell" });
+			abbrCell.createEl("span", { text: abbr });
+	
+			// Clipboard Button
+			const copyButton = abbrCell.createEl("button", { cls: "copy-button" });
+			
+			// Lucide Icon Container
+			const clipboardIcon = copyButton.createEl("span", { cls: "icon lucide-icon lucide-clipboard-copy" });
+	
+			// Beim Klick den Text in die Zwischenablage kopieren
+			copyButton.onclick = () => {
+				navigator.clipboard.writeText(abbr).then(() => {
+					new Notice(`Abkürzung ${abbr} wurde kopiert!`);
+				}).catch(() => {
+					new Notice("Fehler beim Kopieren der Abkürzung.");
+				});
+			};
+	
+			// Titel Zelle
 			row.createEl("td", { text: title, cls: "value-cell" });
 		});
 	}
+	
+	
+	
 
 	extractDejureLaws(): string[] {
 		return Object.entries(dejureGesetze).map(
