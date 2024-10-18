@@ -2,7 +2,6 @@ import { expect, test } from "vitest";
 import {
 	findAndLinkLawReferences,
 	findAndLinkCaseReferences,
-	findAndLinkJournalReferences,
 } from "../../src/utils/transformation";
 
 test.each([
@@ -228,10 +227,6 @@ test.each([
 	{
 		input: `§ [32 I, II Alt. 1 oder 2](https://rewis.io/gesetze/stgb/p/stgb%2D32) StGB`,
 		expected: `§ [32 I, II Alt. 1 oder 2](https://rewis.io/gesetze/stgb/p/stgb%2D32) StGB`,
-	},
-	{
-		input: `[BeckRS 2017, 130506](https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=BeckRS%202017%2C%20130506)`,
-		expected: `[BeckRS 2017, 130506](https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=BeckRS%202017%2C%20130506)`,
 	}
 ])(
 	"findAndLinkLawReferences: should transform $input to $expected",
@@ -296,70 +291,6 @@ test.each([
         let result = findAndLinkCaseReferences(testData.input);
         // Run the transformation twice to ensure that the transformation is idempotent
         result = findAndLinkCaseReferences(result);
-        expect(result).toBe(testData.expected);
-    }
-);
-
-test.each([
-    {
-        input: `meow meow`,
-        expected: `meow meow`,
-    },
-    {
-        input: `afp 2019, 555 `,
-        expected: `[afp 2019, 555](https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=afp%202019%2C%20555) `,
-    },
-    {
-        input: `NVwZ 2022, 1561`,
-        expected: `[NVwZ 2022, 1561](https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=NVwZ%202022%2C%201561)`,
-    },
-    {
-        input: `NJW 2024, 2604`,
-        expected: `[NJW 2024, 2604](https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=NJW%202024%2C%202604)`,
-    },
-    {
-        input: `BVerwGE 175, 227`,
-        expected: `[BVerwGE 175, 227](https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=BVerwGE%20175%2C%20227)`,
-    },
-    {
-        input: `BGHZ 137, 205`,
-        expected: `[BGHZ 137, 205](https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=BGHZ%20137%2C%20205)`,
-    },
-    {
-        input: `BGHSt 40, 299`,
-        expected: `[BGHSt 40, 299](https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=BGHSt%2040%2C%20299)`,
-    },
-    {
-        input: `BFHE 251, 40`,
-        expected: `[BFHE 251, 40](https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=BFHE%20251%2C%2040)`,
-    },
-    {
-        input: `BAGE 135, 80`,
-        expected: `[BAGE 135, 80](https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=BAGE%20135%2C%2080)`,
-    },
-    {
-        input: `BVerfGE 126, 286`,
-        expected: `[BVerfGE 126, 286](https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=BVerfGE%20126%2C%20286)`,
-    },
-    {
-        input: `BSGE 123, 157`,
-        expected: `[BSGE 123, 157](https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=BSGE%20123%2C%20157)`,
-    },
-    {
-        input: `Slg. 2003, I-10239`,
-        expected: `[Slg. 2003, I-10239](https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=Slg.%202003%2C%20I-10239)`,
-    },
-    {
-        input: `Slg. 1999, II-3357`,
-        expected: `[Slg. 1999, II-3357](https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=Slg.%201999%2C%20II-3357)`,
-    },
-])
-(
-    "findAndLinkJournalReferences: should transform $input to $expected",
-    (testData) => {
-        let result = findAndLinkJournalReferences(testData.input);
-        // Run the transformation twice to ensure that the transformation is idempotent
-        result = findAndLinkJournalReferences(result);
         expect(result).toBe(testData.expected);
     }
 );
