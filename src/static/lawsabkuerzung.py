@@ -13,26 +13,27 @@ def extract_abbreviations(file_path):
         abbreviations.extend(law_matches)
     
     elif 'buzerGesetze.ts' in file_path:
-        # Für buzer: Extrahiere direkte keys
-        matches = re.findall(r'(\w+):\s*{\s*title:', content)
-        abbreviations.extend(matches)
-    
+        # Für buzer: Extrahiere nur den ersten Schlüssel, ob in Anführungszeichen oder nicht
+        matches = re.findall(r'"([^"]+)"\s*:\s*{\s*title:|(\w+)\s*:\s*{\s*title:', content)
+        for match in matches:
+            key = match[0] if match[0] else match[1]
+            abbreviations.append(key)
+
     elif 'dejureGesetze.ts' in file_path:
-        # Für dejure: Extrahiere direkte keys
-        matches = re.findall(r'(\w+):\s*{\s*title:', content)
-        abbreviations.extend(matches)
+        # Für dejure: Extrahiere nur den ersten Schlüssel, ob in Anführungszeichen oder nicht
+        matches = re.findall(r'"([^"]+)"\s*:\s*{\s*title:|(\w+)\s*:\s*{\s*title:', content)
+        for match in matches:
+            key = match[0] if match[0] else match[1]
+            abbreviations.append(key)
     
     elif 'lexmeaGesetze.ts' in file_path:
-        # Für lexmea: Extrahiere direkte keys
-        matches = re.findall(r'(\w+):\s*{\s*title:', content)
-        abbreviations.extend(matches)
+        # Für lexmea: Extrahiere nur den ersten Schlüssel, ob in Anführungszeichen oder nicht
+        matches = re.findall(r'"([^"]+)"\s*:\s*{\s*title:|(\w+)\s*:\s*{\s*title:', content)
+        for match in matches:
+            key = match[0] if match[0] else match[1]
+            abbreviations.append(key)
     
-    elif 'rewisGesetze.ts' in file_path:
-        # Für rewis: Extrahiere direkte keys
-        matches = re.findall(r'(\w+):\s*{\s*url:', content)
-        abbreviations.extend(matches)
-    
-    return list(set(abbreviations))
+    return abbreviations
 
 def main():
     source_dir = 'src/static'
