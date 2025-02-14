@@ -1,4 +1,4 @@
-type LawProviderOption = "dejure" | "buzer" | "lexmea" | "lexsoft" | "rewis";
+type LawProviderOption = "dejure" | "buzer" | "lexmea" | "justiz nrw landesgesetze" | "rewis";
 
 type LawProviderOptions = {
 	firstOption: LawProviderOption;
