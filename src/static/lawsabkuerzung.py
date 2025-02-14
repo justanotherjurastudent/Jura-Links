@@ -7,8 +7,8 @@ def extract_abbreviations(file_path):
     
     abbreviations = []
     
-    if 'lexsoftGesetze.ts' in file_path:
-        # Für lexsoft: Extrahiere Gesetzesabkürzungen aus der verschachtelten Struktur
+    if 'Justiz NRW Landesgesetze.ts' in file_path:
+        # Für Justiz NRW Landesgesetze: Extrahiere Gesetzesabkürzungen aus der verschachtelten Struktur
         law_matches = re.findall(r'"([^"]+)":\s*{\s*title:', content)
         abbreviations.extend(law_matches)
     
@@ -42,7 +42,7 @@ def main():
     all_abbreviations = []
     
     files_to_process = [
-        'lexsoftGesetze.ts',
+        'Justiz NRW Landesgesetze.ts',
         'buzerGesetze.ts',
         'dejureGesetze.ts',
         'lexmeaGesetze.ts',
