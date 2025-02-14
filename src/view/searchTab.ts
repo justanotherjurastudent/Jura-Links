@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
 	ItemView,
 	WorkspaceLeaf,
@@ -6,7 +7,7 @@ import {
 	Setting,
 	Notice,
 } from "obsidian";
-import { lexsoftGesetze } from "../static/lexsoftGesetze";
+import { justiz_NRW_Landesgesetze } from "../static/Justiz NRW Landesgesetze";
 import { dejureGesetze } from "../static/dejureGesetze";
 import { rewisGesetze } from "../static/rewisGesetze";
 import { buzerGesetze } from "../static/buzerGesetze";
@@ -72,11 +73,16 @@ export class SearchTabView extends ItemView {
 		// Suchfeld
 		new Setting(controlsContainer)
 			.setName("Gesetzessuche")
-			.setDesc("Suchen Sie nach der Gesetzesabkürzung oder den Gesetzestitel.")
+			.setDesc(
+				"Suchen Sie nach der Gesetzesabkürzung oder den Gesetzestitel."
+			)
 			.addText((text) => {
 				text.inputEl.addClass("setting-item");
 				text.onChange((value) => {
-					this.searchLaw(value);
+					// Suche soll erst nach 0,5 Sekunde nach letzter Eingabe starten
+					setTimeout(() => {
+						this.searchLaw(value);
+					}, 500);
 				});
 			});
 
@@ -118,98 +124,107 @@ export class SearchTabView extends ItemView {
 	searchLaw(query: string): void {
 		this.clearResults();
 		if (!this.resultsContainer) return;
-	  
-		const allLaws: Array<{ law: string; provider: string; state?: string }> = [
-		  ...this.extractDejureLaws().map((law) => ({
-			law,
-			provider: "Dejure",
-		  })),
-		  ...this.extractRewisLaws().map((law) => ({
-			law,
-			provider: "Rewis",
-		  })),
-		  ...this.extractBuzerLaws().map((law) => ({
-			law,
-			provider: "Buzer",
-		  })),
-		  ...this.extractLexmeaLaws().map((law) => ({
-			law,
-			provider: "Lexmea",
-		  })),
-		  ...this.extractLexsoftLaws().map((law) => ({
-			law: law.law,
-			provider: "LexSoft",
-			state: law.state,
-		  })),
+
+		const allLaws: Array<{
+			law: string;
+			provider: string;
+			state?: string;
+		}> = [
+			...this.extractDejureLaws().map((law) => ({
+				law,
+				provider: "Dejure",
+			})),
+			...this.extractRewisLaws().map((law) => ({
+				law,
+				provider: "Rewis",
+			})),
+			...this.extractBuzerLaws().map((law) => ({
+				law,
+				provider: "Buzer",
+			})),
+			...this.extractLexmeaLaws().map((law) => ({
+				law,
+				provider: "Lexmea",
+			})),
+			...this.extractJustiz_NRW_LandesgesetzeLaws().map((law) => ({
+				law: law.law,
+				provider: "Justiz NRW Landesgesetze",
+				state: law.state,
+			})),
 		];
-	  
+
 		const filteredLaws = allLaws.filter((item) =>
-		  item.law.toLowerCase().includes(query.toLowerCase())
+			item.law.toLowerCase().includes(query.toLowerCase())
 		);
-	  
+
 		if (filteredLaws.length > 0) {
-		  const groupedByProvider = filteredLaws.reduce((acc, item) => {
-			if (!acc[item.provider]) {
-			  acc[item.provider] = {};
-			}
-			if (item.provider === "LexSoft") {
-			  if (item.state && !acc[item.provider][item.state]) {
-				acc[item.provider][item.state] = [];
-			  }
-			  if (item.state) {
-				  acc[item.provider][item.state].push(item.law);
-			  }
-			} else {
-			  if (!acc[item.provider]["laws"]) {
-				acc[item.provider]["laws"] = [];
-			  }
-			  acc[item.provider]["laws"].push(item.law);
-			}
-			return acc;
-		  }, {} as Record<string, any>);
-	  
-		  Object.entries(groupedByProvider).forEach(([provider, data]) => {
-			if (this.resultsContainer) {
-			  this.resultsContainer.createEl("div", {
-				text: provider,
-				cls: "header",
-			  });
-	  
-			  if (provider === "LexSoft") {
-				Object.entries(data).forEach(([state, laws]) => {
-				  if (this.resultsContainer) {
-					this.resultsContainer.createEl("div", {
-					  text: state,
-					  cls: "subheader",
-					});
-					this.createLawTable(laws as string[], this.resultsContainer);
-				  }
-				});
-			  } else {
-				if (this.resultsContainer) {
-				  this.createLawTable(data.laws, this.resultsContainer);
+			const groupedByProvider = filteredLaws.reduce((acc, item) => {
+				if (!acc[item.provider]) {
+					acc[item.provider] = {};
 				}
-			  }
-			}
-		  });
-	  
-		} else {
-		  if (this.resultsContainer) {
-			this.resultsContainer.createEl("div", {
-			  text: "Keine Gesetze gefunden.",
+				if (item.provider === "Justiz NRW Landesgesetze") {
+					if (item.state && !acc[item.provider][item.state]) {
+						acc[item.provider][item.state] = [];
+					}
+					if (item.state) {
+						acc[item.provider][item.state].push(item.law);
+					}
+				} else {
+					if (!acc[item.provider]["laws"]) {
+						acc[item.provider]["laws"] = [];
+					}
+					acc[item.provider]["laws"].push(item.law);
+				}
+				return acc;
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			}, {} as Record<string, any>);
+
+			Object.entries(groupedByProvider).forEach(([provider, data]) => {
+				if (this.resultsContainer) {
+					this.resultsContainer.createEl("div", {
+						text: provider,
+						cls: "header",
+					});
+
+					if (provider === "Justiz NRW Landesgesetze") {
+						Object.entries(data).forEach(([state, laws]) => {
+							if (this.resultsContainer) {
+								this.resultsContainer.createEl("div", {
+									text: state,
+									cls: "subheader",
+								});
+								this.createLawTable(
+									laws as string[],
+									this.resultsContainer
+								);
+							}
+						});
+					} else {
+						if (this.resultsContainer) {
+							this.createLawTable(
+								data.laws,
+								this.resultsContainer
+							);
+						}
+					}
+				}
 			});
-		  }
+		} else {
+			if (this.resultsContainer) {
+				this.resultsContainer.createEl("div", {
+					text: "Keine Gesetze gefunden.",
+				});
+			}
 		}
-	  
+
 		if (this.resultsContainer) {
-		  this.resultsContainer.createEl("div", { cls: "bottom-spacer" });
+			this.resultsContainer.createEl("div", { cls: "bottom-spacer" });
 		}
-	  }
-	  
-	
-	extractLexsoftLaws(): { law: string; state: string }[] {
+	}
+
+	extractJustiz_NRW_LandesgesetzeLaws(): { law: string; state: string }[] {
 		const laws: { law: string; state: string }[] = [];
-		Object.entries(lexsoftGesetze).forEach(([state, gesetze]) => {
+		Object.entries(justiz_NRW_Landesgesetze).forEach(([state, gesetze]) => {
 			Object.entries(gesetze).forEach(([key, value]) => {
 				laws.push({
 					law: `${key}: ${value.title}`,
@@ -222,7 +237,7 @@ export class SearchTabView extends ItemView {
 
 	createBundeslandFilter(dropdown: DropdownComponent): void {
 		dropdown.addOption("", "Wählen Sie ein Bundesland");
-		Object.keys(lexsoftGesetze).forEach((state) => {
+		Object.keys(justiz_NRW_Landesgesetze).forEach((state) => {
 			dropdown.addOption(state, state);
 		});
 	}
@@ -231,45 +246,54 @@ export class SearchTabView extends ItemView {
 		this.clearResults();
 		const resultContainer = this.containerEl.querySelector(".law-results");
 		if (!resultContainer) return;
-	
+
 		const scrollContainer = resultContainer.createEl("div", {
 			cls: "scroll-container",
 		});
-	
-		const gesetze = lexsoftGesetze[bundesland];
-if (gesetze) {
-    const table = scrollContainer.createEl("table", { cls: "gesetz-table" });
-    Object.entries(gesetze).forEach(([key, value]) => {
-        const row = table.createEl("tr");
 
-        // Abkürzung Zelle
-        const abbrCell = row.createEl("td", { cls: "key-cell" });
-        abbrCell.createEl("span", { text: key });
+		const gesetze = justiz_NRW_Landesgesetze[bundesland];
+		if (gesetze) {
+			const table = scrollContainer.createEl("table", {
+				cls: "gesetz-table",
+			});
+			Object.entries(gesetze).forEach(([key, value]) => {
+				const row = table.createEl("tr");
 
-        // Clipboard Button
-        const copyButton = abbrCell.createEl("button", { cls: "copy-button" });
+				// Abkürzung Zelle
+				const abbrCell = row.createEl("td", { cls: "key-cell" });
+				abbrCell.createEl("span", { text: key });
 
-        // Lucide Icon Container
-        const clipboardIcon = copyButton.createEl("span", { cls: "icon lucide-icon lucide-clipboard-copy" });
+				// Clipboard Button
+				const copyButton = abbrCell.createEl("button", {
+					cls: "copy-button",
+				});
 
-        // Beim Klick den Text in die Zwischenablage kopieren
-        copyButton.onclick = () => {
-            navigator.clipboard.writeText(key).then(() => {
-                new Notice(`Abkürzung ${key} wurde kopiert!`);
-            }).catch(() => {
-                new Notice("Fehler beim Kopieren der Abkürzung.");
-            });
-        };
+				// Lucide Icon Container
+				const clipboardIcon = copyButton.createEl("span", {
+					cls: "icon lucide-icon lucide-clipboard-copy",
+				});
 
-        // Titel Zelle
-        row.createEl("td", { text: value.title, cls: "value-cell" });
-    });
-}}
-	
+				// Beim Klick den Text in die Zwischenablage kopieren
+				copyButton.onclick = () => {
+					navigator.clipboard
+						.writeText(key)
+						.then(() => {
+							new Notice(`Abkürzung ${key} wurde kopiert!`);
+						})
+						.catch(() => {
+							new Notice("Fehler beim Kopieren der Abkürzung.");
+						});
+				};
+
+				// Titel Zelle
+				row.createEl("td", { text: value.title, cls: "value-cell" });
+			});
+		}
+	}
 
 	createAnbieterFilter(dropdown: DropdownComponent): void {
 		dropdown.addOption("", "Wählen Sie einen Anbieter");
-		["Dejure", "LexSoft", "LexMea", "Buzer", "Rewis"].forEach(
+		["Dejure", "Justiz NRW Landesgesetze", "LexMea", "Buzer", "Rewis"].forEach(
 			(provider) => {
 				dropdown.addOption(provider, provider);
 			}
@@ -280,22 +304,24 @@ if (gesetze) {
 		this.clearResults();
 		const resultContainer = this.containerEl.querySelector(".law-results");
 		if (!resultContainer) return;
-	
+
 		const scrollContainer = resultContainer.createEl("div", {
 			cls: "scroll-container",
 		});
-	
-		if (anbieter === "LexSoft") {
-			Object.entries(lexsoftGesetze).forEach(([bundesland, gesetze]) => {
+
+		if (anbieter === "Justiz NRW Landesgesetze") {
+			Object.entries(justiz_NRW_Landesgesetze).forEach(([bundesland, gesetze]) => {
 				scrollContainer.createEl("div", {
 					text: bundesland,
 					cls: "header",
 				});
-	
+
 				const laws = Object.entries(gesetze)
-					.sort(([keyA, valueA], [keyB, valueB]) => keyA.localeCompare(keyB))
+					.sort(([keyA, valueA], [keyB, valueB]) =>
+						keyA.localeCompare(keyB)
+					)
 					.map(([key, value]) => `${key}: ${value.title}`);
-				
+
 				this.createLawTable(laws, scrollContainer);
 			});
 		} else {
@@ -321,46 +347,50 @@ if (gesetze) {
 					laws = this.extractRewisLaws();
 					break;
 			}
-	
+
 			this.createLawTable(laws, scrollContainer);
 		}
 		scrollContainer.createEl("div", { cls: "bottom-spacer" });
 	}
-	
+
 	createLawTable(laws: string[], container: HTMLElement): void {
 		const table = container.createEl("table", { cls: "gesetz-table" });
 		laws.forEach((law) => {
-			const [abbr, ...titleParts] = law.split(': ');
-			const title = titleParts.join(': ');
-	
+			const [abbr, ...titleParts] = law.split(": ");
+			const title = titleParts.join(": ");
+
 			const row = table.createEl("tr");
-	
+
 			// Abkürzung Zelle
 			const abbrCell = row.createEl("td", { cls: "key-cell" });
 			abbrCell.createEl("span", { text: abbr });
-	
+
 			// Clipboard Button
-			const copyButton = abbrCell.createEl("button", { cls: "copy-button" });
-			
+			const copyButton = abbrCell.createEl("button", {
+				cls: "copy-button",
+			});
+
 			// Lucide Icon Container
-			const clipboardIcon = copyButton.createEl("span", { cls: "icon lucide-icon lucide-clipboard-copy" });
-	
+			const clipboardIcon = copyButton.createEl("span", {
+				cls: "icon lucide-icon lucide-clipboard-copy",
+			});
+
 			// Beim Klick den Text in die Zwischenablage kopieren
 			copyButton.onclick = () => {
-				navigator.clipboard.writeText(abbr).then(() => {
-					new Notice(`Abkürzung ${abbr} wurde kopiert!`);
-				}).catch(() => {
-					new Notice("Fehler beim Kopieren der Abkürzung.");
-				});
+				navigator.clipboard
+					.writeText(abbr)
+					.then(() => {
+						new Notice(`Abkürzung ${abbr} wurde kopiert!`);
+					})
+					.catch(() => {
+						new Notice("Fehler beim Kopieren der Abkürzung.");
+					});
 			};
-	
+
 			// Titel Zelle
 			row.createEl("td", { text: title, cls: "value-cell" });
 		});
 	}
-	
-	
-	
 
 	extractDejureLaws(): string[] {
 		return Object.entries(dejureGesetze).map(

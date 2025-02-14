@@ -9,7 +9,7 @@ export interface LawProviderSettings {
 
 export const DEFAULT_SETTINGS: LawProviderSettings = {
 	lawProviderOptions: {
-		firstOption: "lexsoft",
+		firstOption: "justiz nrw landesgesetze",
 		secondOption: "dejure",
 		thirdOption: "lexmea",
 		forthOption: "buzer",
@@ -49,7 +49,7 @@ export class LawProviderSettingTab extends PluginSettingTab {
         });
 
 		containerEl.createEl("p", {
-			text: "LexSoft wurde standardmäßig als erster Anbieter ausgewählt, um die spezielleren Landesgesetze zuerst zu suchen. Die weiteren Anbieter werden in der Reihenfolge ihrer Auswahl durchsucht, falls das Gesetz bei LexSoft nicht gefunden wurde. Die übrigen Anbieter enthalten Bundes- und EU-Gesetze.",
+			text: "Justiz NRW Landesgesetze wurde standardmäßig als erster Anbieter ausgewählt, um die spezielleren Landesgesetze zuerst zu suchen. Die weiteren Anbieter werden in der Reihenfolge ihrer Auswahl durchsucht, falls das Gesetz bei Justiz NRW Landesgesetze nicht gefunden wurde. Die übrigen Anbieter enthalten Bundes- und EU-Gesetze.",
 		});
 
 		const providers: LawProviderOption[] = [
@@ -60,18 +60,18 @@ export class LawProviderSettingTab extends PluginSettingTab {
 		];
 
 		const providerDisplayNames: Record<LawProviderOption, string> = {
-			dejure: "Dejure",
-			lexsoft: "LexSoft",
-			lexmea: "LexMea",
-			buzer: "Buzer",
-			rewis: "Rewis",
+			"dejure": "Dejure",
+			"justiz nrw landesgesetze": "Justiz NRW Landesgesetze",
+			"lexmea": "LexMea",
+			"buzer": "Buzer",
+			"rewis": "Rewis",
 		};
 
 		new Setting(containerEl)
 			.setName("1. Wahl")
-			.setDesc("LexSoft ist standardmäßig als erste Option festgelegt.")
+			.setDesc("Justiz NRW Landesgesetze ist standardmäßig als erste Option festgelegt.")
 			.addDropdown((dropdown) => {
-				dropdown.addOption("lexsoft", "LexSoft");
+				dropdown.addOption("justiz nrw landesgesetze", "Justiz NRW Landesgesetze");
 				dropdown.setValue(
 					this.plugin.settings.lawProviderOptions.firstOption
 				);
@@ -114,6 +114,7 @@ export class LawProviderSettingTab extends PluginSettingTab {
 				});
 			});
 
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 			return { setting, errorSpan, dropdown: dropdown! };
 		};
 
@@ -121,7 +122,7 @@ export class LawProviderSettingTab extends PluginSettingTab {
 		this.dropdowns = [
 			createDropdown(
 				"2. Wahl",
-				"Falls Gesetz bei LexSoft nicht verfügbar ist, soll geschaut werden in:",
+				"Falls Gesetz bei Justiz NRW Landesgesetze nicht verfügbar ist, soll geschaut werden in:",
 				"secondOption"
 			),
 			createDropdown(
@@ -148,7 +149,7 @@ export class LawProviderSettingTab extends PluginSettingTab {
 		const selectedValues = this.dropdowns
 			.map((d) => d.dropdown?.value)
 			.filter((value): value is string => value !== undefined);
-		selectedValues.unshift("lexsoft"); // Add the fixed first option
+		selectedValues.unshift("justiz nrw landesgesetze"); // Add the fixed first option
 	
 		this.dropdowns.forEach((dropdown, index) => {
 			if (!dropdown.dropdown) return; // Skip if dropdown is not initialized
