@@ -1,7 +1,7 @@
 import { buzerGesetzeLowerCased } from "../static/buzerGesetze";
 import { dejureGesetzeLowerCased } from "../static/dejureGesetze";
 import { lexmeaGesetzeLowerCased } from "../static/lexmeaGesetze";
-import { lexsoftGesetzeLowerCased } from "../static/lexsoftGesetze";
+import { justiz_NRW_LandesgesetzeLowerCased } from "../static/Justiz NRW Landesgesetze";
 import { rewisGesetzeLowerCased } from "../static/rewisGesetze";
 import { LawProviderOption, LawProviderOptions } from "../types/providerOption";
 import { DejureUrl, LawProviderUrl } from "../types/url";
@@ -38,11 +38,12 @@ function getLexmeaUrl(gesetz: string, norm: string): string {
 	return "";
 }
 
-function getLexsoftUrl(gesetz: string, norm: string): string {
-	const lawUrl = LawProviderUrl.LEXSOFT;
+function getJustiz_NRW_Landesgesetze_Url(gesetz: string, norm: string): string {
+	const lawUrl = LawProviderUrl.JUSTIZ_NRW_LANDESGESETZE;
 	gesetz = gesetz.toLowerCase();
 
-	for (const [_, law] of Object.entries(lexsoftGesetzeLowerCased)) {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	for (const [_, law] of Object.entries(justiz_NRW_LandesgesetzeLowerCased)) {
 		if (law[gesetz] && law[gesetz]["norms"][norm]) {
 			return `${lawUrl}${law[gesetz]["norms"][norm]}`;
 		}
@@ -86,8 +87,8 @@ function getLawUrlByProvider(
 	if (lawProvider === "lexmea") {
 		return getLexmeaUrl(gesetz, norm) || "";
 	}
-	if (lawProvider === "lexsoft") {
-		return getLexsoftUrl(gesetz, norm) || "";
+	if (lawProvider === "justiz nrw landesgesetze") {
+		return getJustiz_NRW_Landesgesetze_Url(gesetz, norm) || "";
 	}
 	if (lawProvider === "rewis") {
 		return getRewisUrl(gesetz, norm) || "";
