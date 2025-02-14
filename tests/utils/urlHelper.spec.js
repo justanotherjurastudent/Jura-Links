@@ -21,10 +21,10 @@ test.each([
 		expected: `https://lexmea.de/gesetz/bgb/2`,
 	},
 	{
-		gesetz: `arbgg bw`,
-		norm: `2`,
-		provider: `lexsoft`,
-		expected: `https://www.lexsoft.de/cgi-bin/lexsoft/justizportal_nrw.cgi?xid=173644,3`,
+		gesetz: `sog lsa`,
+		norm: `1`,
+		provider: `justiz nrw landesgesetze`,
+		expected: `https://justiz-nrw.wolterskluwer-online.de/browse/document/cite/686b0ff9-2129-3a6f-b997-bdf6f97d58d8`,
 	},
 	{
 		gesetz: `AVBFernwärmeV`,
