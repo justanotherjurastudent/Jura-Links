@@ -28,6 +28,11 @@ export default class LegalReferencePlugin extends Plugin {
 	async onload() {
 		await this.loadSettings();
 
+		if (this.settings.lawProviderOptions.firstOption !== "justiz nrw landesgesetze") {
+			this.settings.lawProviderOptions.firstOption = "justiz nrw landesgesetze";
+			await this.saveSettings();
+		}
+
 		this.searchTab = new SearchTab(this);
 		this.addSettingTab(new LawProviderSettingTab(this.app, this));
 
