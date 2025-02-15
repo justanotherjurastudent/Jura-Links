@@ -246,34 +246,34 @@ export class SearchTabView extends ItemView {
 		this.clearResults();
 		const resultContainer = this.containerEl.querySelector(".law-results");
 		if (!resultContainer) return;
-
+	
 		const scrollContainer = resultContainer.createEl("div", {
 			cls: "scroll-container",
 		});
-
+	
 		const gesetze = justiz_NRW_Landesgesetze[bundesland];
 		if (gesetze) {
 			const table = scrollContainer.createEl("table", {
 				cls: "gesetz-table",
 			});
-			Object.entries(gesetze).forEach(([key, value]) => {
+			// Sortiere die Ergebnisse alphabetisch anhand des Schlüssels (Abkürzung)
+			const sortedGesetze = Object.entries(gesetze).sort(([keyA], [keyB]) =>
+				keyA.localeCompare(keyB)
+			);
+			sortedGesetze.forEach(([key, value]) => {
 				const row = table.createEl("tr");
-
+	
 				// Abkürzung Zelle
 				const abbrCell = row.createEl("td", { cls: "key-cell" });
 				abbrCell.createEl("span", { text: key });
-
+	
 				// Clipboard Button
 				const copyButton = abbrCell.createEl("button", {
 					cls: "copy-button",
 				});
-
-				// Lucide Icon Container
 				const clipboardIcon = copyButton.createEl("span", {
 					cls: "icon lucide-icon lucide-clipboard-copy",
 				});
-
-				// Beim Klick den Text in die Zwischenablage kopieren
 				copyButton.onclick = () => {
 					navigator.clipboard
 						.writeText(key)
@@ -284,7 +284,7 @@ export class SearchTabView extends ItemView {
 							new Notice("Fehler beim Kopieren der Abkürzung.");
 						});
 				};
-
+	
 				// Titel Zelle
 				row.createEl("td", { text: value.title, cls: "value-cell" });
 			});
