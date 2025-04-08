@@ -30,3 +30,9 @@ export const caseRegex =
 
 export const journalRegex =
 	/(?<journal>[A-Za-z][A-Za-z-]*|Slg.)\s*(?:(?<year>\d{4})(?:,\s*(?<volume1>[IVXLCDM]{1,5})-(?<page1>\d+)|,\s*(?<page2>\d+))|(?<volume2>\d+),\s*(?<page3>\d+))\b(?!.*?\])/gm;
+
+export const btDrucksacheRegex =
+/(?<drucksache>BT-Drs\.|BT-Drucks\.|Bundestagsdrucksache|Bundestag\s+Drucksache)\s*(?<number>\d{1,2}\/\d{1,6})\b(?!.*?\])/gm;
+
+export const brDrucksacheRegex =
+/(?<drucksache>BR-Drs\.|BR-Drucks\.|Bundesratsdrucksache|Bundesrat\s+Drucksache)\s*(?<number>\d{1,2}\/\d{1,6})\b(?!.*?\])/gm;
