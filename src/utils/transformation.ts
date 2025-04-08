@@ -91,32 +91,38 @@ function findAndLinkLawReferences(
 		let updatedLawMatch = firstNormLink;
 
 		// Process chain of laws
-		const chainMatches = [...lawMatch.matchAll(lawChainRegex)]; // Alle Treffer der lawChainRegex finden
-
+		const chainMatches = [...lawMatch.matchAll(lawChainRegex)]; 
 		chainMatches.forEach((chainMatch) => {
-			const chainGroups = chainMatch.groups;
-			if (chainGroups) {
-				const norm = chainGroups.norm.trim();
-				const normGroup = chainGroups.normgr.trim();
-
-				const normLink = getHyperlinkForLawIfExists(
-					normGroup,
-					gesetz,
-					norm,
-					lawProviderOptions
-				);
-
-				// Ersetze den gesamten chainMatch, aber nur wenn er nicht bereits Teil eines Links ist
-				if (
-					!chainMatch[0].includes("](") &&
-					!chainMatch[0].includes(")")
-				) {
-					updatedLawMatch += ", " + normLink; // Füge Komma und Leerzeichen hinzu, um die Kette zu trennen
-				} else {
-					updatedLawMatch += ", " + chainMatch[0]; // Füge den Original-Match hinzu, wenn er bereits verlinkt ist
-				}
+		const chainGroups = chainMatch.groups;
+		if (chainGroups) {
+			const norm = chainGroups.norm.trim();
+			const normGroup = chainGroups.normgr.trim();
+			
+			// NEU: Extrahiere Absatz, Satz und Nummer auch für Kettenglieder
+			const additionalInfo = {
+			absatz: chainGroups.absatz,
+			absatzrom: chainGroups.absatzrom,
+			satz: chainGroups.satz,
+			nr: chainGroups.nr
+			};
+			
+			const normLink = getHyperlinkForLawIfExists(
+			normGroup,
+			gesetz,
+			norm,
+			lawProviderOptions,
+			additionalInfo  // Übergabe der Details
+			);
+			
+			// Ersetze den gesamten chainMatch wie bisher
+			if (!chainMatch[0].includes("](") && !chainMatch[0].includes(")")) {
+			updatedLawMatch += ", " + normLink; 
+			} else {
+			updatedLawMatch += ", " + chainMatch[0]; 
 			}
+		}
 		});
+
 
 		return match.replace(groups.p2, updatedLawMatch + " ");
 	});
