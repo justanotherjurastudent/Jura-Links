@@ -12,6 +12,7 @@ function getSingleLawRegexString(suffix: string): string {
 }
 
 export const lawRegex = new RegExp(
+	`(?![^[]*])` +
 	`(?<p1>§+|Art\\.|Artikel)\\s*(?<p2>${getSingleLawRegexString(
 		"_first"
 	)}${VerbinderGesetz}${getSingleLawRegexString(
