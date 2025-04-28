@@ -16,7 +16,7 @@ Jura-Links wurde insbesondere für Jurastudierende, aber auch darüber hinaus f�
 >- Rewis.io
 >- Buzer
 >- LexMea (insbesondere für Studierende geeignet!)
->- LexSoft (Quelle für Landesgesetze)
+>- Justiz NRW (Quelle für Landesgesetze)
 
 Außerdem bietet Jura-Links ein praktisches Such- und Filterfenster an, um alle dem Plugin bekannten Gesetze zu durchsuchen. Dies ist vor allem dann sehr nützlich, wenn ihr die Abkürzung für ein bestimmtes Landesgesetz erfahren wollt.
 
