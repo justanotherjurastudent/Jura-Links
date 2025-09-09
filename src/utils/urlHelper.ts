@@ -6,6 +6,26 @@ import { rewisGesetzeLowerCased } from "../static/rewisGesetze";
 import { LawProviderOption, LawProviderOptions } from "../types/providerOption";
 import { DejureUrl, LawProviderUrl } from "../types/url";
 
+// Mapping von Bundesland-Abkürzungen zu vollständigen Namen für landesrecht.online URLs
+const bundeslandAbbreviations: { [key: string]: string } = {
+	"BW": "Baden-Württemberg",
+	"BY": "Bayern", 
+	"BE": "Berlin",
+	"BB": "Brandenburg",
+	"HB": "Bremen",
+	"HH": "Hamburg",
+	"HE": "Hessen",
+	"MV": "Mecklenburg-Vorpommern",
+	"NI": "Niedersachsen",
+	"NW": "Nordrhein-Westfalen",
+	"RP": "Rheinland-Pfalz",
+	"SL": "Saarland",
+	"SN": "Sachsen",
+	"ST": "Sachsen-Anhalt",
+	"SH": "Schleswig-Holstein",
+	"TH": "Thüringen"
+};
+
 // In einer neuen Datei utils.ts oder direkt in urlHelper.ts
 function romanToArabic(roman: string): number {
 	const romanValues: { [key: string]: number } = {
@@ -116,40 +136,43 @@ function getLandesrechtOnlineUrl(
 	norm: string,
 	additionalInfo?: any
 ): string {
-	const lawUrl = LawProviderUrl.LANDESRECHT_ONLINE;
+	const baseUrl = "https://landesrecht.online/";
+	const originalGesetz = gesetz;
 	gesetz = gesetz.toLowerCase();
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	for (const [_, law] of Object.entries(landesrechtOnlineLandesgesetzeLowerCased)) {
-		if (law[gesetz] && law[gesetz]["norms"][norm]) {
-			// For landesrecht.online, we construct the URL using law abbreviation and section
-			// Typical structure: https://www.landesrecht.online/{gesetz}/{norm}
-			let url = `${lawUrl}gesetz/${gesetz}/${norm}`;
-
-			// Add fragment identifier for paragraph if available
-			if (additionalInfo) {
-				if (additionalInfo.absatz) {
-					url += `#abs-${additionalInfo.absatz}`;
-				} else if (additionalInfo.absatzrom) {
-					try {
-						const arabicNumber = romanToArabic(
-							additionalInfo.absatzrom
-						);
-						url += `#abs-${arabicNumber}`;
-					} catch (e) {
-						console.error(
-							"Fehler bei der Umwandlung der römischen Zahl:",
-							e
-						);
-					}
-				}
-			}
-
-			return url;
+	// Suche das Gesetz in allen Bundesländern
+	let foundBundesland: string | null = null;
+	let foundGesetzKey: string | null = null;
+	
+	for (const [bundesland, laws] of Object.entries(landesrechtOnlineLandesgesetzeLowerCased)) {
+		if (laws[gesetz] && laws[gesetz]["norms"][norm]) {
+			foundBundesland = bundesland;
+			foundGesetzKey = gesetz;
+			break;
 		}
 	}
 
-	return "";
+	if (!foundBundesland || !foundGesetzKey) {
+		return "";
+	}
+
+	// Finde die Bundesland-Abkürzung
+	const bundeslandAbbr = Object.keys(bundeslandAbbreviations).find(
+		abbr => bundeslandAbbreviations[abbr] === foundBundesland
+	);
+
+	// Bestimme die URL-Struktur basierend auf verfügbaren Informationen
+	let url: string;
+	
+	if (bundeslandAbbr) {
+		// Mit Bundesland-Abkürzung: landesrecht.online/BL/Gesetz/Paragraf
+		url = `${baseUrl}${bundeslandAbbr}/${originalGesetz}/${norm}`;
+	} else {
+		// Ohne Bundesland: landesrecht.online/Gesetz/Paragraf
+		url = `${baseUrl}${originalGesetz}/${norm}`;
+	}
+
+	return url;
 }
 
 function getRewisUrl(
@@ -179,17 +202,15 @@ function getRewisUrl(
 		)}`.replace("-", "%2D");
 	}
 
-	// Fragment-Identifier #abs_ anhängen
-	url += "#abs_";
-
-	// Absatz hinzufügen (normal oder römisch)
+	// Fragment-Identifier #abs_ nur anhängen wenn zusätzliche Informationen vorhanden sind
 	if (additionalInfo) {
+		// Absatz hinzufügen (normal oder römisch)
 		if (additionalInfo.absatz) {
-			url += additionalInfo.absatz;
+			url += "#abs_" + additionalInfo.absatz;
 		} else if (additionalInfo.absatzrom) {
 			try {
 				const arabicNumber = romanToArabic(additionalInfo.absatzrom);
-				url += arabicNumber;
+				url += "#abs_" + arabicNumber;
 			} catch (e) {
 				console.error(
 					"Fehler bei der Umwandlung der römischen Zahl:",

@@ -24,7 +24,7 @@ test.each([
 		gesetz: `sog lsa`,
 		norm: `1`,
 		provider: `landesrecht.online`,
-		expected: `https://www.landesrecht.online/gesetz/sog lsa/1`,
+		expected: `https://landesrecht.online/ST/sog lsa/1`,
 	},
 	{
 		gesetz: `AVBFernwärmeV`,
@@ -40,6 +40,48 @@ test.each([
 	},
 ])(
 	"getLawUrlByProvider: should returns $expected given $provider, $gesetz, $norm",
+	(testData) => {
+		const result = getLawUrlByProvider(
+			testData.gesetz,
+			testData.norm,
+			testData.provider
+		);
+		expect(result).toBe(testData.expected);
+	}
+);
+
+// Additional tests for landesrecht.online URL patterns based on problem statement
+test.each([
+	{
+		gesetz: `POG RP`,
+		norm: `7`,
+		provider: `landesrecht.online`,
+		expected: `https://landesrecht.online/RP/POG RP/7`,
+		description: "POG RP § 7 (example from problem statement)"
+	},
+	{
+		gesetz: `pog rp`,
+		norm: `7`,
+		provider: `landesrecht.online`,
+		expected: `https://landesrecht.online/RP/pog rp/7`,
+		description: "POG RP § 7 with lowercase (case insensitive)"
+	},
+	{
+		gesetz: `ThürBO`,
+		norm: `1`,
+		provider: `landesrecht.online`,
+		expected: `https://landesrecht.online/TH/ThürBO/1`,
+		description: "ThürBO § 1 with proper case"
+	},
+	{
+		gesetz: `thürbo`,
+		norm: `1`,
+		provider: `landesrecht.online`,
+		expected: `https://landesrecht.online/TH/thürbo/1`,
+		description: "thürbo § 1 with lowercase (case insensitive from problem statement)"
+	},
+])(
+	"getLawUrlByProvider landesrecht.online: $description",
 	(testData) => {
 		const result = getLawUrlByProvider(
 			testData.gesetz,
