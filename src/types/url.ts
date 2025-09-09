@@ -1,7 +1,7 @@
 enum LawProviderUrl {
 	DEJURE = "https://www.dejure.org/",
 	REWIS = "https://rewis.io/gesetze/",
-	JUSTIZ_NRW_LANDESGESETZE = "https://justiz-nrw.wolterskluwer-online.de/browse/document/cite/",
+	LANDESRECHT_ONLINE = "https://www.landesrecht.online/",
 	LEXMEA = "https://lexmea.de/gesetz/",
 	BUZER = "https://www.buzer.de/",
 }

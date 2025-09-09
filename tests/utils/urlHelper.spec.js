@@ -23,8 +23,8 @@ test.each([
 	{
 		gesetz: `sog lsa`,
 		norm: `1`,
-		provider: `justiz nrw landesgesetze`,
-		expected: `https://justiz-nrw.wolterskluwer-online.de/browse/document/cite/686b0ff9-2129-3a6f-b997-bdf6f97d58d8`,
+		provider: `landesrecht.online`,
+		expected: `https://www.landesrecht.online/gesetz/sog lsa/1`,
 	},
 	{
 		gesetz: `AVBFernwärmeV`,

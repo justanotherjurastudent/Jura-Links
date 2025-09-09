@@ -1,7 +1,7 @@
 import { buzerGesetzeLowerCased } from "../static/buzerGesetze";
 import { dejureGesetzeLowerCased } from "../static/dejureGesetze";
 import { lexmeaGesetzeLowerCased } from "../static/lexmeaGesetze";
-import { justiz_NRW_LandesgesetzeLowerCased } from "../static/Justiz NRW Landesgesetze";
+import { landesrechtOnlineLandesgesetzeLowerCased } from "../static/LandesrechtOnlineLandesgesetze";
 import { rewisGesetzeLowerCased } from "../static/rewisGesetze";
 import { LawProviderOption, LawProviderOptions } from "../types/providerOption";
 import { DejureUrl, LawProviderUrl } from "../types/url";
@@ -111,32 +111,31 @@ function getLexmeaUrl(gesetz: string, norm: string): string {
 	return "";
 }
 
-function getJustiz_NRW_Landesgesetze_Url(
+function getLandesrechtOnlineUrl(
 	gesetz: string,
 	norm: string,
 	additionalInfo?: any
 ): string {
-	const lawUrl = LawProviderUrl.JUSTIZ_NRW_LANDESGESETZE;
+	const lawUrl = LawProviderUrl.LANDESRECHT_ONLINE;
 	gesetz = gesetz.toLowerCase();
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	for (const [_, law] of Object.entries(justiz_NRW_LandesgesetzeLowerCased)) {
+	for (const [_, law] of Object.entries(landesrechtOnlineLandesgesetzeLowerCased)) {
 		if (law[gesetz] && law[gesetz]["norms"][norm]) {
-			let url = `${lawUrl}${law[gesetz]["norms"][norm]}`;
+			// For landesrecht.online, we construct the URL using law abbreviation and section
+			// Typical structure: https://www.landesrecht.online/{gesetz}/{norm}
+			let url = `${lawUrl}gesetz/${gesetz}/${norm}`;
 
-			// Fragment-Identifier #jurabsatz_ anhängen
-			url += "#jurabsatz_";
-
-			// Absatz hinzufügen (normal oder römisch)
+			// Add fragment identifier for paragraph if available
 			if (additionalInfo) {
 				if (additionalInfo.absatz) {
-					url += additionalInfo.absatz;
+					url += `#abs-${additionalInfo.absatz}`;
 				} else if (additionalInfo.absatzrom) {
 					try {
 						const arabicNumber = romanToArabic(
 							additionalInfo.absatzrom
 						);
-						url += arabicNumber;
+						url += `#abs-${arabicNumber}`;
 					} catch (e) {
 						console.error(
 							"Fehler bei der Umwandlung der römischen Zahl:",
@@ -221,9 +220,9 @@ function getLawUrlByProvider(
 		return getLexmeaUrl(gesetz, norm) || "";
 	}
 
-	if (lawProvider === "justiz nrw landesgesetze") {
+	if (lawProvider === "landesrecht.online") {
 		return (
-			getJustiz_NRW_Landesgesetze_Url(gesetz, norm, additionalInfo) || ""
+			getLandesrechtOnlineUrl(gesetz, norm, additionalInfo) || ""
 		);
 	}
 

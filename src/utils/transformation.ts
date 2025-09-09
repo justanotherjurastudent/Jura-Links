@@ -51,7 +51,7 @@ function findAndLinkLawReferences(
 	fileContent: string,
 	lawProviderOptions: LawProviderOptions = {
 		firstOption: "dejure",
-		secondOption: "justiz nrw landesgesetze",
+		secondOption: "landesrecht.online",
 		thirdOption: "lexmea",
 		forthOption: "buzer",
 		fifthOption: "rewis",
