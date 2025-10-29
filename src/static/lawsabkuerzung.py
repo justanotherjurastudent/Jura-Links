@@ -1,16 +1,17 @@
 import os
 import re
+import json
 
 def extract_abbreviations(file_path):
-    with open(file_path, 'r', encoding='utf-8') as file:
+    with open(file_path, 'r', encoding='utf-8-sig') as file:
         content = file.read()
-    
+
     abbreviations = []
-    
-    if 'Justiz NRW Landesgesetze.ts' in file_path:
-        # Für Justiz NRW Landesgesetze: Extrahiere Gesetzesabkürzungen aus der verschachtelten Struktur
-        law_matches = re.findall(r'"([^"]+)":\s*{\s*title:', content)
-        abbreviations.extend(law_matches)
+
+    if 'LandesrechtOnlineLandesgesetze.json' in file_path:
+        # Für LandesrechtOnlineLandesgesetze.json: Extrahiere Gesetzesabkürzungen als Schlüssel des JSON-Objekts
+        data = json.loads(content)
+        abbreviations.extend(data.keys())
     
     elif 'buzerGesetze.ts' in file_path:
         # Für buzer: Extrahiere nur den ersten Schlüssel, ob in Anführungszeichen oder nicht
@@ -37,12 +38,12 @@ def extract_abbreviations(file_path):
 
 def main():
     source_dir = 'src/static'
-    output_file = 'src/static/allLawAbbreviations.ts'
+    output_file = 'src/static/lawsAbbrs_neu.ts'
     
     all_abbreviations = []
     
     files_to_process = [
-        'Justiz NRW Landesgesetze.ts',
+        'LandesrechtOnlineLandesgesetze.json',
         'buzerGesetze.ts',
         'dejureGesetze.ts',
         'lexmeaGesetze.ts',
@@ -58,6 +59,9 @@ def main():
     
     # Entferne Duplikate und sortiere nach Länge (längste zuerst)
     unique_abbreviations = sorted(list(set(all_abbreviations)), key=len, reverse=True)
+    
+    # Ersetzungen in Abkürzungen: Doppelte Anführungszeichen zu einfachen, Unterstriche zu Leerzeichen
+    unique_abbreviations = [abbr.replace('"', "'").replace('_', ' ') for abbr in unique_abbreviations]
     
     # Erstelle TypeScript-Export
     ts_content = "export const allLawAbbreviations = [\n"

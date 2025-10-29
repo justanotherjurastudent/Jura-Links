@@ -9,7 +9,7 @@ export interface LawProviderSettings {
 
 export const DEFAULT_SETTINGS: LawProviderSettings = {
 	lawProviderOptions: {
-		firstOption: "justiz nrw landesgesetze",
+		firstOption: "landesrecht.online",
 		secondOption: "dejure",
 		thirdOption: "lexmea",
 		forthOption: "buzer",
@@ -61,7 +61,7 @@ export class LawProviderSettingTab extends PluginSettingTab {
 
 		const providerDisplayNames: Record<LawProviderOption, string> = {
 			"dejure": "Dejure",
-			"justiz nrw landesgesetze": "Justiz NRW Landesgesetze",
+			"landesrecht.online": "Landesrecht.online",
 			"lexmea": "LexMea",
 			"buzer": "Buzer",
 			"rewis": "Rewis",
@@ -69,9 +69,9 @@ export class LawProviderSettingTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName("1. Wahl")
-			.setDesc("Justiz NRW Landesgesetze ist standardmäßig als erste Option festgelegt.")
+			.setDesc("Landesrecht.online ist standardmäßig als erste Option festgelegt.")
 			.addDropdown((dropdown) => {
-				dropdown.addOption("justiz nrw landesgesetze", "Justiz NRW Landesgesetze");
+				dropdown.addOption("landesrecht.online", "Landesrecht.online");
 				dropdown.setValue(
 					this.plugin.settings.lawProviderOptions.firstOption
 				);
@@ -149,7 +149,7 @@ export class LawProviderSettingTab extends PluginSettingTab {
 		const selectedValues = this.dropdowns
 			.map((d) => d.dropdown?.value)
 			.filter((value): value is string => value !== undefined);
-		selectedValues.unshift("justiz nrw landesgesetze"); // Add the fixed first option
+		selectedValues.unshift("landesrecht.online"); // Add the fixed first option
 	
 		this.dropdowns.forEach((dropdown, index) => {
 			if (!dropdown.dropdown) return; // Skip if dropdown is not initialized

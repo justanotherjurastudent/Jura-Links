@@ -16,7 +16,7 @@ Jura-Links wurde insbesondere für Jurastudierende, aber auch darüber hinaus f�
 >- Rewis.io
 >- Buzer
 >- LexMea (insbesondere für Studierende geeignet!)
->- Justiz NRW (Quelle für Landesgesetze)
+>- Landesrecht.online (Quelle für Landesgesetze)
 
 Außerdem bietet Jura-Links ein praktisches Such- und Filterfenster an, um alle dem Plugin bekannten Gesetze zu durchsuchen. Dies ist vor allem dann sehr nützlich, wenn ihr die Abkürzung für ein bestimmtes Landesgesetz erfahren wollt.
 
@@ -75,7 +75,7 @@ Das Suchfenster ist über das Waagensymbol links in der Leiste erreichbar. Es ö
 Du kannst unter den Einstellungen folgendes einstellen:
 1. Per Toggle (Umschalt-Button): Wenn dies aktiviert wird, dann werden **bei jedem Laden** einer Notiz nach Jura-Nachweisen gesucht und ggf. verlinkt. Sofern dir das einmal aus Versehen passiert, kannst du die Verlinkung mit Strg (oder bei Mac Cmd)+Z rückgängig machen.
 2. Per Dropdown: Die **Reihenfolge der angesteuerten Gesetzesanbieter** kannst du hier einstellen. Das bedeutet, wenn eine Normangabe gefunden wurde, soll versucht werden, dieses Gesetz mit dem ersten angegeben Gesetzesanbieter zu verlinken. Wenn dies nicht möglich ist (z. B. weil das Gesetz bei dem Anbieter fehlt), dann wird beim nächsten angegeben Anbieter geschaut, ob eine Verlinkung erfolgen kann. Diese Reihenfolge läuft u. U. bis zum letzten Anbieter, der angegeben wurde. Wenn das Gesetz bei keinem Anbieter gefunden wurde, dann entsteht kein Link.
-	- LexSoft wird stets zuerst angesteuert, da es sich hierbei um speziellere Landesgesetze handelt und die Programmlogik damit besser umgehen kann.
+	- Landesrecht.online wird für Landesgesetze bevorzugt angesteuert, da es sich hierbei um speziellere Landesgesetze handelt und die Programmlogik damit besser umgehen kann.
 
 ## Tipps
 ### für Jurastudierende

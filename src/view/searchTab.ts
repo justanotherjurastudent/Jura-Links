@@ -7,7 +7,7 @@ import {
 	Setting,
 	Notice,
 } from "obsidian";
-import { justiz_NRW_Landesgesetze } from "../static/Justiz NRW Landesgesetze";
+import { Landesgesetze_mit_Namen } from "../static/Landesgesetze_mit_Namen";
 import { dejureGesetze } from "../static/dejureGesetze";
 import { rewisGesetze } from "../static/rewisGesetze";
 import { buzerGesetze } from "../static/buzerGesetze";
@@ -146,9 +146,9 @@ export class SearchTabView extends ItemView {
 				law,
 				provider: "Lexmea",
 			})),
-			...this.extractJustiz_NRW_LandesgesetzeLaws().map((law) => ({
+			...this.extractLandesrechtOnlineLaws().map((law) => ({
 				law: law.law,
-				provider: "Justiz NRW Landesgesetze",
+				provider: "Landesrecht.online",
 				state: law.state,
 			})),
 		];
@@ -162,7 +162,7 @@ export class SearchTabView extends ItemView {
 				if (!acc[item.provider]) {
 					acc[item.provider] = {};
 				}
-				if (item.provider === "Justiz NRW Landesgesetze") {
+				if (item.provider === "Landesrecht.online") {
 					if (item.state && !acc[item.provider][item.state]) {
 						acc[item.provider][item.state] = [];
 					}
@@ -186,7 +186,7 @@ export class SearchTabView extends ItemView {
 						cls: "header",
 					});
 
-					if (provider === "Justiz NRW Landesgesetze") {
+					if (provider === "Landesrecht.online") {
 						Object.entries(data).forEach(([state, laws]) => {
 							if (this.resultsContainer) {
 								this.resultsContainer.createEl("div", {
@@ -222,9 +222,9 @@ export class SearchTabView extends ItemView {
 		}
 	}
 
-	extractJustiz_NRW_LandesgesetzeLaws(): { law: string; state: string }[] {
+	extractLandesrechtOnlineLaws(): { law: string; state: string }[] {
 		const laws: { law: string; state: string }[] = [];
-		Object.entries(justiz_NRW_Landesgesetze).forEach(([state, gesetze]) => {
+		Object.entries(Landesgesetze_mit_Namen).forEach(([state, gesetze]) => {
 			Object.entries(gesetze).forEach(([key, value]) => {
 				laws.push({
 					law: `${key}: ${value.title}`,
@@ -237,7 +237,7 @@ export class SearchTabView extends ItemView {
 
 	createBundeslandFilter(dropdown: DropdownComponent): void {
 		dropdown.addOption("", "Wählen Sie ein Bundesland");
-		Object.keys(justiz_NRW_Landesgesetze).forEach((state) => {
+		Object.keys(Landesgesetze_mit_Namen).forEach((state) => {
 			dropdown.addOption(state, state);
 		});
 	}
@@ -251,7 +251,7 @@ export class SearchTabView extends ItemView {
 			cls: "scroll-container",
 		});
 	
-		const gesetze = justiz_NRW_Landesgesetze[bundesland];
+		const gesetze = Landesgesetze_mit_Namen[bundesland];
 		if (gesetze) {
 			const table = scrollContainer.createEl("table", {
 				cls: "gesetz-table",
@@ -293,7 +293,7 @@ export class SearchTabView extends ItemView {
 
 	createAnbieterFilter(dropdown: DropdownComponent): void {
 		dropdown.addOption("", "Wählen Sie einen Anbieter");
-		["Dejure", "Justiz NRW Landesgesetze", "LexMea", "Buzer", "Rewis"].forEach(
+		["Dejure", "Landesrecht.online", "LexMea", "Buzer", "Rewis"].forEach(
 			(provider) => {
 				dropdown.addOption(provider, provider);
 			}
@@ -309,8 +309,8 @@ export class SearchTabView extends ItemView {
 			cls: "scroll-container",
 		});
 
-		if (anbieter === "Justiz NRW Landesgesetze") {
-			Object.entries(justiz_NRW_Landesgesetze).forEach(([bundesland, gesetze]) => {
+		if (anbieter === "Landesrecht.online") {
+			Object.entries(Landesgesetze_mit_Namen).forEach(([bundesland, gesetze]) => {
 				scrollContainer.createEl("div", {
 					text: bundesland,
 					cls: "header",

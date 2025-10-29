@@ -23,3 +23,6 @@ data.json
 
 # raw data
 raw_data/
+
+# modify landesrecht.py
+modify_landesrecht.py
