@@ -7,7 +7,7 @@ import {
 	Setting,
 	Notice,
 } from "obsidian";
-import { landesrechtOnlineLandesgesetze } from "../static/LandesrechtOnlineLandesgesetze";
+import { Landesgesetze_mit_Namen } from "../static/Landesgesetze_mit_Namen";
 import { dejureGesetze } from "../static/dejureGesetze";
 import { rewisGesetze } from "../static/rewisGesetze";
 import { buzerGesetze } from "../static/buzerGesetze";
@@ -224,7 +224,7 @@ export class SearchTabView extends ItemView {
 
 	extractLandesrechtOnlineLaws(): { law: string; state: string }[] {
 		const laws: { law: string; state: string }[] = [];
-		Object.entries(landesrechtOnlineLandesgesetze).forEach(([state, gesetze]) => {
+		Object.entries(Landesgesetze_mit_Namen).forEach(([state, gesetze]) => {
 			Object.entries(gesetze).forEach(([key, value]) => {
 				laws.push({
 					law: `${key}: ${value.title}`,
@@ -237,7 +237,7 @@ export class SearchTabView extends ItemView {
 
 	createBundeslandFilter(dropdown: DropdownComponent): void {
 		dropdown.addOption("", "Wählen Sie ein Bundesland");
-		Object.keys(landesrechtOnlineLandesgesetze).forEach((state) => {
+		Object.keys(Landesgesetze_mit_Namen).forEach((state) => {
 			dropdown.addOption(state, state);
 		});
 	}
@@ -251,7 +251,7 @@ export class SearchTabView extends ItemView {
 			cls: "scroll-container",
 		});
 	
-		const gesetze = landesrechtOnlineLandesgesetze[bundesland];
+		const gesetze = Landesgesetze_mit_Namen[bundesland];
 		if (gesetze) {
 			const table = scrollContainer.createEl("table", {
 				cls: "gesetz-table",
@@ -310,7 +310,7 @@ export class SearchTabView extends ItemView {
 		});
 
 		if (anbieter === "Landesrecht.online") {
-			Object.entries(landesrechtOnlineLandesgesetze).forEach(([bundesland, gesetze]) => {
+			Object.entries(Landesgesetze_mit_Namen).forEach(([bundesland, gesetze]) => {
 				scrollContainer.createEl("div", {
 					text: bundesland,
 					cls: "header",

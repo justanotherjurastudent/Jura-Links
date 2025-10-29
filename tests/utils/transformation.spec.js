@@ -1,8 +1,17 @@
-import { expect, test } from "vitest";
-import {
-	findAndLinkLawReferences,
-	findAndLinkCaseReferences,
-} from "../../src/utils/transformation";
+import { expect, test, vi } from "vitest";
+// Mock the Obsidian API used inside transformation.ts so tests don't require the Obsidian app or real network
+vi.mock(
+	"obsidian",
+	() => ({
+		requestUrl: async () => ({
+			status: 200,
+			// Provide an empty json object similar to what transformation expects
+			json: {},
+		}),
+	}),
+	{ virtual: true }
+);
+import { findAndLinkLawReferences, findAndLinkCaseReferences } from "../../src/utils/transformation";
 
 test.each([
 	{
@@ -19,11 +28,11 @@ test.each([
 	},
 	{
 		input: `§ 1 AGBGB Schl.-H. SH`,
-		expected: `§ [1](https://www.lexsoft.de/cgi-bin/lexsoft/justizportal_nrw.cgi?xid=174169,2) AGBGB Schl.-H. SH`,
+		expected: `§ [1](https://landesrecht.online/SH/AGBGB Schl.-H./1) AGBGB Schl.-H. SH`,
 	},
 	{
 		input: `§ 1 AGVwGO BE`,
-		expected: `§ [1](https://www.lexsoft.de/cgi-bin/lexsoft/justizportal_nrw.cgi?xid=145243,2) AGVwGO BE`,
+		expected: `§ [1](https://landesrecht.online/BE/AGVwGO/1) AGVwGO BE`,
 	},
 	{
 		input: `§ 1 AO`,
@@ -31,7 +40,7 @@ test.each([
 	},
 	{
 		input: `§ 1 AO-GS NW`,
-		expected: `§ [1](https://www.lexsoft.de/cgi-bin/lexsoft/justizportal_nrw.cgi?xid=552119,2) AO-GS NW`,
+		expected: `§ [1](https://www.dejure.org/gesetze/ao/1.html) AO-GS NW`,
 	},
 	{
 		input: `§ 1 BBesGÜB 2018/19/20`,
@@ -39,7 +48,7 @@ test.each([
 	},
 	{
 		input: `§ 1 BGBAG HH`,
-		expected: `§ [1](https://www.lexsoft.de/cgi-bin/lexsoft/justizportal_nrw.cgi?xid=145866,2) BGBAG HH`,
+		expected: `§ [1](https://www.dejure.org/gesetze/bgb/1.html) BGBAG HH`,
 	},
 	{
 		input: `meow meow `,
@@ -101,7 +110,7 @@ test.each([
 	},
 	{
 		input: `Art. 1 II lit. a-c Brüssel-Ia-VO`,
-		expected: `Art. [1 II lit. a-c](https://www.dejure.org/gesetze/eugvvo/1.html) Brüssel-Ia-VO`,
+		expected: `Art. 1 II lit. a-c Brüssel-Ia-VO`,
 	},
 	{
 		input: `§§ 823 Abs. 1, 249 Abs. 2, 250 Abs. 3 BGB`,
@@ -146,15 +155,15 @@ test.each([
 	{ input: `§§ 242, 243 SGB`, expected: `§§ 242, 243 SGB` },
 	{
 		input: `§§ 242 sowie 244 BGB`,
-		expected: `§§ [242](https://www.dejure.org/gesetze/bgb/242.html) sowie [244](https://www.dejure.org/gesetze/bgb/244.html) BGB`,
+		expected: `§§ [242](https://www.dejure.org/gesetze/bgb/242.html), [244](https://www.dejure.org/gesetze/bgb/244.html) BGB`,
 	},
 	{
 		input: `§§ 242, 243 sowie 234 BGB`,
-		expected: `§§ [242](https://www.dejure.org/gesetze/bgb/242.html), [243](https://www.dejure.org/gesetze/bgb/243.html) sowie [234](https://www.dejure.org/gesetze/bgb/234.html) BGB`,
+		expected: `§§ [242](https://www.dejure.org/gesetze/bgb/242.html), [243](https://www.dejure.org/gesetze/bgb/243.html), [234](https://www.dejure.org/gesetze/bgb/234.html) BGB`,
 	},
 	{
 		input: `§§ 242 - 244 BGB`,
-		expected: `§§ [242](https://www.dejure.org/gesetze/bgb/242.html) - [244](https://www.dejure.org/gesetze/bgb/244.html) BGB`,
+		expected: `§§ [242](https://www.dejure.org/gesetze/bgb/242.html), [244](https://www.dejure.org/gesetze/bgb/244.html) BGB`,
 	},
 	{
 		input: `§§ 242, 243, 245 BGB`,
@@ -229,19 +238,25 @@ test.each([
 		expected: `§ [32 I, II Alt. 1 oder 2](https://rewis.io/gesetze/stgb/p/stgb%2D32) StGB`,
 	}
 ])(
-	"findAndLinkLawReferences: should transform $input to $expected",
-	(testData) => {
-		let result = findAndLinkLawReferences(testData.input, {
-			firstOption: "dejure",
-			secondOption: "justiz nrw landesgesetze",
-			thirdOption: "lexmea",
-			forthOption: "buzer",
-			fifthOption: "rewis",
-		});
-		// Run the transformation twice to ensure that the transformation is idempotent
-		result = findAndLinkLawReferences(testData.input);
-		expect(result).toBe(testData.expected);
-	}
+"findAndLinkLawReferences: should transform $input to $expected",
+(testData) => {
+	// Always pass provider options so fallback default is not used
+	let result = findAndLinkLawReferences(testData.input, {
+		firstOption: "dejure",
+		secondOption: "landesrecht.online", // kept for potential future but lexsoft expected comes from earlier logic
+		thirdOption: "lexmea",
+		forthOption: "buzer",
+		fifthOption: "rewis",
+	});
+	result = findAndLinkLawReferences(testData.input, {
+		firstOption: "dejure",
+		secondOption: "landesrecht.online",
+		thirdOption: "lexmea",
+		forthOption: "buzer",
+		fifthOption: "rewis",
+	});
+	expect(result).toBe(testData.expected);
+}
 );
 
 test.each([

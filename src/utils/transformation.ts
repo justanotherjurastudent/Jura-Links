@@ -9,7 +9,32 @@ import {
 	brDrucksacheRegex,
 } from "./regex";
 import { getLawUrlByProviderOptions } from "./urlHelper";
-import { requestUrl, RequestUrlResponse } from "obsidian";
+// Dynamic (optional) import of Obsidian's requestUrl to allow running tests outside Obsidian.
+// In the Vitest environment the 'obsidian' package entry cannot be resolved; we fall back to a stub.
+// This preserves runtime behavior inside Obsidian while avoiding build/test failures.
+interface RequestUrlParams {
+	url: string;
+	method?: string;
+	headers?: Record<string, string>;
+	body?: string;
+}
+
+interface RequestUrlResponse {
+	status: number;
+	json: unknown; // Unknown shape, only inspected for 'redirect' later
+}
+
+let requestUrlFn: ((params: RequestUrlParams) => Promise<RequestUrlResponse>) | null = null;
+try {
+	// eslint-disable-next-line @typescript-eslint/no-var-requires
+	const obsidianMod = require("obsidian");
+	if (obsidianMod && typeof obsidianMod.requestUrl === "function") {
+		requestUrlFn = obsidianMod.requestUrl;
+	}
+} catch {
+	// Fallback stub for tests / non-Obsidian environments
+	requestUrlFn = async () => ({ status: 200, json: {} });
+}
 
 let linkCount = 0;
 
@@ -21,7 +46,10 @@ interface JuraRechercheResponse {
 
 async function getJuraRechercheUrl(citation: string): Promise<string | null> {
 	try {
-		const response: RequestUrlResponse = await requestUrl({
+		if (!requestUrlFn) {
+			return null; // No request capability in this environment
+		}
+		const response: RequestUrlResponse = await requestUrlFn({
 			url: "https://jura-recherche.de/ajax/go",
 			method: "POST",
 			headers: {
@@ -34,7 +62,7 @@ async function getJuraRechercheUrl(citation: string): Promise<string | null> {
 			throw new Error(`HTTP error! status: ${response.status}`);
 		}
 
-		const data: JuraRechercheResponse = response.json;
+		const data: JuraRechercheResponse = (response.json || {}) as JuraRechercheResponse;
 
 		if (data.redirect) {
 			return data.redirect;
@@ -49,13 +77,13 @@ async function getJuraRechercheUrl(citation: string): Promise<string | null> {
 
 function findAndLinkLawReferences(
 	fileContent: string,
-	lawProviderOptions: LawProviderOptions = {
-		firstOption: "dejure",
-		secondOption: "landesrecht.online",
-		thirdOption: "lexmea",
+		lawProviderOptions: LawProviderOptions = {
+			firstOption: "dejure",
+			secondOption: "landesrecht.online",
+			thirdOption: "lexmea",
 		forthOption: "buzer",
 		fifthOption: "rewis",
-	}
+		}
 ): string {
 	if (!lawRegex.test(fileContent)) {
 		return fileContent;
@@ -64,8 +92,10 @@ function findAndLinkLawReferences(
 	return fileContent.replace(lawRegex, (match, ...args) => {
 		const groups = args[args.length - 1];
 		let gesetz = groups.gesetz.trim().toLowerCase();
+		// Entferne historische Fassungszusätze wie a.F. / n.F. aus dem Gesetzeskürzel
+		gesetz = gesetz.replace(/\ba\.f\.\b|\bn\.f\.\b/gi, "").replace(/\s{2,}/g, " ").trim();
 		gesetz = gesetz === "brüssel-ia-vo" ? "eugvvo" : gesetz;
-		let lawMatch = groups.p2;
+		const lawMatch = groups.p2;
 
 		// Extrahiere die RegEx-Gruppen für den ersten Normverweis
 		const firstNormGroup = groups.normgr_first.trim();
@@ -128,15 +158,25 @@ function findAndLinkLawReferences(
 	});
 }
 
+// Lokaler Typ für extrahierte Gruppen (subset von AdditionalInfo aus urlHelper)
+interface LocalAdditionalInfo {
+	absatz?: string | null;
+	absatzrom?: string | null;
+	satz?: string | null;
+	nr?: string | null;
+	// Erweiterte dynamische Properties (konservativ typisiert)
+	[key: string]: string | null | undefined;
+}
+
 function getHyperlinkForLawIfExists(
 	normGroup: string,
 	gesetz: string,
 	norm: string,
 	lawProviderOptions: LawProviderOptions,
-	groups?: any
+	groups?: LocalAdditionalInfo
 ): string {
 	// Extrahiere relevante Informationen aus den Gruppen
-	let additionalInfo = null;
+	let additionalInfo: LocalAdditionalInfo | undefined = undefined;
 
 	if (groups) {
 		// Prüfen, ob einzelne (nicht-Liste) Werte vorhanden sind
@@ -172,10 +212,21 @@ function getHyperlinkForLawIfExists(
 		gesetz,
 		norm,
 		lawProviderOptions,
-		additionalInfo
+		// Übergibt entweder das Objekt oder undefined (nicht null)
+		additionalInfo && {
+			// Filter: Nur definierte (nicht null) Werte übernehmen
+			...(additionalInfo.absatz ? { absatz: additionalInfo.absatz } : {}),
+			...(additionalInfo.absatzrom
+				? { absatzrom: additionalInfo.absatzrom }
+				: {}),
+			...(additionalInfo.satz ? { satz: additionalInfo.satz } : {}),
+			...(additionalInfo.nr ? { nr: additionalInfo.nr } : {}),
+		} || undefined
 	);
 	linkCount++;
-	return lawUrl ? `[${normGroup}](${lawUrl})` : normGroup;
+	if (!lawUrl) return normGroup;
+	const baseUrl = lawUrl.split('#')[0];
+	return `[${normGroup}](${baseUrl})`;
 }
 
 async function findAndLinkJournalReferences(

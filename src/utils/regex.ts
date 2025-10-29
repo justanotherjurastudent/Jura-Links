@@ -1,6 +1,6 @@
-import { AllLawAbbrs } from "../static/lawsAbbrs";
+import { allLawAbbreviations } from "../static/lawsAbbrs";
 
-const lawList = AllLawAbbrs.join("|");
+const lawList = allLawAbbreviations.join("|");
 
 const Verbinder = "(?:\\s*(und|u\\.|iVm|i\\.V\\.m\\.|i\\. V\\. m\\.)\\s*";
 const VerbinderKomma =
