@@ -79,16 +79,14 @@ const bundeslandVariantTokens: { [canonicalAbbr: string]: string[] } = {
 
 // Liste der Gesetze, die Artikel (Art.) statt Paragraphen (§) verwenden
 // Dies umfasst insbesondere: Grundgesetz, EU-Vorschriften, internationale Verträge, Verfassungen
+// Hinweis: Diese Liste enthält Gesetze, die prinzipiell Artikel verwenden. Nicht alle sind in LexMea verfügbar.
+// Die isArticle-Flag aus der Transformation überschreibt diese Liste wenn explizit Art. erkannt wird.
 const lawsUsingArticles = new Set([
-	"gg",           // Grundgesetz
-	"dsgvo",        // Datenschutz-Grundverordnung
-	"euv",          // Vertrag über die Europäische Union
-	"aeuv",         // Vertrag über die Arbeitsweise der EU
-	"eugvvo",       // EU-Verordnungen
-	"eugvü",        // EU-Übereinkommen
-	"emrk",         // Europäische Menschenrechtskonvention
-	"grch",         // Grundrechtecharta
-	"wrv",          // Weimarer Reichsverfassung
+	"gg",           // Grundgesetz (in LexMea verfügbar)
+	"wrv",          // Weimarer Reichsverfassung (in LexMea verfügbar)
+	"dsgvo",        // Datenschutz-Grundverordnung (nicht in LexMea, aber würde Art. verwenden)
+	"euv",          // Vertrag über die Europäische Union (nicht in LexMea, aber würde Art. verwenden)
+	"aeuv",         // Vertrag über die Arbeitsweise der EU (nicht in LexMea, aber würde Art. verwenden)
 ]);
 
 const normalizeBundeslandToken = (token: string): string =>
@@ -521,21 +519,21 @@ function getLawUrlByProviderOptions(
 	}
 
 	if (lawProviders.thirdOption) {
-		lawUrl = getLawUrlByProvider(gesetz, norm, lawProviders.thirdOption);
+		lawUrl = getLawUrlByProvider(gesetz, norm, lawProviders.thirdOption, additionalInfo);
 		if (lawUrl) {
 			return lawUrl;
 		}
 	}
 
 	if (lawProviders.forthOption) {
-		lawUrl = getLawUrlByProvider(gesetz, norm, lawProviders.forthOption);
+		lawUrl = getLawUrlByProvider(gesetz, norm, lawProviders.forthOption, additionalInfo);
 		if (lawUrl) {
 			return lawUrl;
 		}
 	}
 
 	if (lawProviders.fifthOption) {
-		lawUrl = getLawUrlByProvider(gesetz, norm, lawProviders.fifthOption);
+		lawUrl = getLawUrlByProvider(gesetz, norm, lawProviders.fifthOption, additionalInfo);
 		if (lawUrl) {
 			return lawUrl;
 		}
