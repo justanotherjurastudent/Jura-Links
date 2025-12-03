@@ -264,21 +264,35 @@ test.each([
 	{
 		input: `Art. 1 GG`,
 		expected: `Art. [1](https://lexmea.de/gesetz/gg/art-1) GG`,
+		description: "Article-based law GG with single article",
 	},
 	{
 		input: `Art. 20 GG`,
 		expected: `Art. [20](https://lexmea.de/gesetz/gg/art-20) GG`,
+		description: "Article-based law GG with article 20",
 	},
 	{
 		input: `Art. 1 I GG`,
 		expected: `Art. [1 I](https://lexmea.de/gesetz/gg/art-1) GG`,
+		description: "Article-based law GG with subsection",
 	},
 	{
 		input: `Art. 1, 2 GG`,
 		expected: `Art. [1](https://lexmea.de/gesetz/gg/art-1), [2](https://lexmea.de/gesetz/gg/art-2) GG`,
+		description: "Article-based law GG with multiple articles",
+	},
+	{
+		input: `§ 1 BGB`,
+		expected: `§ [1](https://lexmea.de/gesetz/bgb/1) BGB`,
+		description: "Paragraph-based law BGB (should NOT have art- prefix)",
+	},
+	{
+		input: `§ 242 BGB`,
+		expected: `§ [242](https://lexmea.de/gesetz/bgb/242) BGB`,
+		description: "Paragraph-based law BGB with higher number",
 	},
 ])(
-	"findAndLinkLawReferences with LexMea: should transform $input to $expected (article-based laws)",
+	"findAndLinkLawReferences with LexMea: $description",
 	(testData) => {
 		const result = findAndLinkLawReferences(testData.input, {
 			firstOption: "lexmea",
