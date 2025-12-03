@@ -259,6 +259,38 @@ test.each([
 }
 );
 
+// Test specifically for LexMea with article-based laws (GG, DSGVO, EUV, etc.)
+test.each([
+	{
+		input: `Art. 1 GG`,
+		expected: `Art. [1](https://lexmea.de/gesetz/gg/art-1) GG`,
+	},
+	{
+		input: `Art. 20 GG`,
+		expected: `Art. [20](https://lexmea.de/gesetz/gg/art-20) GG`,
+	},
+	{
+		input: `Art. 1 I GG`,
+		expected: `Art. [1 I](https://lexmea.de/gesetz/gg/art-1) GG`,
+	},
+	{
+		input: `Art. 1, 2 GG`,
+		expected: `Art. [1](https://lexmea.de/gesetz/gg/art-1), [2](https://lexmea.de/gesetz/gg/art-2) GG`,
+	},
+])(
+	"findAndLinkLawReferences with LexMea: should transform $input to $expected (article-based laws)",
+	(testData) => {
+		const result = findAndLinkLawReferences(testData.input, {
+			firstOption: "lexmea",
+			secondOption: "dejure",
+			thirdOption: "buzer",
+			forthOption: "rewis",
+			fifthOption: "landesrecht.online",
+		});
+		expect(result).toBe(testData.expected);
+	}
+);
+
 test.each([
     {
         input: `meow meow`,

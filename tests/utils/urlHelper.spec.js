@@ -38,6 +38,18 @@ test.each([
 		provider: `rewis`,
 		expected: `https://rewis.io/gesetze/aabg/p/aabg%2D1`,
 	},
+	{
+		gesetz: `GG`,
+		norm: `1`,
+		provider: `lexmea`,
+		expected: `https://lexmea.de/gesetz/gg/art-1`,
+	},
+	{
+		gesetz: `gg`,
+		norm: `20`,
+		provider: `lexmea`,
+		expected: `https://lexmea.de/gesetz/gg/art-20`,
+	},
 ])(
 	"getLawUrlByProvider: should returns $expected given $provider, $gesetz, $norm",
 	(testData) => {

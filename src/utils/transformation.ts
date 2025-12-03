@@ -96,6 +96,9 @@ function findAndLinkLawReferences(
 		gesetz = gesetz.replace(/\ba\.f\.\b|\bn\.f\.\b/gi, "").replace(/\s{2,}/g, " ").trim();
 		gesetz = gesetz === "brüssel-ia-vo" ? "eugvvo" : gesetz;
 		const lawMatch = groups.p2;
+		
+		// Prüfe, ob es sich um einen Artikel (Art.) oder Paragraph (§) handelt
+		const isArticle = groups.p1 && (groups.p1.includes("Art") || groups.p1.includes("Artikel"));
 
 		// Extrahiere die RegEx-Gruppen für den ersten Normverweis
 		const firstNormGroup = groups.normgr_first.trim();
@@ -107,6 +110,7 @@ function findAndLinkLawReferences(
 			absatzrom: groups.absatzrom_first,
 			satz: groups.satz_first,
 			nr: groups.nr_first,
+			isArticle: isArticle,
 		};
 
 		const firstNormLink = getHyperlinkForLawIfExists(
@@ -133,7 +137,8 @@ function findAndLinkLawReferences(
 			absatz: chainGroups.absatz,
 			absatzrom: chainGroups.absatzrom,
 			satz: chainGroups.satz,
-			nr: chainGroups.nr
+			nr: chainGroups.nr,
+			isArticle: isArticle,
 			};
 			
 			const normLink = getHyperlinkForLawIfExists(
@@ -164,8 +169,9 @@ interface LocalAdditionalInfo {
 	absatzrom?: string | null;
 	satz?: string | null;
 	nr?: string | null;
+	isArticle?: boolean;
 	// Erweiterte dynamische Properties (konservativ typisiert)
-	[key: string]: string | null | undefined;
+	[key: string]: string | boolean | null | undefined;
 }
 
 function getHyperlinkForLawIfExists(
@@ -202,9 +208,10 @@ function getHyperlinkForLawIfExists(
 			groups.nr && !groups.nr.includes("und") && !groups.nr.includes(",")
 				? groups.nr
 				: null;
+		const isArticle = groups.isArticle;
 
-		if (absatz || absatzrom || satz || nr) {
-			additionalInfo = { absatz, absatzrom, satz, nr };
+		if (absatz || absatzrom || satz || nr || isArticle !== undefined) {
+			additionalInfo = { absatz, absatzrom, satz, nr, isArticle };
 		}
 	}
 
@@ -221,6 +228,7 @@ function getHyperlinkForLawIfExists(
 				: {}),
 			...(additionalInfo.satz ? { satz: additionalInfo.satz } : {}),
 			...(additionalInfo.nr ? { nr: additionalInfo.nr } : {}),
+			...(additionalInfo.isArticle !== undefined ? { isArticle: additionalInfo.isArticle } : {}),
 		} || undefined
 	);
 	linkCount++;
