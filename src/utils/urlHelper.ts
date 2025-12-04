@@ -87,6 +87,12 @@ const lawsUsingArticles = new Set([
 	"dsgvo",        // Datenschutz-Grundverordnung (nicht in LexMea, aber würde Art. verwenden)
 	"euv",          // Vertrag über die Europäische Union (nicht in LexMea, aber würde Art. verwenden)
 	"aeuv",         // Vertrag über die Arbeitsweise der EU (nicht in LexMea, aber würde Art. verwenden)
+	"grch",         // Grundrechtecharta der Europäischen Union
+	"dma",          // Digital Markets Act
+	"dsa",          // Digital Services Act
+	"dga",          // Digital Governance Act
+	"rom-i-vo",    // Rom-I-Verordnung
+	"rom-ii-vo",   // Rom-II-Verordnung
 ]);
 
 const normalizeBundeslandToken = (token: string): string =>
