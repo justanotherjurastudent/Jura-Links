@@ -59,6 +59,7 @@ export const lexmeaGesetze = {
 	BArtSchV: { title: "Bundesartenschutzverordnung" },
 	BBesG: { title: "Bundesbesoldungsgesetz" },
 	AWG: { title: "Au\u00dfenwirtschaftsgesetz" },
+	AEUV: { title: "Vertrag über die Arbeitsweise der Europäischen Union" },
 	BAStrlSchG: {
 		title: "Gesetz \u00fcber die Errichtung eines Bundesamtes f\u00fcr Strahlenschutz",
 	},
@@ -175,6 +176,10 @@ export const lexmeaGesetze = {
 	EEG: { title: "Erneuerbare-Energien-Gesetz" },
 	EGStPO: { title: "Einf\u00fchrungsgesetz zur Strafprozessordnung" },
 	DrittelbG: { title: "Drittelbeteiligungsgesetz" },
+	DSGVO: { title: "Datenschutz-Grundverordnung" },
+	DMA: { title: "Digital Markets Act" },
+	DSA: { title: "Digital Services Act" },
+	DGA: { title: "Digital Governance Act" },
 	EGovG: { title: "E-Government-Gesetz" },
 	EEV: { title: "Erneuerbare-Energien-Verordnung" },
 	EMASPrivilegV: { title: "EMAS-Privilegierungs-Verordnung" },
@@ -229,6 +234,7 @@ export const lexmeaGesetze = {
 	eWpG: { title: "Gesetz \u00fcber elektronische Wertpapiere" },
 	EUrlV: { title: "Erholungsurlaubsverordnung" },
 	EVPG: { title: "Energieverbrauchsrelevante-Produkte-Gesetz" },
+	EUV: { title: "Vertrag zur Europ\u00e4ischen Union" },
 	FlG: { title: "Fleischgesetz" },
 	FMStBG: { title: "Wirtschaftsstabilisierungsbeschleunigungsgesetz" },
 	FamFG: {
@@ -263,11 +269,12 @@ export const lexmeaGesetze = {
 	GOZ: { title: "Geb\u00fchrenordnung f\u00fcr Zahn\u00e4rzte" },
 	GKG: { title: "Gerichtskostengesetz" },
 	"GO\u00c4": { title: "Geb\u00fchrenordnung f\u00fcr \u00c4rzte" },
-	GenG: { title: "Genossenschaftsgesetz" },
-	GVG: { title: "Gerichtsverfassungsgesetz" },
-	HdlKlG: { title: "Handelsklassengesetz" },
-	GmbHG: {
-		title: "Gesetz betreffend die Gesellschaften mit beschr\u00e4nkter Haftung",
+	"GenG": { title: "Genossenschaftsgesetz" },
+	"GVG": { title: "Gerichtsverfassungsgesetz" },
+	"GrCH": { title: "Grundrechtecharta der Europäischen Union" },
+	"HdlKlG": { title: "Handelsklassengesetz" },
+	"GmbHG": {
+		title: "Gesetz betreffend die Gesellschaften mit beschränkter Haftung",
 	},
 	GroMiKV: { title: "Gro\u00dfkredit- und Millionenkreditverordnung" },
 	GWB: { title: "Gesetz gegen Wettbewerbsbeschr\u00e4nkungen" },
@@ -434,6 +441,8 @@ export const lexmeaGesetze = {
 	"SGB III": { title: "Arbeitsf\u00f6rderung" },
 	"SGB VII": { title: "Gesetzliche Unfallversicherung" },
 	RPflG: { title: "Rechtspflegergesetz" },
+	"Rom-I-VO": { title: "Rom-I-Verordnung" },
+	"Rom-II-VO": { title: "Rom-II-Verordnung" },
 	SchVG: { title: "Schuldverschreibungsgesetz" },
 	"SGB IV": {
 		title: "Gemeinsame Vorschriften f\u00fcr die Sozialversicherung",

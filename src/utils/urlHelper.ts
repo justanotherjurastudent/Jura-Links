@@ -15,6 +15,7 @@ interface AdditionalInfo {
 	absatzrom?: string;   // römische Ziffer, die konvertiert wird (z.B. "II")
 	satz?: string;        // Satznummer
 	nr?: string;          // Nummer
+	isArticle?: boolean;  // true wenn es sich um einen Artikel (Art.) handelt, false für Paragraph (§)
 	[key: string]: unknown; // flexible Erweiterbarkeit, ohne vollständige Typisierung zu verlieren
 }
 
@@ -75,6 +76,24 @@ const bundeslandVariantTokens: { [canonicalAbbr: string]: string[] } = {
 	//Sachsen
 	SN: ["sn"],
 };
+
+// Liste der Gesetze, die Artikel (Art.) statt Paragraphen (§) verwenden
+// Dies umfasst insbesondere: Grundgesetz, EU-Vorschriften, internationale Verträge, Verfassungen
+// Hinweis: Diese Liste enthält Gesetze, die prinzipiell Artikel verwenden. Nicht alle sind in LexMea verfügbar.
+// Die isArticle-Flag aus der Transformation überschreibt diese Liste wenn explizit Art. erkannt wird.
+const lawsUsingArticles = new Set([
+	"gg",           // Grundgesetz (in LexMea verfügbar)
+	"wrv",          // Weimarer Reichsverfassung (in LexMea verfügbar)
+	"dsgvo",        // Datenschutz-Grundverordnung (nicht in LexMea, aber würde Art. verwenden)
+	"euv",          // Vertrag über die Europäische Union (nicht in LexMea, aber würde Art. verwenden)
+	"aeuv",         // Vertrag über die Arbeitsweise der EU (nicht in LexMea, aber würde Art. verwenden)
+	"grch",         // Grundrechtecharta der Europäischen Union
+	"dma",          // Digital Markets Act
+	"dsa",          // Digital Services Act
+	"dga",          // Digital Governance Act
+	"rom-i-vo",    // Rom-I-Verordnung
+	"rom-ii-vo",   // Rom-II-Verordnung
+]);
 
 const normalizeBundeslandToken = (token: string): string =>
 	token
@@ -198,12 +217,18 @@ function getBuzerUrl(gesetz: string, norm: string): string {
 	return "";
 }
 
-function getLexmeaUrl(gesetz: string, norm: string): string {
+function getLexmeaUrl(gesetz: string, norm: string, additionalInfo?: AdditionalInfo): string {
 	const lawUrl = LawProviderUrl.LEXMEA;
 	gesetz = gesetz.toLowerCase();
 
 	if (lexmeaGesetzeLowerCased.indexOf(gesetz) !== -1) {
-		return `${lawUrl}${gesetz}/${norm}`;
+		// Prüfe, ob das Gesetz Artikel verwendet oder ob explizit isArticle=true übergeben wurde
+		const usesArticles = lawsUsingArticles.has(gesetz) || additionalInfo?.isArticle === true;
+		
+		// Für Gesetze mit Artikeln, füge "art-" vor der Normnummer hinzu
+		const normPath = usesArticles ? `art-${norm}` : norm;
+		
+		return `${lawUrl}${gesetz}/${normPath}`;
 	}
 	return "";
 }
@@ -455,7 +480,7 @@ function getLawUrlByProvider(
 	}
 
 	if (lawProvider === "lexmea") {
-		return getLexmeaUrl(gesetz, norm) || "";
+		return getLexmeaUrl(gesetz, norm, additionalInfo) || "";
 	}
 
 	if (lawProvider === "landesrecht.online") {
@@ -500,21 +525,21 @@ function getLawUrlByProviderOptions(
 	}
 
 	if (lawProviders.thirdOption) {
-		lawUrl = getLawUrlByProvider(gesetz, norm, lawProviders.thirdOption);
+		lawUrl = getLawUrlByProvider(gesetz, norm, lawProviders.thirdOption, additionalInfo);
 		if (lawUrl) {
 			return lawUrl;
 		}
 	}
 
 	if (lawProviders.forthOption) {
-		lawUrl = getLawUrlByProvider(gesetz, norm, lawProviders.forthOption);
+		lawUrl = getLawUrlByProvider(gesetz, norm, lawProviders.forthOption, additionalInfo);
 		if (lawUrl) {
 			return lawUrl;
 		}
 	}
 
 	if (lawProviders.fifthOption) {
-		lawUrl = getLawUrlByProvider(gesetz, norm, lawProviders.fifthOption);
+		lawUrl = getLawUrlByProvider(gesetz, norm, lawProviders.fifthOption, additionalInfo);
 		if (lawUrl) {
 			return lawUrl;
 		}

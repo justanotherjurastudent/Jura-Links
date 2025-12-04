@@ -19,6 +19,11 @@ test.each([
 		expected: `§ [177 II Nr. 2](https://www.dejure.org/gesetze/stgb/177.html) StGB `,
 	},
 	{
+		// ThürStrG ist ein Thüringer Landesgesetz mit Umlaut im Namen
+		input: `§ 1 ThürStrG`,
+		expected: `§ [1](https://landesrecht.online/TH/ThürStrG/1) ThürStrG`,
+	},
+	{
 		input: `§ 1 AGBGB`,
 		expected: `§ [1](https://www.dejure.org/gesetze/agbgb/1.html) AGBGB`,
 	},
@@ -27,8 +32,10 @@ test.each([
 		expected: `§ [1](https://www.dejure.org/gesetze/agbg/1.html) AGBG`,
 	},
 	{
+		// AGBGB Schl.-H. ist eine alternative Schreibweise für das Schleswig-Holsteinische AGBGB
+		// Die URL verwendet den kanonischen Namen "AGBGB" (ohne Suffix)
 		input: `§ 1 AGBGB Schl.-H. SH`,
-		expected: `§ [1](https://landesrecht.online/SH/AGBGB Schl.-H./1) AGBGB Schl.-H. SH`,
+		expected: `§ [1](https://landesrecht.online/SH/AGBGB/1) AGBGB Schl.-H. SH`,
 	},
 	{
 		input: `§ 1 AGVwGO BE`,
@@ -40,7 +47,7 @@ test.each([
 	},
 	{
 		input: `§ 1 AO-GS NW`,
-		expected: `§ [1](https://www.dejure.org/gesetze/ao/1.html) AO-GS NW`,
+		expected: `§ [1](https://landesrecht.online/NW/AO-GS/1) AO-GS NW`,
 	},
 	{
 		input: `§ 1 BBesGÜB 2018/19/20`,
@@ -48,7 +55,7 @@ test.each([
 	},
 	{
 		input: `§ 1 BGBAG HH`,
-		expected: `§ [1](https://www.dejure.org/gesetze/bgb/1.html) BGBAG HH`,
+		expected: `§ 1 BGBAG HH`,
 	},
 	{
 		input: `meow meow `,
@@ -257,6 +264,52 @@ test.each([
 	});
 	expect(result).toBe(testData.expected);
 }
+);
+
+// Test specifically for LexMea with article-based laws (GG, DSGVO, EUV, etc.)
+test.each([
+	{
+		input: `Art. 1 GG`,
+		expected: `Art. [1](https://lexmea.de/gesetz/gg/art-1) GG`,
+		description: "Article-based law GG with single article",
+	},
+	{
+		input: `Art. 20 GG`,
+		expected: `Art. [20](https://lexmea.de/gesetz/gg/art-20) GG`,
+		description: "Article-based law GG with article 20",
+	},
+	{
+		input: `Art. 1 I GG`,
+		expected: `Art. [1 I](https://lexmea.de/gesetz/gg/art-1) GG`,
+		description: "Article-based law GG with subsection",
+	},
+	{
+		input: `Art. 1, 2 GG`,
+		expected: `Art. [1](https://lexmea.de/gesetz/gg/art-1), [2](https://lexmea.de/gesetz/gg/art-2) GG`,
+		description: "Article-based law GG with multiple articles",
+	},
+	{
+		input: `§ 1 BGB`,
+		expected: `§ [1](https://lexmea.de/gesetz/bgb/1) BGB`,
+		description: "Paragraph-based law BGB (should NOT have art- prefix)",
+	},
+	{
+		input: `§ 242 BGB`,
+		expected: `§ [242](https://lexmea.de/gesetz/bgb/242) BGB`,
+		description: "Paragraph-based law BGB with higher number",
+	},
+])(
+	"findAndLinkLawReferences with LexMea: $description",
+	(testData) => {
+		const result = findAndLinkLawReferences(testData.input, {
+			firstOption: "lexmea",
+			secondOption: "dejure",
+			thirdOption: "buzer",
+			forthOption: "rewis",
+			fifthOption: "landesrecht.online",
+		});
+		expect(result).toBe(testData.expected);
+	}
 );
 
 test.each([

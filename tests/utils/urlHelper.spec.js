@@ -38,6 +38,18 @@ test.each([
 		provider: `rewis`,
 		expected: `https://rewis.io/gesetze/aabg/p/aabg%2D1`,
 	},
+	{
+		gesetz: `GG`,
+		norm: `1`,
+		provider: `lexmea`,
+		expected: `https://lexmea.de/gesetz/gg/art-1`,
+	},
+	{
+		gesetz: `gg`,
+		norm: `20`,
+		provider: `lexmea`,
+		expected: `https://lexmea.de/gesetz/gg/art-20`,
+	},
 ])(
 	"getLawUrlByProvider: should returns $expected given $provider, $gesetz, $norm",
 	(testData) => {
@@ -142,6 +154,42 @@ test.each([
 		provider: `landesrecht.online`,
 		expected: `https://landesrecht.online/MV/AbgG/1`,
 		description: "M-V AbgG variant converts to canonical AbgG without prefix"
+	},
+	// Problemfälle aus dem Issue
+	{
+		gesetz: `BauO Bln`,
+		norm: `1`,
+		provider: `landesrecht.online`,
+		expected: `https://landesrecht.online/BE/BauO/1`,
+		description: "BauO Bln should resolve to Berlin Bauordnung"
+	},
+	{
+		gesetz: `bauo bln`,
+		norm: `1`,
+		provider: `landesrecht.online`,
+		expected: `https://landesrecht.online/BE/BauO/1`,
+		description: "bauo bln lowercase should resolve to Berlin Bauordnung"
+	},
+	{
+		gesetz: `KV M-V`,
+		norm: `1`,
+		provider: `landesrecht.online`,
+		expected: `https://landesrecht.online/MV/KV/1`,
+		description: "KV M-V should resolve to Meck-Pomm Kommunalverfassung"
+	},
+	{
+		gesetz: `POG RP`,
+		norm: `1`,
+		provider: `landesrecht.online`,
+		expected: `https://landesrecht.online/RP/POG/1`,
+		description: "POG RP should resolve to Rheinland-Pfalz Polizeiordnungsbehördengesetz"
+	},
+	{
+		gesetz: `PAG BY`,
+		norm: `1`,
+		provider: `landesrecht.online`,
+		expected: `https://landesrecht.online/BY/PAG/1`,
+		description: "PAG BY should resolve to Bayern Polizeiaufgabengesetz"
 	},
 ])(
 	"getLawUrlByProvider landesrecht.online: $description",
