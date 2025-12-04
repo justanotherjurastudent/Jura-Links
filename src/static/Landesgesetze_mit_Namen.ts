@@ -4776,6 +4776,9 @@ export const Landesgesetze_mit_Namen: Landesgesetze_mit_Namen = {
         "ThürStatG": {
             title: "Thüringer Statistikgesetz (ThürStatG)",
         },
+        "ThürStrG": {
+            title: "Thüringer Straßengesetz (ThürStrG)",
+        },
         "ThürPOG": {
             title: "Thüringer Gesetz über die Organisation der Polizei (Thüringer Polizeiorganisationsgesetz - ThürPOG -)",
         },
