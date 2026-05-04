@@ -98,6 +98,10 @@ test.each([
 		expected: `Art. [1](https://www.dejure.org/gesetze/eugvü/1.html) EuGVÜ`,
 	},
 	{
+		input: `Art. 4 DSGVO`,
+		expected: `Art. [4](https://www.dejure.org/gesetze/dsgvo/4.html) DSGVO`,
+	},
+	{
 		input: `§ 24 BGB
 	Hallo`,
 		expected: `§ [24](https://www.dejure.org/gesetze/bgb/24.html) BGB
@@ -284,6 +288,11 @@ test.each([
 		description: "Article-based law GG with subsection",
 	},
 	{
+		input: `Art. 4 DSGVO`,
+		expected: `Art. [4](https://lexmea.de/gesetz/dsgvo/art-4) DSGVO`,
+		description: "Article-based law DSGVO with article 4",
+	},
+	{
 		input: `Art. 1, 2 GG`,
 		expected: `Art. [1](https://lexmea.de/gesetz/gg/art-1), [2](https://lexmea.de/gesetz/gg/art-2) GG`,
 		description: "Article-based law GG with multiple articles",
@@ -353,6 +362,11 @@ test.each([
         input: `5a F 686/10`,
         expected: `[5a F 686/10](https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=5a%20F%20686%2F10)`,
     },
+	{
+    // Zeilenumbruch zwischen zwei Aktenzeichen darf sie nicht verbinden
+    input: `17 O 11/23\nC-184/22`,
+    expected: `[17 O 11/23](https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=17%20O%2011%2F23)\n[C-184/22](https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=C-184%2F22)`,
+	},
 ])(
     "findAndLinkCaseReferences: should transform $input to $expected",
     (testData) => {
