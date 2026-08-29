@@ -135,8 +135,10 @@ function romanToArabic(roman: string): number {
 	let result = 0;
 
 	for (let i = 0; i < roman.length; i++) {
-		const current = romanValues[roman[i]];
-		const next = i + 1 < roman.length ? romanValues[roman[i + 1]] : 0;
+		const currentChar = roman[i];
+		const nextChar = i + 1 < roman.length ? roman[i + 1] : undefined;
+		const current = currentChar ? romanValues[currentChar] ?? 0 : 0;
+		const next = nextChar ? romanValues[nextChar] ?? 0 : 0;
 
 		if (current >= next) {
 			result += current;
@@ -235,8 +237,7 @@ function getLexmeaUrl(gesetz: string, norm: string, additionalInfo?: AdditionalI
 
 function getLandesrechtOnlineUrl(
 	gesetz: string,
-	norm: string,
-	additionalInfo?: AdditionalInfo
+	norm: string
 ): string {
 	// Basic input validation to avoid constructing malformed URLs.
 	if (
@@ -295,7 +296,7 @@ function getLandesrechtOnlineUrl(
 			};
 
 			// Fall 1: Führendes Kürzel -> verschiebe ans Ende und teste + ersetze ggf. kanonisch -> Varianten
-			if (allKnown.has(first)) {
+			if (first && allKnown.has(first)) {
 				const base = tokens.slice(1);
 				// Wenn first kanonisch ist und Varianten existieren -> alle Varianten testen
 				const canonicalEntry = Object.entries(bundeslandVariantTokens).find(([abbr]) => abbr.toLowerCase() === first);
@@ -306,7 +307,7 @@ function getLandesrechtOnlineUrl(
 				}
 			}
 			// Fall 2: Endendes Kürzel -> verschiebe an den Anfang und teste (symmetrisch, inklusive Varianten)
-			if (allKnown.has(last)) {
+			if (last && allKnown.has(last)) {
 				const base = tokens.slice(0, -1);
 				const baseKey = base.join(" ").trim();
 				if (baseKey && lawExists(baseKey)) {
@@ -332,7 +333,7 @@ function getLandesrechtOnlineUrl(
 
 			// Spezialfall: Führende Variante (z.B. "m-v abgg") -> Rekonstruiere "abgg mv"
 			if (!foundBundesland && !foundGesetzKey && tokens.length > 1) {
-				const firstLower = tokens[0].toLowerCase();
+				const firstLower = tokens[0]?.toLowerCase() ?? "";
 				for (const [canonical, variants] of Object.entries(bundeslandVariantTokens)) {
 					if (variants.includes(firstLower)) {
 						const reconstructed = [...tokens.slice(1), canonical.toLowerCase()].join(" ");
@@ -484,9 +485,7 @@ function getLawUrlByProvider(
 	}
 
 	if (lawProvider === "landesrecht.online") {
-		return (
-			getLandesrechtOnlineUrl(gesetz, norm, additionalInfo) || ""
-		);
+		return getLandesrechtOnlineUrl(gesetz, norm) || "";
 	}
 
 	if (lawProvider === "rewis") {

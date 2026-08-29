@@ -12,7 +12,6 @@ import {
 	DEFAULT_SETTINGS,
 	LawProviderSettingTab,
 } from "./src/view/settings";
-import { LawProviderOptions } from "./src/types/providerOption";
 import {
 	SearchTab,
 	SearchTabView,
@@ -41,8 +40,8 @@ export default class LegalReferencePlugin extends Plugin {
 			(leaf) => new SearchTabView(leaf)
 		);
 
-		this.addRibbonIcon("scale", "Gesetzessuche", () => {
-			this.activateSearchTab();
+		this.addRibbonIcon("scale", "Gesetzessuche", async () => {
+			await this.activateSearchTab();
 		});
 
         this.app.workspace.on("active-leaf-change", () => {
@@ -70,12 +69,11 @@ export default class LegalReferencePlugin extends Plugin {
 		});
 	}
 
-    onUserEnable() {
-        this.initSearchTab();
+    async onUserEnable() {
+        await this.initSearchTab();
     }
 
 	onunload() {
-		console.log("unloading plugin");
 		if (this.searchLeaf) {
             this.searchLeaf.detach();
         }
@@ -101,7 +99,7 @@ export default class LegalReferencePlugin extends Plugin {
 				active: true,
 			});
 			if (this.searchLeaf) {
-				this.app.workspace.revealLeaf(this.searchLeaf);
+				await this.app.workspace.revealLeaf(this.searchLeaf);
 			}
 			this.searchLeaf?.setEphemeralState({ 
 				onDetach: () => {
@@ -115,7 +113,7 @@ export default class LegalReferencePlugin extends Plugin {
 
 	async activateSearchTab() {
 		if (this.searchTabOpen && this.searchLeaf) {
-			this.app.workspace.revealLeaf(this.searchLeaf);
+			await this.app.workspace.revealLeaf(this.searchLeaf);
 		} else {
 			await this.initSearchTab();
 		}
@@ -124,7 +122,7 @@ export default class LegalReferencePlugin extends Plugin {
 	private updateSearchTabStatus() {
 		const leaves = this.app.workspace.getLeavesOfType(VIEW_TYPE_SEARCH_TAB);
 		if (leaves.length > 0) {
-			this.searchLeaf = leaves[0];
+			this.searchLeaf = leaves[0] ?? null;
 			this.searchTabOpen = true;
 		} else {
 			this.searchLeaf = null;
@@ -137,7 +135,7 @@ export default class LegalReferencePlugin extends Plugin {
 	
 		let processedContent = findAndLinkLawReferences(
 			fileContent,
-			this.settings.lawProviderOptions as LawProviderOptions
+			this.settings.lawProviderOptions
 		);
 		processedContent = findAndLinkDrucksacheReferences(processedContent);
 		processedContent = findAndLinkCaseReferences(processedContent);

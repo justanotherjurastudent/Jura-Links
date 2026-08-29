@@ -92,7 +92,7 @@ export class LawProviderSettingTab extends PluginSettingTab {
 				.setName(name)
 				.setDesc(desc);
 
-			const errorSpan = setting.settingEl.createEl("span", {
+			const errorSpan = setting.settingEl.createSpan({
 				cls: "law-provider-error",
 			});
 
@@ -114,7 +114,7 @@ export class LawProviderSettingTab extends PluginSettingTab {
 				});
 			});
 
-			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- Dropdown wird im addDropdown-Callback garantiert gesetzt
 			return { setting, errorSpan, dropdown: dropdown! };
 		};
 
@@ -156,6 +156,7 @@ export class LawProviderSettingTab extends PluginSettingTab {
 	
 			const currentValue = selectedValues[index + 1]; // +1 because of the fixed first option
 			const isDuplicate =
+				currentValue !== undefined &&
 				selectedValues.indexOf(currentValue) !== index + 1;
 	
 			if (isDuplicate) {

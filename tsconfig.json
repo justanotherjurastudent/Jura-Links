@@ -1,13 +1,19 @@
 {
 	"compilerOptions": {
-		"target": "ES2018",
-		"lib": ["ES2018", "DOM"],
-		"module": "commonjs",
+		"inlineSourceMap": true,
+		"inlineSources": true,
+		"module": "ESNext",
+		"target": "ES2021",
 		"strict": true,
-		"esModuleInterop": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUncheckedIndexedAccess": true,
+		"moduleResolution": "bundler",
+		"isolatedModules": true,
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
-		"outDir": "./dist"
+		"allowSyntheticDefaultImports": true,
+		"lib": ["ES2021", "DOM"]
 	},
-	"include": ["**/*.ts", "tests/*"]
+	"include": ["src/**/*.ts"]
 }

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars -- Methoden werden als öffentliche API der View verwendet */
 import {
 	ItemView,
 	WorkspaceLeaf,
@@ -21,7 +21,7 @@ export class SearchTab {
 	constructor(private plugin: LegalReferencePlugin) {}
 
 	async activateView() {
-		this.plugin.activateSearchTab();
+		await this.plugin.activateSearchTab();
 	}
 }
 
@@ -56,15 +56,16 @@ export class SearchTabView extends ItemView {
 
 	resetView(): void {
 		const containerEl = this.containerEl.children[1];
+		if (!containerEl) return;
 		containerEl.empty();
 
-		const searchTabContainer = containerEl.createEl("div", {
+		const searchTabContainer = containerEl.createDiv({
 			cls: "search-tab-container",
 		});
-		const controlsContainer = searchTabContainer.createEl("div", {
+		const controlsContainer = searchTabContainer.createDiv({
 			cls: "search-tab-controls",
 		});
-		this.resultsContainer = searchTabContainer.createEl("div", {
+		this.resultsContainer = searchTabContainer.createDiv({
 			cls: "law-results",
 		});
 
@@ -80,7 +81,7 @@ export class SearchTabView extends ItemView {
 				text.inputEl.addClass("setting-item");
 				text.onChange((value) => {
 					// Suche soll erst nach 0,5 Sekunde nach letzter Eingabe starten
-					setTimeout(() => {
+					window.setTimeout(() => {
 						this.searchLaw(value);
 					}, 500);
 				});
@@ -97,7 +98,7 @@ export class SearchTabView extends ItemView {
 		this.createAnbieterFilter(gesetzesAnbieterDropdown);
 
 		// Container für den Reset-Button
-		const resetButtonContainer = controlsContainer.createEl("div");
+		const resetButtonContainer = controlsContainer.createDiv();
 
 		const resetButton = new ButtonComponent(resetButtonContainer);
 		resetButton.setButtonText("↻ Zurücksetzen").onClick(() => {
@@ -176,12 +177,12 @@ export class SearchTabView extends ItemView {
 					acc[item.provider]["laws"].push(item.law);
 				}
 				return acc;
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Gruppierung nach Anbieter erfordert dynamischen Typ
 			}, {} as Record<string, any>);
 
 			Object.entries(groupedByProvider).forEach(([provider, data]) => {
 				if (this.resultsContainer) {
-					this.resultsContainer.createEl("div", {
+					this.resultsContainer.createDiv({
 						text: provider,
 						cls: "header",
 					});
@@ -189,7 +190,7 @@ export class SearchTabView extends ItemView {
 					if (provider === "Landesrecht.online") {
 						Object.entries(data).forEach(([state, laws]) => {
 							if (this.resultsContainer) {
-								this.resultsContainer.createEl("div", {
+								this.resultsContainer.createDiv({
 									text: state,
 									cls: "subheader",
 								});
@@ -211,14 +212,14 @@ export class SearchTabView extends ItemView {
 			});
 		} else {
 			if (this.resultsContainer) {
-				this.resultsContainer.createEl("div", {
+				this.resultsContainer.createDiv({
 					text: "Keine Gesetze gefunden.",
 				});
 			}
 		}
 
 		if (this.resultsContainer) {
-			this.resultsContainer.createEl("div", { cls: "bottom-spacer" });
+			this.resultsContainer.createDiv({ cls: "bottom-spacer" });
 		}
 	}
 
@@ -247,7 +248,7 @@ export class SearchTabView extends ItemView {
 		const resultContainer = this.containerEl.querySelector(".law-results");
 		if (!resultContainer) return;
 	
-		const scrollContainer = resultContainer.createEl("div", {
+		const scrollContainer = resultContainer.createDiv({
 			cls: "scroll-container",
 		});
 	
@@ -265,13 +266,13 @@ export class SearchTabView extends ItemView {
 	
 				// Abkürzung Zelle
 				const abbrCell = row.createEl("td", { cls: "key-cell" });
-				abbrCell.createEl("span", { text: key });
+				abbrCell.createSpan({ text: key });
 	
 				// Clipboard Button
 				const copyButton = abbrCell.createEl("button", {
 					cls: "copy-button",
 				});
-				const clipboardIcon = copyButton.createEl("span", {
+				const clipboardIcon = copyButton.createSpan({
 					cls: "icon lucide-icon lucide-clipboard-copy",
 				});
 				copyButton.onclick = () => {
@@ -305,13 +306,13 @@ export class SearchTabView extends ItemView {
 		const resultContainer = this.containerEl.querySelector(".law-results");
 		if (!resultContainer) return;
 
-		const scrollContainer = resultContainer.createEl("div", {
+		const scrollContainer = resultContainer.createDiv({
 			cls: "scroll-container",
 		});
 
 		if (anbieter === "Landesrecht.online") {
 			Object.entries(Landesgesetze_mit_Namen).forEach(([bundesland, gesetze]) => {
-				scrollContainer.createEl("div", {
+				scrollContainer.createDiv({
 					text: bundesland,
 					cls: "header",
 				});
@@ -350,20 +351,20 @@ export class SearchTabView extends ItemView {
 
 			this.createLawTable(laws, scrollContainer);
 		}
-		scrollContainer.createEl("div", { cls: "bottom-spacer" });
+		scrollContainer.createDiv({ cls: "bottom-spacer" });
 	}
 
 	createLawTable(laws: string[], container: HTMLElement): void {
 		const table = container.createEl("table", { cls: "gesetz-table" });
 		laws.forEach((law) => {
-			const [abbr, ...titleParts] = law.split(": ");
+			const [abbr = "", ...titleParts] = law.split(": ");
 			const title = titleParts.join(": ");
 
 			const row = table.createEl("tr");
 
 			// Abkürzung Zelle
 			const abbrCell = row.createEl("td", { cls: "key-cell" });
-			abbrCell.createEl("span", { text: abbr });
+			abbrCell.createSpan({ text: abbr });
 
 			// Clipboard Button
 			const copyButton = abbrCell.createEl("button", {
@@ -371,7 +372,7 @@ export class SearchTabView extends ItemView {
 			});
 
 			// Lucide Icon Container
-			const clipboardIcon = copyButton.createEl("span", {
+			const clipboardIcon = copyButton.createSpan({
 				cls: "icon lucide-icon lucide-clipboard-copy",
 			});
 

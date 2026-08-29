@@ -26,7 +26,7 @@ interface RequestUrlResponse {
 
 let requestUrlFn: ((params: RequestUrlParams) => Promise<RequestUrlResponse>) | null = null;
 try {
-	// eslint-disable-next-line @typescript-eslint/no-var-requires
+	// eslint-disable-next-line @typescript-eslint/no-var-requires -- Dynamischer Import für Obsidian-Kompatibilität in Tests
 	const obsidianMod = require("obsidian");
 	if (obsidianMod && typeof obsidianMod.requestUrl === "function") {
 		requestUrlFn = obsidianMod.requestUrl;

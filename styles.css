@@ -48,12 +48,13 @@
 .gesetz-table td {
     padding: 5px;
     padding-right: 40px;
-    border-left: 1px solid #ccc;
+    border-left: 1px solid #cccccc;
     word-wrap: break-word; /* Zeilenumbruch, falls der Text zu lang ist */
     user-select: text; /* Ermöglicht die Textauswahl */
 }
 
 .key-cell {
+    position: relative;
     width: 150px; /* Feste Breite für die erste Spalte */
     font-weight: 500; /* Fett drucken */
 }
@@ -87,12 +88,6 @@
     user-select: text; /* Ermöglicht die Textauswahl */
 }
 
-.key-cell {
-    position: relative;
-    width: 150px;
-    font-weight: 500;
-}
-
 .copy-button {
     position: absolute;
     right: 10px;
@@ -115,7 +110,7 @@
     top: 110%; /* position below the button */
     left: 50%;
     transform: translateX(-50%);
-    background-color: #333;
+    background-color: #333333;
     color: white;
     padding: 4px 8px;
     font-size: 0.75em;

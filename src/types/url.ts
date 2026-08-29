@@ -9,7 +9,7 @@ enum LawProviderUrl {
 enum DejureUrl {
 	LAW = "https://www.dejure.org/gesetze/",
 	CASE = "https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=",
-	JOURNAL = "https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=",
+	JOURNAL = CASE, // Zeitschriften nutzen dieselbe Auflösungs-API wie Rechtsprechung
 	BTDRUCKSACHE = "https://dejure.org/Drucksachen/Bundestag/",
 	BRDRUCKSACHE = "https://dejure.org/Drucksachen/Bundesrat/",
 }
