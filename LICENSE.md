@@ -214,17 +214,4 @@ Fügen Sie auch einen kurzen Hinweis hinzu, wie Sie elektronisch und per Brief e
 
 Wenn Ihr Programm interaktive Befehle in einem Terminal entgegennimmt, sorgen Sie dafür, daß es nach dem Start einen kurzen Vermerk ausgibt:
 
-Jura-Links  Copyright (C) 2024  Emi Le & Lukas Collier 
-This program comes with ABSOLUTELY NO WARRANTY; for details type ‘show w’.  
-This is free software, and you are welcome to redistribute it under certain conditions; type ‘show c’ for details.
-
-### Auf Deutsch:
-Jura-Links  Copyright (C) 2024  Lukas Collier  
-Für dieses Programm besteht KEINERLEI GARANTIE; geben Sie "show w" für Details ein.  
-Dies ist freie Software, die Sie unter bestimmten Bedingungen weitergeben dürfen; geben Sie "show c" für Details ein.
-
-Die hypothetischen Kommandos „show w“ und „show c“ sollten die entsprechenden Teile der GNU-GPL anzeigen. Natürlich können die von Ihnen verwendeten Kommandos auch anders lauten; für ein Programm mit graphischer Benutzeroberfläche werden Sie sicherlich eine „About-Box“ verwenden.
-
-Soweit vorhanden, sollten Sie auch Ihren Arbeitgeber (wenn Sie als Programmierer arbeiten) oder Ihre Schule einen Urheberrechteverzicht für das Programm unterschreiben lassen. Für weitere Informationen darüber und wie Sie die GNU GPL anwenden und befolgen, siehe [http://www.gnu.org/licenses/](http://www.gnu.org/licenses/).
-
-Diese General Public License gestattet nicht die Einbindung Ihres Programms in proprietäre Programme. Wenn Ihr Programm eine Funktionsbibliothek ist, dann kann es sinnvoller sein, das Linken proprietärer Programme mit dieser Bibliothek zu gestatten. Wenn dies Ihre Absicht ist, sollten Sie die GNU Lesser General Public License anstelle dieser Lizenz verwenden. Lesen Sie aber bitte vorher [http://www.gnu.org/philosophy/why-not-lgpl.html](http://www.gnu.org/philosophy/why-not-lgpl.html).
+Jura-Links  Copyright (C) 2024  Emi Le & Lukas Collier
