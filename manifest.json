@@ -2,7 +2,7 @@
 	"id": "jura-links",
 	"name": "Jura Links",
 	"version": "1.5.3",
-	"minAppVersion": "1.0.0",
+	"minAppVersion": "1.7.2",
 	"description": "Verlinke deine notierten Gesetzesnormen, Aktenzeichen und Zeitschriften-Fundstellen mit Gesetzesanbietern.",
 	"author": "Lukas Collier & Emi Le",
 	"fundingUrl": "https://buymeacoffee.com/justanotherjurastudent",

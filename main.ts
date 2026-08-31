@@ -13,14 +13,12 @@ import {
 	LawProviderSettingTab,
 } from "./src/view/settings";
 import {
-	SearchTab,
 	SearchTabView,
 	VIEW_TYPE_SEARCH_TAB,
 } from "./src/view/searchTab";
 
 export default class LegalReferencePlugin extends Plugin {
 	settings!: LawProviderSettings;
-	searchTab!: SearchTab;
 	searchLeaf: WorkspaceLeaf | null = null;
 	searchTabOpen = false;
 
@@ -32,9 +30,7 @@ export default class LegalReferencePlugin extends Plugin {
 			await this.saveSettings();
 		}
 
-		this.searchTab = new SearchTab(this);
 		this.addSettingTab(new LawProviderSettingTab(this.app, this));
-
 		this.registerView(
 			VIEW_TYPE_SEARCH_TAB,
 			(leaf) => new SearchTabView(leaf)
@@ -69,8 +65,9 @@ export default class LegalReferencePlugin extends Plugin {
 		});
 	}
 
-    async onUserEnable() {
-        await this.initSearchTab();
+    onUserEnable() {
+        // onUserEnable erwartet void; initSearchTab wird ohne await gestartet
+        void this.initSearchTab();
     }
 
 	onunload() {
@@ -80,11 +77,8 @@ export default class LegalReferencePlugin extends Plugin {
 	}
 
 	async loadSettings() {
-		this.settings = Object.assign(
-			{},
-			DEFAULT_SETTINGS,
-			await this.loadData()
-		);
+		const data = (await this.loadData()) as Partial<LawProviderSettings> | null;
+		this.settings = Object.assign({}, DEFAULT_SETTINGS, data ?? {});
 	}
 
 	async saveSettings() {

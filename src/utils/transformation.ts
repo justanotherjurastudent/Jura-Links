@@ -25,15 +25,24 @@ interface RequestUrlResponse {
 }
 
 let requestUrlFn: ((params: RequestUrlParams) => Promise<RequestUrlResponse>) | null = null;
-try {
-	// eslint-disable-next-line @typescript-eslint/no-var-requires -- Dynamischer Import für Obsidian-Kompatibilität in Tests
-	const obsidianMod = require("obsidian");
-	if (obsidianMod && typeof obsidianMod.requestUrl === "function") {
-		requestUrlFn = obsidianMod.requestUrl;
+
+// Lädt requestUrl aus Obsidian lazy (beim ersten Aufruf).
+// Im Vitest-Umfeld kann der 'obsidian'-Eintrag nicht aufgelöst werden;
+// wir fallen auf einen Stub zurück, um Build/Test-Fehler zu vermeiden.
+async function getRequestUrlFn(): Promise<((params: RequestUrlParams) => Promise<RequestUrlResponse>) | null> {
+	if (requestUrlFn) {
+		return requestUrlFn;
 	}
-} catch {
-	// Fallback stub for tests / non-Obsidian environments
-	requestUrlFn = async () => ({ status: 200, json: {} });
+	try {
+		const obsidianMod = await import("obsidian");
+		if (obsidianMod && typeof obsidianMod.requestUrl === "function") {
+			requestUrlFn = obsidianMod.requestUrl;
+		}
+	} catch {
+		// Fallback stub for tests / non-Obsidian environments
+		requestUrlFn = async () => ({ status: 200, json: {} });
+	}
+	return requestUrlFn;
 }
 
 let linkCount = 0;
@@ -46,10 +55,11 @@ interface JuraRechercheResponse {
 
 async function getJuraRechercheUrl(citation: string): Promise<string | null> {
 	try {
-		if (!requestUrlFn) {
+		const fn = await getRequestUrlFn();
+		if (!fn) {
 			return null; // No request capability in this environment
 		}
-		const response: RequestUrlResponse = await requestUrlFn({
+		const response: RequestUrlResponse = await fn({
 			url: "https://jura-recherche.de/ajax/go",
 			method: "POST",
 			headers: {
@@ -62,7 +72,7 @@ async function getJuraRechercheUrl(citation: string): Promise<string | null> {
 			throw new Error(`HTTP error! status: ${response.status}`);
 		}
 
-		const data: JuraRechercheResponse = (response.json || {}) as JuraRechercheResponse;
+		const data: JuraRechercheResponse = response.json || {};
 
 		if (data.redirect) {
 			return data.redirect;
@@ -75,34 +85,48 @@ async function getJuraRechercheUrl(citation: string): Promise<string | null> {
 	}
 }
 
+// Benannte Gruppen des lawRegex (siehe regex.ts)
+interface LawRegexGroups {
+	p1?: string;
+	p2?: string;
+	gesetz?: string;
+	normgr_first?: string;
+	norm_first?: string;
+	absatz_first?: string;
+	absatzrom_first?: string;
+	satz_first?: string;
+	nr_first?: string;
+	[key: string]: string | undefined;
+}
+
 function findAndLinkLawReferences(
 	fileContent: string,
-		lawProviderOptions: LawProviderOptions = {
-			firstOption: "dejure",
-			secondOption: "landesrecht.online",
-			thirdOption: "lexmea",
+	lawProviderOptions: LawProviderOptions = {
+		firstOption: "dejure",
+		secondOption: "landesrecht.online",
+		thirdOption: "lexmea",
 		forthOption: "buzer",
 		fifthOption: "rewis",
-		}
+	}
 ): string {
 	if (!lawRegex.test(fileContent)) {
 		return fileContent;
 	}
 
 	return fileContent.replace(lawRegex, (match, ...args) => {
-		const groups = args[args.length - 1];
-		let gesetz = groups.gesetz.trim().toLowerCase();
+		const groups = args[args.length - 1] as LawRegexGroups;
+		let gesetz = (groups.gesetz ?? "").trim().toLowerCase();
 		// Entferne historische Fassungszusätze wie a.F. / n.F. aus dem Gesetzeskürzel
 		gesetz = gesetz.replace(/\ba\.f\.\b|\bn\.f\.\b/gi, "").replace(/\s{2,}/g, " ").trim();
 		gesetz = gesetz === "brüssel-ia-vo" ? "eugvvo" : gesetz;
-		const lawMatch = groups.p2;
-		
+		const lawMatch = groups.p2 ?? "";
+
 		// Prüfe, ob es sich um einen Artikel (Art.) oder Paragraph (§) handelt
-		const isArticle = groups.p1 && (groups.p1.includes("Art") || groups.p1.includes("Artikel"));
+		const isArticle = !!(groups.p1 && (groups.p1.includes("Art") || groups.p1.includes("Artikel")));
 
 		// Extrahiere die RegEx-Gruppen für den ersten Normverweis
-		const firstNormGroup = groups.normgr_first.trim();
-		const firstNorm = groups.norm_first;
+		const firstNormGroup = (groups.normgr_first ?? "").trim();
+		const firstNorm = groups.norm_first ?? "";
 
 		// Weitergabe der Detailgruppen an getHyperlinkForLawIfExists
 		const firstNormGroups = {
@@ -125,41 +149,40 @@ function findAndLinkLawReferences(
 		let updatedLawMatch = firstNormLink;
 
 		// Process chain of laws
-		const chainMatches = [...lawMatch.matchAll(lawChainRegex)]; 
+		const chainMatches = [...lawMatch.matchAll(lawChainRegex)];
 		chainMatches.forEach((chainMatch) => {
-		const chainGroups = chainMatch.groups;
-		if (chainGroups) {
-			const norm = chainGroups.norm.trim();
-			const normGroup = chainGroups.normgr.trim();
-			
-			// NEU: Extrahiere Absatz, Satz und Nummer auch für Kettenglieder
-			const additionalInfo = {
-			absatz: chainGroups.absatz,
-			absatzrom: chainGroups.absatzrom,
-			satz: chainGroups.satz,
-			nr: chainGroups.nr,
-			isArticle: isArticle,
-			};
-			
-			const normLink = getHyperlinkForLawIfExists(
-			normGroup,
-			gesetz,
-			norm,
-			lawProviderOptions,
-			additionalInfo  // Übergabe der Details
-			);
-			
-			// Ersetze den gesamten chainMatch wie bisher
-			if (!chainMatch[0].includes("](") && !chainMatch[0].includes(")")) {
-			updatedLawMatch += ", " + normLink; 
-			} else {
-			updatedLawMatch += ", " + chainMatch[0]; 
+			const chainGroups = chainMatch.groups;
+			if (chainGroups) {
+				const norm = (chainGroups.norm ?? "").trim();
+				const normGroup = (chainGroups.normgr ?? "").trim();
+
+				// NEU: Extrahiere Absatz, Satz und Nummer auch für Kettenglieder
+				const additionalInfo = {
+					absatz: chainGroups.absatz,
+					absatzrom: chainGroups.absatzrom,
+					satz: chainGroups.satz,
+					nr: chainGroups.nr,
+					isArticle: isArticle,
+				};
+
+				const normLink = getHyperlinkForLawIfExists(
+					normGroup,
+					gesetz,
+					norm,
+					lawProviderOptions,
+					additionalInfo // Übergabe der Details
+				);
+
+				// Ersetze den gesamten chainMatch wie bisher
+				if (!chainMatch[0].includes("](") && !chainMatch[0].includes(")")) {
+					updatedLawMatch += ", " + normLink;
+				} else {
+					updatedLawMatch += ", " + chainMatch[0];
+				}
 			}
-		}
 		});
 
-
-		return match.replace(groups.p2, updatedLawMatch + " ");
+		return match.replace(lawMatch, updatedLawMatch + " ");
 	});
 }
 

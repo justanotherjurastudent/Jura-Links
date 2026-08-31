@@ -80,14 +80,6 @@
     user-select: text; /* Ermöglicht die Textauswahl */
 }
 
-.gesetz-item {
-    margin-left: 10px;
-    margin-bottom: 7px; /* Vergrößert den Abstand zwischen den Ergebnissen */
-    text-indent: -14px; /* Hängender Zeileneinzug */
-    padding-left: 14px; /* Hängender Zeileneinzug */
-    user-select: text; /* Ermöglicht die Textauswahl */
-}
-
 .copy-button {
     position: absolute;
     right: 10px;

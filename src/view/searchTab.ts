@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars -- Methoden werden als öffentliche API der View verwendet */
 import {
 	ItemView,
 	WorkspaceLeaf,
@@ -13,17 +12,8 @@ import { rewisGesetze } from "../static/rewisGesetze";
 import { buzerGesetze } from "../static/buzerGesetze";
 import { lexmeaGesetze } from "../static/lexmeaGesetze";
 import { LawProviderOption } from "../types/providerOption";
-import LegalReferencePlugin from "../../main";
 
 export const VIEW_TYPE_SEARCH_TAB = "search-tab";
-
-export class SearchTab {
-	constructor(private plugin: LegalReferencePlugin) {}
-
-	async activateView() {
-		await this.plugin.activateSearchTab();
-	}
-}
 
 export class SearchTabView extends ItemView {
 	selectedState: string | null = null;
@@ -159,26 +149,21 @@ export class SearchTabView extends ItemView {
 		);
 
 		if (filteredLaws.length > 0) {
-			const groupedByProvider = filteredLaws.reduce((acc, item) => {
-				if (!acc[item.provider]) {
-					acc[item.provider] = {};
-				}
+			// Gruppierung nach Anbieter: Für Landesrecht.online nach Bundesland,
+			// für alle anderen Anbieter unter dem Schlüssel "laws".
+			const groupedByProvider = filteredLaws.reduce<
+				Record<string, Record<string, string[]>>
+			>((acc, item) => {
+				const providerGroup = (acc[item.provider] ??= {});
 				if (item.provider === "Landesrecht.online") {
-					if (item.state && !acc[item.provider][item.state]) {
-						acc[item.provider][item.state] = [];
-					}
 					if (item.state) {
-						acc[item.provider][item.state].push(item.law);
+						(providerGroup[item.state] ??= []).push(item.law);
 					}
 				} else {
-					if (!acc[item.provider]["laws"]) {
-						acc[item.provider]["laws"] = [];
-					}
-					acc[item.provider]["laws"].push(item.law);
+					(providerGroup["laws"] ??= []).push(item.law);
 				}
 				return acc;
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Gruppierung nach Anbieter erfordert dynamischen Typ
-			}, {} as Record<string, any>);
+			}, {});
 
 			Object.entries(groupedByProvider).forEach(([provider, data]) => {
 				if (this.resultsContainer) {
@@ -195,13 +180,13 @@ export class SearchTabView extends ItemView {
 									cls: "subheader",
 								});
 								this.createLawTable(
-									laws as string[],
+									laws,
 									this.resultsContainer
 								);
 							}
 						});
 					} else {
-						if (this.resultsContainer) {
+						if (this.resultsContainer && data.laws) {
 							this.createLawTable(
 								data.laws,
 								this.resultsContainer
@@ -272,7 +257,7 @@ export class SearchTabView extends ItemView {
 				const copyButton = abbrCell.createEl("button", {
 					cls: "copy-button",
 				});
-				const clipboardIcon = copyButton.createSpan({
+				copyButton.createSpan({
 					cls: "icon lucide-icon lucide-clipboard-copy",
 				});
 				copyButton.onclick = () => {
@@ -372,7 +357,7 @@ export class SearchTabView extends ItemView {
 			});
 
 			// Lucide Icon Container
-			const clipboardIcon = copyButton.createSpan({
+			copyButton.createSpan({
 				cls: "icon lucide-icon lucide-clipboard-copy",
 			});
 

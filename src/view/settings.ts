@@ -32,6 +32,130 @@ export class LawProviderSettingTab extends PluginSettingTab {
 		this.dropdowns = [];
 	}
 
+	// --- Deklarative Settings-API (Obsidian 1.13.0+) ---
+	// Ermöglicht die Suche nach Einstellungen in Obsidian.
+	// Für minAppVersion < 1.13.0 bleibt display() als Fallback aktiv (Dual-Support).
+
+	// Liest verschachtelte Settings über Punkt-Notation (z. B. "lawProviderOptions.firstOption")
+	getControlValue(key: string): unknown {
+		const parts = key.split(".");
+		let cursor: unknown = this.plugin.settings;
+		for (const part of parts) {
+			if (cursor === null || typeof cursor !== "object") return undefined;
+			// Schutz vor Prototype-Pollution: gefährliche Schlüssel überspringen
+			if (part === "__proto__" || part === "constructor" || part === "prototype") {
+				return undefined;
+			}
+			const record = cursor as Record<string, unknown>;
+			if (!Object.prototype.hasOwnProperty.call(record, part)) {
+				return undefined;
+			}
+			cursor = record[part];
+		}
+		return cursor;
+	}
+
+	// Schreibt verschachtelte Settings über Punkt-Notation und speichert sie
+	async setControlValue(key: string, value: unknown): Promise<void> {
+		const parts = key.split(".");
+		const last = parts.pop();
+		if (!last) return;
+		// Schutz vor Prototype-Pollution: gefährliche Schlüssel ablehnen
+		if (last === "__proto__" || last === "constructor" || last === "prototype") {
+			return;
+		}
+		const target = this.getNestedParent(parts);
+		if (target) {
+			target[last] = value;
+			await this.plugin.saveSettings();
+		}
+	}
+
+	// Navigiert zu einem verschachtelten Objekt über Punkt-Notation.
+	// Erstellt fehlende Zwischenobjekte mit null-Prototyp (verhindert Prototype-Pollution).
+	private getNestedParent(parts: string[]): Record<string, unknown> | null {
+		let cursor: Record<string, unknown> = this.plugin.settings as unknown as Record<string, unknown>;
+		for (const part of parts) {
+			if (part === "__proto__" || part === "constructor" || part === "prototype") {
+				return null;
+			}
+			const record = cursor;
+			if (!Object.prototype.hasOwnProperty.call(record, part)) {
+				// Fehlendes Zwischenobjekt mit null-Prototyp anlegen (verhindert Prototype-Pollution)
+				record[part] = Object.create(null);
+			}
+			cursor = record[part] as Record<string, unknown>;
+		}
+		return cursor;
+	}
+
+	getSettingDefinitions() {
+		const providerOptions: Record<string, string> = {
+			"dejure": "Dejure",
+			"landesrecht.online": "Landesrecht.online",
+			"lexmea": "LexMea",
+			"buzer": "Buzer",
+			"rewis": "Rewis",
+		};
+
+		return [
+			{
+				name: "Bei jedem Öffnen der Datei ausführen",
+				desc: "Aktivieren Sie diese Option, um das Plugin bei jedem Öffnen der Notiz auszuführen.",
+				control: {
+					type: "toggle",
+					key: "executeOnFileOpen",
+				},
+			},
+			{
+				name: "1. Wahl",
+				desc: "Landesrecht.online ist standardmäßig als erste Option festgelegt.",
+				control: {
+					type: "dropdown",
+					key: "lawProviderOptions.firstOption",
+					options: { "landesrecht.online": "Landesrecht.online" },
+					disabled: true,
+				},
+			},
+			{
+				name: "2. Wahl",
+				desc: "Falls Gesetz bei Justiz NRW Landesgesetze nicht verfügbar ist, soll geschaut werden in:",
+				control: {
+					type: "dropdown",
+					key: "lawProviderOptions.secondOption",
+					options: providerOptions,
+				},
+			},
+			{
+				name: "3. Wahl",
+				desc: "Falls Gesetz beim vorherigen Anbieter nicht verfügbar ist, soll geschaut werden in:",
+				control: {
+					type: "dropdown",
+					key: "lawProviderOptions.thirdOption",
+					options: providerOptions,
+				},
+			},
+			{
+				name: "4. Wahl",
+				desc: "Falls Gesetz beim vorherigen Anbieter nicht verfügbar ist, soll geschaut werden in:",
+				control: {
+					type: "dropdown",
+					key: "lawProviderOptions.forthOption",
+					options: providerOptions,
+				},
+			},
+			{
+				name: "5. Wahl",
+				desc: "Falls Gesetz beim vorherigen Anbieter nicht verfügbar ist, soll geschaut werden in:",
+				control: {
+					type: "dropdown",
+					key: "lawProviderOptions.fifthOption",
+					options: providerOptions,
+				},
+			},
+		];
+	}
+
 	display(): void {
 		const { containerEl } = this;
 
@@ -114,7 +238,7 @@ export class LawProviderSettingTab extends PluginSettingTab {
 				});
 			});
 
-			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- Dropdown wird im addDropdown-Callback garantiert gesetzt
+			// Dropdown wird im addDropdown-Callback garantiert gesetzt
 			return { setting, errorSpan, dropdown: dropdown! };
 		};
 
