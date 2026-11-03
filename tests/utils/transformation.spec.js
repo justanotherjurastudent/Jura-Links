@@ -50,6 +50,30 @@ test.each([
 		expected: `§ [1](https://landesrecht.online/NW/AO-GS/1) AO-GS NW`,
 	},
 	{
+		input: `§ 1 SOG ST`,
+		expected: `§ [1](https://landesrecht.online/ST/SOG/1) SOG ST`,
+	},
+	{
+		input: `§ 1 SOG LSA`,
+		expected: `§ [1](https://landesrecht.online/ST/SOG/1) SOG LSA`,
+	},
+	{
+		input: `Paragraf 1 SOG ST`,
+		expected: `Paragraf [1](https://landesrecht.online/ST/SOG/1) SOG ST`,
+	},
+	{
+		input: `Paragraf 1 SOG LSA`,
+		expected: `Paragraf [1](https://landesrecht.online/ST/SOG/1) SOG LSA`,
+	},
+	{
+		input: `Paragraph 1 SOG ST`,
+		expected: `Paragraph [1](https://landesrecht.online/ST/SOG/1) SOG ST`,
+	},
+	{
+		input: `Paragraph 1 SOG LSA`,
+		expected: `Paragraph [1](https://landesrecht.online/ST/SOG/1) SOG LSA`,
+	},
+	{
 		input: `§ 1 BBesGÜB 2018/19/20`,
 		expected: `§ 1 BBesGÜB 2018/19/20`,
 	},
@@ -509,6 +533,30 @@ test.each([
 	{
 		input: `§ 1 OBG TH`,
 		expected: `§ [1](https://gesetze.co/TH/OBG/1) OBG TH`,
+	},
+	{
+		input: `Paragraf 1 SOG ST`,
+		expected: `Paragraf [1](https://gesetze.co/ST/SOG_LSA/1) SOG ST`,
+	},
+	{
+		input: `Paragraf 1 SOG LSA`,
+		expected: `Paragraf [1](https://gesetze.co/ST/SOG_LSA/1) SOG LSA`,
+	},
+	{
+		input: `Paragraph 1 SOG ST`,
+		expected: `Paragraph [1](https://gesetze.co/ST/SOG_LSA/1) SOG ST`,
+	},
+	{
+		input: `Paragraph 1 SOG LSA`,
+		expected: `Paragraph [1](https://gesetze.co/ST/SOG_LSA/1) SOG LSA`,
+	},
+	{
+		input: `§ 1 SOG ST`,
+		expected: `§ [1](https://gesetze.co/ST/SOG_LSA/1) SOG ST`,
+	},
+	{
+		input: `§ 1 SOG LSA`,
+		expected: `§ [1](https://gesetze.co/ST/SOG_LSA/1) SOG LSA`,
 	},
 ])(
 	"findAndLinkLawReferences with Gesetze.co: should transform $input to $expected",

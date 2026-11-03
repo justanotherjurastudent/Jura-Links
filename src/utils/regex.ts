@@ -17,7 +17,7 @@ const bundeslandSuffixes = [
 	// Kanonische Abkürzungen
 	"BW", "BY", "BE", "BB", "HB", "HH", "HE", "MV", "NI", "NW", "RP", "SL", "SN", "ST", "SH", "TH",
 	// Alternative/geläufige Varianten
-	"NRW", "Bln", "M-V", "LSA", "Schl\\.-H\\.", "Bay", "Hes", "Nds", "RLP"
+	"NRW", "Bln", "M-V", "LSA", "Schl\\.-H\\.", "Bay", "Hes", "Nds", "RLP", "Hmb", "Saar", "Bbg", "Brem", "Thür", "Sächs", "Bawü", "Ba-Wü"
 ].join("|");
 
 function getSingleLawRegexString(suffix: string): string {
@@ -30,7 +30,7 @@ function getSingleLawRegexString(suffix: string): string {
 // mit Unicode-Zeichen (Umlauten wie Ü) nicht korrekt funktioniert
 export const lawRegex = new RegExp(
 	`(?![^[]*])` +
-	`(?<p1>§+|Art\\.|Artikel)\\s*(?<p2>${getSingleLawRegexString(
+	`(?<p1>§+|Art\\.|Artikel|Paragraph|Paragraf)\\s*(?<p2>${getSingleLawRegexString(
 		"_first"
 	)}${VerbinderGesetz}${getSingleLawRegexString(
 		"_last"
