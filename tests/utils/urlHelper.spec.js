@@ -899,3 +899,35 @@ test("getLawUrlByProviderOptions: Jurafuchs als siebte Option greift als letzter
 	// Buzer kennt dieses Landesgesetz nicht, Jurafuchs schon
 	expect(getLawUrlByProviderOptions("SOG LSA", "1", options)).toBe(`https://gesetze.jurafuchs.de/gesetz/sog-lsa/1`);
 });
+
+// Länderkürzel werden zur Laufzeit auf den ISO-Code abgebildet, nicht im Datensatz vervielfältigt
+test.each([
+	{ gesetz: `SOG SA`, expected: `https://gesetze.jurafuchs.de/gesetz/sog-lsa/1`, description: "ST Variante SA" },
+	{ gesetz: `SOG HA`, expected: `https://gesetze.jurafuchs.de/gesetz/sog-hh/1`, description: "HH Variante HA" },
+	{ gesetz: `AGBGB Rh.-Pf.`, expected: `https://gesetze.jurafuchs.de/gesetz/ag-bgb-rp/1`, description: "RP Variante Rh.-Pf." },
+	{ gesetz: `ST SOG`, expected: `https://gesetze.jurafuchs.de/gesetz/sog-lsa/1`, description: "führendes Länderkürzel" },
+	{ gesetz: `LSA SOG`, expected: `https://gesetze.jurafuchs.de/gesetz/sog-lsa/1`, description: "führende Variante LSA" },
+	{ gesetz: `ASOG`, expected: `https://gesetze.jurafuchs.de/gesetz/asog-bln/1`, description: "eindeutiges Basiskürzel ohne Land" },
+])(
+	"getLawUrlByProvider jurafuchs Länder-Token: $description",
+	(testData) => {
+		expect(getLawUrlByProvider(testData.gesetz, "1", "jurafuchs")).toBe(testData.expected);
+	}
+);
+
+test.each([
+	{ gesetz: `SOG SA`, expected: `https://gesetze.co/ST/SOG_LSA/1`, description: "ST Variante SA" },
+	{ gesetz: `AGBGB Rh.-Pf.`, expected: `https://gesetze.co/RP/AGBGB/1`, description: "RP Variante Rh.-Pf." },
+	{ gesetz: `ST SOG`, expected: `https://gesetze.co/ST/SOG_LSA/1`, description: "führendes Länderkürzel" },
+	{ gesetz: `LSA SOG`, expected: `https://gesetze.co/ST/SOG_LSA/1`, description: "führende Variante LSA" },
+	{ gesetz: `ASOG`, expected: `https://gesetze.co/BE/ASOG_Bln/1`, description: "eindeutiges Basiskürzel ohne Land" },
+])(
+	"getLawUrlByProvider gesetze.co Länder-Token: $description",
+	(testData) => {
+		expect(getLawUrlByProvider(testData.gesetz, "1", "gesetze.co")).toBe(testData.expected);
+	}
+);
+
+test.each(["jurafuchs", "gesetze.co"])("getLawUrlByProvider %s: mehrdeutiges Basiskürzel ohne Land liefert nichts", (provider) => {
+	expect(getLawUrlByProvider("SOG", "1", provider)).toBe("");
+});

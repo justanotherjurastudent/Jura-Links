@@ -17,7 +17,7 @@ const bundeslandSuffixes = [
 	// Kanonische Abkürzungen
 	"BW", "BY", "BE", "BB", "HB", "HH", "HE", "MV", "NI", "NW", "RP", "SL", "SN", "ST", "SH", "TH",
 	// Alternative/geläufige Varianten
-	"NRW", "Bln", "M-V", "LSA", "Schl\\.-H\\.", "Bay", "Hes", "Nds", "RLP", "Hmb", "Saar", "Bbg", "Brem", "Thür", "Sächs", "Bawü", "Ba-Wü"
+	"NRW", "Bln", "HA", "SA", "BadW", "Bawue", "Rh\\.-Pf\\.", "M-V", "LSA", "Schl\\.-H\\.", "Bay", "Hes", "Nds", "RLP", "Hmb", "Saar", "Bbg", "Brem", "Thür", "Sächs", "Bawü", "Ba-Wü"
 ].join("|");
 
 function getSingleLawRegexString(suffix: string): string {

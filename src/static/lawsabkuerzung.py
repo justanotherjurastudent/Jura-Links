@@ -48,6 +48,14 @@ def extract_abbreviations(file_path):
             key = match[0] if match[0] else match[1]
             abbreviations.append(key)
     
+    if 'gesetzeCoGesetze.ts' in file_path or 'jurafuchsGesetze.ts' in file_path:
+        # Landesgesetze sind als "<BasiskÃ¼rzel> <ISO-Code>" gespeichert (z.B. "SOG ST").
+        # ZusÃ¤tzlich das BasiskÃ¼rzel aufnehmen; Bundesland-Suffixe (LSA, NRW, ...) erkennt regex.ts.
+        state_suffix = re.compile(r'^(.*\S)\s+(BW|BY|BE|BB|HB|HH|HE|MV|NI|NW|RP|SL|SN|ST|SH|TH)$')
+        for abbr in list(abbreviations):
+            m = state_suffix.match(abbr)
+            if m:
+                abbreviations.append(m.group(1))
     return abbreviations
 
 def main():

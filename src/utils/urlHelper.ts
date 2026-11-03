@@ -56,7 +56,7 @@ const bundeslandVariantTokens: { [canonicalAbbr: string]: string[] } = {
 	// Mecklenburg-Vorpommern
 	MV: ["m-v", "mv"],
 	// Rheinland-Pfalz
-	RP: ["rlp", "rp"],
+	RP: ["rlp", "rp", "rh.-pf."],
 	// Saarland
 	SL: ["saar", "sl"],
 	// Thüringen
@@ -448,47 +448,83 @@ function getRewisUrl(
 	return url;
 }
 
-// Sucht ein Gesetz in einem (kleingeschriebenen) Datensatz und toleriert dabei Bundesland-Varianten
-// (z.B. "polg nw" <-> "polg nrw", führendes Bundesland "nrw polg")
+// Kleingeschriebenes Länder-Token (kanonisch oder Variante) -> kleingeschriebener ISO-Code
+const stateTokenToCode: Map<string, string> = new Map(
+	Object.entries(bundeslandVariantTokens).flatMap(([code, variants]) =>
+		[code, ...variants].map((token): [string, string] => [token.toLowerCase(), code.toLowerCase()])
+	)
+);
+const stateCodes = new Set(stateTokenToCode.values());
+
+// Basiskürzel von Landesgesetzen, die nur in genau einem Bundesland vorkommen (z.B. "asog" -> "asog be").
+// Wird pro Datensatz einmal aufgebaut.
+const uniqueBaseIndexCache = new WeakMap<object, Record<string, unknown>>();
+
+function getUniqueBaseIndex<T>(dataset: Record<string, T>): Record<string, T> {
+	const cached = uniqueBaseIndexCache.get(dataset);
+	if (cached) {
+		return cached as Record<string, T>;
+	}
+	const counts = new Map<string, number>();
+	for (const key of Object.keys(dataset)) {
+		const tokens = key.split(/\s+/);
+		if (tokens.length > 1 && stateCodes.has(tokens[tokens.length - 1] ?? "")) {
+			const base = tokens.slice(0, -1).join(" ");
+			counts.set(base, (counts.get(base) ?? 0) + 1);
+		}
+	}
+	const index: Record<string, T> = {};
+	for (const [key, value] of Object.entries(dataset)) {
+		const tokens = key.split(/\s+/);
+		const base = tokens.slice(0, -1).join(" ");
+		if (tokens.length > 1 && counts.get(base) === 1 && stateCodes.has(tokens[tokens.length - 1] ?? "")) {
+			index[base] = value;
+		}
+	}
+	uniqueBaseIndexCache.set(dataset, index);
+	return index;
+}
+
+// Sucht ein Gesetz in einem kleingeschriebenen Datensatz. Landesgesetze sind dort nur unter
+// "<basiskürzel> <iso-code>" abgelegt (z.B. "sog st"). Das Länder-Token der Eingabe (st, sa, lsa, ...)
+// wird über bundeslandVariantTokens auf den ISO-Code abgebildet, egal ob es vorne oder hinten steht
+// (auch vor einer Jahreszahl, z.B. "abgg mv 2007").
 function findStateAwareEntry<T>(dataset: Record<string, T>, normalizedKey: string): T | undefined {
-	let foundGesetz = dataset[normalizedKey];
+	const direct = dataset[normalizedKey];
+	if (direct) {
+		return direct;
+	}
 
-	// Fallback bei Landesgesetzen: Tokens normalisieren (z.B. "polg nw" <-> "polg nrw", führendes Bundesland "nrw polg")
-	if (!foundGesetz) {
-		const tokens = normalizedKey.split(/\s+/);
-		if (tokens.length > 1) {
-			const first = tokens[0] ?? "";
-			const last = tokens[tokens.length - 1] ?? "";
+	const tokens = normalizedKey.split(/\s+/);
+	if (tokens.length > 1) {
+		let code: string | undefined;
+		let base: string[] = [];
+		const last = tokens[tokens.length - 1] ?? "";
+		const first = tokens[0] ?? "";
+		const beforeLast = tokens[tokens.length - 2] ?? "";
 
-			// Führendes Kürzel nach hinten verschieben (z.B. "nrw polg" -> "polg nrw")
-			const movedToEnd = [...tokens.slice(1), first].join(" ");
-			if (dataset[movedToEnd]) {
-				foundGesetz = dataset[movedToEnd];
-			} else if (last) {
-				// Prüfen, ob das End-Token ein Bundesland-Variant-Token ist und kanonische/alternative Varianten durchprobieren
-				for (const [canonical, variants] of Object.entries(bundeslandVariantTokens)) {
-					const allTokens = [canonical.toLowerCase(), ...variants.map((v) => v.toLowerCase())];
-					if (allTokens.includes(last)) {
-						const base = tokens.slice(0, -1).join(" ");
-						for (const token of allTokens) {
-							const candidate = `${base} ${token}`;
-							if (dataset[candidate]) {
-								foundGesetz = dataset[candidate];
-								break;
-							}
-						}
-						// Auch Basis ohne Suffix prüfen
-						if (!foundGesetz && dataset[base]) {
-							foundGesetz = dataset[base];
-						}
-						if (foundGesetz) break;
-					}
-				}
+		if (stateTokenToCode.has(last)) {
+			code = stateTokenToCode.get(last);
+			base = tokens.slice(0, -1);
+		} else if (/^\d{4}$/.test(last) && stateTokenToCode.has(beforeLast)) {
+			code = stateTokenToCode.get(beforeLast);
+			base = [...tokens.slice(0, -2), last];
+		} else if (stateTokenToCode.has(first)) {
+			code = stateTokenToCode.get(first);
+			base = tokens.slice(1);
+		}
+
+		if (code) {
+			const baseKey = base.join(" ");
+			// Landesgesetz, sonst Gesetz ohne Länderbezug (z.B. "bgb be" -> "bgb")
+			const found = dataset[`${baseKey} ${code}`] ?? dataset[baseKey];
+			if (found) {
+				return found;
 			}
 		}
 	}
 
-	return foundGesetz;
+	return getUniqueBaseIndex(dataset)[normalizedKey];
 }
 
 function getGesetzeCoUrl(

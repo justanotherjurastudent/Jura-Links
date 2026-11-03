@@ -6,6 +6,7 @@
 import { writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import path from "path";
+import { stateKey, quote, isUsableKey } from "./stateVariants.mjs";
 
 const BASE_URL = "https://gesetze.co";
 const USER_AGENT = "Jura-Links (https://github.com/justanotherjurastudent/Jura-Links)";
@@ -32,25 +33,6 @@ const JURISDICTIONS = [
 	{ code: "TH", name: "Thüringen" },
 ];
 
-const STATE_VARIANTS = {
-	BW: ["BW", "BadW", "Bawü", "Bawue", "Ba-Wü"],
-	BY: ["BY", "Bay"],
-	BE: ["BE", "Bln"],
-	BB: ["BB", "Bbg"],
-	HB: ["HB", "Brem"],
-	HH: ["HH", "HA", "Hmb"],
-	HE: ["HE", "Hes"],
-	MV: ["MV", "M-V"],
-	NI: ["NI", "Nds"],
-	NW: ["NW", "NRW"],
-	RP: ["RP", "RLP", "Rh.-Pf."],
-	SL: ["SL", "Saar"],
-	SN: ["SN", "Sächs"],
-	ST: ["ST", "LSA", "SA"],
-	SH: ["SH", "Schl.-H."],
-	TH: ["TH", "Thür"],
-};
-
 function cleanText(t) {
 	return t
 		.replace(/<[^>]+>/g, "")
@@ -59,37 +41,6 @@ function cleanText(t) {
 		.replace(/&gt;/g, ">")
 		.replace(/&quot;/g, '"')
 		.trim();
-}
-
-function escapeRegex(str) {
-	return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-function extractStateSuffix(abbr, jurisdiction) {
-	const variants = STATE_VARIANTS[jurisdiction] || [];
-	for (const v of variants) {
-		const re = new RegExp(`\\s+${escapeRegex(v)}$`, "i");
-		if (re.test(abbr)) {
-			return { base: abbr.replace(re, "").trim(), matchedSuffix: v, year: null };
-		}
-	}
-	for (const v of variants) {
-		const re = new RegExp(`\\s+${escapeRegex(v)}\\s+(\\d{4})$`, "i");
-		const m = abbr.match(re);
-		if (m) {
-			return { base: abbr.replace(re, ` $1`).trim(), matchedSuffix: v, year: m[1] };
-		}
-	}
-	return { base: abbr, matchedSuffix: null, year: null };
-}
-
-// Nicht-ASCII-Zeichen als \uXXXX schreiben (wie im bestehenden Datenbestand)
-function quote(value) {
-	return JSON.stringify(value).replace(/[\u007f-\uffff]/g, (char) => `\\u${char.charCodeAt(0).toString(16).padStart(4, "0")}`);
-}
-
-function isUsableKey(key) {
-	return key.length > 0 && !/[[\](){}|*+?^$\\]/.test(key);
 }
 
 function render(entries) {
@@ -156,14 +107,6 @@ async function main() {
 
 	console.log(`Gesamtanzahl Gesetze: ${allLaws.length}`);
 
-	// Zähle Vorkommen von Basis-Kürzeln zur Kollisionserkennung
-	const baseCount = new Map();
-	for (const law of allLaws) {
-		const { base } = extractStateSuffix(law.abbr, law.jurisdiction);
-		const lower = base.toLowerCase();
-		baseCount.set(lower, (baseCount.get(lower) || 0) + 1);
-	}
-
 	const generated = new Map();
 
 	function addEntry(key, law) {
@@ -186,31 +129,11 @@ async function main() {
 		}
 	}
 
-	// 2. Priorität: Landesgesetze mit sauberen Suffixen und Varianten
+	// Landesgesetze: ein Eintrag pro Gesetz unter "<Basiskürzel> <ISO-Code>" (z.B. "SOG ST").
+	// Alternative Schreibweisen (LSA, NRW, Bln, ...) löst urlHelper.ts beim Nachschlagen auf.
 	for (const law of allLaws) {
 		if (law.jurisdiction === "DE" || law.jurisdiction === "EU") continue;
-		const { base, year } = extractStateSuffix(law.abbr, law.jurisdiction);
-		const j = law.jurisdiction;
-
-		// Original-Abkürzung von Gesetze.co (z.B. "BauO Bln", "AbfG LSA", "AGBauGB", "AbgG MV 2007")
-		addEntry(law.abbr, law);
-
-		if (year) {
-			// Gesetz mit Jahreszahl: z.B. "AbgG 2007 MV"
-			addEntry(`${base} ${j}`, law);
-			for (const v of STATE_VARIANTS[j] || []) {
-				addEntry(`${base} ${v}`, law);
-			}
-		} else {
-			// Kanonischer ISO-Code und gängige Varianten (z.B. "BauO BE", "BauO Bln", "AbfG ST", "AbfG LSA")
-			for (const v of STATE_VARIANTS[j] || []) {
-				addEntry(`${base} ${v}`, law);
-			}
-			// Basis-Kürzel registrieren, falls keine Kollision mit anderen Ländern besteht (z.B. "ASOG", "BannKrG")
-			if (baseCount.get(base.toLowerCase()) === 1) {
-				addEntry(base, law);
-			}
-		}
+		addEntry(stateKey(law.abbr, law.jurisdiction), law);
 	}
 
 	const entries = Array.from(generated.values());
