@@ -497,9 +497,8 @@ function getAmbiguousLandesrechtBases(): Map<string, string> {
 
 	ambiguousLandesrechtBases = new Map();
 	for (const [lower, { display, states }] of statesByBase) {
-		// Kürzel, die auch ein Bundes-/EU-Gesetz bezeichnen, bleiben beim normalen Lookup (z.B. "AGG")
+		// Kürzel, die auch ein Bundes-/EU-Gesetz bezeichnen, bleiben beim normalen Lookup (z.B. "AGG", "AO")
 		const isFederal =
-			dejureGesetzeLowerCased.includes(lower) ||
 			jurafuchsGesetzeLowerCased[lower]?.jurisdiction === "DE" ||
 			jurafuchsGesetzeLowerCased[lower]?.jurisdiction === "EU";
 		if (states.size > 1 && !isFederal && !/[\s/?#]/.test(display)) {

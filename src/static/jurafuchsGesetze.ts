@@ -4197,6 +4197,11 @@ export const jurafuchsGesetze: Record<string, JurafuchsGesetz> = {
 		slug: "owig",
 		jurisdiction: "DE"
 	},
+	"PAG BY": {
+		title: "Gesetz \u00fcber die Aufgaben und Befugnisse der Bayerischen Polizei",
+		slug: "baypag",
+		jurisdiction: "BY"
+	},
 	"PAG TH": {
 		title: "Th\u00fcringer Gesetz \u00fcber die Aufgaben und Befugnisse der Polizei (Polizeiaufgabengesetz - PAG -) vom 4. Juni 1992",
 		slug: "pag-th",
@@ -4236,6 +4241,11 @@ export const jurafuchsGesetze: Record<string, JurafuchsGesetz> = {
 		title: "Gesetz \u00fcber die Behandlung von Petitionen an den Landtag Brandenburg",
 		slug: "petitionsg-bb",
 		jurisdiction: "BB"
+	},
+	"POG BY": {
+		title: "Gesetz \u00fcber die Organisation der Bayerischen Polizei",
+		slug: "pog-bay",
+		jurisdiction: "BY"
 	},
 	"POG MV": {
 		title: "Gesetz zur Organisation der Landespolizei in Mecklenburg-Vorpommern (Polizeiorganisationsgesetz - POG M-V) in der Fassung der Bekanntmachung vom 30. November 2010",

@@ -25,7 +25,7 @@ test.each([
 	},
 	{
 		input: `§ 1 AGBGB`,
-		expected: `§ [1](https://www.dejure.org/gesetze/agbgb/1.html) AGBGB`,
+		expected: `§ [1](https://landesrecht.online/AGBGB/1) AGBGB`,
 	},
 	{
 		input: `§ 1 AGBG`,
@@ -103,7 +103,7 @@ test.each([
 	},
 	{
 		input: `§ 1 KAG `,
-		expected: `§ [1](https://www.dejure.org/gesetze/kag/1.html) KAG `,
+		expected: `§ [1](https://landesrecht.online/KAG/1) KAG `,
 	},
 	{
 		input: `§ 1 VVG-InfoV `,

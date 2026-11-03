@@ -38,6 +38,12 @@ const BUND_ALIASES = {
 	EGBGB: "egbgb",
 };
 
+// Gängige Landesgesetzes-Kürzel, die Jurafuchs als Langnamen führt (z.B. "Polizeiaufgabengesetz" in BY)
+const STATE_ALIASES = [
+	{ jurisdiction: "BY", alias: "PAG", slug: "baypag" },
+	{ jurisdiction: "BY", alias: "POG", slug: "pog-bay" },
+];
+
 function cleanText(t) {
 	return t
 		.replace(/<[^>]+>/g, "")
@@ -141,6 +147,10 @@ async function main() {
 	for (const law of allLaws) {
 		if (law.jurisdiction === "DE" || law.jurisdiction === "EU") continue;
 		addEntry(stateKey(law.abbr, law.jurisdiction), law);
+	}
+	for (const { jurisdiction, alias, slug } of STATE_ALIASES) {
+		const law = allLaws.find((l) => l.jurisdiction === jurisdiction && l.slug === slug);
+		if (law) addEntry(`${alias} ${jurisdiction}`, law);
 	}
 
 	const entries = Array.from(generated.values());

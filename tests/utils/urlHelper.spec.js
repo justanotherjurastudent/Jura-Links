@@ -726,6 +726,18 @@ test.each([
 		description: "Bayern (BY): AGBGB BY",
 	},
 	{
+		gesetz: `PAG BY`,
+		norm: `1`,
+		expected: `https://gesetze.jurafuchs.de/gesetz/baypag/1`,
+		description: "Bayern (BY): PAG BY (Polizeiaufgabengesetz)",
+	},
+	{
+		gesetz: `POG BY`,
+		norm: `1`,
+		expected: `https://gesetze.jurafuchs.de/gesetz/pog-bay/1`,
+		description: "Bayern (BY): POG BY (Polizeiorganisationsgesetz)",
+	},
+	{
 		gesetz: `ASOG Bln`,
 		norm: `1`,
 		expected: `https://gesetze.jurafuchs.de/gesetz/asog-bln/1`,
@@ -940,6 +952,8 @@ test.each([
 	{ gesetz: `PAG`, expected: `https://landesrecht.online/PAG/1` },
 	{ gesetz: `SOG`, expected: `https://landesrecht.online/SOG/1` },
 	{ gesetz: `BauO`, expected: `https://landesrecht.online/BauO/1` },
+	{ gesetz: `PolG`, expected: `https://landesrecht.online/PolG/1` },
+	{ gesetz: `GemO`, expected: `https://landesrecht.online/GemO/1` },
 ])("getLawUrlByProviderOptions: mehrdeutiges Kürzel $gesetz -> Landesrecht.online-Auswahlseite", ({ gesetz, expected }) => {
 	for (const first of ["jurafuchs", "gesetze.co", "dejure", "landesrecht.online"]) {
 		const options = {
