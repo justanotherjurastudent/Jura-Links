@@ -153,7 +153,7 @@ test.each([
 	},
 	{
 		input: `Art. 1 II lit. a-c Brüssel-Ia-VO`,
-		expected: `Art. 1 II lit. a-c Brüssel-Ia-VO`,
+		expected: `Art. [1 II lit. a-c](https://www.dejure.org/gesetze/eugvvo/1.html) Brüssel-Ia-VO`,
 	},
 	{
 		input: `§§ 823 Abs. 1, 249 Abs. 2, 250 Abs. 3 BGB`,
@@ -584,6 +584,163 @@ test.each([
 			forthOption: null,
 			fifthOption: null,
 			sixthOption: null,
+		});
+		expect(result).toBe(testData.expected);
+	}
+);
+
+test.each([
+	{
+		input: `§ 433 BGB`,
+		expected: `§ [433](https://gesetze.jurafuchs.de/gesetz/bgb/433) BGB`,
+	},
+	{
+		input: `Art. 20a GG`,
+		expected: `Art. [20a](https://gesetze.jurafuchs.de/gesetz/gg/20a) GG`,
+	},
+	{
+		input: `§ 1 AO`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/ao/1) AO`,
+	},
+	{
+		input: `Art. 6 I DSGVO`,
+		expected: `Art. [6 I](https://gesetze.jurafuchs.de/gesetz/dsgvo/6) DSGVO`,
+	},
+	{
+		input: `Art. 101 AEUV`,
+		expected: `Art. [101](https://gesetze.jurafuchs.de/gesetz/aeuv/101) AEUV`,
+	},
+	{
+		input: `§ 1 AbgG BW`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/abgeordneteng-bw/1) AbgG BW`,
+	},
+	{
+		input: `§ 1 AbgG Ba-Wü`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/abgeordneteng-bw/1) AbgG Ba-Wü`,
+	},
+	{
+		input: `§ 1 AGBGB Bay`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/bayagbgb/1) AGBGB Bay`,
+	},
+	{
+		input: `§ 1 AGBGB BY`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/bayagbgb/1) AGBGB BY`,
+	},
+	{
+		input: `§ 1 ASOG Bln`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/asog-bln/1) ASOG Bln`,
+	},
+	{
+		input: `§ 1 ASOG BE`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/asog-bln/1) ASOG BE`,
+	},
+	{
+		input: `§ 1 OBG BB`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/obg-bb/1) OBG BB`,
+	},
+	{
+		input: `§ 1 OBG Bbg`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/obg-bb/1) OBG Bbg`,
+	},
+	{
+		input: `§ 1 BremDSG HB`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/bremdsg/1) BremDSG HB`,
+	},
+	{
+		input: `§ 1 SOG HH`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/sog-hh/1) SOG HH`,
+	},
+	{
+		input: `§ 1 SOG Hmb`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/sog-hh/1) SOG Hmb`,
+	},
+	{
+		input: `§ 1 HBO HE`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/hbo-he/1) HBO HE`,
+	},
+	{
+		input: `§ 1 SOG M-V`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/sog-m-v/1) SOG M-V`,
+	},
+	{
+		input: `§ 1 SOG MV`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/sog-m-v/1) SOG MV`,
+	},
+	{
+		input: `§ 1 NBauO NI`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/nbauo-ni/1) NBauO NI`,
+	},
+	{
+		input: `§ 1 POG NRW`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/polizeiorganisationsg-nw/1) POG NRW`,
+	},
+	{
+		input: `§ 1 POG NW`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/polizeiorganisationsg-nw/1) POG NW`,
+	},
+	{
+		input: `§ 1 GemO RP`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/gemo-rp/1) GemO RP`,
+	},
+	{
+		input: `§ 1 GemO RLP`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/gemo-rp/1) GemO RLP`,
+	},
+	{
+		input: `§ 1 AbgG SL`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/abgg-sl/1) AbgG SL`,
+	},
+	{
+		input: `§ 1 AbgG Saar`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/abgg-sl/1) AbgG Saar`,
+	},
+	{
+		input: `§ 1 RHG SN`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/rechnungshofg-sn/1) RHG SN`,
+	},
+	{
+		input: `§ 1 SOG LSA`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/sog-lsa/1) SOG LSA`,
+	},
+	{
+		input: `§ 1 SOG ST`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/sog-lsa/1) SOG ST`,
+	},
+	{
+		input: `§ 1 AO SH`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/ao-sh/1) AO SH`,
+	},
+	{
+		input: `§ 1 AO Schl.-H.`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/ao-sh/1) AO Schl.-H.`,
+	},
+	{
+		input: `§ 1 OBG TH`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/obg-th/1) OBG TH`,
+	},
+	{
+		input: `§ 1 OBG Thür`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/obg-th/1) OBG Thür`,
+	},
+	{
+		input: `Paragraf 1 SOG ST`,
+		expected: `Paragraf [1](https://gesetze.jurafuchs.de/gesetz/sog-lsa/1) SOG ST`,
+	},
+	{
+		input: `Paragraph 1 SOG LSA`,
+		expected: `Paragraph [1](https://gesetze.jurafuchs.de/gesetz/sog-lsa/1) SOG LSA`,
+	},
+])(
+	"findAndLinkLawReferences with Jurafuchs: should transform $input to $expected",
+	(testData) => {
+		const result = findAndLinkLawReferences(testData.input, {
+			firstOption: "jurafuchs",
+			secondOption: null,
+			thirdOption: null,
+			forthOption: null,
+			fifthOption: null,
+			sixthOption: null,
+			seventhOption: null,
 		});
 		expect(result).toBe(testData.expected);
 	}

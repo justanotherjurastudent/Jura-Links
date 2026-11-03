@@ -1,0 +1,62 @@
+name: Jurafuchs-Daten aktualisieren
+
+on:
+  workflow_dispatch: # Manuelles Auslösen im GitHub-Interface
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-jurafuchs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Quellcode auschecken
+        uses: actions/checkout@v4
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Python einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Abhängigkeiten installieren
+        run: npm ci
+
+      - name: Jurafuchs aktualisieren
+        run: |
+          echo "Aktualisiere Jurafuchs..."
+          node src/static/updateJurafuchsGesetze.mjs
+
+          echo "Aktualisiere Gesetzesabkürzungen..."
+          python src/static/lawsabkuerzung.py
+
+      - name: Tests ausführen
+        run: npm test
+
+      - name: Build prüfen
+        run: npm run build
+
+      - name: Pull Request erstellen
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "chore(data): monatliche Aktualisierung der Jurafuchs-Daten"
+          title: "chore(data): monatliche Aktualisierung der Jurafuchs-Daten"
+          body: |
+            Automatisierte Aktualisierung der Gesetzesbestände von Jurafuchs:
+            - Jurafuchs (`src/static/jurafuchsGesetze.ts`)
+            - Abkürzungsverzeichnis (`src/static/lawsAbbrs.ts`)
+
+            Alle Tests und der TypeScript-Build wurden erfolgreich ausgeführt.
+          branch: automated-jurafuchs-update
+          delete-branch: true
+          labels: |
+            dependencies
+            automated
+

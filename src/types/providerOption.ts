@@ -4,7 +4,8 @@ type LawProviderOption =
 	| "lexmea"
 	| "landesrecht.online"
 	| "rewis"
-	| "gesetze.co";
+	| "gesetze.co"
+	| "jurafuchs";
 
 type LawProviderOptions = {
 	firstOption: LawProviderOption;
@@ -13,6 +14,7 @@ type LawProviderOptions = {
 	forthOption: LawProviderOption | null;
 	fifthOption: LawProviderOption | null;
 	sixthOption: LawProviderOption | null;
+	seventhOption: LawProviderOption | null;
 };
 
 export type { LawProviderOption, LawProviderOptions };

@@ -41,8 +41,8 @@ def extract_abbreviations(file_path):
             key = match[0] if match[0] else match[1]
             abbreviations.append(key)
 
-    elif 'gesetzeIoGesetze.ts' in file_path or 'gesetzeCoGesetze.ts' in file_path:
-        # Für gesetze.io und Gesetze.co: Schlüssel vor { title:
+    elif 'gesetzeIoGesetze.ts' in file_path or 'gesetzeCoGesetze.ts' in file_path or 'jurafuchsGesetze.ts' in file_path:
+        # Für gesetze.io, Gesetze.co und Jurafuchs: Schlüssel vor { title:
         matches = re.findall(r'"([^"]+)"\s*:\s*{\s*title:|(\w+)\s*:\s*{\s*title:', content)
         for match in matches:
             key = match[0] if match[0] else match[1]
@@ -63,7 +63,8 @@ def main():
         'lexmeaGesetze.ts',
         'rewisGesetze.ts',
         'gesetzeIoGesetze.ts',
-        'gesetzeCoGesetze.ts'
+        'gesetzeCoGesetze.ts',
+        'jurafuchsGesetze.ts'
     ]
     
     for filename in files_to_process:

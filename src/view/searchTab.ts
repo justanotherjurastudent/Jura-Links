@@ -12,6 +12,7 @@ import { rewisGesetze } from "../static/rewisGesetze";
 import { buzerGesetze } from "../static/buzerGesetze";
 import { lexmeaGesetze } from "../static/lexmeaGesetze";
 import { gesetzeCoGesetze } from "../static/gesetzeCoGesetze";
+import { jurafuchsGesetze } from "../static/jurafuchsGesetze";
 import { LawProviderOption } from "../types/providerOption";
 
 export const VIEW_TYPE_SEARCH_TAB = "search-tab";
@@ -143,6 +144,10 @@ export class SearchTabView extends ItemView {
 			...this.extractGesetzeCoLaws().map((law) => ({
 				law,
 				provider: "Gesetze.co",
+			})),
+			...this.extractJurafuchsLaws().map((law) => ({
+				law,
+				provider: "Jurafuchs",
 			})),
 			...this.extractLandesrechtOnlineLaws().map((law) => ({
 				law: law.law,
@@ -286,7 +291,7 @@ export class SearchTabView extends ItemView {
 
 	createAnbieterFilter(dropdown: DropdownComponent): void {
 		dropdown.addOption("", "Wählen Sie einen Anbieter");
-		["Dejure", "Landesrecht.online", "LexMea", "Buzer", "Rewis", "Gesetze.co"].forEach(
+		["Dejure", "Landesrecht.online", "LexMea", "Buzer", "Rewis", "Gesetze.co", "Jurafuchs"].forEach(
 			(provider) => {
 				dropdown.addOption(provider, provider);
 			}
@@ -341,6 +346,9 @@ export class SearchTabView extends ItemView {
 					break;
 				case "Gesetze.co":
 					laws = this.extractGesetzeCoLaws();
+					break;
+				case "Jurafuchs":
+					laws = this.extractJurafuchsLaws();
 					break;
 			}
 
@@ -414,6 +422,12 @@ export class SearchTabView extends ItemView {
 
 	extractGesetzeCoLaws(): string[] {
 		return Object.entries(gesetzeCoGesetze).map(
+			([key, value]) => `${key}: ${value.title}`
+		);
+	}
+
+	extractJurafuchsLaws(): string[] {
+		return Object.entries(jurafuchsGesetze).map(
 			([key, value]) => `${key}: ${value.title}`
 		);
 	}

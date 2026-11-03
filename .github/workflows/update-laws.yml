@@ -43,6 +43,9 @@ jobs:
           echo "Aktualisiere Gesetze.co..."
           node src/static/updateGesetzeCo.mjs
 
+          echo "Aktualisiere Jurafuchs..."
+          node src/static/updateJurafuchsGesetze.mjs
+
           echo "Aktualisiere LexMea..."
           node src/static/updateLexmeaGesetze.mjs
 
@@ -65,6 +68,7 @@ jobs:
             - Rewis.io (`src/static/rewisGesetze.ts`)
             - gesetze.io (`src/static/gesetzeIoGesetze.ts`)
             - Gesetze.co (`src/static/gesetzeCoGesetze.ts`)
+            - Jurafuchs (`src/static/jurafuchsGesetze.ts`)
             - LexMea (`src/static/lexmeaGesetze.ts`)
             - Abkürzungsverzeichnis (`src/static/lawsAbbrs.ts`)
 

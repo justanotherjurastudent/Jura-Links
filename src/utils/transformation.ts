@@ -108,6 +108,7 @@ function findAndLinkLawReferences(
 		forthOption: "buzer",
 		fifthOption: "rewis",
 		sixthOption: "gesetze.co",
+		seventhOption: "jurafuchs",
 	}
 ): string {
 	if (!lawRegex.test(fileContent)) {

@@ -15,6 +15,7 @@ export const DEFAULT_SETTINGS: LawProviderSettings = {
 		forthOption: "buzer",
 		fifthOption: "rewis",
 		sixthOption: "gesetze.co",
+		seventhOption: "jurafuchs",
 	},
 	executeOnFileOpen: true,
 };
@@ -98,6 +99,7 @@ export class LawProviderSettingTab extends PluginSettingTab {
 			"buzer": "Buzer",
 			"rewis": "Rewis",
 			"gesetze.co": "Gesetze.co",
+			"jurafuchs": "Jurafuchs",
 		};
 
 		return [
@@ -164,6 +166,15 @@ export class LawProviderSettingTab extends PluginSettingTab {
 					options: providerOptions,
 				},
 			},
+			{
+				name: "7. Wahl",
+				desc: "Falls Gesetz beim vorherigen Anbieter nicht verfügbar ist, soll geschaut werden in:",
+				control: {
+					type: "dropdown",
+					key: "lawProviderOptions.seventhOption",
+					options: providerOptions,
+				},
+			},
 		];
 	}
 
@@ -193,6 +204,7 @@ export class LawProviderSettingTab extends PluginSettingTab {
 			"buzer",
 			"rewis",
 			"gesetze.co",
+			"jurafuchs",
 		];
 
 		const providerDisplayNames: Record<LawProviderOption, string> = {
@@ -202,6 +214,7 @@ export class LawProviderSettingTab extends PluginSettingTab {
 			"buzer": "Buzer",
 			"rewis": "Rewis",
 			"gesetze.co": "Gesetze.co",
+			"jurafuchs": "Jurafuchs",
 		};
 
 		new Setting(containerEl)
@@ -281,6 +294,11 @@ export class LawProviderSettingTab extends PluginSettingTab {
 				"6. Wahl",
 				"Falls Gesetz beim vorherigen Anbieter nicht verfügbar ist, soll geschaut werden in:",
 				"sixthOption"
+			),
+			createDropdown(
+				"7. Wahl",
+				"Falls Gesetz beim vorherigen Anbieter nicht verfügbar ist, soll geschaut werden in:",
+				"seventhOption"
 			),
 		];
 

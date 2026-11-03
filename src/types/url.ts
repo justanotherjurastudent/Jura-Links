@@ -5,6 +5,7 @@ enum LawProviderUrl {
 	LEXMEA = "https://lexmea.de/gesetz/",
 	BUZER = "https://www.buzer.de/",
 	GESETZE_CO = "https://gesetze.co/",
+	JURAFUCHS = "https://gesetze.jurafuchs.de/gesetz/",
 }
 
 enum DejureUrl {
