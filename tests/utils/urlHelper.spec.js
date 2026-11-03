@@ -931,3 +931,72 @@ test.each([
 test.each(["jurafuchs", "gesetze.co"])("getLawUrlByProvider %s: mehrdeutiges Basiskürzel ohne Land liefert nichts", (provider) => {
 	expect(getLawUrlByProvider("SOG", "1", provider)).toBe("");
 });
+
+// Mehrdeutige Landeskürzel ohne Bundesland führen immer zur Auswahlseite von Landesrecht.online,
+// unabhängig davon, welcher Anbieter in den Einstellungen zuerst steht
+test.each([
+	{ gesetz: `POG`, expected: `https://landesrecht.online/POG/1` },
+	{ gesetz: `pog`, expected: `https://landesrecht.online/POG/1` },
+	{ gesetz: `PAG`, expected: `https://landesrecht.online/PAG/1` },
+	{ gesetz: `SOG`, expected: `https://landesrecht.online/SOG/1` },
+	{ gesetz: `BauO`, expected: `https://landesrecht.online/BauO/1` },
+])("getLawUrlByProviderOptions: mehrdeutiges Kürzel $gesetz -> Landesrecht.online-Auswahlseite", ({ gesetz, expected }) => {
+	for (const first of ["jurafuchs", "gesetze.co", "dejure", "landesrecht.online"]) {
+		const options = {
+			firstOption: first,
+			secondOption: "jurafuchs",
+			thirdOption: "gesetze.co",
+			forthOption: null,
+			fifthOption: null,
+			sixthOption: null,
+			seventhOption: null,
+		};
+		expect(getLawUrlByProviderOptions(gesetz, "1", options)).toBe(expected);
+	}
+});
+
+test("getLawUrlByProviderOptions: mehrdeutiges Kürzel mit Bundesland nutzt die Anbieter-Einstellungen", () => {
+	const options = {
+		firstOption: "jurafuchs",
+		secondOption: null,
+		thirdOption: null,
+		forthOption: null,
+		fifthOption: null,
+		sixthOption: null,
+		seventhOption: null,
+	};
+	expect(getLawUrlByProviderOptions("POG RP", "1", options)).toBe("https://gesetze.jurafuchs.de/gesetz/pog-rp/1");
+	expect(getLawUrlByProviderOptions("PAG TH", "1", options)).toBe("https://gesetze.jurafuchs.de/gesetz/pag-th/1");
+	expect(getLawUrlByProviderOptions("SOG LSA", "1", options)).toBe("https://gesetze.jurafuchs.de/gesetz/sog-lsa/1");
+});
+
+test("getLawUrlByProviderOptions: eindeutiges Landeskürzel ohne Bundesland nutzt weiter die Anbieter-Einstellungen", () => {
+	const options = {
+		firstOption: "jurafuchs",
+		secondOption: null,
+		thirdOption: null,
+		forthOption: null,
+		fifthOption: null,
+		sixthOption: null,
+		seventhOption: null,
+	};
+	expect(getLawUrlByProviderOptions("ASOG", "1", options)).toBe("https://gesetze.jurafuchs.de/gesetz/asog-bln/1");
+});
+
+test("getLawUrlByProviderOptions: Bundesgesetze werden von der Auswahlseiten-Regel nicht berührt", () => {
+	const options = {
+		firstOption: "jurafuchs",
+		secondOption: null,
+		thirdOption: null,
+		forthOption: null,
+		fifthOption: null,
+		sixthOption: null,
+		seventhOption: null,
+	};
+	expect(getLawUrlByProviderOptions("AGG", "1", options)).toBe("https://gesetze.jurafuchs.de/gesetz/agg/1");
+	expect(getLawUrlByProviderOptions("AO", "1", options)).toBe("https://gesetze.jurafuchs.de/gesetz/ao/1");
+});
+
+test("getLawUrlByProvider landesrecht.online: mehrdeutiges Kürzel liefert die Auswahlseite mit Norm", () => {
+	expect(getLawUrlByProvider("POG", "12a", "landesrecht.online")).toBe("https://landesrecht.online/POG/12a");
+});

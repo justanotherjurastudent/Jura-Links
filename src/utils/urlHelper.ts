@@ -230,6 +230,11 @@ function getLandesrechtOnlineUrl(
 		return "";
 	}
 
+	const ambiguousUrl = getAmbiguousLandesrechtUrl(gesetz, norm);
+	if (ambiguousUrl) {
+		return ambiguousUrl;
+	}
+
 	const baseUrl = "https://landesrecht.online/";
 	const originalGesetz = gesetz;
 	gesetz = gesetz.toLowerCase();
@@ -456,6 +461,68 @@ const stateTokenToCode: Map<string, string> = new Map(
 );
 const stateCodes = new Set(stateTokenToCode.values());
 
+// Basiskürzel von Landesgesetzen, die in mehreren Bundesländern vorkommen (z.B. "pog", "pag", "sog").
+// Schlüssel: kleingeschriebenes Basiskürzel, Wert: Schreibweise für die URL (z.B. "POG").
+// Wird beim ersten Zugriff aus dem Landesrecht.online-Datensatz aufgebaut.
+let ambiguousLandesrechtBases: Map<string, string> | null = null;
+
+function getAmbiguousLandesrechtBases(): Map<string, string> {
+	if (ambiguousLandesrechtBases) {
+		return ambiguousLandesrechtBases;
+	}
+
+	const statesByBase = new Map<string, { display: string; states: Set<string> }>();
+	for (const [bundesland, laws] of Object.entries(Landesgesetze_mit_Namen)) {
+		const ownCode = Object.keys(bundeslandAbbreviations).find(
+			(abbr) => bundeslandAbbreviations[abbr] === bundesland
+		)?.toLowerCase();
+
+		for (const key of Object.keys(laws)) {
+			// Länder-Token des eigenen Bundeslands vorne oder hinten entfernen ("POG NRW" -> "POG", "BW AGBMG" -> "AGBMG")
+			let tokens = key.trim().split(/\s+/);
+			if (tokens.length > 1) {
+				if (stateTokenToCode.get((tokens[tokens.length - 1] ?? "").toLowerCase()) === ownCode) {
+					tokens = tokens.slice(0, -1);
+				} else if (stateTokenToCode.get((tokens[0] ?? "").toLowerCase()) === ownCode) {
+					tokens = tokens.slice(1);
+				}
+			}
+			const base = tokens.join(" ");
+			const lower = base.toLowerCase();
+			const entry = statesByBase.get(lower) ?? { display: base, states: new Set<string>() };
+			entry.states.add(bundesland);
+			statesByBase.set(lower, entry);
+		}
+	}
+
+	ambiguousLandesrechtBases = new Map();
+	for (const [lower, { display, states }] of statesByBase) {
+		// Kürzel, die auch ein Bundes-/EU-Gesetz bezeichnen, bleiben beim normalen Lookup (z.B. "AGG")
+		const isFederal =
+			dejureGesetzeLowerCased.includes(lower) ||
+			jurafuchsGesetzeLowerCased[lower]?.jurisdiction === "DE" ||
+			jurafuchsGesetzeLowerCased[lower]?.jurisdiction === "EU";
+		if (states.size > 1 && !isFederal && !/[\s/?#]/.test(display)) {
+			ambiguousLandesrechtBases.set(lower, display);
+		}
+	}
+	return ambiguousLandesrechtBases;
+}
+
+// Landesrecht.online zeigt für ein Kürzel, das in mehreren Bundesländern existiert, eine Auswahlseite
+// ("Ein Gesetz mit der Abkürzung POG existiert in diesen 5 Bundesländern") und gibt die Norm an die Links weiter.
+// Bei Kürzeln ohne Landesangabe führt der Link deshalb immer dorthin, unabhängig von den Anbieter-Einstellungen.
+function getAmbiguousLandesrechtUrl(gesetz: string, norm: string): string {
+	if (typeof gesetz !== "string" || typeof norm !== "string" || norm.trim().length === 0) {
+		return "";
+	}
+	const display = getAmbiguousLandesrechtBases().get(gesetz.trim().toLowerCase());
+	if (!display) {
+		return "";
+	}
+	return `https://landesrecht.online/${encodeURIComponent(display)}/${norm.trim()}`;
+}
+
 // Basiskürzel von Landesgesetzen, die nur in genau einem Bundesland vorkommen (z.B. "asog" -> "asog be").
 // Wird pro Datensatz einmal aufgebaut.
 const uniqueBaseIndexCache = new WeakMap<object, Record<string, unknown>>();
@@ -620,6 +687,12 @@ function getLawUrlByProviderOptions(
 	lawProviders: LawProviderOptions,
 	additionalInfo?: AdditionalInfo
 ): string {
+	// Mehrdeutiges Landeskürzel ohne Bundesland (z.B. "POG"): Auswahlseite von Landesrecht.online
+	const ambiguousUrl = getAmbiguousLandesrechtUrl(gesetz, norm);
+	if (ambiguousUrl) {
+		return ambiguousUrl;
+	}
+
 	let lawUrl = getLawUrlByProvider(
 		gesetz,
 		norm,

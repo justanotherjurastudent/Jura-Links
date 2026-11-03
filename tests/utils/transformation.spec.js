@@ -745,3 +745,24 @@ test.each([
 		expect(result).toBe(testData.expected);
 	}
 );
+
+test.each([
+	{ input: `§ 1 POG`, expected: `§ [1](https://landesrecht.online/POG/1) POG` },
+	{ input: `§ 1 PAG`, expected: `§ [1](https://landesrecht.online/PAG/1) PAG` },
+	{ input: `§ 1 POG RP`, expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/pog-rp/1) POG RP` },
+	{ input: `§ 1 PAG TH`, expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/pag-th/1) PAG TH` },
+])(
+	"findAndLinkLawReferences mit Jurafuchs als erster Wahl: Landeskürzel $input",
+	(testData) => {
+		const result = findAndLinkLawReferences(testData.input, {
+			firstOption: "jurafuchs",
+			secondOption: null,
+			thirdOption: null,
+			forthOption: null,
+			fifthOption: null,
+			sixthOption: null,
+			seventhOption: null,
+		});
+		expect(result).toBe(testData.expected);
+	}
+);

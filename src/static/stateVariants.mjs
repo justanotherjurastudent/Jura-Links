@@ -55,3 +55,4 @@ export function quote(value) {
 export function isUsableKey(key) {
 	return key.length > 0 && !/[[\](){}|*+?^$\\]/.test(key);
 }
+
