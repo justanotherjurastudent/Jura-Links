@@ -6,6 +6,7 @@ import {
 	Landesgesetze_mit_NamenLowerCased,
 } from "../static/Landesgesetze_mit_Namen";
 import { rewisGesetzeLowerCased } from "../static/rewisGesetze";
+import { gesetzeCoGesetzeLowerCased } from "../static/gesetzeCoGesetze";
 import { LawProviderOption, LawProviderOptions } from "../types/providerOption";
 import { DejureUrl, LawProviderUrl } from "../types/url";
 
@@ -441,6 +442,37 @@ function getRewisUrl(
 	return url;
 }
 
+function getGesetzeCoUrl(
+	gesetz: string,
+	norm: string,
+	additionalInfo?: AdditionalInfo
+): string {
+	if (
+		typeof gesetz !== "string" ||
+		typeof norm !== "string" ||
+		gesetz.trim().length === 0 ||
+		norm.trim().length === 0
+	) {
+		return "";
+	}
+
+	const lawUrl = LawProviderUrl.GESETZE_CO;
+	const normalizedKey = gesetz.trim().toLowerCase();
+	const foundGesetz = gesetzeCoGesetzeLowerCased[normalizedKey];
+
+	if (!foundGesetz) {
+		return "";
+	}
+
+	// Gesetze.co verlinkt das Grundgesetz standardmäßig unter /DE/GG/Art_<norm>
+	let normSegment = norm;
+	if (foundGesetz.slug === "GG" && !norm.startsWith("Art_")) {
+		normSegment = `Art_${norm}`;
+	}
+
+	return `${lawUrl}${foundGesetz.jurisdiction}/${foundGesetz.slug}/${normSegment}`;
+}
+
 function getLawUrlByProvider(
 	gesetz: string,
 	norm: string,
@@ -465,6 +497,10 @@ function getLawUrlByProvider(
 
 	if (lawProvider === "rewis") {
 		return getRewisUrl(gesetz, norm, additionalInfo) || "";
+	}
+
+	if (lawProvider === "gesetze.co") {
+		return getGesetzeCoUrl(gesetz, norm, additionalInfo) || "";
 	}
 
 	return "";
@@ -514,6 +550,13 @@ function getLawUrlByProviderOptions(
 
 	if (lawProviders.fifthOption) {
 		lawUrl = getLawUrlByProvider(gesetz, norm, lawProviders.fifthOption, additionalInfo);
+		if (lawUrl) {
+			return lawUrl;
+		}
+	}
+
+	if (lawProviders.sixthOption) {
+		lawUrl = getLawUrlByProvider(gesetz, norm, lawProviders.sixthOption, additionalInfo);
 		if (lawUrl) {
 			return lawUrl;
 		}

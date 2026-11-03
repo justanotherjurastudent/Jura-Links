@@ -50,6 +50,60 @@ test.each([
 		provider: `lexmea`,
 		expected: `https://lexmea.de/gesetz/gg/art-20`,
 	},
+	{
+		gesetz: `bgb`,
+		norm: `433`,
+		provider: `gesetze.co`,
+		expected: `https://gesetze.co/DE/BGB/433`,
+	},
+	{
+		gesetz: `BGB`,
+		norm: `312g`,
+		provider: `gesetze.co`,
+		expected: `https://gesetze.co/DE/BGB/312g`,
+	},
+	{
+		gesetz: `GG`,
+		norm: `1`,
+		provider: `gesetze.co`,
+		expected: `https://gesetze.co/DE/GG/Art_1`,
+	},
+	{
+		gesetz: `gg`,
+		norm: `20a`,
+		provider: `gesetze.co`,
+		expected: `https://gesetze.co/DE/GG/Art_20a`,
+	},
+	{
+		gesetz: `DSGVO`,
+		norm: `6`,
+		provider: `gesetze.co`,
+		expected: `https://gesetze.co/EU/DSGVO/6`,
+	},
+	{
+		gesetz: `AEUV`,
+		norm: `101`,
+		provider: `gesetze.co`,
+		expected: `https://gesetze.co/EU/AEUV/101`,
+	},
+	{
+		gesetz: `AGBauGB BW`,
+		norm: `1`,
+		provider: `gesetze.co`,
+		expected: `https://gesetze.co/BW/AGBauGB/1`,
+	},
+	{
+		gesetz: `PolG NRW`,
+		norm: `1`,
+		provider: `gesetze.co`,
+		expected: `https://gesetze.co/NW/PolG_NRW/1`,
+	},
+	{
+		gesetz: `1. BImSchV`,
+		norm: `1`,
+		provider: `gesetze.co`,
+		expected: `https://gesetze.co/DE/1._BImSchV/1`,
+	},
 ])(
 	"getLawUrlByProvider: should returns $expected given $provider, $gesetz, $norm",
 	(testData) => {

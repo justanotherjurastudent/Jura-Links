@@ -432,3 +432,35 @@ test.each([
         expect(result).toBe(testData.expected);
     }
 );
+
+test.each([
+	{
+		input: `§ 433 BGB`,
+		expected: `§ [433](https://gesetze.co/DE/BGB/433) BGB`,
+	},
+	{
+		input: `Art. 1 GG`,
+		expected: `Art. [1](https://gesetze.co/DE/GG/Art_1) GG`,
+	},
+	{
+		input: `Art. 6 I DSGVO`,
+		expected: `Art. [6 I](https://gesetze.co/EU/DSGVO/6) DSGVO`,
+	},
+	{
+		input: `§ 1 PolG NRW`,
+		expected: `§ [1](https://gesetze.co/NW/PolG_NRW/1) PolG NRW`,
+	},
+])(
+	"findAndLinkLawReferences with Gesetze.co: should transform $input to $expected",
+	(testData) => {
+		const result = findAndLinkLawReferences(testData.input, {
+			firstOption: "gesetze.co",
+			secondOption: null,
+			thirdOption: null,
+			forthOption: null,
+			fifthOption: null,
+			sixthOption: null,
+		});
+		expect(result).toBe(testData.expected);
+	}
+);
