@@ -202,7 +202,7 @@ async function main() {
 
 // Nicht-ASCII-Zeichen wie in den übrigen Datendateien als \uXXXX schreiben
 function quote(value) {
-	return JSON.stringify(value).replace(/[\u007f-￿]/g, (char) => `\\u${char.charCodeAt(0).toString(16).padStart(4, "0")}`);
+	return JSON.stringify(value).replace(/[\u007f-\uffff]/g, (char) => `\\u${char.charCodeAt(0).toString(16).padStart(4, "0")}`);
 }
 
 function render(entries) {
