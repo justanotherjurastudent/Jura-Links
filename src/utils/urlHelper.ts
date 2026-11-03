@@ -8,7 +8,12 @@ import {
 import { rewisGesetzeLowerCased } from "../static/rewisGesetze";
 import { gesetzeCoGesetzeLowerCased } from "../static/gesetzeCoGesetze";
 import { jurafuchsGesetzeLowerCased } from "../static/jurafuchsGesetze";
-import { LawProviderOption, LawProviderOptions } from "../types/providerOption";
+import {
+	LawProviderOption,
+	LawProviderOptions,
+	StateLawProviderOption,
+	StateLawProviderOptions,
+} from "../types/providerOption";
 import { DejureUrl, LawProviderUrl } from "../types/url";
 
 // Zusätzliche Informationsstruktur für Norm-Verlinkung (statt any für Sicherheit/Lesbarkeit)
@@ -643,6 +648,72 @@ function getJurafuchsUrl(gesetz: string, norm: string): string {
 	return `${LawProviderUrl.JURAFUCHS}${foundGesetz.slug}/${norm}`;
 }
 
+function getJurafuchsStateLawUrl(gesetz: string, norm: string): string {
+	if (
+		typeof gesetz !== "string" ||
+		typeof norm !== "string" ||
+		gesetz.trim().length === 0 ||
+		norm.trim().length === 0
+	) {
+		return "";
+	}
+
+	const foundGesetz = findStateAwareEntry(jurafuchsGesetzeLowerCased, gesetz.trim().toLowerCase());
+	if (!foundGesetz || foundGesetz.jurisdiction === "DE") {
+		return "";
+	}
+
+	return `${LawProviderUrl.JURAFUCHS}${foundGesetz.slug}/${norm}`;
+}
+
+function getGesetzeCoStateLawUrl(
+	gesetz: string,
+	norm: string,
+	additionalInfo?: AdditionalInfo
+): string {
+	if (
+		typeof gesetz !== "string" ||
+		typeof norm !== "string" ||
+		gesetz.trim().length === 0 ||
+		norm.trim().length === 0
+	) {
+		return "";
+	}
+
+	const lawUrl = LawProviderUrl.GESETZE_CO;
+	const normalizedKey = gesetz.trim().toLowerCase();
+	const foundGesetz = findStateAwareEntry(gesetzeCoGesetzeLowerCased, normalizedKey);
+
+	if (!foundGesetz || foundGesetz.jurisdiction === "DE") {
+		return "";
+	}
+
+	let normSegment = norm;
+	if (foundGesetz.slug === "GG" && !norm.startsWith("Art_")) {
+		normSegment = `Art_${norm}`;
+	}
+
+	return `${lawUrl}${foundGesetz.jurisdiction}/${foundGesetz.slug}/${normSegment}`;
+}
+
+function getStateLawUrl(
+	gesetz: string,
+	norm: string,
+	provider: StateLawProviderOption,
+	additionalInfo?: AdditionalInfo
+): string {
+	if (provider === "landesrecht.online") {
+		return getLandesrechtOnlineUrl(gesetz, norm) || "";
+	}
+	if (provider === "jurafuchs") {
+		return getJurafuchsStateLawUrl(gesetz, norm) || "";
+	}
+	if (provider === "gesetze.co") {
+		return getGesetzeCoStateLawUrl(gesetz, norm, additionalInfo) || "";
+	}
+	return "";
+}
+
 function getLawUrlByProvider(
 	gesetz: string,
 	norm: string,
@@ -684,12 +755,29 @@ function getLawUrlByProviderOptions(
 	gesetz: string,
 	norm: string,
 	lawProviders: LawProviderOptions,
-	additionalInfo?: AdditionalInfo
+	additionalInfo?: AdditionalInfo,
+	stateLawProviders?: StateLawProviderOptions
 ): string {
 	// Mehrdeutiges Landeskürzel ohne Bundesland (z.B. "POG"): Auswahlseite von Landesrecht.online
 	const ambiguousUrl = getAmbiguousLandesrechtUrl(gesetz, norm);
 	if (ambiguousUrl) {
 		return ambiguousUrl;
+	}
+
+	if (stateLawProviders) {
+		const stateOptions: (StateLawProviderOption | null)[] = [
+			stateLawProviders.firstOption,
+			stateLawProviders.secondOption,
+			stateLawProviders.thirdOption,
+		];
+		for (const provider of stateOptions) {
+			if (provider) {
+				const stateUrl = getStateLawUrl(gesetz, norm, provider, additionalInfo);
+				if (stateUrl) {
+					return stateUrl;
+				}
+			}
+		}
 	}
 
 	let lawUrl = getLawUrlByProvider(
@@ -752,4 +840,4 @@ function getLawUrlByProviderOptions(
 	return "";
 }
 
-export { getLawUrlByProvider, getLawUrlByProviderOptions };
+export { getLawUrlByProvider, getLawUrlByProviderOptions, getStateLawUrl };

@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { getLawUrlByProvider, getLawUrlByProviderOptions } from "../../src/utils/urlHelper";
+import { getLawUrlByProvider, getLawUrlByProviderOptions, getStateLawUrl } from "../../src/utils/urlHelper";
 
 test.each([
 	{
@@ -1013,4 +1013,86 @@ test("getLawUrlByProviderOptions: Bundesgesetze werden von der Auswahlseiten-Reg
 
 test("getLawUrlByProvider landesrecht.online: mehrdeutiges Kürzel liefert die Auswahlseite mit Norm", () => {
 	expect(getLawUrlByProvider("POG", "12a", "landesrecht.online")).toBe("https://landesrecht.online/POG/12a");
+});
+
+test("stateLawProviders: User kann Reihenfolge der Landesrechtsanbieter frei wählen", () => {
+	const generalOptions = {
+		firstOption: "dejure",
+		secondOption: "buzer",
+		thirdOption: null,
+		forthOption: null,
+		fifthOption: null,
+		sixthOption: null,
+		seventhOption: null,
+	};
+
+	// 1. Wahl Jurafuchs
+	const jurafuchsFirst = {
+		firstOption: "jurafuchs",
+		secondOption: "gesetze.co",
+		thirdOption: "landesrecht.online",
+	};
+	expect(getLawUrlByProviderOptions("POG RP", "1", generalOptions, undefined, jurafuchsFirst)).toBe(
+		"https://gesetze.jurafuchs.de/gesetz/pog-rp/1"
+	);
+
+	// 1. Wahl Gesetze.co
+	const gesetzeCoFirst = {
+		firstOption: "gesetze.co",
+		secondOption: "jurafuchs",
+		thirdOption: "landesrecht.online",
+	};
+	expect(getLawUrlByProviderOptions("POG RP", "1", generalOptions, undefined, gesetzeCoFirst)).toBe(
+		"https://gesetze.co/RP/POG/1"
+	);
+
+	// 1. Wahl Landesrecht.online
+	const landesrechtFirst = {
+		firstOption: "landesrecht.online",
+		secondOption: "jurafuchs",
+		thirdOption: "gesetze.co",
+	};
+	expect(getLawUrlByProviderOptions("POG RP", "1", generalOptions, undefined, landesrechtFirst)).toBe(
+		"https://landesrecht.online/RP/POG/1"
+	);
+});
+
+test("stateLawProviders: Bundesgesetze wie BGB werden nicht von Landesrechtsanbietern abgefangen", () => {
+	const generalOptions = {
+		firstOption: "dejure",
+		secondOption: "buzer",
+		thirdOption: null,
+		forthOption: null,
+		fifthOption: null,
+		sixthOption: null,
+		seventhOption: null,
+	};
+	const stateOptions = {
+		firstOption: "jurafuchs",
+		secondOption: "gesetze.co",
+		thirdOption: "landesrecht.online",
+	};
+	// Obwohl Jurafuchs und Gesetze.co BGB haben, greift dejure als 1. Bundesrechtsanbieter
+	expect(getLawUrlByProviderOptions("BGB", "823", generalOptions, undefined, stateOptions)).toBe(
+		"https://www.dejure.org/gesetze/bgb/823.html"
+	);
+	expect(getLawUrlByProviderOptions("StGB", "211", generalOptions, undefined, stateOptions)).toBe(
+		"https://www.dejure.org/gesetze/stgb/211.html"
+	);
+});
+
+test("getStateLawUrl: liefert URL nur für Landesgesetze und leer für Bundesgesetze", () => {
+	expect(getStateLawUrl("SOG LSA", "1", "jurafuchs")).toBe(
+		"https://gesetze.jurafuchs.de/gesetz/sog-lsa/1"
+	);
+	expect(getStateLawUrl("SOG LSA", "1", "gesetze.co")).toBe(
+		"https://gesetze.co/ST/SOG_LSA/1"
+	);
+	expect(getStateLawUrl("SOG LSA", "1", "landesrecht.online")).toBe(
+		"https://landesrecht.online/ST/SOG/1"
+	);
+	// Bundesgesetze dürfen über getStateLawUrl nicht aufgelöst werden
+	expect(getStateLawUrl("BGB", "823", "jurafuchs")).toBe("");
+	expect(getStateLawUrl("BGB", "823", "gesetze.co")).toBe("");
+	expect(getStateLawUrl("BGB", "823", "landesrecht.online")).toBe("");
 });

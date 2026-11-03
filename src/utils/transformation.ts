@@ -1,5 +1,5 @@
 import { DejureUrl } from "../types/url";
-import { LawProviderOptions } from "../types/providerOption";
+import { LawProviderOptions, StateLawProviderOptions } from "../types/providerOption";
 import {
 	caseRegex,
 	journalRegex,
@@ -109,7 +109,8 @@ function findAndLinkLawReferences(
 		fifthOption: "rewis",
 		sixthOption: "gesetze.co",
 		seventhOption: "jurafuchs",
-	}
+	},
+	stateLawProviderOptions?: StateLawProviderOptions
 ): string {
 	if (!lawRegex.test(fileContent)) {
 		return fileContent;
@@ -144,7 +145,8 @@ function findAndLinkLawReferences(
 			gesetz,
 			firstNorm,
 			lawProviderOptions,
-			firstNormGroups
+			firstNormGroups,
+			stateLawProviderOptions
 		);
 
 		// Füge den Link für die erste Norm hinzu
@@ -172,7 +174,8 @@ function findAndLinkLawReferences(
 					gesetz,
 					norm,
 					lawProviderOptions,
-					additionalInfo // Übergabe der Details
+					additionalInfo, // Übergabe der Details
+					stateLawProviderOptions
 				);
 
 				// Ersetze den gesamten chainMatch wie bisher
@@ -204,7 +207,8 @@ function getHyperlinkForLawIfExists(
 	gesetz: string,
 	norm: string,
 	lawProviderOptions: LawProviderOptions,
-	groups?: LocalAdditionalInfo
+	groups?: LocalAdditionalInfo,
+	stateLawProviderOptions?: StateLawProviderOptions
 ): string {
 	// Extrahiere relevante Informationen aus den Gruppen
 	let additionalInfo: LocalAdditionalInfo | undefined = undefined;
@@ -254,7 +258,8 @@ function getHyperlinkForLawIfExists(
 			...(additionalInfo.satz ? { satz: additionalInfo.satz } : {}),
 			...(additionalInfo.nr ? { nr: additionalInfo.nr } : {}),
 			...(additionalInfo.isArticle !== undefined ? { isArticle: additionalInfo.isArticle } : {}),
-		} || undefined
+		} || undefined,
+		stateLawProviderOptions
 	);
 	linkCount++;
 	if (!lawUrl) return normGroup;

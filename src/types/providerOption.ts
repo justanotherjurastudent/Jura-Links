@@ -1,3 +1,14 @@
+type StateLawProviderOption =
+	| "landesrecht.online"
+	| "jurafuchs"
+	| "gesetze.co";
+
+type StateLawProviderOptions = {
+	firstOption: StateLawProviderOption;
+	secondOption: StateLawProviderOption | null;
+	thirdOption: StateLawProviderOption | null;
+};
+
 type LawProviderOption =
 	| "dejure"
 	| "buzer"
@@ -17,4 +28,9 @@ type LawProviderOptions = {
 	seventhOption: LawProviderOption | null;
 };
 
-export type { LawProviderOption, LawProviderOptions };
+export type {
+	StateLawProviderOption,
+	StateLawProviderOptions,
+	LawProviderOption,
+	LawProviderOptions,
+};

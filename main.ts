@@ -10,6 +10,7 @@ import {
 import {
 	LawProviderSettings,
 	DEFAULT_SETTINGS,
+	DEFAULT_STATE_LAW_PROVIDER_OPTIONS,
 	LawProviderSettingTab,
 } from "./src/view/settings";
 import {
@@ -24,11 +25,6 @@ export default class LegalReferencePlugin extends Plugin {
 
 	async onload() {
 		await this.loadSettings();
-
-		if (this.settings.lawProviderOptions.firstOption !== "landesrecht.online") {
-			this.settings.lawProviderOptions.firstOption = "landesrecht.online";
-			await this.saveSettings();
-		}
 
 		this.addSettingTab(new LawProviderSettingTab(this.app, this));
 		this.registerView(
@@ -81,11 +77,28 @@ export default class LegalReferencePlugin extends Plugin {
 		this.settings = {
 			...DEFAULT_SETTINGS,
 			...(data ?? {}),
+			stateLawProviderOptions: {
+				...DEFAULT_STATE_LAW_PROVIDER_OPTIONS,
+				...(data?.stateLawProviderOptions ?? {}),
+			},
 			lawProviderOptions: {
 				...DEFAULT_SETTINGS.lawProviderOptions,
 				...(data?.lawProviderOptions ?? {}),
 			},
 		};
+
+		// Migration: Falls aus einer früheren Version noch landesrecht.online in lawProviderOptions.firstOption steht
+		if (!data?.stateLawProviderOptions && data?.lawProviderOptions?.firstOption === "landesrecht.online") {
+			this.settings.lawProviderOptions = {
+				firstOption: data.lawProviderOptions.secondOption ?? "dejure",
+				secondOption: data.lawProviderOptions.thirdOption ?? "lexmea",
+				thirdOption: data.lawProviderOptions.forthOption ?? "buzer",
+				forthOption: data.lawProviderOptions.fifthOption ?? "rewis",
+				fifthOption: data.lawProviderOptions.sixthOption ?? "gesetze.co",
+				sixthOption: data.lawProviderOptions.seventhOption ?? "jurafuchs",
+				seventhOption: null,
+			};
+		}
 	}
 
 	async saveSettings() {
@@ -136,7 +149,8 @@ export default class LegalReferencePlugin extends Plugin {
 	
 		let processedContent = findAndLinkLawReferences(
 			fileContent,
-			this.settings.lawProviderOptions
+			this.settings.lawProviderOptions,
+			this.settings.stateLawProviderOptions
 		);
 		processedContent = findAndLinkDrucksacheReferences(processedContent);
 		processedContent = findAndLinkCaseReferences(processedContent);

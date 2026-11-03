@@ -766,3 +766,50 @@ test.each([
 		expect(result).toBe(testData.expected);
 	}
 );
+
+test("findAndLinkLawReferences: State-Law-Provider Reihenfolge steuert Verlinkung von Landesgesetzen", () => {
+	const generalOptions = {
+		firstOption: "dejure",
+		secondOption: "buzer",
+		thirdOption: null,
+		forthOption: null,
+		fifthOption: null,
+		sixthOption: null,
+		seventhOption: null,
+	};
+
+	// Mit Jurafuchs als 1. Landesrechtsanbieter
+	const jurafuchsFirst = {
+		firstOption: "jurafuchs",
+		secondOption: "landesrecht.online",
+		thirdOption: "gesetze.co",
+	};
+	expect(findAndLinkLawReferences("§ 1 SOG LSA", generalOptions, jurafuchsFirst)).toBe(
+		"§ [1](https://gesetze.jurafuchs.de/gesetz/sog-lsa/1) SOG LSA"
+	);
+
+	// Mit Gesetze.co als 1. Landesrechtsanbieter
+	const gesetzeCoFirst = {
+		firstOption: "gesetze.co",
+		secondOption: "jurafuchs",
+		thirdOption: "landesrecht.online",
+	};
+	expect(findAndLinkLawReferences("§ 1 SOG LSA", generalOptions, gesetzeCoFirst)).toBe(
+		"§ [1](https://gesetze.co/ST/SOG_LSA/1) SOG LSA"
+	);
+
+	// Mit Landesrecht.online als 1. Landesrechtsanbieter
+	const landesrechtFirst = {
+		firstOption: "landesrecht.online",
+		secondOption: "jurafuchs",
+		thirdOption: "gesetze.co",
+	};
+	expect(findAndLinkLawReferences("§ 1 SOG LSA", generalOptions, landesrechtFirst)).toBe(
+		"§ [1](https://landesrecht.online/ST/SOG/1) SOG LSA"
+	);
+
+	// Bundesgesetz BGB geht dennoch an Dejure
+	expect(findAndLinkLawReferences("§ 823 I BGB", generalOptions, jurafuchsFirst)).toBe(
+		"§ [823 I](https://www.dejure.org/gesetze/bgb/823.html) BGB"
+	);
+});
