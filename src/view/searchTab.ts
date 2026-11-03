@@ -63,6 +63,7 @@ export class SearchTabView extends ItemView {
 		new Setting(controlsContainer).setName("Jura-Links").setHeading();
 
 		// Suchfeld
+		let searchTimeout: number | undefined;
 		new Setting(controlsContainer)
 			.setName("Gesetzessuche")
 			.setDesc(
@@ -72,7 +73,8 @@ export class SearchTabView extends ItemView {
 				text.inputEl.addClass("setting-item");
 				text.onChange((value) => {
 					// Suche soll erst nach 0,5 Sekunde nach letzter Eingabe starten
-					window.setTimeout(() => {
+					if (searchTimeout) window.clearTimeout(searchTimeout);
+					searchTimeout = window.setTimeout(() => {
 						this.searchLaw(value);
 					}, 500);
 				});

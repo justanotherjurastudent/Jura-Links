@@ -30,7 +30,7 @@ function getSingleLawRegexString(suffix: string): string {
 // mit Unicode-Zeichen (Umlauten wie Ü) nicht korrekt funktioniert
 export const lawRegex = new RegExp(
 	`(?![^[]*])` +
-	`(?<p1>§+|Art\\.|Artikel|Paragraph|Paragraf)\\s*(?<p2>${getSingleLawRegexString(
+	`(?<p1>§+|Art\\.|Artikel|Paragraph(?:en)?|Paragraf(?:en)?)\\s*(?<p2>${getSingleLawRegexString(
 		"_first"
 	)}${VerbinderGesetz}${getSingleLawRegexString(
 		"_last"

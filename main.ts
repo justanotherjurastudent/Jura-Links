@@ -78,7 +78,14 @@ export default class LegalReferencePlugin extends Plugin {
 
 	async loadSettings() {
 		const data = (await this.loadData()) as Partial<LawProviderSettings> | null;
-		this.settings = Object.assign({}, DEFAULT_SETTINGS, data ?? {});
+		this.settings = {
+			...DEFAULT_SETTINGS,
+			...(data ?? {}),
+			lawProviderOptions: {
+				...DEFAULT_SETTINGS.lawProviderOptions,
+				...(data?.lawProviderOptions ?? {}),
+			},
+		};
 	}
 
 	async saveSettings() {

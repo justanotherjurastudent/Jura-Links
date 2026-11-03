@@ -73,8 +73,8 @@ def main():
             print(f"Extracted {len(file_abbreviations)} abbreviations from {filename}")
             all_abbreviations.extend(file_abbreviations)
     
-    # Entferne Duplikate und sortiere nach Länge (längste zuerst)
-    unique_abbreviations = sorted(list(set(all_abbreviations)), key=len, reverse=True)
+    # Entferne Duplikate und sortiere deterministisch nach Länge (längste zuerst) und sekundär alphabetisch
+    unique_abbreviations = sorted(set(all_abbreviations), key=lambda x: (-len(x), x.lower(), x))
     
     # Ersetzungen in Abkürzungen: Doppelte Anführungszeichen zu einfachen, Unterstriche zu Leerzeichen
     unique_abbreviations = [abbr.replace('"', "'").replace('_', ' ') for abbr in unique_abbreviations]

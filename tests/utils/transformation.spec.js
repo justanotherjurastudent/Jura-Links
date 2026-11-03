@@ -74,6 +74,18 @@ test.each([
 		expected: `Paragraph [1](https://landesrecht.online/ST/SOG/1) SOG LSA`,
 	},
 	{
+		input: `Paragraphen 242, 243 BGB`,
+		expected: `Paragraphen [242](https://www.dejure.org/gesetze/bgb/242.html), [243](https://www.dejure.org/gesetze/bgb/243.html) BGB`,
+	},
+	{
+		input: `§ 1 AbgG Saar`,
+		expected: `§ [1](https://landesrecht.online/SL/AbgG/1) AbgG Saar`,
+	},
+	{
+		input: `§ 1 OBG Thür`,
+		expected: `§ [1](https://landesrecht.online/TH/OBG/1) OBG Thür`,
+	},
+	{
 		input: `§ 1 BBesGÜB 2018/19/20`,
 		expected: `§ 1 BBesGÜB 2018/19/20`,
 	},
@@ -557,6 +569,10 @@ test.each([
 	{
 		input: `§ 1 SOG LSA`,
 		expected: `§ [1](https://gesetze.co/ST/SOG_LSA/1) SOG LSA`,
+	},
+	{
+		input: `§ 1 AGBauGB Ba-Wü`,
+		expected: `§ [1](https://gesetze.co/BW/AGBauGB/1) AGBauGB Ba-Wü`,
 	},
 ])(
 	"findAndLinkLawReferences with Gesetze.co: should transform $input to $expected",

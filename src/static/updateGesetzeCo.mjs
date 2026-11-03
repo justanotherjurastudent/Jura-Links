@@ -33,7 +33,7 @@ const JURISDICTIONS = [
 ];
 
 const STATE_VARIANTS = {
-	BW: ["BW", "BadW", "Bawü", "Bawue"],
+	BW: ["BW", "BadW", "Bawü", "Bawue", "Ba-Wü"],
 	BY: ["BY", "Bay"],
 	BE: ["BE", "Bln"],
 	BB: ["BB", "Bbg"],

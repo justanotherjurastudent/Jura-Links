@@ -47,35 +47,35 @@ const bundeslandVariantTokens: { [canonicalAbbr: string]: string[] } = {
 	// Nordrhein-Westfalen
 	NW: ["nrw", "nw"],
 	// Baden-Württemberg (gelegentlich ohne Bindestrich oder vereinfacht)
-	BW: ["badw", "bawü", "bawue"],
+	BW: ["badw", "bawü", "bawue", "ba-wü"],
 	// Berlin
 	BE: ["bln", "be"],
 	// Sachsen-Anhalt
-	ST: ["lsa", "sa"],
+	ST: ["lsa", "sa", "st"],
 	// Mecklenburg-Vorpommern
-	MV: ["m-v"],
+	MV: ["m-v", "mv"],
 	// Rheinland-Pfalz
 	RP: ["rlp", "rp"],
 	// Saarland
-	SL: ["sl"],
+	SL: ["saar", "sl"],
 	// Thüringen
-	TH: ["th"],
-	//Bremen
-	HB: ["hb"],
+	TH: ["thür", "th"],
+	// Bremen
+	HB: ["brem", "hb"],
 	// Hamburg
-	HH: ["hh"],
-	//Bayern
+	HH: ["hmb", "ha", "hh"],
+	// Bayern
 	BY: ["bay", "by"],
-	//Hessen
-	HE: ["hes"],
-	//Schleswig-Holstein
-	SH: ["sh", "schl.-h."],
-	//Niedersachsen
+	// Hessen
+	HE: ["hes", "he"],
+	// Schleswig-Holstein
+	SH: ["schl.-h.", "sh"],
+	// Niedersachsen
 	NI: ["nds", "ni"],
-	//Brandenburg
-	BB: ["bb"],
-	//Sachsen
-	SN: ["sn"],
+	// Brandenburg
+	BB: ["bbg", "bb"],
+	// Sachsen
+	SN: ["sächs", "sn"],
 };
 
 const normalizeBundeslandToken = (token: string): string =>
@@ -275,13 +275,16 @@ function getLandesrechtOnlineUrl(
 				return false;
 			};
 
-			// Fall 1: Führendes Kürzel -> verschiebe ans Ende und teste + ersetze ggf. kanonisch -> Varianten
+			// Fall 1: Führendes Kürzel -> verschiebe ans Ende und teste + ersetze ggf. kanonisch <-> Varianten
 			if (first && allKnown.has(first)) {
 				const base = tokens.slice(1);
-				// Wenn first kanonisch ist und Varianten existieren -> alle Varianten testen
-				const canonicalEntry = Object.entries(bundeslandVariantTokens).find(([abbr]) => abbr.toLowerCase() === first);
-				const variantList = canonicalEntry ? canonicalEntry[1] : [];
-				const candidates = [first, ...variantList].map(x => [...base, x].join(" "));
+				const canonicalEntry = Object.entries(bundeslandVariantTokens).find(
+					([abbr, variants]) => abbr.toLowerCase() === first || variants.some(v => v.toLowerCase() === first)
+				);
+				const allTokenVariants = canonicalEntry
+					? [canonicalEntry[0].toLowerCase(), ...canonicalEntry[1].map(v => v.toLowerCase())]
+					: [first];
+				const candidates = allTokenVariants.map(x => [...base, x].join(" "));
 				if (testKeys(candidates)) {
 					break;
 				}
@@ -295,19 +298,21 @@ function getLandesrechtOnlineUrl(
 					foundGesetzKey = baseKey;
 					break;
 				}
-				const canonicalEntry = Object.entries(bundeslandVariantTokens).find(([abbr]) => abbr.toLowerCase() === last);
-				const variantList = canonicalEntry ? canonicalEntry[1] : [];
-				const candidates = [last, ...variantList].map(x => [x, ...base].join(" "));
-				if (testKeys(candidates)) {
+				const canonicalEntry = Object.entries(bundeslandVariantTokens).find(
+					([abbr, variants]) => abbr.toLowerCase() === last || variants.some(v => v.toLowerCase() === last)
+				);
+				const allTokenVariants = canonicalEntry
+					? [canonicalEntry[0].toLowerCase(), ...canonicalEntry[1].map(v => v.toLowerCase())]
+					: [last];
+				const startCandidates = allTokenVariants.map(x => [x, ...base].join(" "));
+				if (testKeys(startCandidates)) {
 					break;
 				}
 
-				// Zusätzlich: Prüfe Variante am Ende (z.B. Eingabe "polg nw" -> Dataset "polg nrw")
-				if (variantList.length) {
-					const endCandidates = variantList.map(v => [...base, v].join(" "));
-					if (testKeys(endCandidates)) {
-						break;
-					}
+				// Zusätzlich: Prüfe kanonische und alternative Varianten am Ende (z.B. Eingabe "abgg saar" -> Dataset "abgg sl")
+				const endCandidates = allTokenVariants.map(v => [...base, v].join(" "));
+				if (testKeys(endCandidates)) {
+					break;
 				}
 			}
 
