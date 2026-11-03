@@ -315,6 +315,62 @@ test.each([
 		expected: `https://landesrecht.online/BY/PAG/1`,
 		description: "PAG BY should resolve to Bayern Polizeiaufgabengesetz"
 	},
+	{
+		gesetz: `BbgKVerf`,
+		norm: `1`,
+		provider: `landesrecht.online`,
+		expected: `https://landesrecht.online/BB/BbgKVerf/1`,
+		description: "BbgKVerf should resolve to Brandenburg"
+	},
+	{
+		gesetz: `BremGebBeitrG`,
+		norm: `1`,
+		provider: `landesrecht.online`,
+		expected: `https://landesrecht.online/HB/BremGebBeitrG/1`,
+		description: "BremGebBeitrG should resolve to Bremen"
+	},
+	{
+		gesetz: `HmbDG`,
+		norm: `1`,
+		provider: `landesrecht.online`,
+		expected: `https://landesrecht.online/HH/HmbDG/1`,
+		description: "HmbDG should resolve to Hamburg"
+	},
+	{
+		gesetz: `HessAbgG`,
+		norm: `1`,
+		provider: `landesrecht.online`,
+		expected: `https://landesrecht.online/HE/HessAbgG/1`,
+		description: "HessAbgG should resolve to Hessen"
+	},
+	{
+		gesetz: `GGO NI`,
+		norm: `1`,
+		provider: `landesrecht.online`,
+		expected: `https://landesrecht.online/NI/GGO/1`,
+		description: "GGO NI should resolve to Niedersachsen"
+	},
+	{
+		gesetz: `AbgG SL`,
+		norm: `1`,
+		provider: `landesrecht.online`,
+		expected: `https://landesrecht.online/SL/AbgG/1`,
+		description: "AbgG SL should resolve to Saarland"
+	},
+	{
+		gesetz: `GO SN`,
+		norm: `1`,
+		provider: `landesrecht.online`,
+		expected: `https://landesrecht.online/SN/GO/1`,
+		description: "GO SN should resolve to Sachsen"
+	},
+	{
+		gesetz: `BauVorlVO SH`,
+		norm: `1`,
+		provider: `landesrecht.online`,
+		expected: `https://landesrecht.online/SH/BauVorlVO/1`,
+		description: "BauVorlVO SH should resolve to Schleswig-Holstein"
+	},
 ])(
 	"getLawUrlByProvider landesrecht.online: $description",
 	(testData) => {
@@ -436,6 +492,142 @@ test.each([
 			"rewis",
 			testData.additionalInfo
 		);
+		expect(result).toBe(testData.expected);
+	}
+);
+
+// Tests für Gesetze.co für alle 16 Bundesländer inkl. Varianten
+test.each([
+	{
+		gesetz: `AGBauGB BW`,
+		norm: `1`,
+		expected: `https://gesetze.co/BW/AGBauGB/1`,
+		description: "Baden-Württemberg (BW)",
+	},
+	{
+		gesetz: `BayAbfG BY`,
+		norm: `1`,
+		expected: `https://gesetze.co/BY/BayAbfG/1`,
+		description: "Bayern (BY)",
+	},
+	{
+		gesetz: `ASOG Bln`,
+		norm: `1`,
+		expected: `https://gesetze.co/BE/ASOG_Bln/1`,
+		description: "Berlin (BE) with variant Bln",
+	},
+	{
+		gesetz: `ASOG BE`,
+		norm: `1`,
+		expected: `https://gesetze.co/BE/ASOG_Bln/1`,
+		description: "Berlin (BE) with canonical BE",
+	},
+	{
+		gesetz: `BbgBO BB`,
+		norm: `1`,
+		expected: `https://gesetze.co/BB/BbgBO/1`,
+		description: "Brandenburg (BB)",
+	},
+	{
+		gesetz: `AGBGB HB`,
+		norm: `1`,
+		expected: `https://gesetze.co/HB/AGBGB/1`,
+		description: "Bremen (HB)",
+	},
+	{
+		gesetz: `BezVG HH`,
+		norm: `1`,
+		expected: `https://gesetze.co/HH/BezVG/1`,
+		description: "Hamburg (HH)",
+	},
+	{
+		gesetz: `GemHVO HE`,
+		norm: `1`,
+		expected: `https://gesetze.co/HE/GemHVO/1`,
+		description: "Hessen (HE)",
+	},
+	{
+		gesetz: `AbfWG M-V`,
+		norm: `1`,
+		expected: `https://gesetze.co/MV/AbfWG_M-V/1`,
+		description: "Mecklenburg-Vorpommern (MV) with variant M-V",
+	},
+	{
+		gesetz: `AbfWG MV`,
+		norm: `1`,
+		expected: `https://gesetze.co/MV/AbfWG_M-V/1`,
+		description: "Mecklenburg-Vorpommern (MV) with canonical MV",
+	},
+	{
+		gesetz: `NAbfG NI`,
+		norm: `1`,
+		expected: `https://gesetze.co/NI/NAbfG/1`,
+		description: "Niedersachsen (NI)",
+	},
+	{
+		gesetz: `BauO NRW`,
+		norm: `1`,
+		expected: `https://gesetze.co/NW/BauO_NRW/1`,
+		description: "Nordrhein-Westfalen (NW) with variant NRW",
+	},
+	{
+		gesetz: `BauO NW`,
+		norm: `1`,
+		expected: `https://gesetze.co/NW/BauO_NRW/1`,
+		description: "Nordrhein-Westfalen (NW) with canonical NW",
+	},
+	{
+		gesetz: `AGBGB RP`,
+		norm: `1`,
+		expected: `https://gesetze.co/RP/AGBGB/1`,
+		description: "Rheinland-Pfalz (RP)",
+	},
+	{
+		gesetz: `AbgG SL`,
+		norm: `1`,
+		expected: `https://gesetze.co/SL/AbgG_SL/1`,
+		description: "Saarland (SL)",
+	},
+	{
+		gesetz: `AGImSchG SN`,
+		norm: `1`,
+		expected: `https://gesetze.co/SN/AGImSchG/1`,
+		description: "Sachsen (SN)",
+	},
+	{
+		gesetz: `AbfG LSA`,
+		norm: `1`,
+		expected: `https://gesetze.co/ST/AbfG_LSA/1`,
+		description: "Sachsen-Anhalt (ST) with variant LSA",
+	},
+	{
+		gesetz: `AbfG ST`,
+		norm: `1`,
+		expected: `https://gesetze.co/ST/AbfG_LSA/1`,
+		description: "Sachsen-Anhalt (ST) with canonical ST",
+	},
+	{
+		gesetz: `AGBGB Schl.-H.`,
+		norm: `1`,
+		expected: `https://gesetze.co/SH/AGBGB_Schl.-H./1`,
+		description: "Schleswig-Holstein (SH) with variant Schl.-H.",
+	},
+	{
+		gesetz: `AGBGB SH`,
+		norm: `1`,
+		expected: `https://gesetze.co/SH/AGBGB_Schl.-H./1`,
+		description: "Schleswig-Holstein (SH) with canonical SH",
+	},
+	{
+		gesetz: `OBG TH`,
+		norm: `1`,
+		expected: `https://gesetze.co/TH/OBG/1`,
+		description: "Thüringen (TH)",
+	},
+])(
+	"getLawUrlByProvider gesetze.co all 16 Bundesländer: $description",
+	(testData) => {
+		const result = getLawUrlByProvider(testData.gesetz, testData.norm, "gesetze.co");
 		expect(result).toBe(testData.expected);
 	}
 );

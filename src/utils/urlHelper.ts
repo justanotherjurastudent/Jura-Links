@@ -458,7 +458,42 @@ function getGesetzeCoUrl(
 
 	const lawUrl = LawProviderUrl.GESETZE_CO;
 	const normalizedKey = gesetz.trim().toLowerCase();
-	const foundGesetz = gesetzeCoGesetzeLowerCased[normalizedKey];
+	let foundGesetz = gesetzeCoGesetzeLowerCased[normalizedKey];
+
+	// Fallback bei Landesgesetzen: Tokens normalisieren (z.B. "polg nw" <-> "polg nrw", führendes Bundesland "nrw polg")
+	if (!foundGesetz) {
+		const tokens = normalizedKey.split(/\s+/);
+		if (tokens.length > 1) {
+			const first = tokens[0] ?? "";
+			const last = tokens[tokens.length - 1] ?? "";
+
+			// Führendes Kürzel nach hinten verschieben (z.B. "nrw polg" -> "polg nrw")
+			const movedToEnd = [...tokens.slice(1), first].join(" ");
+			if (gesetzeCoGesetzeLowerCased[movedToEnd]) {
+				foundGesetz = gesetzeCoGesetzeLowerCased[movedToEnd];
+			} else if (last) {
+				// Prüfen, ob das End-Token ein Bundesland-Variant-Token ist und kanonische/alternative Varianten durchprobieren
+				for (const [canonical, variants] of Object.entries(bundeslandVariantTokens)) {
+					const allTokens = [canonical.toLowerCase(), ...variants.map((v) => v.toLowerCase())];
+					if (allTokens.includes(last)) {
+						const base = tokens.slice(0, -1).join(" ");
+						for (const token of allTokens) {
+							const candidate = `${base} ${token}`;
+							if (gesetzeCoGesetzeLowerCased[candidate]) {
+								foundGesetz = gesetzeCoGesetzeLowerCased[candidate];
+								break;
+							}
+						}
+						// Auch Basis ohne Suffix prüfen
+						if (!foundGesetz && gesetzeCoGesetzeLowerCased[base]) {
+							foundGesetz = gesetzeCoGesetzeLowerCased[base];
+						}
+						if (foundGesetz) break;
+					}
+				}
+			}
+		}
+	}
 
 	if (!foundGesetz) {
 		return "";

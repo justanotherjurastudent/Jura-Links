@@ -32,6 +32,25 @@ const JURISDICTIONS = [
 	{ code: "TH", name: "Thüringen" },
 ];
 
+const STATE_VARIANTS = {
+	BW: ["BW", "BadW", "Bawü", "Bawue"],
+	BY: ["BY", "Bay"],
+	BE: ["BE", "Bln"],
+	BB: ["BB", "Bbg"],
+	HB: ["HB", "Brem"],
+	HH: ["HH", "HA", "Hmb"],
+	HE: ["HE", "Hes"],
+	MV: ["MV", "M-V"],
+	NI: ["NI", "Nds"],
+	NW: ["NW", "NRW"],
+	RP: ["RP", "RLP", "Rh.-Pf."],
+	SL: ["SL", "Saar"],
+	SN: ["SN", "Sächs"],
+	ST: ["ST", "LSA", "SA"],
+	SH: ["SH", "Schl.-H."],
+	TH: ["TH", "Thür"],
+};
+
 function cleanText(t) {
 	return t
 		.replace(/<[^>]+>/g, "")
@@ -40,6 +59,28 @@ function cleanText(t) {
 		.replace(/&gt;/g, ">")
 		.replace(/&quot;/g, '"')
 		.trim();
+}
+
+function escapeRegex(str) {
+	return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function extractStateSuffix(abbr, jurisdiction) {
+	const variants = STATE_VARIANTS[jurisdiction] || [];
+	for (const v of variants) {
+		const re = new RegExp(`\\s+${escapeRegex(v)}$`, "i");
+		if (re.test(abbr)) {
+			return { base: abbr.replace(re, "").trim(), matchedSuffix: v, year: null };
+		}
+	}
+	for (const v of variants) {
+		const re = new RegExp(`\\s+${escapeRegex(v)}\\s+(\\d{4})$`, "i");
+		const m = abbr.match(re);
+		if (m) {
+			return { base: abbr.replace(re, ` $1`).trim(), matchedSuffix: v, year: m[1] };
+		}
+	}
+	return { base: abbr, matchedSuffix: null, year: null };
 }
 
 // Nicht-ASCII-Zeichen als \uXXXX schreiben (wie im bestehenden Datenbestand)
@@ -115,86 +156,64 @@ async function main() {
 
 	console.log(`Gesamtanzahl Gesetze: ${allLaws.length}`);
 
-	// Gruppiere Gesetze nach Abkürzung
-	const byAbbr = new Map();
+	// Zähle Vorkommen von Basis-Kürzeln zur Kollisionserkennung
+	const baseCount = new Map();
 	for (const law of allLaws) {
-		const abbr = law.abbr;
-		if (!abbr || !isUsableKey(abbr)) continue;
-		const list = byAbbr.get(abbr) ?? [];
-		list.push(law);
-		byAbbr.set(abbr, list);
+		const { base } = extractStateSuffix(law.abbr, law.jurisdiction);
+		const lower = base.toLowerCase();
+		baseCount.set(lower, (baseCount.get(lower) || 0) + 1);
 	}
 
-	const entries = [];
-	for (const [abbr, items] of byAbbr) {
-		if (items.length === 1) {
-			const item = items[0];
-			entries.push({
-				key: abbr,
-				title: item.title,
-				slug: item.slug,
-				jurisdiction: item.jurisdiction,
-			});
+	const generated = new Map();
 
-			// Für Landesgesetze auch Variante mit Bundesland anhängen, z.B. "AGBauGB BW"
-			if (item.jurisdiction !== "DE" && item.jurisdiction !== "EU") {
-				const stateCode = item.jurisdiction;
-				if (!abbr.endsWith(` ${stateCode}`)) {
-					entries.push({
-						key: `${abbr} ${stateCode}`,
-						title: item.title,
-						slug: item.slug,
-						jurisdiction: item.jurisdiction,
-					});
-				}
-				if (stateCode === "NW" && !abbr.endsWith(" NRW")) {
-					entries.push({
-						key: `${abbr} NRW`,
-						title: item.title,
-						slug: item.slug,
-						jurisdiction: item.jurisdiction,
-					});
-				}
+	function addEntry(key, law) {
+		if (!key || !isUsableKey(key)) return;
+		const lower = key.toLowerCase();
+		if (!generated.has(lower)) {
+			generated.set(lower, {
+				key,
+				title: law.title,
+				slug: law.slug,
+				jurisdiction: law.jurisdiction,
+			});
+		}
+	}
+
+	// 1. Priorität: Bund (DE) und Europa (EU)
+	for (const law of allLaws) {
+		if (law.jurisdiction === "DE" || law.jurisdiction === "EU") {
+			addEntry(law.abbr, law);
+		}
+	}
+
+	// 2. Priorität: Landesgesetze mit sauberen Suffixen und Varianten
+	for (const law of allLaws) {
+		if (law.jurisdiction === "DE" || law.jurisdiction === "EU") continue;
+		const { base, year } = extractStateSuffix(law.abbr, law.jurisdiction);
+		const j = law.jurisdiction;
+
+		// Original-Abkürzung von Gesetze.co (z.B. "BauO Bln", "AbfG LSA", "AGBauGB", "AbgG MV 2007")
+		addEntry(law.abbr, law);
+
+		if (year) {
+			// Gesetz mit Jahreszahl: z.B. "AbgG 2007 MV"
+			addEntry(`${base} ${j}`, law);
+			for (const v of STATE_VARIANTS[j] || []) {
+				addEntry(`${base} ${v}`, law);
 			}
 		} else {
-			// Mehrere Gesetze mit derselben Abkürzung:
-			// Ein Bundesgesetz bzw. EU-Recht erhält das Basis-Kürzel
-			const bundLaw = items.find((i) => i.jurisdiction === "DE");
-			const euLaw = items.find((i) => i.jurisdiction === "EU");
-			const primaryLaw = bundLaw || euLaw || items[0];
-
-			entries.push({
-				key: abbr,
-				title: primaryLaw.title,
-				slug: primaryLaw.slug,
-				jurisdiction: primaryLaw.jurisdiction,
-			});
-
-			// Jedes Landesgesetz erhält zudem die Abkürzung mit Suffix (z.B. "AGVwGO BW")
-			for (const item of items) {
-				if (item.jurisdiction !== "DE" && item.jurisdiction !== "EU") {
-					const stateCode = item.jurisdiction;
-					if (!abbr.endsWith(` ${stateCode}`)) {
-						entries.push({
-							key: `${abbr} ${stateCode}`,
-							title: item.title,
-							slug: item.slug,
-							jurisdiction: item.jurisdiction,
-						});
-					}
-					if (stateCode === "NW" && !abbr.endsWith(" NRW")) {
-						entries.push({
-							key: `${abbr} NRW`,
-							title: item.title,
-							slug: item.slug,
-							jurisdiction: item.jurisdiction,
-						});
-					}
-				}
+			// Kanonischer ISO-Code und gängige Varianten (z.B. "BauO BE", "BauO Bln", "AbfG ST", "AbfG LSA")
+			for (const v of STATE_VARIANTS[j] || []) {
+				addEntry(`${base} ${v}`, law);
+			}
+			// Basis-Kürzel registrieren, falls keine Kollision mit anderen Ländern besteht (z.B. "ASOG", "BannKrG")
+			if (baseCount.get(base.toLowerCase()) === 1) {
+				addEntry(base, law);
 			}
 		}
 	}
 
+	const entries = Array.from(generated.values());
 	entries.sort((a, b) => a.key.localeCompare(b.key, "de"));
 	writeFileSync(OUTPUT_FILE, render(entries));
 	console.log(`Erfolgreich ${entries.length} Einträge nach ${OUTPUT_FILE} geschrieben.`);

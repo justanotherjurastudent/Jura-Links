@@ -450,6 +450,66 @@ test.each([
 		input: `§ 1 PolG NRW`,
 		expected: `§ [1](https://gesetze.co/NW/PolG_NRW/1) PolG NRW`,
 	},
+	{
+		input: `§ 1 AGBauGB BW`,
+		expected: `§ [1](https://gesetze.co/BW/AGBauGB/1) AGBauGB BW`,
+	},
+	{
+		input: `§ 1 BayAbfG BY`,
+		expected: `§ [1](https://gesetze.co/BY/BayAbfG/1) BayAbfG BY`,
+	},
+	{
+		input: `§ 1 ASOG Bln`,
+		expected: `§ [1](https://gesetze.co/BE/ASOG_Bln/1) ASOG Bln`,
+	},
+	{
+		input: `§ 1 BbgBO BB`,
+		expected: `§ [1](https://gesetze.co/BB/BbgBO/1) BbgBO BB`,
+	},
+	{
+		input: `§ 1 AGBGB HB`,
+		expected: `§ [1](https://gesetze.co/HB/AGBGB/1) AGBGB HB`,
+	},
+	{
+		input: `§ 1 BezVG HH`,
+		expected: `§ [1](https://gesetze.co/HH/BezVG/1) BezVG HH`,
+	},
+	{
+		input: `§ 1 GemHVO HE`,
+		expected: `§ [1](https://gesetze.co/HE/GemHVO/1) GemHVO HE`,
+	},
+	{
+		input: `§ 1 AbfWG M-V`,
+		expected: `§ [1](https://gesetze.co/MV/AbfWG_M-V/1) AbfWG M-V`,
+	},
+	{
+		input: `§ 1 NAbfG NI`,
+		expected: `§ [1](https://gesetze.co/NI/NAbfG/1) NAbfG NI`,
+	},
+	{
+		input: `§ 1 AGBGB RP`,
+		expected: `§ [1](https://gesetze.co/RP/AGBGB/1) AGBGB RP`,
+	},
+	{
+		input: `§ 1 AbgG SL`,
+		expected: `§ [1](https://gesetze.co/SL/AbgG_SL/1) AbgG SL`,
+	},
+	{
+		input: `§ 1 AGImSchG SN`,
+		expected: `§ [1](https://gesetze.co/SN/AGImSchG/1) AGImSchG SN`,
+	},
+	{
+		input: `§ 1 AbfG LSA`,
+		expected: `§ [1](https://gesetze.co/ST/AbfG_LSA/1) AbfG LSA`,
+	},
+	{
+		input: `§ 1 AGBGB Schl.-H.`,
+		expected: `§ [1](https://gesetze.co/SH/AGBGB_Schl.-H./1) AGBGB Schl.-H.`,
+	},
+	{
+		input: `§ 1 OBG TH`,
+		expected: `§ [1](https://gesetze.co/TH/OBG/1) OBG TH`,
+	},
 ])(
 	"findAndLinkLawReferences with Gesetze.co: should transform $input to $expected",
 	(testData) => {
