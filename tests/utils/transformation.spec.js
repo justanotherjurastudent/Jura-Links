@@ -338,6 +338,51 @@ test.each([
 );
 
 test.each([
+	{
+		input: `Art. 1 GG`,
+		expected: `Art. [1](https://rewis.io/gesetze/gg/p/gg%2D1) GG`,
+		description: "Grundgesetz mit Artikeln (GG)",
+	},
+	{
+		input: `Art. 6 I lit. a DSGVO`,
+		expected: `Art. [6 I lit. a](https://rewis.io/gesetze/dsgvo-europaische-union/p/6%2Ddsgvo) DSGVO`,
+		description: "EU-Verordnung DSGVO mit Artikel, Absatz und lit.",
+	},
+	{
+		input: `§ 5 SGB V`,
+		expected: `§ [5](https://rewis.io/gesetze/sgb-5/p/sgb-5%2D5) SGB V`,
+		description: "SGB V mit römischer Ziffer im Gesetzestitel",
+	},
+	{
+		input: `§ 1 EG-FGV`,
+		expected: `§ [1](https://rewis.io/gesetze/eg-fgv/p/1%2Deg-fgv) EG-FGV`,
+		description: "EG-FGV mit Bindestrich im Namen",
+	},
+	{
+		input: `§ 2 KCanG`,
+		expected: `§ [2](https://rewis.io/gesetze/kcang/p/2%2Dkcang) KCanG`,
+		description: "KCanG (Konsumcannabisgesetz)",
+	},
+	{
+		input: `Art. 77 BayBO`,
+		expected: `Art. [77](https://rewis.io/gesetze/baybo-bayern/p/77%2Dbaybo) BayBO`,
+		description: "Bayerische Bauordnung mit Landesrechts-Suffix",
+	},
+])(
+	"findAndLinkLawReferences with Rewis: $description",
+	(testData) => {
+		const result = findAndLinkLawReferences(testData.input, {
+			firstOption: "rewis",
+			secondOption: "lexmea",
+			thirdOption: "dejure",
+			forthOption: "buzer",
+			fifthOption: "landesrecht.online",
+		});
+		expect(result).toBe(testData.expected);
+	}
+);
+
+test.each([
     {
         input: `meow meow`,
         expected: `meow meow`,

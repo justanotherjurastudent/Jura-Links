@@ -1,0 +1,73 @@
+name: Monatliches Update der Gesetzesdaten
+
+on:
+  schedule:
+    # Am 1. jedes Monats um 03:00 Uhr UTC
+    - cron: '0 3 1 * *'
+  workflow_dispatch: # Manuelles Auslösen im GitHub-Interface
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-laws:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Quellcode auschecken
+        uses: actions/checkout@v4
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Python einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Abhängigkeiten installieren
+        run: npm ci
+
+      - name: Gesetzesdatenbanken aktualisieren
+        run: |
+          echo "Aktualisiere Rewis.io..."
+          node src/static/updateRewisGesetze.mjs
+
+          echo "Aktualisiere gesetze.io..."
+          node src/static/updateGesetzeIo.mjs
+
+          echo "Aktualisiere LexMea..."
+          node src/static/updateLexmeaGesetze.mjs
+
+          echo "Aktualisiere Gesetzesabkürzungen..."
+          python src/static/lawsabkuerzung.py
+
+      - name: Tests ausführen
+        run: npm test
+
+      - name: Build prüfen
+        run: npm run build
+
+      - name: Pull Request erstellen
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "chore(data): monatliche Aktualisierung der Gesetzesdaten"
+          title: "chore(data): monatliche Aktualisierung der Gesetzesdaten"
+          body: |
+            Automatisierte Aktualisierung der Gesetzesbestände:
+            - Rewis.io (`src/static/rewisGesetze.ts`)
+            - gesetze.io (`src/static/gesetzeIoGesetze.ts`)
+            - LexMea (`src/static/lexmeaGesetze.ts`)
+            - Abkürzungsverzeichnis (`src/static/lawsAbbrs_neu.ts`)
+
+            Alle Tests und der TypeScript-Build wurden erfolgreich ausgeführt.
+          branch: automated-laws-update
+          delete-branch: true
+          labels: |
+            dependencies
+            automated
+

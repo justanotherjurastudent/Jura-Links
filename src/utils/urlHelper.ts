@@ -412,16 +412,12 @@ function getRewisUrl(
 
 	let url = "";
 	if (foundGesetz.lawNormOrder) {
-		url =
-			`${lawUrl}${foundGesetz.url}/p/${foundGesetz.url}-${norm}`.replace(
-				"-",
-				"%2D"
-			);
+		url = `${lawUrl}${foundGesetz.url}/p/${foundGesetz.url}%2D${norm}`;
 	} else {
-		url = `${lawUrl}${foundGesetz.url}/p/${norm}-${foundGesetz.url.replace(
-			"-europaische-union",
+		url = `${lawUrl}${foundGesetz.url}/p/${norm}%2D${foundGesetz.url.replace(
+			/-europaische-union|-bayern/,
 			""
-		)}`.replace("-", "%2D");
+		)}`;
 	}
 
 	// Fragment-Identifier #abs_ nur anhängen wenn zusätzliche Informationen vorhanden sind

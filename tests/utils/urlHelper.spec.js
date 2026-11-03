@@ -272,3 +272,116 @@ test.each([
 		expect(result).toBe(testData.expected);
 	}
 );
+
+// Tests für Rewis.io mit exotischeren Gesetzen (Römische Zahlen, Artikel, EU-Recht, Bindestriche, Landesrecht)
+test.each([
+	{
+		gesetz: `II. BV`,
+		norm: `1`,
+		expected: `https://rewis.io/gesetze/ii-bv/p/1%2Dii-bv`,
+		description: "Zweite Berechnungsverordnung (II. BV) mit römischer Zahl",
+	},
+	{
+		gesetz: `ii. bv`,
+		norm: `1`,
+		expected: `https://rewis.io/gesetze/ii-bv/p/1%2Dii-bv`,
+		description: "ii. bv Kleinbuchstaben-Normalisierung",
+	},
+	{
+		gesetz: `SGB V`,
+		norm: `5`,
+		expected: `https://rewis.io/gesetze/sgb-5/p/sgb-5%2D5`,
+		description: "SGB V mit römischer Ziffer im Gesetzestitel",
+	},
+	{
+		gesetz: `SGB XII`,
+		norm: `1`,
+		expected: `https://rewis.io/gesetze/sgb-12/p/sgb-12%2D1`,
+		description: "SGB XII mit langer römischer Ziffer",
+	},
+	{
+		gesetz: `GG`,
+		norm: `1`,
+		expected: `https://rewis.io/gesetze/gg/p/gg%2D1`,
+		description: "Grundgesetz (Gesetz mit Artikeln)",
+	},
+	{
+		gesetz: `GG`,
+		norm: `1`,
+		additionalInfo: { absatzrom: "I" },
+		expected: `https://rewis.io/gesetze/gg/p/gg%2D1#abs_1`,
+		description: "Grundgesetz mit römischem Absatz I in zusätzliche Info",
+	},
+	{
+		gesetz: `DSGVO`,
+		norm: `6`,
+		expected: `https://rewis.io/gesetze/dsgvo-europaische-union/p/6%2Ddsgvo`,
+		description: "DSGVO (europäische Verordnung mit -europaische-union Slug)",
+	},
+	{
+		gesetz: `DSGVO`,
+		norm: `6`,
+		additionalInfo: { absatz: "1" },
+		expected: `https://rewis.io/gesetze/dsgvo-europaische-union/p/6%2Ddsgvo#abs_1`,
+		description: "DSGVO mit Absatz 1 Fragment",
+	},
+	{
+		gesetz: `EUV`,
+		norm: `1`,
+		expected: `https://rewis.io/gesetze/euv-europaische-union/p/1%2Deuv`,
+		description: "EUV (europäischer Vertrag)",
+	},
+	{
+		gesetz: `AEUV`,
+		norm: `101`,
+		expected: `https://rewis.io/gesetze/aeuv-europaische-union/p/101%2Daeuv`,
+		description: "AEUV (europäischer Vertrag mit dreistelliger Norm)",
+	},
+	{
+		gesetz: `EG-FGV`,
+		norm: `1`,
+		expected: `https://rewis.io/gesetze/eg-fgv/p/1%2Deg-fgv`,
+		description: "EG-FGV (Gesetz mit Bindestrich im Namen)",
+	},
+	{
+		gesetz: `AltTZG 1996`,
+		norm: `1`,
+		expected: `https://rewis.io/gesetze/alttzg-1996/p/alttzg-1996%2D1`,
+		description: "AltTZG 1996 mit Jahreszahl und Bindestrich im Slug",
+	},
+	{
+		gesetz: `KCanG`,
+		norm: `2`,
+		expected: `https://rewis.io/gesetze/kcang/p/2%2Dkcang`,
+		description: "KCanG (Konsumcannabisgesetz)",
+	},
+	{
+		gesetz: `BayBO`,
+		norm: `77`,
+		expected: `https://rewis.io/gesetze/baybo-bayern/p/77%2Dbaybo`,
+		description: "BayBO (Bayerische Bauordnung mit Landesrechts-Suffix)",
+	},
+	{
+		gesetz: `PAG`,
+		norm: `100`,
+		expected: `https://rewis.io/gesetze/pag-bayern/p/100%2Dpag`,
+		description: "PAG (Bayerisches Polizeiaufgabengesetz)",
+	},
+	{
+		gesetz: `BayVwVfG`,
+		norm: `1`,
+		expected: `https://rewis.io/gesetze/bayvwvfg-bayern/p/1%2Dbayvwvfg`,
+		description: "BayVwVfG (Bayerisches Verwaltungsverfahrensgesetz)",
+	},
+])(
+	"getLawUrlByProvider rewis: $description",
+	(testData) => {
+		const result = getLawUrlByProvider(
+			testData.gesetz,
+			testData.norm,
+			"rewis",
+			testData.additionalInfo
+		);
+		expect(result).toBe(testData.expected);
+	}
+);

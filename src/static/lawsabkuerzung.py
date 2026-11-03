@@ -33,6 +33,20 @@ def extract_abbreviations(file_path):
         for match in matches:
             key = match[0] if match[0] else match[1]
             abbreviations.append(key)
+
+    elif 'rewisGesetze.ts' in file_path:
+        # Für rewis: Schlüssel vor { url:
+        matches = re.findall(r'"([^"]+)"\s*:\s*{\s*url:|(\w+)\s*:\s*{\s*url:', content)
+        for match in matches:
+            key = match[0] if match[0] else match[1]
+            abbreviations.append(key)
+
+    elif 'gesetzeIoGesetze.ts' in file_path:
+        # Für gesetze.io: Schlüssel vor { title:
+        matches = re.findall(r'"([^"]+)"\s*:\s*{\s*title:|(\w+)\s*:\s*{\s*title:', content)
+        for match in matches:
+            key = match[0] if match[0] else match[1]
+            abbreviations.append(key)
     
     return abbreviations
 
@@ -47,7 +61,8 @@ def main():
         'buzerGesetze.ts',
         'dejureGesetze.ts',
         'lexmeaGesetze.ts',
-        'rewisGesetze.ts'
+        'rewisGesetze.ts',
+        'gesetzeIoGesetze.ts'
     ]
     
     for filename in files_to_process:
@@ -66,7 +81,7 @@ def main():
     # Erstelle TypeScript-Export
     ts_content = "export const allLawAbbreviations = [\n"
     ts_content += "  " + ",\n  ".join(f'"{abbr}"' for abbr in unique_abbreviations)
-    ts_content += "\n] as const;"
+    ts_content += "\n] as const;\n"
     
     # Schreibe in die Ausgabedatei
     with open(output_file, 'w', encoding='utf-8') as f:
