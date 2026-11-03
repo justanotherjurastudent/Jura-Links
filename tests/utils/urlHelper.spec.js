@@ -62,6 +62,76 @@ test.each([
 	}
 );
 
+// LexMea verwendet eigene Slugs und je nach Gesetz ein Präfix für die Norm
+test.each([
+	{
+		gesetz: `SGB V`,
+		norm: `5`,
+		expected: `https://lexmea.de/gesetz/sgb-v/5`,
+		description: "SGB V uses the slug sgb-v",
+	},
+	{
+		gesetz: `1. BImSchV`,
+		norm: `1`,
+		expected: `https://lexmea.de/gesetz/1-bimschv/1`,
+		description: "1. BImSchV uses the slug 1-bimschv",
+	},
+	{
+		gesetz: `BAföG`,
+		norm: `7`,
+		expected: `https://lexmea.de/gesetz/bafoeg/7`,
+		description: "umlauts are transliterated in the slug",
+	},
+	{
+		gesetz: `DSGVO`,
+		norm: `6`,
+		expected: `https://lexmea.de/gesetz/dsgvo/art-6`,
+		description: "DSGVO uses articles",
+	},
+	{
+		gesetz: `BayBO`,
+		norm: `2`,
+		expected: `https://lexmea.de/gesetz/baybo/art-2`,
+		description: "BayBO uses articles",
+	},
+	{
+		gesetz: `GO BY`,
+		norm: `29`,
+		expected: `https://lexmea.de/gesetz/baygo/art-29`,
+		description: "GO BY resolves to the Bavarian Gemeindeordnung",
+	},
+	{
+		gesetz: `BauO NRW`,
+		norm: `50`,
+		expected: `https://lexmea.de/gesetz/bauo-2018-nrw/50`,
+		description: "BauO NRW resolves to BauO 2018 NRW",
+	},
+	{
+		gesetz: `CISG`,
+		norm: `25`,
+		expected: `https://lexmea.de/gesetz/cisg/article-25`,
+		description: "CISG uses the article- prefix",
+	},
+	{
+		gesetz: `UmwStG`,
+		norm: `1`,
+		expected: ``,
+		description: "ambiguous abbreviation (UmwStG 1995 / 2006) creates no link",
+	},
+	{
+		gesetz: `XYZG`,
+		norm: `1`,
+		expected: ``,
+		description: "unknown abbreviation creates no link",
+	},
+])(
+	"getLawUrlByProvider lexmea: $description",
+	(testData) => {
+		const result = getLawUrlByProvider(testData.gesetz, testData.norm, "lexmea");
+		expect(result).toBe(testData.expected);
+	}
+);
+
 // Additional tests for landesrecht.online URL patterns based on problem statement
 test.each([
 	{

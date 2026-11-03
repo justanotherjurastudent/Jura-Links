@@ -153,7 +153,7 @@ test.each([
 	},
 	{
 		input: `§ 1 SG`,
-		expected: `§ [1](https://www.buzer.de/gesetz/2246/a31636.htm) SG`,
+		expected: `§ [1](https://lexmea.de/gesetz/sg/1) SG`,
 	},
 	{
 		input: `§§ 242, 243 JVollzGB I`,
@@ -297,6 +297,31 @@ test.each([
 		input: `§ 242 BGB`,
 		expected: `§ [242](https://lexmea.de/gesetz/bgb/242) BGB`,
 		description: "Paragraph-based law BGB with higher number",
+	},
+	{
+		input: `§ 5 SGB V`,
+		expected: `§ [5](https://lexmea.de/gesetz/sgb-v/5) SGB V`,
+		description: "SGB V uses the LexMea slug",
+	},
+	{
+		input: `Art. 6 I lit. a DSGVO`,
+		expected: `Art. [6 I lit. a](https://lexmea.de/gesetz/dsgvo/art-6) DSGVO`,
+		description: "EU regulation DSGVO",
+	},
+	{
+		input: `Art. 2 BayBO`,
+		expected: `Art. [2](https://lexmea.de/gesetz/baybo/art-2) BayBO`,
+		description: "Bavarian law BayBO",
+	},
+	{
+		input: `§ 50 BauO NRW`,
+		expected: `§ [50](https://lexmea.de/gesetz/bauo-2018-nrw/50) BauO NRW`,
+		description: "NRW law with state suffix",
+	},
+	{
+		input: `§ 1 XYZG`,
+		expected: `§ 1 XYZG`,
+		description: "unknown abbreviation stays unlinked",
 	},
 ])(
 	"findAndLinkLawReferences with LexMea: $description",

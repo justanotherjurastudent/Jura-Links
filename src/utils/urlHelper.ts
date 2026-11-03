@@ -77,24 +77,6 @@ const bundeslandVariantTokens: { [canonicalAbbr: string]: string[] } = {
 	SN: ["sn"],
 };
 
-// Liste der Gesetze, die Artikel (Art.) statt Paragraphen (§) verwenden
-// Dies umfasst insbesondere: Grundgesetz, EU-Vorschriften, internationale Verträge, Verfassungen
-// Hinweis: Diese Liste enthält Gesetze, die prinzipiell Artikel verwenden. Nicht alle sind in LexMea verfügbar.
-// Die isArticle-Flag aus der Transformation überschreibt diese Liste wenn explizit Art. erkannt wird.
-const lawsUsingArticles = new Set([
-	"gg",           // Grundgesetz (in LexMea verfügbar)
-	"wrv",          // Weimarer Reichsverfassung (in LexMea verfügbar)
-	"dsgvo",        // Datenschutz-Grundverordnung (nicht in LexMea, aber würde Art. verwenden)
-	"euv",          // Vertrag über die Europäische Union (nicht in LexMea, aber würde Art. verwenden)
-	"aeuv",         // Vertrag über die Arbeitsweise der EU (nicht in LexMea, aber würde Art. verwenden)
-	"grch",         // Grundrechtecharta der Europäischen Union
-	"dma",          // Digital Markets Act
-	"dsa",          // Digital Services Act
-	"dga",          // Digital Governance Act
-	"rom-i-vo",    // Rom-I-Verordnung
-	"rom-ii-vo",   // Rom-II-Verordnung
-]);
-
 const normalizeBundeslandToken = (token: string): string =>
 	token
 		.normalize("NFKD")
@@ -219,20 +201,17 @@ function getBuzerUrl(gesetz: string, norm: string): string {
 	return "";
 }
 
-function getLexmeaUrl(gesetz: string, norm: string, additionalInfo?: AdditionalInfo): string {
+function getLexmeaUrl(gesetz: string, norm: string): string {
 	const lawUrl = LawProviderUrl.LEXMEA;
-	gesetz = gesetz.toLowerCase();
+	const lawEntry = lexmeaGesetzeLowerCased[gesetz.toLowerCase()];
 
-	if (lexmeaGesetzeLowerCased.indexOf(gesetz) !== -1) {
-		// Prüfe, ob das Gesetz Artikel verwendet oder ob explizit isArticle=true übergeben wurde
-		const usesArticles = lawsUsingArticles.has(gesetz) || additionalInfo?.isArticle === true;
-		
-		// Für Gesetze mit Artikeln, füge "art-" vor der Normnummer hinzu
-		const normPath = usesArticles ? `art-${norm}` : norm;
-		
-		return `${lawUrl}${gesetz}/${normPath}`;
+	if (!lawEntry) {
+		return "";
 	}
-	return "";
+
+	// LexMea verwendet eigene Slugs (z.B. "sgb-v" für "SGB V") und je nach Gesetz
+	// ein Präfix für die Norm (z.B. "art-1" im GG oder "article-1" im CISG)
+	return `${lawUrl}${lawEntry.slug}/${lawEntry.prefix ?? ""}${norm}`;
 }
 
 function getLandesrechtOnlineUrl(
@@ -481,7 +460,7 @@ function getLawUrlByProvider(
 	}
 
 	if (lawProvider === "lexmea") {
-		return getLexmeaUrl(gesetz, norm, additionalInfo) || "";
+		return getLexmeaUrl(gesetz, norm) || "";
 	}
 
 	if (lawProvider === "landesrecht.online") {
