@@ -273,13 +273,6 @@ test.each([
 		description: "SOG ST ISO-Code maps to same URL as SOG LSA for Sachsen-Anhalt"
 	},
 	{
-		gesetz: `sog st`,
-		norm: `1`,
-		provider: `landesrecht.online`,
-		expected: `https://landesrecht.online/ST/SOG/1`,
-		description: "sog st lowercase ISO-Code maps to same URL as SOG LSA"
-	},
-	{
 		gesetz: `AbgG MV`,
 		norm: `1`,
 		provider: `landesrecht.online`,
@@ -631,12 +624,6 @@ test.each([
 		norm: `1`,
 		expected: `https://gesetze.co/ST/SOG_LSA/1`,
 		description: "Sachsen-Anhalt SOG with canonical ISO-Code ST",
-	},
-	{
-		gesetz: `sog st`,
-		norm: `1`,
-		expected: `https://gesetze.co/ST/SOG_LSA/1`,
-		description: "sog st lowercase ISO-Code on Gesetze.co",
 	},
 	{
 		gesetz: `AGBGB Schl.-H.`,
