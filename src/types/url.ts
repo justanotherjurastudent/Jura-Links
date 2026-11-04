@@ -3,7 +3,6 @@ enum LawProviderUrl {
 	REWIS = "https://rewis.io/gesetze/",
 	LANDESRECHT_ONLINE = "https://www.landesrecht.online/",
 	LEXMEA = "https://lexmea.de/gesetz/",
-	BUZER = "https://www.buzer.de/",
 	GESETZE_CO = "https://gesetze.co/",
 	JURAFUCHS = "https://gesetze.jurafuchs.de/gesetz/",
 }

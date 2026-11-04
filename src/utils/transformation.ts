@@ -109,10 +109,9 @@ function findAndLinkLawReferences(
 		firstOption: "dejure",
 		secondOption: "landesrecht.online",
 		thirdOption: "lexmea",
-		forthOption: "buzer",
-		fifthOption: "rewis",
-		sixthOption: "gesetze.co",
-		seventhOption: "jurafuchs",
+		forthOption: "rewis",
+		fifthOption: "gesetze.co",
+		sixthOption: "jurafuchs",
 	},
 	stateLawProviderOptions?: StateLawProviderOptions,
 	euLawProviderOptions?: EuLawProviderOptions,
@@ -197,7 +196,7 @@ function findAndLinkLawReferences(
 			}
 		});
 
-		return match.replace(lawMatch, updatedLawMatch + " ");
+		return match.replace(lawMatch, updatedLawMatch);
 	});
 }
 
@@ -348,7 +347,10 @@ function findAndLinkDrucksacheReferences(fileContent: string): string {
 }
 
 function findAndLinkCaseReferences(fileContent: string): string {
-	return fileContent.replace(caseRegex, (match) => {
+	const combinedRegex = new RegExp(`(?<link>\\[[^\\]]+\\]\\([^)]+\\))|(?<case>${caseRegex.source})`, "g");
+	return fileContent.replace(combinedRegex, (_fullMatch, link, caseMatch) => {
+		if (link) return link as string;
+		const match = caseMatch as string;
 		const encodedMatch = encodeURIComponent(match);
 		linkCount++;
 		return `[${match}](${DejureUrl.CASE}${encodedMatch})`;

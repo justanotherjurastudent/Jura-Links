@@ -1,4 +1,3 @@
-import { buzerGesetzeLowerCased } from "../static/buzerGesetze";
 import { dejureGesetzeLowerCased } from "../static/dejureGesetze";
 import { lexmeaGesetzeLowerCased } from "../static/lexmeaGesetze";
 import {
@@ -195,18 +194,6 @@ function getDejureUrl(
 		return url;
 	}
 
-	return "";
-}
-
-function getBuzerUrl(gesetz: string, norm: string): string {
-	const lawUrl = LawProviderUrl.BUZER;
-	gesetz = gesetz.toLowerCase();
-
-	const lawEntry = buzerGesetzeLowerCased[gesetz];
-	const normPath = lawEntry?.norms?.[norm];
-	if (normPath) {
-		return `${lawUrl}${normPath}`;
-	}
 	return "";
 }
 
@@ -749,10 +736,6 @@ function getLawUrlByProvider(
 ): string {
 	if (lawProvider === "dejure") {
 		return getDejureUrl(gesetz, norm, additionalInfo) || "";
-	}
-
-	if (lawProvider === "buzer") {
-		return getBuzerUrl(gesetz, norm) || "";
 	}
 
 	if (lawProvider === "lexmea") {

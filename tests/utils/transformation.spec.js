@@ -288,15 +288,15 @@ test.each([
 		firstOption: "dejure",
 		secondOption: "landesrecht.online", // kept for potential future but lexsoft expected comes from earlier logic
 		thirdOption: "lexmea",
-		forthOption: "buzer",
-		fifthOption: "rewis",
+		forthOption: "rewis",
+		fifthOption: "gesetze.co",
 	});
 	result = findAndLinkLawReferences(testData.input, {
 		firstOption: "dejure",
 		secondOption: "landesrecht.online",
 		thirdOption: "lexmea",
-		forthOption: "buzer",
-		fifthOption: "rewis",
+		forthOption: "rewis",
+		fifthOption: "gesetze.co",
 	});
 	expect(result).toBe(testData.expected);
 }
@@ -365,8 +365,8 @@ test.each([
 		const result = findAndLinkLawReferences(testData.input, {
 			firstOption: "lexmea",
 			secondOption: "dejure",
-			thirdOption: "buzer",
-			forthOption: "rewis",
+			thirdOption: "rewis",
+			forthOption: "gesetze.co",
 			fifthOption: "landesrecht.online",
 		});
 		expect(result).toBe(testData.expected);
@@ -411,7 +411,7 @@ test.each([
 			firstOption: "rewis",
 			secondOption: "lexmea",
 			thirdOption: "dejure",
-			forthOption: "buzer",
+			forthOption: "gesetze.co",
 			fifthOption: "landesrecht.online",
 		});
 		expect(result).toBe(testData.expected);
@@ -770,12 +770,10 @@ test.each([
 test("findAndLinkLawReferences: State-Law-Provider Reihenfolge steuert Verlinkung von Landesgesetzen", () => {
 	const generalOptions = {
 		firstOption: "dejure",
-		secondOption: "buzer",
-		thirdOption: null,
-		forthOption: null,
-		fifthOption: null,
-		sixthOption: null,
-		seventhOption: null,
+		secondOption: "lexmea",
+		thirdOption: "rewis",
+		forthOption: "gesetze.co",
+		fifthOption: "jurafuchs",
 	};
 
 	// Mit Jurafuchs als 1. Landesrechtsanbieter
@@ -818,11 +816,9 @@ test("findAndLinkLawReferences: europäische Gesetze respektieren separate EU-An
 	const generalOptions = {
 		firstOption: "dejure",
 		secondOption: "lexmea",
-		thirdOption: "buzer",
-		forthOption: "rewis",
-		fifthOption: "gesetze.co",
-		sixthOption: "jurafuchs",
-		seventhOption: null,
+		thirdOption: "rewis",
+		forthOption: "gesetze.co",
+		fifthOption: "jurafuchs",
 	};
 	const stateOptions = {
 		firstOption: "landesrecht.online",
@@ -862,4 +858,52 @@ test("findAndLinkLawReferences: europäische Gesetze respektieren separate EU-An
 	expect(findAndLinkLawReferences("§ 823 I BGB", generalOptions, stateOptions, euOptionsGesetzeCo, false)).toBe(
 		"§ [823 I](https://www.dejure.org/gesetze/bgb/823.html) BGB"
 	);
+});
+
+test("findAndLinkLawReferences: DSGVO-Zitate werden ohne fehlerhafte 'DS'-Trennung oder verschluckte Buchstaben verlinkt", () => {
+	const gesetzeCoOptions = {
+		firstOption: "gesetze.co",
+		secondOption: "dejure",
+		thirdOption: "lexmea",
+		forthOption: "rewis",
+		fifthOption: "jurafuchs",
+	};
+
+	// 1. Art. 4 DSGVO (wurde zuvor fälschlicherweise bei 'DS' als GVO getrennt)
+	expect(findAndLinkLawReferences("Art. 4 DSGVO", gesetzeCoOptions)).toBe(
+		"Art. [4](https://gesetze.co/EU/DSGVO/4) DSGVO"
+	);
+
+	// 2. Art. 4 Nr. 1 DSGVO
+	expect(findAndLinkLawReferences("Art. 4 Nr. 1 DSGVO", gesetzeCoOptions)).toBe(
+		"Art. [4 Nr. 1](https://gesetze.co/EU/DSGVO/4) DSGVO"
+	);
+
+	// 3. Art. 6 Abs. 1 lit. a DSGVO
+	expect(findAndLinkLawReferences("Art. 6 Abs. 1 lit. a DSGVO", gesetzeCoOptions)).toBe(
+		"Art. [6 Abs. 1 lit. a](https://gesetze.co/EU/DSGVO/6) DSGVO"
+	);
+
+	// 4. Art. 6 Abs. 1 lit. a, b DSGVO
+	expect(findAndLinkLawReferences("Art. 6 Abs. 1 lit. a, b DSGVO", gesetzeCoOptions)).toBe(
+		"Art. [6 Abs. 1 lit. a, b](https://gesetze.co/EU/DSGVO/6) DSGVO"
+	);
+
+	// 5. Art. 17, 18, 21 DSGVO (verschluckte zuvor das 'S' und bildete '21 D')
+	expect(findAndLinkLawReferences("Art. 17, 18, 21 DSGVO", gesetzeCoOptions)).toBe(
+		"Art. [17](https://gesetze.co/EU/DSGVO/17), [18](https://gesetze.co/EU/DSGVO/18), [21](https://gesetze.co/EU/DSGVO/21) DSGVO"
+	);
+});
+
+test("findAndLinkCaseReferences: Aktenzeichen über Zeilenumbrüche hinweg und EuGH C-184/22", () => {
+	const input = "17 O 11/23\nC-184/22";
+	const expected =
+		"[17 O 11/23](https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=17%20O%2011%2F23)\n[C-184/22](https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=C-184%2F22)";
+
+	const result1 = findAndLinkCaseReferences(input);
+	expect(result1).toBe(expected);
+
+	// Idempotenz: Zweiter Durchlauf darf Markdown-Links nicht zerreißen
+	const result2 = findAndLinkCaseReferences(result1);
+	expect(result2).toBe(expected);
 });

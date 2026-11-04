@@ -9,12 +9,6 @@ test.each([
 		expected: `https://www.dejure.org/gesetze/stgb/242.html`,
 	},
 	{
-		gesetz: `GG`,
-		norm: `1`,
-		provider: `buzer`,
-		expected: `https://www.buzer.de/1_GG.htm`,
-	},
-	{
 		gesetz: `BGB`,
 		norm: `2`,
 		provider: `lexmea`,
@@ -900,7 +894,7 @@ test("getLawUrlByProvider jurafuchs: Gesetz ohne Norm liefert leeren String", ()
 
 test("getLawUrlByProviderOptions: Jurafuchs als siebte Option greift als letzter Fallback", () => {
 	const options = {
-		firstOption: "buzer",
+		firstOption: "lexmea",
 		secondOption: null,
 		thirdOption: null,
 		forthOption: null,
@@ -908,7 +902,7 @@ test("getLawUrlByProviderOptions: Jurafuchs als siebte Option greift als letzter
 		sixthOption: null,
 		seventhOption: "jurafuchs",
 	};
-	// Buzer kennt dieses Landesgesetz nicht, Jurafuchs schon
+	// LexMea kennt dieses Landesgesetz nicht, Jurafuchs schon
 	expect(getLawUrlByProviderOptions("SOG LSA", "1", options)).toBe(`https://gesetze.jurafuchs.de/gesetz/sog-lsa/1`);
 });
 
@@ -1018,7 +1012,7 @@ test("getLawUrlByProvider landesrecht.online: mehrdeutiges Kürzel liefert die A
 test("stateLawProviders: User kann Reihenfolge der Landesrechtsanbieter frei wählen", () => {
 	const generalOptions = {
 		firstOption: "dejure",
-		secondOption: "buzer",
+		secondOption: "lexmea",
 		thirdOption: null,
 		forthOption: null,
 		fifthOption: null,
@@ -1060,7 +1054,7 @@ test("stateLawProviders: User kann Reihenfolge der Landesrechtsanbieter frei wä
 test("stateLawProviders: Bundesgesetze wie BGB werden nicht von Landesrechtsanbietern abgefangen", () => {
 	const generalOptions = {
 		firstOption: "dejure",
-		secondOption: "buzer",
+		secondOption: "lexmea",
 		thirdOption: null,
 		forthOption: null,
 		fifthOption: null,
@@ -1116,11 +1110,9 @@ test("euLawProviders: separate EU-Anbieterreihenfolge bei syncEuWithFederal = fa
 	const generalOptions = {
 		firstOption: "dejure",
 		secondOption: "lexmea",
-		thirdOption: "buzer",
-		forthOption: "rewis",
-		fifthOption: "gesetze.co",
-		sixthOption: "jurafuchs",
-		seventhOption: null,
+		thirdOption: "rewis",
+		forthOption: "gesetze.co",
+		fifthOption: "jurafuchs",
 	};
 	const stateOptions = {
 		firstOption: "landesrecht.online",

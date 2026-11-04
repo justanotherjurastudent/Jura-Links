@@ -9,7 +9,6 @@ import {
 import { Landesgesetze_mit_Namen } from "../static/Landesgesetze_mit_Namen";
 import { dejureGesetze } from "../static/dejureGesetze";
 import { rewisGesetze } from "../static/rewisGesetze";
-import { buzerGesetze } from "../static/buzerGesetze";
 import { lexmeaGesetze } from "../static/lexmeaGesetze";
 import { gesetzeCoGesetze } from "../static/gesetzeCoGesetze";
 import { jurafuchsGesetze } from "../static/jurafuchsGesetze";
@@ -132,10 +131,6 @@ export class SearchTabView extends ItemView {
 			...this.extractRewisLaws().map((law) => ({
 				law,
 				provider: "Rewis",
-			})),
-			...this.extractBuzerLaws().map((law) => ({
-				law,
-				provider: "Buzer",
 			})),
 			...this.extractLexmeaLaws().map((law) => ({
 				law,
@@ -291,7 +286,7 @@ export class SearchTabView extends ItemView {
 
 	createAnbieterFilter(dropdown: DropdownComponent): void {
 		dropdown.addOption("", "Wählen Sie einen Anbieter");
-		["Dejure", "Landesrecht.online", "LexMea", "Buzer", "Rewis", "Gesetze.co", "Jurafuchs"].forEach(
+		["Dejure", "Landesrecht.online", "LexMea", "Rewis", "Gesetze.co", "Jurafuchs"].forEach(
 			(provider) => {
 				dropdown.addOption(provider, provider);
 			}
@@ -330,16 +325,6 @@ export class SearchTabView extends ItemView {
 					break;
 				case "LexMea":
 					laws = this.extractLexmeaLaws();
-					break;
-				case "Buzer":
-					laws = this.extractBuzerLaws();
-					laws.sort((a, b) => {
-						const isANumber = /^\d/.test(a);
-						const isBNumber = /^\d/.test(b);
-						if (isANumber && !isBNumber) return 1;
-						if (!isANumber && isBNumber) return -1;
-						return a.localeCompare(b);
-					});
 					break;
 				case "Rewis":
 					laws = this.extractRewisLaws();
@@ -404,12 +389,6 @@ export class SearchTabView extends ItemView {
 
 	extractRewisLaws(): string[] {
 		return Object.entries(rewisGesetze).map(
-			([key, value]) => `${key}: ${value.title}`
-		);
-	}
-
-	extractBuzerLaws(): string[] {
-		return Object.entries(buzerGesetze).map(
 			([key, value]) => `${key}: ${value.title}`
 		);
 	}

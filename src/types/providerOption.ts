@@ -26,7 +26,6 @@ type EuLawProviderOptions = {
 
 type LawProviderOption =
 	| "dejure"
-	| "buzer"
 	| "lexmea"
 	| "landesrecht.online"
 	| "rewis"
@@ -39,8 +38,8 @@ type LawProviderOptions = {
 	thirdOption: LawProviderOption | null;
 	forthOption: LawProviderOption | null;
 	fifthOption: LawProviderOption | null;
-	sixthOption: LawProviderOption | null;
-	seventhOption: LawProviderOption | null;
+	sixthOption?: LawProviderOption | null;
+	seventhOption?: LawProviderOption | null;
 };
 
 export type {

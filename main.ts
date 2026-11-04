@@ -94,18 +94,35 @@ export default class LegalReferencePlugin extends Plugin {
 			},
 		};
 
-		// Migration: Falls aus einer früheren Version noch landesrecht.online in lawProviderOptions.firstOption steht
-		if (!data?.stateLawProviderOptions && data?.lawProviderOptions?.firstOption === "landesrecht.online") {
-			this.settings.lawProviderOptions = {
-				firstOption: data.lawProviderOptions.secondOption ?? "dejure",
-				secondOption: data.lawProviderOptions.thirdOption ?? "lexmea",
-				thirdOption: data.lawProviderOptions.forthOption ?? "buzer",
-				forthOption: data.lawProviderOptions.fifthOption ?? "rewis",
-				fifthOption: data.lawProviderOptions.sixthOption ?? "gesetze.co",
-				sixthOption: data.lawProviderOptions.seventhOption ?? "jurafuchs",
-				seventhOption: null,
-			};
-		}
+		// Migration: Buzer wurde entfernt und Landesrecht ausgelagert -> ungültige Optionen filtern
+		const rawOptions = [
+			this.settings.lawProviderOptions.firstOption,
+			this.settings.lawProviderOptions.secondOption,
+			this.settings.lawProviderOptions.thirdOption,
+			this.settings.lawProviderOptions.forthOption,
+			this.settings.lawProviderOptions.fifthOption,
+			this.settings.lawProviderOptions.sixthOption,
+			this.settings.lawProviderOptions.seventhOption,
+		].filter(
+			(opt) => Boolean(opt) && (opt as string) !== "buzer" && (opt as string) !== "landesrecht.online"
+		);
+
+		const fallbackDefaults = [
+			"dejure",
+			"lexmea",
+			"rewis",
+			"gesetze.co",
+			"jurafuchs",
+		] as const;
+		const uniqueOptions = Array.from(new Set([...rawOptions, ...fallbackDefaults]));
+
+		this.settings.lawProviderOptions = {
+			firstOption: uniqueOptions[0] ?? "dejure",
+			secondOption: uniqueOptions[1] ?? null,
+			thirdOption: uniqueOptions[2] ?? null,
+			forthOption: uniqueOptions[3] ?? null,
+			fifthOption: uniqueOptions[4] ?? null,
+		};
 	}
 
 	async saveSettings() {
