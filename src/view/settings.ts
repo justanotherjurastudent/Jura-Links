@@ -226,6 +226,19 @@ export class LawProviderSettingTab extends PluginSettingTab {
 				items.push({ key, setting, errorSpan, dropdown: d.selectEl });
 			});
 		}
+		this.markTakenOptions(items);
+	}
+
+	// Anbieter, die in einer anderen Stufe schon gewählt sind, werden grau dargestellt (bleiben aber wählbar).
+	private markTakenOptions(items: DropdownItem[]): void {
+		items.forEach((item) => {
+			Array.from(item.dropdown.options).forEach((option) => {
+				const taken =
+					option.value !== "" &&
+					items.some((other) => other !== item && other.dropdown.value === option.value);
+				option.toggleClass("law-provider-option-taken", taken);
+			});
+		});
 	}
 
 	// Neue Wahl gewinnt: gleiche Anbieter in anderen Stufen werden geleert und markiert.
@@ -246,6 +259,7 @@ export class LawProviderSettingTab extends PluginSettingTab {
 				this.setConflict(item, true);
 			}
 		});
+		this.markTakenOptions(items);
 		await this.plugin.saveSettings();
 	}
 
