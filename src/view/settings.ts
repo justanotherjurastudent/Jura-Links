@@ -1,11 +1,8 @@
 import { App, PluginSettingTab, Setting } from "obsidian";
 import LegalReferencePlugin from "../../main";
 import {
-	EuLawProviderOption,
 	EuLawProviderOptions,
-	LawProviderOption,
 	LawProviderOptions,
-	StateLawProviderOption,
 	StateLawProviderOptions,
 } from "../types/providerOption";
 
