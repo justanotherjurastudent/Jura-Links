@@ -237,6 +237,9 @@ export class LawProviderSettingTab extends PluginSettingTab {
 					option.value !== "" &&
 					items.some((other) => other !== item && other.dropdown.value === option.value);
 				option.toggleClass("law-provider-option-taken", taken);
+				// Die Farbe der Auswahlliste wird nicht überall übernommen, daher zusätzlich ein Textzusatz.
+				option.dataset.label ??= option.text;
+				option.text = taken ? `${option.dataset.label} (bereits belegt)` : option.dataset.label;
 			});
 		});
 	}
