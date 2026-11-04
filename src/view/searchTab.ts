@@ -9,8 +9,9 @@ import {
 import { Landesgesetze_mit_Namen } from "../static/Landesgesetze_mit_Namen";
 import { dejureGesetze } from "../static/dejureGesetze";
 import { rewisGesetze } from "../static/rewisGesetze";
-import { buzerGesetze } from "../static/buzerGesetze";
 import { lexmeaGesetze } from "../static/lexmeaGesetze";
+import { gesetzeCoGesetze } from "../static/gesetzeCoGesetze";
+import { jurafuchsGesetze } from "../static/jurafuchsGesetze";
 import { LawProviderOption } from "../types/providerOption";
 
 export const VIEW_TYPE_SEARCH_TAB = "search-tab";
@@ -62,6 +63,7 @@ export class SearchTabView extends ItemView {
 		new Setting(controlsContainer).setName("Jura-Links").setHeading();
 
 		// Suchfeld
+		let searchTimeout: number | undefined;
 		new Setting(controlsContainer)
 			.setName("Gesetzessuche")
 			.setDesc(
@@ -71,7 +73,8 @@ export class SearchTabView extends ItemView {
 				text.inputEl.addClass("setting-item");
 				text.onChange((value) => {
 					// Suche soll erst nach 0,5 Sekunde nach letzter Eingabe starten
-					window.setTimeout(() => {
+					if (searchTimeout) window.clearTimeout(searchTimeout);
+					searchTimeout = window.setTimeout(() => {
 						this.searchLaw(value);
 					}, 500);
 				});
@@ -129,13 +132,17 @@ export class SearchTabView extends ItemView {
 				law,
 				provider: "Rewis",
 			})),
-			...this.extractBuzerLaws().map((law) => ({
-				law,
-				provider: "Buzer",
-			})),
 			...this.extractLexmeaLaws().map((law) => ({
 				law,
 				provider: "Lexmea",
+			})),
+			...this.extractGesetzeCoLaws().map((law) => ({
+				law,
+				provider: "Gesetze.co",
+			})),
+			...this.extractJurafuchsLaws().map((law) => ({
+				law,
+				provider: "Jurafuchs",
 			})),
 			...this.extractLandesrechtOnlineLaws().map((law) => ({
 				law: law.law,
@@ -279,7 +286,7 @@ export class SearchTabView extends ItemView {
 
 	createAnbieterFilter(dropdown: DropdownComponent): void {
 		dropdown.addOption("", "Wählen Sie einen Anbieter");
-		["Dejure", "Landesrecht.online", "LexMea", "Buzer", "Rewis"].forEach(
+		["Dejure", "Landesrecht.online", "LexMea", "Rewis", "Gesetze.co", "Jurafuchs"].forEach(
 			(provider) => {
 				dropdown.addOption(provider, provider);
 			}
@@ -319,18 +326,14 @@ export class SearchTabView extends ItemView {
 				case "LexMea":
 					laws = this.extractLexmeaLaws();
 					break;
-				case "Buzer":
-					laws = this.extractBuzerLaws();
-					laws.sort((a, b) => {
-						const isANumber = /^\d/.test(a);
-						const isBNumber = /^\d/.test(b);
-						if (isANumber && !isBNumber) return 1;
-						if (!isANumber && isBNumber) return -1;
-						return a.localeCompare(b);
-					});
-					break;
 				case "Rewis":
 					laws = this.extractRewisLaws();
+					break;
+				case "Gesetze.co":
+					laws = this.extractGesetzeCoLaws();
+					break;
+				case "Jurafuchs":
+					laws = this.extractJurafuchsLaws();
 					break;
 			}
 
@@ -390,14 +393,20 @@ export class SearchTabView extends ItemView {
 		);
 	}
 
-	extractBuzerLaws(): string[] {
-		return Object.entries(buzerGesetze).map(
+	extractLexmeaLaws(): string[] {
+		return Object.entries(lexmeaGesetze).map(
 			([key, value]) => `${key}: ${value.title}`
 		);
 	}
 
-	extractLexmeaLaws(): string[] {
-		return Object.entries(lexmeaGesetze).map(
+	extractGesetzeCoLaws(): string[] {
+		return Object.entries(gesetzeCoGesetze).map(
+			([key, value]) => `${key}: ${value.title}`
+		);
+	}
+
+	extractJurafuchsLaws(): string[] {
+		return Object.entries(jurafuchsGesetze).map(
 			([key, value]) => `${key}: ${value.title}`
 		);
 	}

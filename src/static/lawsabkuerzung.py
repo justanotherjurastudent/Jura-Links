@@ -41,18 +41,26 @@ def extract_abbreviations(file_path):
             key = match[0] if match[0] else match[1]
             abbreviations.append(key)
 
-    elif 'gesetzeIoGesetze.ts' in file_path:
-        # Für gesetze.io: Schlüssel vor { title:
+    elif 'gesetzeIoGesetze.ts' in file_path or 'gesetzeCoGesetze.ts' in file_path or 'jurafuchsGesetze.ts' in file_path:
+        # Für gesetze.io, Gesetze.co und Jurafuchs: Schlüssel vor { title:
         matches = re.findall(r'"([^"]+)"\s*:\s*{\s*title:|(\w+)\s*:\s*{\s*title:', content)
         for match in matches:
             key = match[0] if match[0] else match[1]
             abbreviations.append(key)
     
+    if 'gesetzeCoGesetze.ts' in file_path or 'jurafuchsGesetze.ts' in file_path:
+        # Landesgesetze sind als "<BasiskÃ¼rzel> <ISO-Code>" gespeichert (z.B. "SOG ST").
+        # ZusÃ¤tzlich das BasiskÃ¼rzel aufnehmen; Bundesland-Suffixe (LSA, NRW, ...) erkennt regex.ts.
+        state_suffix = re.compile(r'^(.*\S)\s+(BW|BY|BE|BB|HB|HH|HE|MV|NI|NW|RP|SL|SN|ST|SH|TH)$')
+        for abbr in list(abbreviations):
+            m = state_suffix.match(abbr)
+            if m:
+                abbreviations.append(m.group(1))
     return abbreviations
 
 def main():
     source_dir = 'src/static'
-    output_file = 'src/static/lawsAbbrs_neu.ts'
+    output_file = 'src/static/lawsAbbrs.ts'
     
     all_abbreviations = []
     
@@ -62,7 +70,9 @@ def main():
         'dejureGesetze.ts',
         'lexmeaGesetze.ts',
         'rewisGesetze.ts',
-        'gesetzeIoGesetze.ts'
+        'gesetzeIoGesetze.ts',
+        'gesetzeCoGesetze.ts',
+        'jurafuchsGesetze.ts'
     ]
     
     for filename in files_to_process:
@@ -72,11 +82,11 @@ def main():
             print(f"Extracted {len(file_abbreviations)} abbreviations from {filename}")
             all_abbreviations.extend(file_abbreviations)
     
-    # Entferne Duplikate und sortiere nach Länge (längste zuerst)
-    unique_abbreviations = sorted(list(set(all_abbreviations)), key=len, reverse=True)
+    # Ersetzungen in Abkürzungen vor der Deduplizierung: Doppelte Anführungszeichen zu einfachen, Unterstriche zu Leerzeichen
+    cleaned_abbreviations = [abbr.replace('"', "'").replace('_', ' ').strip() for abbr in all_abbreviations if abbr]
     
-    # Ersetzungen in Abkürzungen: Doppelte Anführungszeichen zu einfachen, Unterstriche zu Leerzeichen
-    unique_abbreviations = [abbr.replace('"', "'").replace('_', ' ') for abbr in unique_abbreviations]
+    # Entferne Duplikate und sortiere deterministisch nach Länge (längste zuerst) und sekundär alphabetisch
+    unique_abbreviations = sorted(set(cleaned_abbreviations), key=lambda x: (-len(x), x.lower(), x))
     
     # Erstelle TypeScript-Export
     ts_content = "export const allLawAbbreviations = [\n"

@@ -1,4 +1,5 @@
 import { Editor, Plugin, WorkspaceLeaf, Notice } from "obsidian";
+import { migrateFederalOptions } from "./src/utils/settingsMigration";
 import {
 	findAndLinkCaseReferences,
 	findAndLinkJournalReferences,
@@ -10,6 +11,8 @@ import {
 import {
 	LawProviderSettings,
 	DEFAULT_SETTINGS,
+	DEFAULT_STATE_LAW_PROVIDER_OPTIONS,
+	DEFAULT_EU_LAW_PROVIDER_OPTIONS,
 	LawProviderSettingTab,
 } from "./src/view/settings";
 import {
@@ -24,11 +27,6 @@ export default class LegalReferencePlugin extends Plugin {
 
 	async onload() {
 		await this.loadSettings();
-
-		if (this.settings.lawProviderOptions.firstOption !== "landesrecht.online") {
-			this.settings.lawProviderOptions.firstOption = "landesrecht.online";
-			await this.saveSettings();
-		}
 
 		this.addSettingTab(new LawProviderSettingTab(this.app, this));
 		this.registerView(
@@ -59,8 +57,16 @@ export default class LegalReferencePlugin extends Plugin {
 			name: "Verlinkung starten",
 			editorCallback: async (editor: Editor) => {
 				const content = editor.getDoc().getValue();
+				const cursor = editor.getCursor();
+				const scroll = editor.getScrollInfo();
 				const newContent = this.findAndLinkLegalReferences(content);
-				editor.setValue(await newContent);
+				const result = await newContent;
+				// Notiz wurde während der Netzwerkabfrage geändert: nicht überschreiben
+				if (result === content || editor.getValue() !== content) return;
+				// Cursor und Scrollposition erhalten (setValue springt sonst an den Anfang)
+				editor.setValue(result);
+				editor.setCursor(cursor);
+				editor.scrollTo(scroll.left, scroll.top);
 			},
 		});
 	}
@@ -78,7 +84,26 @@ export default class LegalReferencePlugin extends Plugin {
 
 	async loadSettings() {
 		const data = (await this.loadData()) as Partial<LawProviderSettings> | null;
-		this.settings = Object.assign({}, DEFAULT_SETTINGS, data ?? {});
+		this.settings = {
+			...DEFAULT_SETTINGS,
+			...(data ?? {}),
+			syncEuWithFederal:
+				data?.syncEuWithFederal ?? DEFAULT_SETTINGS.syncEuWithFederal,
+			stateLawProviderOptions: {
+				...DEFAULT_STATE_LAW_PROVIDER_OPTIONS,
+				...(data?.stateLawProviderOptions ?? {}),
+			},
+			euLawProviderOptions: {
+				...DEFAULT_EU_LAW_PROVIDER_OPTIONS,
+				...(data?.euLawProviderOptions ?? {}),
+			},
+			lawProviderOptions: {
+				...DEFAULT_SETTINGS.lawProviderOptions,
+				...(data?.lawProviderOptions ?? {}),
+			},
+		};
+
+		this.settings.lawProviderOptions = migrateFederalOptions(this.settings.lawProviderOptions);
 	}
 
 	async saveSettings() {
@@ -129,7 +154,10 @@ export default class LegalReferencePlugin extends Plugin {
 	
 		let processedContent = findAndLinkLawReferences(
 			fileContent,
-			this.settings.lawProviderOptions
+			this.settings.lawProviderOptions,
+			this.settings.stateLawProviderOptions,
+			this.settings.euLawProviderOptions,
+			this.settings.syncEuWithFederal
 		);
 		processedContent = findAndLinkDrucksacheReferences(processedContent);
 		processedContent = findAndLinkCaseReferences(processedContent);

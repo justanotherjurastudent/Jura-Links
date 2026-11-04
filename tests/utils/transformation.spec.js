@@ -25,7 +25,7 @@ test.each([
 	},
 	{
 		input: `§ 1 AGBGB`,
-		expected: `§ [1](https://www.dejure.org/gesetze/agbgb/1.html) AGBGB`,
+		expected: `§ [1](https://landesrecht.online/AGBGB/1) AGBGB`,
 	},
 	{
 		input: `§ 1 AGBG`,
@@ -50,6 +50,42 @@ test.each([
 		expected: `§ [1](https://landesrecht.online/NW/AO-GS/1) AO-GS NW`,
 	},
 	{
+		input: `§ 1 SOG ST`,
+		expected: `§ [1](https://landesrecht.online/ST/SOG/1) SOG ST`,
+	},
+	{
+		input: `§ 1 SOG LSA`,
+		expected: `§ [1](https://landesrecht.online/ST/SOG/1) SOG LSA`,
+	},
+	{
+		input: `Paragraf 1 SOG ST`,
+		expected: `Paragraf [1](https://landesrecht.online/ST/SOG/1) SOG ST`,
+	},
+	{
+		input: `Paragraf 1 SOG LSA`,
+		expected: `Paragraf [1](https://landesrecht.online/ST/SOG/1) SOG LSA`,
+	},
+	{
+		input: `Paragraph 1 SOG ST`,
+		expected: `Paragraph [1](https://landesrecht.online/ST/SOG/1) SOG ST`,
+	},
+	{
+		input: `Paragraph 1 SOG LSA`,
+		expected: `Paragraph [1](https://landesrecht.online/ST/SOG/1) SOG LSA`,
+	},
+	{
+		input: `Paragraphen 242, 243 BGB`,
+		expected: `Paragraphen [242](https://www.dejure.org/gesetze/bgb/242.html), [243](https://www.dejure.org/gesetze/bgb/243.html) BGB`,
+	},
+	{
+		input: `§ 1 AbgG Saar`,
+		expected: `§ [1](https://landesrecht.online/SL/AbgG/1) AbgG Saar`,
+	},
+	{
+		input: `§ 1 OBG Thür`,
+		expected: `§ [1](https://landesrecht.online/TH/OBG/1) OBG Thür`,
+	},
+	{
 		input: `§ 1 BBesGÜB 2018/19/20`,
 		expected: `§ 1 BBesGÜB 2018/19/20`,
 	},
@@ -67,7 +103,7 @@ test.each([
 	},
 	{
 		input: `§ 1 KAG `,
-		expected: `§ [1](https://www.dejure.org/gesetze/kag/1.html) KAG `,
+		expected: `§ [1](https://landesrecht.online/KAG/1) KAG `,
 	},
 	{
 		input: `§ 1 VVG-InfoV `,
@@ -117,7 +153,7 @@ test.each([
 	},
 	{
 		input: `Art. 1 II lit. a-c Brüssel-Ia-VO`,
-		expected: `Art. 1 II lit. a-c Brüssel-Ia-VO`,
+		expected: `Art. [1 II lit. a-c](https://www.dejure.org/gesetze/eugvvo/1.html) Brüssel-Ia-VO`,
 	},
 	{
 		input: `§§ 823 Abs. 1, 249 Abs. 2, 250 Abs. 3 BGB`,
@@ -252,15 +288,15 @@ test.each([
 		firstOption: "dejure",
 		secondOption: "landesrecht.online", // kept for potential future but lexsoft expected comes from earlier logic
 		thirdOption: "lexmea",
-		forthOption: "buzer",
-		fifthOption: "rewis",
+		forthOption: "rewis",
+		fifthOption: "gesetze.co",
 	});
 	result = findAndLinkLawReferences(testData.input, {
 		firstOption: "dejure",
 		secondOption: "landesrecht.online",
 		thirdOption: "lexmea",
-		forthOption: "buzer",
-		fifthOption: "rewis",
+		forthOption: "rewis",
+		fifthOption: "gesetze.co",
 	});
 	expect(result).toBe(testData.expected);
 }
@@ -329,8 +365,8 @@ test.each([
 		const result = findAndLinkLawReferences(testData.input, {
 			firstOption: "lexmea",
 			secondOption: "dejure",
-			thirdOption: "buzer",
-			forthOption: "rewis",
+			thirdOption: "rewis",
+			forthOption: "gesetze.co",
 			fifthOption: "landesrecht.online",
 		});
 		expect(result).toBe(testData.expected);
@@ -375,7 +411,7 @@ test.each([
 			firstOption: "rewis",
 			secondOption: "lexmea",
 			thirdOption: "dejure",
-			forthOption: "buzer",
+			forthOption: "gesetze.co",
 			fifthOption: "landesrecht.online",
 		});
 		expect(result).toBe(testData.expected);
@@ -432,3 +468,452 @@ test.each([
         expect(result).toBe(testData.expected);
     }
 );
+
+test.each([
+	{
+		input: `§ 433 BGB`,
+		expected: `§ [433](https://gesetze.co/DE/BGB/433) BGB`,
+	},
+	{
+		input: `Art. 1 GG`,
+		expected: `Art. [1](https://gesetze.co/DE/GG/Art_1) GG`,
+	},
+	{
+		input: `Art. 6 I DSGVO`,
+		expected: `Art. [6 I](https://gesetze.co/EU/DSGVO/6) DSGVO`,
+	},
+	{
+		input: `§ 1 PolG NRW`,
+		expected: `§ [1](https://gesetze.co/NW/PolG_NRW/1) PolG NRW`,
+	},
+	{
+		input: `§ 1 AGBauGB BW`,
+		expected: `§ [1](https://gesetze.co/BW/AGBauGB/1) AGBauGB BW`,
+	},
+	{
+		input: `§ 1 BayAbfG BY`,
+		expected: `§ [1](https://gesetze.co/BY/BayAbfG/1) BayAbfG BY`,
+	},
+	{
+		input: `§ 1 ASOG Bln`,
+		expected: `§ [1](https://gesetze.co/BE/ASOG_Bln/1) ASOG Bln`,
+	},
+	{
+		input: `§ 1 BbgBO BB`,
+		expected: `§ [1](https://gesetze.co/BB/BbgBO/1) BbgBO BB`,
+	},
+	{
+		input: `§ 1 AGBGB HB`,
+		expected: `§ [1](https://gesetze.co/HB/AGBGB/1) AGBGB HB`,
+	},
+	{
+		input: `§ 1 BezVG HH`,
+		expected: `§ [1](https://gesetze.co/HH/BezVG/1) BezVG HH`,
+	},
+	{
+		input: `§ 1 GemHVO HE`,
+		expected: `§ [1](https://gesetze.co/HE/GemHVO/1) GemHVO HE`,
+	},
+	{
+		input: `§ 1 AbfWG M-V`,
+		expected: `§ [1](https://gesetze.co/MV/AbfWG_M-V/1) AbfWG M-V`,
+	},
+	{
+		input: `§ 1 NAbfG NI`,
+		expected: `§ [1](https://gesetze.co/NI/NAbfG/1) NAbfG NI`,
+	},
+	{
+		input: `§ 1 AGBGB RP`,
+		expected: `§ [1](https://gesetze.co/RP/AGBGB/1) AGBGB RP`,
+	},
+	{
+		input: `§ 1 AbgG SL`,
+		expected: `§ [1](https://gesetze.co/SL/AbgG_SL/1) AbgG SL`,
+	},
+	{
+		input: `§ 1 AGImSchG SN`,
+		expected: `§ [1](https://gesetze.co/SN/AGImSchG/1) AGImSchG SN`,
+	},
+	{
+		input: `§ 1 AbfG LSA`,
+		expected: `§ [1](https://gesetze.co/ST/AbfG_LSA/1) AbfG LSA`,
+	},
+	{
+		input: `§ 1 AGBGB Schl.-H.`,
+		expected: `§ [1](https://gesetze.co/SH/AGBGB_Schl.-H./1) AGBGB Schl.-H.`,
+	},
+	{
+		input: `§ 1 OBG TH`,
+		expected: `§ [1](https://gesetze.co/TH/OBG/1) OBG TH`,
+	},
+	{
+		input: `Paragraf 1 SOG ST`,
+		expected: `Paragraf [1](https://gesetze.co/ST/SOG_LSA/1) SOG ST`,
+	},
+	{
+		input: `Paragraf 1 SOG LSA`,
+		expected: `Paragraf [1](https://gesetze.co/ST/SOG_LSA/1) SOG LSA`,
+	},
+	{
+		input: `Paragraph 1 SOG ST`,
+		expected: `Paragraph [1](https://gesetze.co/ST/SOG_LSA/1) SOG ST`,
+	},
+	{
+		input: `Paragraph 1 SOG LSA`,
+		expected: `Paragraph [1](https://gesetze.co/ST/SOG_LSA/1) SOG LSA`,
+	},
+	{
+		input: `§ 1 SOG ST`,
+		expected: `§ [1](https://gesetze.co/ST/SOG_LSA/1) SOG ST`,
+	},
+	{
+		input: `§ 1 SOG LSA`,
+		expected: `§ [1](https://gesetze.co/ST/SOG_LSA/1) SOG LSA`,
+	},
+	{
+		input: `§ 1 AGBauGB Ba-Wü`,
+		expected: `§ [1](https://gesetze.co/BW/AGBauGB/1) AGBauGB Ba-Wü`,
+	},
+])(
+	"findAndLinkLawReferences with Gesetze.co: should transform $input to $expected",
+	(testData) => {
+		const result = findAndLinkLawReferences(testData.input, {
+			firstOption: "gesetze.co",
+			secondOption: null,
+			thirdOption: null,
+			forthOption: null,
+			fifthOption: null,
+			sixthOption: null,
+		});
+		expect(result).toBe(testData.expected);
+	}
+);
+
+test.each([
+	{
+		input: `§ 433 BGB`,
+		expected: `§ [433](https://gesetze.jurafuchs.de/gesetz/bgb/433) BGB`,
+	},
+	{
+		input: `Art. 20a GG`,
+		expected: `Art. [20a](https://gesetze.jurafuchs.de/gesetz/gg/20a) GG`,
+	},
+	{
+		input: `§ 1 AO`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/ao/1) AO`,
+	},
+	{
+		input: `Art. 6 I DSGVO`,
+		expected: `Art. [6 I](https://gesetze.jurafuchs.de/gesetz/dsgvo/6) DSGVO`,
+	},
+	{
+		input: `Art. 101 AEUV`,
+		expected: `Art. [101](https://gesetze.jurafuchs.de/gesetz/aeuv/101) AEUV`,
+	},
+	{
+		input: `§ 1 AbgG BW`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/abgeordneteng-bw/1) AbgG BW`,
+	},
+	{
+		input: `§ 1 AbgG Ba-Wü`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/abgeordneteng-bw/1) AbgG Ba-Wü`,
+	},
+	{
+		input: `§ 1 AGBGB Bay`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/bayagbgb/1) AGBGB Bay`,
+	},
+	{
+		input: `§ 1 AGBGB BY`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/bayagbgb/1) AGBGB BY`,
+	},
+	{
+		input: `§ 1 ASOG Bln`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/asog-bln/1) ASOG Bln`,
+	},
+	{
+		input: `§ 1 ASOG BE`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/asog-bln/1) ASOG BE`,
+	},
+	{
+		input: `§ 1 OBG BB`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/obg-bb/1) OBG BB`,
+	},
+	{
+		input: `§ 1 OBG Bbg`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/obg-bb/1) OBG Bbg`,
+	},
+	{
+		input: `§ 1 BremDSG HB`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/bremdsg/1) BremDSG HB`,
+	},
+	{
+		input: `§ 1 SOG HH`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/sog-hh/1) SOG HH`,
+	},
+	{
+		input: `§ 1 SOG Hmb`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/sog-hh/1) SOG Hmb`,
+	},
+	{
+		input: `§ 1 HBO HE`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/hbo-he/1) HBO HE`,
+	},
+	{
+		input: `§ 1 SOG M-V`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/sog-m-v/1) SOG M-V`,
+	},
+	{
+		input: `§ 1 SOG MV`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/sog-m-v/1) SOG MV`,
+	},
+	{
+		input: `§ 1 NBauO NI`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/nbauo-ni/1) NBauO NI`,
+	},
+	{
+		input: `§ 1 POG NRW`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/polizeiorganisationsg-nw/1) POG NRW`,
+	},
+	{
+		input: `§ 1 POG NW`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/polizeiorganisationsg-nw/1) POG NW`,
+	},
+	{
+		input: `§ 1 GemO RP`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/gemo-rp/1) GemO RP`,
+	},
+	{
+		input: `§ 1 GemO RLP`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/gemo-rp/1) GemO RLP`,
+	},
+	{
+		input: `§ 1 AbgG SL`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/abgg-sl/1) AbgG SL`,
+	},
+	{
+		input: `§ 1 AbgG Saar`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/abgg-sl/1) AbgG Saar`,
+	},
+	{
+		input: `§ 1 RHG SN`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/rechnungshofg-sn/1) RHG SN`,
+	},
+	{
+		input: `§ 1 SOG LSA`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/sog-lsa/1) SOG LSA`,
+	},
+	{
+		input: `§ 1 SOG ST`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/sog-lsa/1) SOG ST`,
+	},
+	{
+		input: `§ 1 AO SH`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/ao-sh/1) AO SH`,
+	},
+	{
+		input: `§ 1 AO Schl.-H.`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/ao-sh/1) AO Schl.-H.`,
+	},
+	{
+		input: `§ 1 OBG TH`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/obg-th/1) OBG TH`,
+	},
+	{
+		input: `§ 1 OBG Thür`,
+		expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/obg-th/1) OBG Thür`,
+	},
+	{
+		input: `Paragraf 1 SOG ST`,
+		expected: `Paragraf [1](https://gesetze.jurafuchs.de/gesetz/sog-lsa/1) SOG ST`,
+	},
+	{
+		input: `Paragraph 1 SOG LSA`,
+		expected: `Paragraph [1](https://gesetze.jurafuchs.de/gesetz/sog-lsa/1) SOG LSA`,
+	},
+])(
+	"findAndLinkLawReferences with Jurafuchs: should transform $input to $expected",
+	(testData) => {
+		const result = findAndLinkLawReferences(testData.input, {
+			firstOption: "jurafuchs",
+			secondOption: null,
+			thirdOption: null,
+			forthOption: null,
+			fifthOption: null,
+			sixthOption: null,
+			seventhOption: null,
+		});
+		expect(result).toBe(testData.expected);
+	}
+);
+
+test.each([
+	{ input: `§ 1 POG`, expected: `§ [1](https://landesrecht.online/POG/1) POG` },
+	{ input: `§ 1 PAG`, expected: `§ [1](https://landesrecht.online/PAG/1) PAG` },
+	{ input: `§ 1 POG RP`, expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/pog-rp/1) POG RP` },
+	{ input: `§ 1 PAG TH`, expected: `§ [1](https://gesetze.jurafuchs.de/gesetz/pag-th/1) PAG TH` },
+])(
+	"findAndLinkLawReferences mit Jurafuchs als erster Wahl: Landeskürzel $input",
+	(testData) => {
+		const result = findAndLinkLawReferences(testData.input, {
+			firstOption: "jurafuchs",
+			secondOption: null,
+			thirdOption: null,
+			forthOption: null,
+			fifthOption: null,
+			sixthOption: null,
+			seventhOption: null,
+		});
+		expect(result).toBe(testData.expected);
+	}
+);
+
+test("findAndLinkLawReferences: State-Law-Provider Reihenfolge steuert Verlinkung von Landesgesetzen", () => {
+	const generalOptions = {
+		firstOption: "dejure",
+		secondOption: "lexmea",
+		thirdOption: "rewis",
+		forthOption: "gesetze.co",
+		fifthOption: "jurafuchs",
+	};
+
+	// Mit Jurafuchs als 1. Landesrechtsanbieter
+	const jurafuchsFirst = {
+		firstOption: "jurafuchs",
+		secondOption: "landesrecht.online",
+		thirdOption: "gesetze.co",
+	};
+	expect(findAndLinkLawReferences("§ 1 SOG LSA", generalOptions, jurafuchsFirst)).toBe(
+		"§ [1](https://gesetze.jurafuchs.de/gesetz/sog-lsa/1) SOG LSA"
+	);
+
+	// Mit Gesetze.co als 1. Landesrechtsanbieter
+	const gesetzeCoFirst = {
+		firstOption: "gesetze.co",
+		secondOption: "jurafuchs",
+		thirdOption: "landesrecht.online",
+	};
+	expect(findAndLinkLawReferences("§ 1 SOG LSA", generalOptions, gesetzeCoFirst)).toBe(
+		"§ [1](https://gesetze.co/ST/SOG_LSA/1) SOG LSA"
+	);
+
+	// Mit Landesrecht.online als 1. Landesrechtsanbieter
+	const landesrechtFirst = {
+		firstOption: "landesrecht.online",
+		secondOption: "jurafuchs",
+		thirdOption: "gesetze.co",
+	};
+	expect(findAndLinkLawReferences("§ 1 SOG LSA", generalOptions, landesrechtFirst)).toBe(
+		"§ [1](https://landesrecht.online/ST/SOG/1) SOG LSA"
+	);
+
+	// Bundesgesetz BGB geht dennoch an Dejure
+	expect(findAndLinkLawReferences("§ 823 I BGB", generalOptions, jurafuchsFirst)).toBe(
+		"§ [823 I](https://www.dejure.org/gesetze/bgb/823.html) BGB"
+	);
+});
+
+test("findAndLinkLawReferences: europäische Gesetze respektieren separate EU-Anbieter-Reihenfolge", () => {
+	const generalOptions = {
+		firstOption: "dejure",
+		secondOption: "lexmea",
+		thirdOption: "rewis",
+		forthOption: "gesetze.co",
+		fifthOption: "jurafuchs",
+	};
+	const stateOptions = {
+		firstOption: "landesrecht.online",
+		secondOption: "jurafuchs",
+		thirdOption: "gesetze.co",
+	};
+
+	// 1. Wenn syncEuWithFederal = true (Standard): richtet sich nach generalOptions (hier dejure)
+	expect(findAndLinkLawReferences("Art. 6 I DSGVO", generalOptions, stateOptions, undefined, true)).toBe(
+		"Art. [6 I](https://www.dejure.org/gesetze/dsgvo/6.html) DSGVO"
+	);
+
+	// 2. Wenn syncEuWithFederal = false: separate EU-Optionen greifen
+	const euOptionsGesetzeCo = {
+		firstOption: "gesetze.co",
+		secondOption: "jurafuchs",
+		thirdOption: "dejure",
+		forthOption: "lexmea",
+		fifthOption: "rewis",
+	};
+	expect(findAndLinkLawReferences("Art. 6 I DSGVO", generalOptions, stateOptions, euOptionsGesetzeCo, false)).toBe(
+		"Art. [6 I](https://gesetze.co/EU/DSGVO/6) DSGVO"
+	);
+
+	const euOptionsJurafuchs = {
+		firstOption: "jurafuchs",
+		secondOption: "gesetze.co",
+		thirdOption: "dejure",
+		forthOption: "lexmea",
+		fifthOption: "rewis",
+	};
+	expect(findAndLinkLawReferences("Art. 6 I DSGVO", generalOptions, stateOptions, euOptionsJurafuchs, false)).toBe(
+		"Art. [6 I](https://gesetze.jurafuchs.de/gesetz/dsgvo/6) DSGVO"
+	);
+
+	// Bundesrecht (BGB) bleibt unberührt von EU-Optionen
+	expect(findAndLinkLawReferences("§ 823 I BGB", generalOptions, stateOptions, euOptionsGesetzeCo, false)).toBe(
+		"§ [823 I](https://www.dejure.org/gesetze/bgb/823.html) BGB"
+	);
+});
+
+test("findAndLinkLawReferences: DSGVO-Zitate werden ohne fehlerhafte 'DS'-Trennung oder verschluckte Buchstaben verlinkt", () => {
+	const gesetzeCoOptions = {
+		firstOption: "gesetze.co",
+		secondOption: "dejure",
+		thirdOption: "lexmea",
+		forthOption: "rewis",
+		fifthOption: "jurafuchs",
+	};
+
+	// 1. Art. 4 DSGVO (wurde zuvor fälschlicherweise bei 'DS' als GVO getrennt)
+	expect(findAndLinkLawReferences("Art. 4 DSGVO", gesetzeCoOptions)).toBe(
+		"Art. [4](https://gesetze.co/EU/DSGVO/4) DSGVO"
+	);
+
+	// 2. Art. 4 Nr. 1 DSGVO
+	expect(findAndLinkLawReferences("Art. 4 Nr. 1 DSGVO", gesetzeCoOptions)).toBe(
+		"Art. [4 Nr. 1](https://gesetze.co/EU/DSGVO/4) DSGVO"
+	);
+
+	// 3. Art. 6 Abs. 1 lit. a DSGVO
+	expect(findAndLinkLawReferences("Art. 6 Abs. 1 lit. a DSGVO", gesetzeCoOptions)).toBe(
+		"Art. [6 Abs. 1 lit. a](https://gesetze.co/EU/DSGVO/6) DSGVO"
+	);
+
+	// 4. Art. 6 Abs. 1 lit. a, b DSGVO
+	expect(findAndLinkLawReferences("Art. 6 Abs. 1 lit. a, b DSGVO", gesetzeCoOptions)).toBe(
+		"Art. [6 Abs. 1 lit. a, b](https://gesetze.co/EU/DSGVO/6) DSGVO"
+	);
+
+	// 5. Art. 17, 18, 21 DSGVO (verschluckte zuvor das 'S' und bildete '21 D')
+	expect(findAndLinkLawReferences("Art. 17, 18, 21 DSGVO", gesetzeCoOptions)).toBe(
+		"Art. [17](https://gesetze.co/EU/DSGVO/17), [18](https://gesetze.co/EU/DSGVO/18), [21](https://gesetze.co/EU/DSGVO/21) DSGVO"
+	);
+});
+
+test("findAndLinkCaseReferences: Aktenzeichen über Zeilenumbrüche hinweg und EuGH C-184/22", () => {
+	const input = "17 O 11/23\nC-184/22";
+	const expected =
+		"[17 O 11/23](https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=17%20O%2011%2F23)\n[C-184/22](https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=C-184%2F22)";
+
+	const result1 = findAndLinkCaseReferences(input);
+	expect(result1).toBe(expected);
+
+	// Idempotenz: Zweiter Durchlauf darf Markdown-Links nicht zerreißen
+	const result2 = findAndLinkCaseReferences(result1);
+	expect(result2).toBe(expected);
+});
+
+test("findAndLinkCaseReferences: Wort davor ('und') und Wikilinks bleiben unberuehrt", () => {
+	const url = (t) => `https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=${encodeURIComponent(t)}`;
+	expect(findAndLinkCaseReferences("C-184/22 und 17 O 11/23")).toBe(
+		`[C-184/22](${url("C-184/22")}) und [17 O 11/23](${url("17 O 11/23")})`
+	);
+	expect(findAndLinkCaseReferences("[[Notiz 12/23]]")).toBe("[[Notiz 12/23]]");
+	expect(findAndLinkCaseReferences("[Az 12/23] ok")).toBe("[Az 12/23] ok");
+	expect(findAndLinkCaseReferences("https://example.com/2023/12/23")).toBe("https://example.com/2023/12/23");
+});

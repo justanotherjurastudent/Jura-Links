@@ -8,14 +8,15 @@ export default defineConfig(
 		'dist',
 		'esbuild.config.mjs',
 		'version-bump.mjs',
-		'src/static/updateLexmeaGesetze.mjs',
-		'src/static/updateRewisGesetze.mjs',
-		'src/static/updateGesetzeIo.mjs',
+		'src/static/*.mjs',
+		'src/static/**/*.mjs',
 		'versions.json',
 		'main.js',
 		'package.json',
 		'package-lock.json',
 		'tsconfig.json',
+		'tests',
+		'vitest.config.ts',
 	]),
 	{
 		languageOptions: {

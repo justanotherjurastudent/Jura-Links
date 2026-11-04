@@ -40,6 +40,12 @@ jobs:
           echo "Aktualisiere gesetze.io..."
           node src/static/updateGesetzeIo.mjs
 
+          echo "Aktualisiere Gesetze.co..."
+          node src/static/updateGesetzeCo.mjs
+
+          echo "Aktualisiere Jurafuchs..."
+          node src/static/updateJurafuchsGesetze.mjs
+
           echo "Aktualisiere LexMea..."
           node src/static/updateLexmeaGesetze.mjs
 
@@ -61,8 +67,10 @@ jobs:
             Automatisierte Aktualisierung der Gesetzesbestände:
             - Rewis.io (`src/static/rewisGesetze.ts`)
             - gesetze.io (`src/static/gesetzeIoGesetze.ts`)
+            - Gesetze.co (`src/static/gesetzeCoGesetze.ts`)
+            - Jurafuchs (`src/static/jurafuchsGesetze.ts`)
             - LexMea (`src/static/lexmeaGesetze.ts`)
-            - Abkürzungsverzeichnis (`src/static/lawsAbbrs_neu.ts`)
+            - Abkürzungsverzeichnis (`src/static/lawsAbbrs.ts`)
 
             Alle Tests und der TypeScript-Build wurden erfolgreich ausgeführt.
           branch: automated-laws-update

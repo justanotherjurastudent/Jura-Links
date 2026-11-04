@@ -149,6 +149,48 @@
     display: none;
 }
 
+/* Meldung unter der Zeile (volle Breite), damit das Dropdown nicht verschoben wird */
 .law-provider-error.visible {
-    display: inline;
+    display: block;
+    flex-basis: 100%;
+    margin: 4px 0 0;
+}
+
+
+/* Tabs für Einstellungen */
+.law-provider-tabs {
+    display: flex;
+    gap: 8px;
+    margin: 16px 0;
+    border-bottom: 1px solid var(--background-modifier-border);
+    padding-bottom: 12px;
+}
+
+.law-provider-tab-btn {
+    cursor: pointer;
+    font-weight: 500;
+    border-radius: var(--radius-s);
+    padding: 6px 14px;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.law-provider-sync-notice {
+    margin: 16px 0;
+    padding: 12px 16px;
+    border-radius: var(--radius-s);
+    background-color: var(--background-secondary);
+    color: var(--text-muted);
+    font-size: 0.9em;
+}
+
+/* Rahmen per box-shadow: aendert die Zeilengroesse nicht */
+.law-provider-conflict {
+    flex-wrap: wrap;
+    box-shadow: inset 0 0 0 1px var(--text-error);
+    border-radius: var(--radius-s);
+}
+
+
+.law-provider-option-taken {
+    color: var(--text-faint);
 }

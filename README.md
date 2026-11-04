@@ -17,6 +17,8 @@ Jura-Links wurde insbesondere für Jurastudierende, aber auch darüber hinaus f�
 >- Buzer
 >- LexMea (insbesondere für Studierende geeignet!)
 >- Landesrecht.online (Quelle für Landesgesetze)
+>- Gesetze.co (Bundes- und Landesgesetze)
+>- Jurafuchs (Bundes- und Landesgesetze)
 
 Außerdem bietet Jura-Links ein praktisches Such- und Filterfenster an, um alle dem Plugin bekannten Gesetze zu durchsuchen. Dies ist vor allem dann sehr nützlich, wenn ihr die Abkürzung für ein bestimmtes Landesgesetz erfahren wollt.
 
@@ -51,7 +53,7 @@ Außerdem bietet Jura-Links ein praktisches Such- und Filterfenster an, um alle 
 - Suche nach dem **Befehl “Jura Links: Verlinkung starten”**. Es dürfte schon ausreichen, nur nach “jur” zu suchen, damit der Befehl erscheint. Aktiviere das und alle gefundenen Gesetze, Gerichtsaktenzeichen und Zeitschriftenfundstellen werden verlinkt.
 - Das Plugin sucht nach Aktivierung dieses Befehls die aktuell bearbeitete Notiz nach diesen Jura-Nachweisen ab.
 - In den Einstellungen dieses Plugins kannst du auch einstellen, dass die Notiz bei jedem Laden einmal hiernach durchsucht wird.
-- In den Einstellungen dieses Plugins legst du eine Reihenfolge für die Gesetzesanbieter fest. Das bedeutet, wenn eine Normangabe gefunden wurde, soll versucht werden, dieses Gesetz mit dem ersten angegeben Gesetzesanbieter zu verlinken. Wenn dies nicht möglich ist (z. B. weil das Gesetz bei dem Anbieter fehlt), dann wird beim nächsten angegeben Anbieter geschaut, ob eine Verlinkung erfolgen kann. Diese Reihenfolge läuft u. U. bis zum letzten Anbieter, der angegeben wurde. Wenn das Gesetz bei keinem Anbieter gefunden wurde, dann entsteht kein Link.
+- In den Einstellungen dieses Plugins legst du die Reihenfolge für die Landesrechtsanbieter sowie für die Bundes- und EU-Gesetzesanbieter getrennt fest. Wenn ein Gesetz bei einem Anbieter nicht verfügbar ist, wird automatisch der nächste Anbieter in der Reihe geprüft.
 - Aktenzeichen und Funstellen werden immer mit Dejure verlinkt.
 ### 3. Alle gefundenen Nachweise sind nun im Markdownlink-Format verlinkt. 
 - Nicht verlinkt werden §-Zeichen oder “Art.” sowie die Gesetzesangabe selbst.
@@ -63,7 +65,7 @@ Außerdem bietet Jura-Links ein praktisches Such- und Filterfenster an, um alle 
 Das Suchfenster ist über das Waagensymbol links in der Leiste erreichbar. Es öffnet sich rechts in der Seitenleiste.
 1. Hier kannst du zum einen im **Suchfeld nach einem bestimmten Gesetz** suchen. Es funktioniert die Abkürzung oder der Titel des Gesetzes. Unten werden dir dann nach Gesetzesanbieter geordnet alle gefundenen Gesetze hierzu angezeigt.
 2. Unter dem Suchfeld befinden sich zwei Filter-Buttons.
-	1. Der erste ist dazu da, die **Gesetze eines Bundeslandes in Deutschland anzeigen** zu lassen, die der Anbieter LexSoft bereitstellt.
+	1. Der erste ist dazu da, die **Gesetze eines Bundeslandes in Deutschland anzeigen** zu lassen, die der Anbieter Landesrecht.online bereitstellt.
 	2. Mit dem zweiten Filter-Button kannst du dir alle **Gesetze eines Gesetzesanbieters anzeigen** lassen.
 <img src="https://github.com/user-attachments/assets/3f702b3e-418e-4fb2-b285-f395a925f922" height="700">
 
@@ -74,8 +76,9 @@ Das Suchfenster ist über das Waagensymbol links in der Leiste erreichbar. Es ö
 
 Du kannst unter den Einstellungen folgendes einstellen:
 1. Per Toggle (Umschalt-Button): Wenn dies aktiviert wird, dann werden **bei jedem Laden** einer Notiz nach Jura-Nachweisen gesucht und ggf. verlinkt. Sofern dir das einmal aus Versehen passiert, kannst du die Verlinkung mit Strg (oder bei Mac Cmd)+Z rückgängig machen.
-2. Per Dropdown: Die **Reihenfolge der angesteuerten Gesetzesanbieter** kannst du hier einstellen. Das bedeutet, wenn eine Normangabe gefunden wurde, soll versucht werden, dieses Gesetz mit dem ersten angegeben Gesetzesanbieter zu verlinken. Wenn dies nicht möglich ist (z. B. weil das Gesetz bei dem Anbieter fehlt), dann wird beim nächsten angegeben Anbieter geschaut, ob eine Verlinkung erfolgen kann. Diese Reihenfolge läuft u. U. bis zum letzten Anbieter, der angegeben wurde. Wenn das Gesetz bei keinem Anbieter gefunden wurde, dann entsteht kein Link.
-	- Landesrecht.online wird für Landesgesetze bevorzugt angesteuert, da es sich hierbei um speziellere Landesgesetze handelt und die Programmlogik damit besser umgehen kann.
+2. Per Dropdown: Die **Reihenfolge der angesteuerten Gesetzesanbieter** kannst du getrennt für Landesgesetze und Bundes-/EU-Gesetze einstellen:
+	- **Landesgesetze**: Du kannst die Priorität der Landesrechtsanbieter (Landesrecht.online, Jurafuchs und Gesetze.co) nach deinen Wünschen anordnen. Landesgesetze werden vorrangig bei diesen Anbietern gesucht.
+	- **Bundes- und EU-Gesetze**: Wenn ein Bundes- oder EU-Gesetz vorliegt (oder ein Landesgesetz bei keinem Landesrechtsanbieter gefunden wurde), wird die hier definierte Reihenfolge (Dejure, LexMea, Buzer, Rewis, Gesetze.co, Jurafuchs) durchsucht.
 
 ## Tipps
 ### für Jurastudierende

@@ -1,5 +1,9 @@
 import { DejureUrl } from "../types/url";
-import { LawProviderOptions } from "../types/providerOption";
+import {
+	EuLawProviderOptions,
+	LawProviderOptions,
+	StateLawProviderOptions,
+} from "../types/providerOption";
 import {
 	caseRegex,
 	journalRegex,
@@ -105,9 +109,13 @@ function findAndLinkLawReferences(
 		firstOption: "dejure",
 		secondOption: "landesrecht.online",
 		thirdOption: "lexmea",
-		forthOption: "buzer",
-		fifthOption: "rewis",
-	}
+		forthOption: "rewis",
+		fifthOption: "gesetze.co",
+		sixthOption: "jurafuchs",
+	},
+	stateLawProviderOptions?: StateLawProviderOptions,
+	euLawProviderOptions?: EuLawProviderOptions,
+	syncEuWithFederal = true
 ): string {
 	if (!lawRegex.test(fileContent)) {
 		return fileContent;
@@ -142,7 +150,10 @@ function findAndLinkLawReferences(
 			gesetz,
 			firstNorm,
 			lawProviderOptions,
-			firstNormGroups
+			firstNormGroups,
+			stateLawProviderOptions,
+			euLawProviderOptions,
+			syncEuWithFederal
 		);
 
 		// Füge den Link für die erste Norm hinzu
@@ -170,7 +181,10 @@ function findAndLinkLawReferences(
 					gesetz,
 					norm,
 					lawProviderOptions,
-					additionalInfo // Übergabe der Details
+					additionalInfo, // Übergabe der Details
+					stateLawProviderOptions,
+					euLawProviderOptions,
+					syncEuWithFederal
 				);
 
 				// Ersetze den gesamten chainMatch wie bisher
@@ -182,7 +196,7 @@ function findAndLinkLawReferences(
 			}
 		});
 
-		return match.replace(lawMatch, updatedLawMatch + " ");
+		return match.replace(lawMatch, updatedLawMatch);
 	});
 }
 
@@ -202,7 +216,10 @@ function getHyperlinkForLawIfExists(
 	gesetz: string,
 	norm: string,
 	lawProviderOptions: LawProviderOptions,
-	groups?: LocalAdditionalInfo
+	groups?: LocalAdditionalInfo,
+	stateLawProviderOptions?: StateLawProviderOptions,
+	euLawProviderOptions?: EuLawProviderOptions,
+	syncEuWithFederal = true
 ): string {
 	// Extrahiere relevante Informationen aus den Gruppen
 	let additionalInfo: LocalAdditionalInfo | undefined = undefined;
@@ -252,7 +269,10 @@ function getHyperlinkForLawIfExists(
 			...(additionalInfo.satz ? { satz: additionalInfo.satz } : {}),
 			...(additionalInfo.nr ? { nr: additionalInfo.nr } : {}),
 			...(additionalInfo.isArticle !== undefined ? { isArticle: additionalInfo.isArticle } : {}),
-		} || undefined
+		} || undefined,
+		stateLawProviderOptions,
+		euLawProviderOptions,
+		syncEuWithFederal
 	);
 	linkCount++;
 	if (!lawUrl) return normGroup;
@@ -327,7 +347,10 @@ function findAndLinkDrucksacheReferences(fileContent: string): string {
 }
 
 function findAndLinkCaseReferences(fileContent: string): string {
-	return fileContent.replace(caseRegex, (match) => {
+	const combinedRegex = new RegExp(`(?<link>\\[\\[[^\\]]*\\]\\]|\\[[^\\]]*\\](?:\\([^)]*\\))?)|(?<case>${caseRegex.source})`, "g");
+	return fileContent.replace(combinedRegex, (_fullMatch, link, caseMatch) => {
+		if (link) return link as string;
+		const match = caseMatch as string;
 		const encodedMatch = encodeURIComponent(match);
 		linkCount++;
 		return `[${match}](${DejureUrl.CASE}${encodedMatch})`;
