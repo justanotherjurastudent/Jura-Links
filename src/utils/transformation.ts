@@ -347,7 +347,7 @@ function findAndLinkDrucksacheReferences(fileContent: string): string {
 }
 
 function findAndLinkCaseReferences(fileContent: string): string {
-	const combinedRegex = new RegExp(`(?<link>\\[[^\\]]+\\]\\([^)]+\\))|(?<case>${caseRegex.source})`, "g");
+	const combinedRegex = new RegExp(`(?<link>\\[\\[[^\\]]*\\]\\]|\\[[^\\]]*\\](?:\\([^)]*\\))?)|(?<case>${caseRegex.source})`, "g");
 	return fileContent.replace(combinedRegex, (_fullMatch, link, caseMatch) => {
 		if (link) return link as string;
 		const match = caseMatch as string;

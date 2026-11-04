@@ -907,3 +907,13 @@ test("findAndLinkCaseReferences: Aktenzeichen über Zeilenumbrüche hinweg und E
 	const result2 = findAndLinkCaseReferences(result1);
 	expect(result2).toBe(expected);
 });
+
+test("findAndLinkCaseReferences: Wort davor ('und') und Wikilinks bleiben unberuehrt", () => {
+	const url = (t) => `https://www.dejure.org/dienste/vernetzung/rechtsprechung?Text=${encodeURIComponent(t)}`;
+	expect(findAndLinkCaseReferences("C-184/22 und 17 O 11/23")).toBe(
+		`[C-184/22](${url("C-184/22")}) und [17 O 11/23](${url("17 O 11/23")})`
+	);
+	expect(findAndLinkCaseReferences("[[Notiz 12/23]]")).toBe("[[Notiz 12/23]]");
+	expect(findAndLinkCaseReferences("[Az 12/23] ok")).toBe("[Az 12/23] ok");
+	expect(findAndLinkCaseReferences("https://example.com/2023/12/23")).toBe("https://example.com/2023/12/23");
+});

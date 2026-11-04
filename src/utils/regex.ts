@@ -44,7 +44,7 @@ export const lawChainRegex = new RegExp(
 );
 
 export const caseRegex =
-	/(?:[A-Za-z]-\d+\/\d{2}(?:[ \t]+(?:PPU|P))?|[A-Za-z][ \t]*\d+[ \t]*[A-Za-z]{1,3}[ \t]*\d+[ \t]*[A-Za-z]{0,3}[ \t]*\d+\/\d{2}(?:[ \t]+[A-Za-z]\b)?|[A-Z]-\d+\/\d{2}|\d+[A-Za-z]?[ \t]*[A-Za-z]{1,3}[ \t]*\d+[ \t]*[A-Za-z]{0,3}[ \t]*\d+\/\d{2}(?:[ \t]+[A-Za-z]\b)?|[IVXLCDM]+[ \t]*[A-Za-z]{1,3}[ \t]*\d+[ \t]*[A-Za-z]{0,3}[ \t]*\d+\/\d{2}(?:[ \t]+[A-Za-z]\b)?|[A-Za-z]?\d{1,7}\/\d{2})\b/g;
+	/(?<![A-Za-z0-9/])(?:[A-Za-z]-\d+\/\d{2}(?:[ \t]+(?:PPU|P))?|[A-Za-z][ \t]*\d+[ \t]*[A-Za-z]{1,3}[ \t]*\d+[ \t]*[A-Za-z]{0,3}[ \t]*\d+\/\d{2}(?:[ \t]+[A-Za-z]\b)?|[A-Z]-\d+\/\d{2}|\d+[A-Za-z]?[ \t]*[A-Za-z]{1,3}[ \t]*\d+[ \t]*[A-Za-z]{0,3}[ \t]*\d+\/\d{2}(?:[ \t]+[A-Za-z]\b)?|[IVXLCDM]+[ \t]*[A-Za-z]{1,3}[ \t]*\d+[ \t]*[A-Za-z]{0,3}[ \t]*\d+\/\d{2}(?:[ \t]+[A-Za-z]\b)?|[A-Za-z]?\d{1,7}\/\d{2})\b/g;
 
 export const journalRegex =
 	/(?<journal>[A-Za-z][A-Za-z-]*|Slg\.)\s(?:(?<year>\d{4})(?:,\s(?<volume1>[IVXLCDM]{1,5})-(?<page1>[1-9]\d+)|,\s(?<page2>[1-9]\d+))|(?<volume2>[1-9]\d+),\s(?<page3>[1-9]\d+))\b(?!.*?\])/gm;

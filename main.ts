@@ -1,4 +1,5 @@
 import { Editor, Plugin, WorkspaceLeaf, Notice } from "obsidian";
+import { migrateFederalOptions } from "./src/utils/settingsMigration";
 import {
 	findAndLinkCaseReferences,
 	findAndLinkJournalReferences,
@@ -56,12 +57,13 @@ export default class LegalReferencePlugin extends Plugin {
 			name: "Verlinkung starten",
 			editorCallback: async (editor: Editor) => {
 				const content = editor.getDoc().getValue();
-				const newContent = this.findAndLinkLegalReferences(content);
-				const result = await newContent;
-				if (result === content) return;
-				// Cursor und Scrollposition erhalten (setValue springt sonst an den Anfang)
 				const cursor = editor.getCursor();
 				const scroll = editor.getScrollInfo();
+				const newContent = this.findAndLinkLegalReferences(content);
+				const result = await newContent;
+				// Notiz wurde während der Netzwerkabfrage geändert: nicht überschreiben
+				if (result === content || editor.getValue() !== content) return;
+				// Cursor und Scrollposition erhalten (setValue springt sonst an den Anfang)
 				editor.setValue(result);
 				editor.setCursor(cursor);
 				editor.scrollTo(scroll.left, scroll.top);
@@ -101,35 +103,7 @@ export default class LegalReferencePlugin extends Plugin {
 			},
 		};
 
-		// Migration: Buzer wurde entfernt und Landesrecht ausgelagert -> ungültige Optionen filtern
-		const rawOptions = [
-			this.settings.lawProviderOptions.firstOption,
-			this.settings.lawProviderOptions.secondOption,
-			this.settings.lawProviderOptions.thirdOption,
-			this.settings.lawProviderOptions.forthOption,
-			this.settings.lawProviderOptions.fifthOption,
-			this.settings.lawProviderOptions.sixthOption,
-			this.settings.lawProviderOptions.seventhOption,
-		].filter(
-			(opt) => Boolean(opt) && (opt as string) !== "buzer" && (opt as string) !== "landesrecht.online"
-		);
-
-		const fallbackDefaults = [
-			"dejure",
-			"lexmea",
-			"rewis",
-			"gesetze.co",
-			"jurafuchs",
-		] as const;
-		const uniqueOptions = Array.from(new Set([...rawOptions, ...fallbackDefaults]));
-
-		this.settings.lawProviderOptions = {
-			firstOption: uniqueOptions[0] ?? "dejure",
-			secondOption: uniqueOptions[1] ?? null,
-			thirdOption: uniqueOptions[2] ?? null,
-			forthOption: uniqueOptions[3] ?? null,
-			fifthOption: uniqueOptions[4] ?? null,
-		};
+		this.settings.lawProviderOptions = migrateFederalOptions(this.settings.lawProviderOptions);
 	}
 
 	async saveSettings() {
