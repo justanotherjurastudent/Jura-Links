@@ -813,3 +813,53 @@ test("findAndLinkLawReferences: State-Law-Provider Reihenfolge steuert Verlinkun
 		"§ [823 I](https://www.dejure.org/gesetze/bgb/823.html) BGB"
 	);
 });
+
+test("findAndLinkLawReferences: europäische Gesetze respektieren separate EU-Anbieter-Reihenfolge", () => {
+	const generalOptions = {
+		firstOption: "dejure",
+		secondOption: "lexmea",
+		thirdOption: "buzer",
+		forthOption: "rewis",
+		fifthOption: "gesetze.co",
+		sixthOption: "jurafuchs",
+		seventhOption: null,
+	};
+	const stateOptions = {
+		firstOption: "landesrecht.online",
+		secondOption: "jurafuchs",
+		thirdOption: "gesetze.co",
+	};
+
+	// 1. Wenn syncEuWithFederal = true (Standard): richtet sich nach generalOptions (hier dejure)
+	expect(findAndLinkLawReferences("Art. 6 I DSGVO", generalOptions, stateOptions, undefined, true)).toBe(
+		"Art. [6 I](https://www.dejure.org/gesetze/dsgvo/6.html) DSGVO"
+	);
+
+	// 2. Wenn syncEuWithFederal = false: separate EU-Optionen greifen
+	const euOptionsGesetzeCo = {
+		firstOption: "gesetze.co",
+		secondOption: "jurafuchs",
+		thirdOption: "dejure",
+		forthOption: "lexmea",
+		fifthOption: "rewis",
+	};
+	expect(findAndLinkLawReferences("Art. 6 I DSGVO", generalOptions, stateOptions, euOptionsGesetzeCo, false)).toBe(
+		"Art. [6 I](https://gesetze.co/EU/DSGVO/6) DSGVO"
+	);
+
+	const euOptionsJurafuchs = {
+		firstOption: "jurafuchs",
+		secondOption: "gesetze.co",
+		thirdOption: "dejure",
+		forthOption: "lexmea",
+		fifthOption: "rewis",
+	};
+	expect(findAndLinkLawReferences("Art. 6 I DSGVO", generalOptions, stateOptions, euOptionsJurafuchs, false)).toBe(
+		"Art. [6 I](https://gesetze.jurafuchs.de/gesetz/dsgvo/6) DSGVO"
+	);
+
+	// Bundesrecht (BGB) bleibt unberührt von EU-Optionen
+	expect(findAndLinkLawReferences("§ 823 I BGB", generalOptions, stateOptions, euOptionsGesetzeCo, false)).toBe(
+		"§ [823 I](https://www.dejure.org/gesetze/bgb/823.html) BGB"
+	);
+});

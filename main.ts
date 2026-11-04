@@ -11,6 +11,7 @@ import {
 	LawProviderSettings,
 	DEFAULT_SETTINGS,
 	DEFAULT_STATE_LAW_PROVIDER_OPTIONS,
+	DEFAULT_EU_LAW_PROVIDER_OPTIONS,
 	LawProviderSettingTab,
 } from "./src/view/settings";
 import {
@@ -77,9 +78,15 @@ export default class LegalReferencePlugin extends Plugin {
 		this.settings = {
 			...DEFAULT_SETTINGS,
 			...(data ?? {}),
+			syncEuWithFederal:
+				data?.syncEuWithFederal ?? DEFAULT_SETTINGS.syncEuWithFederal,
 			stateLawProviderOptions: {
 				...DEFAULT_STATE_LAW_PROVIDER_OPTIONS,
 				...(data?.stateLawProviderOptions ?? {}),
+			},
+			euLawProviderOptions: {
+				...DEFAULT_EU_LAW_PROVIDER_OPTIONS,
+				...(data?.euLawProviderOptions ?? {}),
 			},
 			lawProviderOptions: {
 				...DEFAULT_SETTINGS.lawProviderOptions,
@@ -150,7 +157,9 @@ export default class LegalReferencePlugin extends Plugin {
 		let processedContent = findAndLinkLawReferences(
 			fileContent,
 			this.settings.lawProviderOptions,
-			this.settings.stateLawProviderOptions
+			this.settings.stateLawProviderOptions,
+			this.settings.euLawProviderOptions,
+			this.settings.syncEuWithFederal
 		);
 		processedContent = findAndLinkDrucksacheReferences(processedContent);
 		processedContent = findAndLinkCaseReferences(processedContent);

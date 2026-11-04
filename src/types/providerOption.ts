@@ -9,6 +9,21 @@ type StateLawProviderOptions = {
 	thirdOption: StateLawProviderOption | null;
 };
 
+type EuLawProviderOption =
+	| "dejure"
+	| "gesetze.co"
+	| "jurafuchs"
+	| "lexmea"
+	| "rewis";
+
+type EuLawProviderOptions = {
+	firstOption: EuLawProviderOption;
+	secondOption: EuLawProviderOption | null;
+	thirdOption: EuLawProviderOption | null;
+	forthOption: EuLawProviderOption | null;
+	fifthOption: EuLawProviderOption | null;
+};
+
 type LawProviderOption =
 	| "dejure"
 	| "buzer"
@@ -31,6 +46,8 @@ type LawProviderOptions = {
 export type {
 	StateLawProviderOption,
 	StateLawProviderOptions,
+	EuLawProviderOption,
+	EuLawProviderOptions,
 	LawProviderOption,
 	LawProviderOptions,
 };

@@ -13,6 +13,8 @@ import {
 	LawProviderOptions,
 	StateLawProviderOption,
 	StateLawProviderOptions,
+	EuLawProviderOption,
+	EuLawProviderOptions,
 } from "../types/providerOption";
 import { DejureUrl, LawProviderUrl } from "../types/url";
 
@@ -659,7 +661,7 @@ function getJurafuchsStateLawUrl(gesetz: string, norm: string): string {
 	}
 
 	const foundGesetz = findStateAwareEntry(jurafuchsGesetzeLowerCased, gesetz.trim().toLowerCase());
-	if (!foundGesetz || foundGesetz.jurisdiction === "DE") {
+	if (!foundGesetz || foundGesetz.jurisdiction === "DE" || foundGesetz.jurisdiction === "EU") {
 		return "";
 	}
 
@@ -684,7 +686,7 @@ function getGesetzeCoStateLawUrl(
 	const normalizedKey = gesetz.trim().toLowerCase();
 	const foundGesetz = findStateAwareEntry(gesetzeCoGesetzeLowerCased, normalizedKey);
 
-	if (!foundGesetz || foundGesetz.jurisdiction === "DE") {
+	if (!foundGesetz || foundGesetz.jurisdiction === "DE" || foundGesetz.jurisdiction === "EU") {
 		return "";
 	}
 
@@ -712,6 +714,31 @@ function getStateLawUrl(
 		return getGesetzeCoStateLawUrl(gesetz, norm, additionalInfo) || "";
 	}
 	return "";
+}
+
+// Erkennung europäischer Rechtsakte für anbieterübergreifende Priorisierung
+const canonicalEuLawKeys = new Set([
+	"aeuv", "euv", "egv", "grc", "grch", "dsgvo", "eugvvo",
+	"bruessel ia-vo", "brüssel ia-vo", "bruessel-ia-vo", "brüssel-ia-vo",
+	"bruessel iib", "brüssel iib", "bruessel iib-vo", "brüssel iib-vo",
+	"rom i", "rom ii", "rom-i", "rom-ii", "rom-i-vo", "rom-ii-vo", "rom-iii-vo",
+	"dublin-iii-vo", "dublin iii", "dublin iii-vo", "eurodac-vo",
+	"euerbvo", "eumahnverfvo", "euvtvo", "geringfordvo", "insvfvo", "ki-vo",
+	"dma", "dsa", "dora", "arbzrl", "asylverfvo", "dsm", "dv", "emfa", "etrl",
+	"eu-vschdg", "eugvue", "lugu", "lugü", "nis-2-rl", "sfdr", "umv", "zvo",
+	"fkvo", "berufsanerkennungs-rl", "buergerinitiative-vo", "bürgerinitiative-vo",
+	"eu-kartell-vo", "eu-kartellverfahrensverordnung", "rechtsanwalts-rl", "emrk",
+	"mmvo"
+]);
+
+function isEuLaw(gesetz: string): boolean {
+	if (typeof gesetz !== "string") return false;
+	const normalizedKey = gesetz.trim().toLowerCase();
+	if (!normalizedKey) return false;
+	if (canonicalEuLawKeys.has(normalizedKey)) return true;
+	if (findStateAwareEntry(gesetzeCoGesetzeLowerCased, normalizedKey)?.jurisdiction === "EU") return true;
+	if (findStateAwareEntry(jurafuchsGesetzeLowerCased, normalizedKey)?.jurisdiction === "EU") return true;
+	return false;
 }
 
 function getLawUrlByProvider(
@@ -756,7 +783,9 @@ function getLawUrlByProviderOptions(
 	norm: string,
 	lawProviders: LawProviderOptions,
 	additionalInfo?: AdditionalInfo,
-	stateLawProviders?: StateLawProviderOptions
+	stateLawProviders?: StateLawProviderOptions,
+	euLawProviders?: EuLawProviderOptions,
+	syncEuWithFederal = true
 ): string {
 	// Mehrdeutiges Landeskürzel ohne Bundesland (z.B. "POG"): Auswahlseite von Landesrecht.online
 	const ambiguousUrl = getAmbiguousLandesrechtUrl(gesetz, norm);
@@ -775,6 +804,25 @@ function getLawUrlByProviderOptions(
 				const stateUrl = getStateLawUrl(gesetz, norm, provider, additionalInfo);
 				if (stateUrl) {
 					return stateUrl;
+				}
+			}
+		}
+	}
+
+	// Falls europäisches Recht und separate EU-Reihenfolge gewünscht ist
+	if (!syncEuWithFederal && euLawProviders && isEuLaw(gesetz)) {
+		const euOptions: (EuLawProviderOption | null)[] = [
+			euLawProviders.firstOption,
+			euLawProviders.secondOption,
+			euLawProviders.thirdOption,
+			euLawProviders.forthOption,
+			euLawProviders.fifthOption,
+		];
+		for (const provider of euOptions) {
+			if (provider) {
+				const euUrl = getLawUrlByProvider(gesetz, norm, provider, additionalInfo);
+				if (euUrl) {
+					return euUrl;
 				}
 			}
 		}
@@ -840,4 +888,4 @@ function getLawUrlByProviderOptions(
 	return "";
 }
 
-export { getLawUrlByProvider, getLawUrlByProviderOptions, getStateLawUrl };
+export { getLawUrlByProvider, getLawUrlByProviderOptions, getStateLawUrl, isEuLaw };

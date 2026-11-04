@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { getLawUrlByProvider, getLawUrlByProviderOptions, getStateLawUrl } from "../../src/utils/urlHelper";
+import { getLawUrlByProvider, getLawUrlByProviderOptions, getStateLawUrl, isEuLaw } from "../../src/utils/urlHelper";
 
 test.each([
 	{
@@ -1091,8 +1091,74 @@ test("getStateLawUrl: liefert URL nur für Landesgesetze und leer für Bundesges
 	expect(getStateLawUrl("SOG LSA", "1", "landesrecht.online")).toBe(
 		"https://landesrecht.online/ST/SOG/1"
 	);
-	// Bundesgesetze dürfen über getStateLawUrl nicht aufgelöst werden
+	// Bundes- und EU-Gesetze dürfen über getStateLawUrl nicht aufgelöst werden
 	expect(getStateLawUrl("BGB", "823", "jurafuchs")).toBe("");
 	expect(getStateLawUrl("BGB", "823", "gesetze.co")).toBe("");
 	expect(getStateLawUrl("BGB", "823", "landesrecht.online")).toBe("");
+	expect(getStateLawUrl("DSGVO", "6", "jurafuchs")).toBe("");
+	expect(getStateLawUrl("DSGVO", "6", "gesetze.co")).toBe("");
+});
+
+test("isEuLaw: erkennt europäische Rechtsakte zuverlässig", () => {
+	expect(isEuLaw("DSGVO")).toBe(true);
+	expect(isEuLaw("dsgvo")).toBe(true);
+	expect(isEuLaw("AEUV")).toBe(true);
+	expect(isEuLaw("EUV")).toBe(true);
+	expect(isEuLaw("EuGVVO")).toBe(true);
+	expect(isEuLaw("Rom I")).toBe(true);
+	expect(isEuLaw("Rom II")).toBe(true);
+	expect(isEuLaw("BGB")).toBe(false);
+	expect(isEuLaw("StGB")).toBe(false);
+	expect(isEuLaw("SOG LSA")).toBe(false);
+});
+
+test("euLawProviders: separate EU-Anbieterreihenfolge bei syncEuWithFederal = false", () => {
+	const generalOptions = {
+		firstOption: "dejure",
+		secondOption: "lexmea",
+		thirdOption: "buzer",
+		forthOption: "rewis",
+		fifthOption: "gesetze.co",
+		sixthOption: "jurafuchs",
+		seventhOption: null,
+	};
+	const stateOptions = {
+		firstOption: "landesrecht.online",
+		secondOption: "jurafuchs",
+		thirdOption: "gesetze.co",
+	};
+	const euOptionsGesetzeCo = {
+		firstOption: "gesetze.co",
+		secondOption: "jurafuchs",
+		thirdOption: "dejure",
+		forthOption: "lexmea",
+		fifthOption: "rewis",
+	};
+	const euOptionsJurafuchs = {
+		firstOption: "jurafuchs",
+		secondOption: "gesetze.co",
+		thirdOption: "dejure",
+		forthOption: "lexmea",
+		fifthOption: "rewis",
+	};
+
+	// Mit sync = true: Dejure (1. Option Bundesrecht) wird gewählt
+	expect(
+		getLawUrlByProviderOptions("DSGVO", "6", generalOptions, undefined, stateOptions, euOptionsGesetzeCo, true)
+	).toBe("https://www.dejure.org/gesetze/dsgvo/6.html");
+
+	// Mit sync = false: gesetze.co (1. Option EU-Recht) wird gewählt
+	expect(
+		getLawUrlByProviderOptions("DSGVO", "6", generalOptions, undefined, stateOptions, euOptionsGesetzeCo, false)
+	).toBe("https://gesetze.co/EU/DSGVO/6");
+
+	// Mit sync = false: jurafuchs (1. Option EU-Recht) wird gewählt
+	expect(
+		getLawUrlByProviderOptions("DSGVO", "6", generalOptions, undefined, stateOptions, euOptionsJurafuchs, false)
+	).toBe("https://gesetze.jurafuchs.de/gesetz/dsgvo/6");
+
+	// Bundesgesetze wie BGB werden nicht von EU-Optionen beeinflusst
+	expect(
+		getLawUrlByProviderOptions("BGB", "823", generalOptions, undefined, stateOptions, euOptionsGesetzeCo, false)
+	).toBe("https://www.dejure.org/gesetze/bgb/823.html");
 });

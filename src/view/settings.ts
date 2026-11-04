@@ -1,6 +1,8 @@
 import { App, PluginSettingTab, Setting } from "obsidian";
 import LegalReferencePlugin from "../../main";
 import {
+	EuLawProviderOption,
+	EuLawProviderOptions,
 	LawProviderOption,
 	LawProviderOptions,
 	StateLawProviderOption,
@@ -10,6 +12,8 @@ import {
 export interface LawProviderSettings {
 	stateLawProviderOptions: StateLawProviderOptions;
 	lawProviderOptions: LawProviderOptions;
+	syncEuWithFederal: boolean;
+	euLawProviderOptions: EuLawProviderOptions;
 	executeOnFileOpen: boolean;
 }
 
@@ -17,6 +21,14 @@ export const DEFAULT_STATE_LAW_PROVIDER_OPTIONS: StateLawProviderOptions = {
 	firstOption: "landesrecht.online",
 	secondOption: "jurafuchs",
 	thirdOption: "gesetze.co",
+};
+
+export const DEFAULT_EU_LAW_PROVIDER_OPTIONS: EuLawProviderOptions = {
+	firstOption: "dejure",
+	secondOption: "gesetze.co",
+	thirdOption: "jurafuchs",
+	forthOption: "lexmea",
+	fifthOption: "rewis",
 };
 
 export const DEFAULT_SETTINGS: LawProviderSettings = {
@@ -30,6 +42,8 @@ export const DEFAULT_SETTINGS: LawProviderSettings = {
 		sixthOption: "jurafuchs",
 		seventhOption: null,
 	},
+	syncEuWithFederal: true,
+	euLawProviderOptions: DEFAULT_EU_LAW_PROVIDER_OPTIONS,
 	executeOnFileOpen: true,
 };
 
@@ -43,12 +57,14 @@ export class LawProviderSettingTab extends PluginSettingTab {
 	plugin: LegalReferencePlugin;
 	private stateDropdowns: DropdownItem[];
 	private generalDropdowns: DropdownItem[];
+	private euDropdowns: DropdownItem[];
 
 	constructor(app: App, plugin: LegalReferencePlugin) {
 		super(app, plugin);
 		this.plugin = plugin;
 		this.stateDropdowns = [];
 		this.generalDropdowns = [];
+		this.euDropdowns = [];
 	}
 
 	// --- Deklarative Settings-API (Obsidian 1.13.0+) ---
@@ -124,6 +140,14 @@ export class LawProviderSettingTab extends PluginSettingTab {
 			"jurafuchs": "Jurafuchs",
 		};
 
+		const euOptions: Record<string, string> = {
+			"dejure": "Dejure",
+			"gesetze.co": "Gesetze.co",
+			"jurafuchs": "Jurafuchs",
+			"lexmea": "LexMea",
+			"rewis": "Rewis",
+		};
+
 		return [
 			{
 				name: "Bei jedem Öffnen der Datei ausführen",
@@ -161,8 +185,8 @@ export class LawProviderSettingTab extends PluginSettingTab {
 				},
 			},
 			{
-				name: "1. Wahl (Bundes- und EU-Recht)",
-				desc: "Erster Anbieter, der bei Bundes- und EU-Gesetzen durchsucht werden soll.",
+				name: "1. Wahl (Bundesrecht)",
+				desc: "Erster Anbieter, der bei Bundesgesetzen durchsucht werden soll.",
 				control: {
 					type: "dropdown",
 					key: "lawProviderOptions.firstOption",
@@ -170,7 +194,7 @@ export class LawProviderSettingTab extends PluginSettingTab {
 				},
 			},
 			{
-				name: "2. Wahl (Bundes- und EU-Recht)",
+				name: "2. Wahl (Bundesrecht)",
 				desc: "Falls das Gesetz beim vorherigen Anbieter nicht verfügbar ist.",
 				control: {
 					type: "dropdown",
@@ -179,7 +203,7 @@ export class LawProviderSettingTab extends PluginSettingTab {
 				},
 			},
 			{
-				name: "3. Wahl (Bundes- und EU-Recht)",
+				name: "3. Wahl (Bundesrecht)",
 				desc: "Falls das Gesetz beim vorherigen Anbieter nicht verfügbar ist.",
 				control: {
 					type: "dropdown",
@@ -188,7 +212,7 @@ export class LawProviderSettingTab extends PluginSettingTab {
 				},
 			},
 			{
-				name: "4. Wahl (Bundes- und EU-Recht)",
+				name: "4. Wahl (Bundesrecht)",
 				desc: "Falls das Gesetz beim vorherigen Anbieter nicht verfügbar ist.",
 				control: {
 					type: "dropdown",
@@ -197,7 +221,7 @@ export class LawProviderSettingTab extends PluginSettingTab {
 				},
 			},
 			{
-				name: "5. Wahl (Bundes- und EU-Recht)",
+				name: "5. Wahl (Bundesrecht)",
 				desc: "Falls das Gesetz beim vorherigen Anbieter nicht verfügbar ist.",
 				control: {
 					type: "dropdown",
@@ -206,12 +230,65 @@ export class LawProviderSettingTab extends PluginSettingTab {
 				},
 			},
 			{
-				name: "6. Wahl (Bundes- und EU-Recht)",
+				name: "6. Wahl (Bundesrecht)",
 				desc: "Falls das Gesetz beim vorherigen Anbieter nicht verfügbar ist.",
 				control: {
 					type: "dropdown",
 					key: "lawProviderOptions.sixthOption",
 					options: generalOptions,
+				},
+			},
+			{
+				name: "EU-Recht mit Bundesrecht synchronisieren",
+				desc: "Verwendet für europäische Gesetze dieselbe Anbieter-Reihenfolge wie für Bundesrecht.",
+				control: {
+					type: "toggle",
+					key: "syncEuWithFederal",
+				},
+			},
+			{
+				name: "1. Wahl (EU-Recht)",
+				desc: "Erster Anbieter, der bei europäischen Gesetzen durchsucht werden soll.",
+				control: {
+					type: "dropdown",
+					key: "euLawProviderOptions.firstOption",
+					options: euOptions,
+				},
+			},
+			{
+				name: "2. Wahl (EU-Recht)",
+				desc: "Falls das EU-Gesetz beim vorherigen Anbieter nicht verfügbar ist.",
+				control: {
+					type: "dropdown",
+					key: "euLawProviderOptions.secondOption",
+					options: euOptions,
+				},
+			},
+			{
+				name: "3. Wahl (EU-Recht)",
+				desc: "Falls das EU-Gesetz bei den vorherigen Anbietern nicht verfügbar ist.",
+				control: {
+					type: "dropdown",
+					key: "euLawProviderOptions.thirdOption",
+					options: euOptions,
+				},
+			},
+			{
+				name: "4. Wahl (EU-Recht)",
+				desc: "Falls das EU-Gesetz bei den vorherigen Anbietern nicht verfügbar ist.",
+				control: {
+					type: "dropdown",
+					key: "euLawProviderOptions.forthOption",
+					options: euOptions,
+				},
+			},
+			{
+				name: "5. Wahl (EU-Recht)",
+				desc: "Falls das EU-Gesetz bei den vorherigen Anbietern nicht verfügbar ist.",
+				control: {
+					type: "dropdown",
+					key: "euLawProviderOptions.fifthOption",
+					options: euOptions,
 				},
 			},
 		];
@@ -302,10 +379,10 @@ export class LawProviderSettingTab extends PluginSettingTab {
 			),
 		];
 
-		// --- Bundes- und EU-Gesetze ---
-		new Setting(containerEl).setName("Bundes- und EU-Gesetze").setHeading();
+		// --- Bundesgesetze ---
+		new Setting(containerEl).setName("Bundesgesetze").setHeading();
 		containerEl.createEl("p", {
-			text: "Wählen Sie die Reihenfolge der Anbieter für Bundes- und EU-Gesetze (z. B. BGB, StGB, GG, DSGVO), falls kein Landesgesetz vorliegt oder dieses bei den Landesrechtsanbietern nicht gefunden wurde.",
+			text: "Wählen Sie die Reihenfolge der Anbieter für Bundesgesetze (z. B. BGB, StGB, GG), falls kein Landesgesetz vorliegt oder dieses bei den Landesrechtsanbietern nicht gefunden wurde.",
 		});
 
 		const generalProviders: LawProviderOption[] = [
@@ -362,36 +439,136 @@ export class LawProviderSettingTab extends PluginSettingTab {
 
 		this.generalDropdowns = [
 			createGeneralDropdown(
-				"1. Wahl (Bundes- und EU-Recht)",
-				"Erster Anbieter, der bei Bundes- und EU-Gesetzen durchsucht werden soll.",
+				"1. Wahl (Bundesrecht)",
+				"Erster Anbieter, der bei Bundesgesetzen durchsucht werden soll.",
 				"firstOption"
 			),
 			createGeneralDropdown(
-				"2. Wahl (Bundes- und EU-Recht)",
-				"Falls das Gesetz beim ersten Anbieter nicht verfügbar ist.",
+				"2. Wahl (Bundesrecht)",
+				"Falls das Bundesgesetz beim ersten Anbieter nicht verfügbar ist.",
 				"secondOption"
 			),
 			createGeneralDropdown(
-				"3. Wahl (Bundes- und EU-Recht)",
-				"Falls das Gesetz bei den vorherigen Anbietern nicht verfügbar ist.",
+				"3. Wahl (Bundesrecht)",
+				"Falls das Bundesgesetz bei den vorherigen Anbietern nicht verfügbar ist.",
 				"thirdOption"
 			),
 			createGeneralDropdown(
-				"4. Wahl (Bundes- und EU-Recht)",
-				"Falls das Gesetz bei den vorherigen Anbietern nicht verfügbar ist.",
+				"4. Wahl (Bundesrecht)",
+				"Falls das Bundesgesetz bei den vorherigen Anbietern nicht verfügbar ist.",
 				"forthOption"
 			),
 			createGeneralDropdown(
-				"5. Wahl (Bundes- und EU-Recht)",
-				"Falls das Gesetz bei den vorherigen Anbietern nicht verfügbar ist.",
+				"5. Wahl (Bundesrecht)",
+				"Falls das Bundesgesetz bei den vorherigen Anbietern nicht verfügbar ist.",
 				"fifthOption"
 			),
 			createGeneralDropdown(
-				"6. Wahl (Bundes- und EU-Recht)",
-				"Falls das Gesetz bei den vorherigen Anbietern nicht verfügbar ist.",
+				"6. Wahl (Bundesrecht)",
+				"Falls das Bundesgesetz bei den vorherigen Anbietern nicht verfügbar ist.",
 				"sixthOption"
 			),
 		];
+
+		// --- Europäische Gesetze ---
+		new Setting(containerEl).setName("Europäische Gesetze").setHeading();
+		containerEl.createEl("p", {
+			text: "Wählen Sie die Reihenfolge der Anbieter für europäische Rechtsakte (z. B. DSGVO, AEUV, EUV, EuGVVO, Rom I/II).",
+		});
+
+		new Setting(containerEl)
+			.setName("Mit Bundesrecht synchronisieren")
+			.setDesc("Verwendet für europäische Gesetze dieselbe Anbieter-Reihenfolge wie beim Bundesrecht.")
+			.addToggle((toggle) => {
+				toggle.setValue(this.plugin.settings.syncEuWithFederal);
+				toggle.onChange(async (value) => {
+					this.plugin.settings.syncEuWithFederal = value;
+					await this.plugin.saveSettings();
+					this.display();
+				});
+			});
+
+		if (!this.plugin.settings.syncEuWithFederal) {
+			const euProviders: EuLawProviderOption[] = [
+				"dejure",
+				"gesetze.co",
+				"jurafuchs",
+				"lexmea",
+				"rewis",
+			];
+
+			const euProviderDisplayNames: Record<EuLawProviderOption, string> = {
+				"dejure": "Dejure",
+				"gesetze.co": "Gesetze.co",
+				"jurafuchs": "Jurafuchs",
+				"lexmea": "LexMea",
+				"rewis": "Rewis",
+			};
+
+			const createEuDropdown = (
+				name: string,
+				desc: string,
+				settingKey: keyof EuLawProviderOptions
+			): DropdownItem => {
+				const setting = new Setting(containerEl)
+					.setName(name)
+					.setDesc(desc);
+
+				const errorSpan = setting.settingEl.createSpan({
+					cls: "law-provider-error",
+				});
+
+				let dropdown: HTMLSelectElement;
+				setting.addDropdown((d) => {
+					dropdown = d.selectEl;
+					euProviders.forEach((provider) => {
+						d.addOption(provider, euProviderDisplayNames[provider]);
+					});
+					d.setValue(
+						this.plugin.settings.euLawProviderOptions?.[settingKey] ?? ""
+					);
+					d.onChange(async (value: string) => {
+						this.plugin.settings.euLawProviderOptions[settingKey] =
+							value as EuLawProviderOption;
+						await this.plugin.saveSettings();
+						this.checkEuDuplicates();
+					});
+				});
+
+				return { setting, errorSpan, dropdown: dropdown! };
+			};
+
+			this.euDropdowns = [
+				createEuDropdown(
+					"1. Wahl (EU-Recht)",
+					"Erster Anbieter, der bei europäischen Gesetzen durchsucht werden soll.",
+					"firstOption"
+				),
+				createEuDropdown(
+					"2. Wahl (EU-Recht)",
+					"Falls das EU-Gesetz beim ersten Anbieter nicht verfügbar ist.",
+					"secondOption"
+				),
+				createEuDropdown(
+					"3. Wahl (EU-Recht)",
+					"Falls das EU-Gesetz bei den vorherigen Anbietern nicht verfügbar ist.",
+					"thirdOption"
+				),
+				createEuDropdown(
+					"4. Wahl (EU-Recht)",
+					"Falls das EU-Gesetz bei den vorherigen Anbietern nicht verfügbar ist.",
+					"forthOption"
+				),
+				createEuDropdown(
+					"5. Wahl (EU-Recht)",
+					"Falls das EU-Gesetz bei den vorherigen Anbietern nicht verfügbar ist.",
+					"fifthOption"
+				),
+			];
+			this.checkEuDuplicates();
+		} else {
+			this.euDropdowns = [];
+		}
 
 		this.checkStateDuplicates();
 		this.checkGeneralDuplicates();
@@ -425,5 +602,9 @@ export class LawProviderSettingTab extends PluginSettingTab {
 
 	private checkGeneralDuplicates(): void {
 		this.checkGroupDuplicates(this.generalDropdowns);
+	}
+
+	private checkEuDuplicates(): void {
+		this.checkGroupDuplicates(this.euDropdowns);
 	}
 }

@@ -1,5 +1,9 @@
 import { DejureUrl } from "../types/url";
-import { LawProviderOptions, StateLawProviderOptions } from "../types/providerOption";
+import {
+	EuLawProviderOptions,
+	LawProviderOptions,
+	StateLawProviderOptions,
+} from "../types/providerOption";
 import {
 	caseRegex,
 	journalRegex,
@@ -110,7 +114,9 @@ function findAndLinkLawReferences(
 		sixthOption: "gesetze.co",
 		seventhOption: "jurafuchs",
 	},
-	stateLawProviderOptions?: StateLawProviderOptions
+	stateLawProviderOptions?: StateLawProviderOptions,
+	euLawProviderOptions?: EuLawProviderOptions,
+	syncEuWithFederal = true
 ): string {
 	if (!lawRegex.test(fileContent)) {
 		return fileContent;
@@ -146,7 +152,9 @@ function findAndLinkLawReferences(
 			firstNorm,
 			lawProviderOptions,
 			firstNormGroups,
-			stateLawProviderOptions
+			stateLawProviderOptions,
+			euLawProviderOptions,
+			syncEuWithFederal
 		);
 
 		// Füge den Link für die erste Norm hinzu
@@ -175,7 +183,9 @@ function findAndLinkLawReferences(
 					norm,
 					lawProviderOptions,
 					additionalInfo, // Übergabe der Details
-					stateLawProviderOptions
+					stateLawProviderOptions,
+					euLawProviderOptions,
+					syncEuWithFederal
 				);
 
 				// Ersetze den gesamten chainMatch wie bisher
@@ -208,7 +218,9 @@ function getHyperlinkForLawIfExists(
 	norm: string,
 	lawProviderOptions: LawProviderOptions,
 	groups?: LocalAdditionalInfo,
-	stateLawProviderOptions?: StateLawProviderOptions
+	stateLawProviderOptions?: StateLawProviderOptions,
+	euLawProviderOptions?: EuLawProviderOptions,
+	syncEuWithFederal = true
 ): string {
 	// Extrahiere relevante Informationen aus den Gruppen
 	let additionalInfo: LocalAdditionalInfo | undefined = undefined;
@@ -259,7 +271,9 @@ function getHyperlinkForLawIfExists(
 			...(additionalInfo.nr ? { nr: additionalInfo.nr } : {}),
 			...(additionalInfo.isArticle !== undefined ? { isArticle: additionalInfo.isArticle } : {}),
 		} || undefined,
-		stateLawProviderOptions
+		stateLawProviderOptions,
+		euLawProviderOptions,
+		syncEuWithFederal
 	);
 	linkCount++;
 	if (!lawUrl) return normGroup;
