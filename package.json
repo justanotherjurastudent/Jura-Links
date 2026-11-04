@@ -1,6 +1,6 @@
 {
 	"name": "obsidian-jura-links-plugin",
-	"version": "1.0.0",
+	"version": "1.6.0",
 	"description": "This is a plugin for Obsidian to create hyperlink for geman legal references.",
 	"main": "main.js",
 	"type": "module",
