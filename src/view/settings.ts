@@ -46,6 +46,7 @@ export const DEFAULT_SETTINGS: LawProviderSettings = {
 };
 
 interface DropdownItem {
+	key: string;
 	setting: Setting;
 	errorSpan: HTMLSpanElement;
 	dropdown: HTMLSelectElement;
@@ -152,6 +153,7 @@ export class LawProviderSettingTab extends PluginSettingTab {
 			let dropdown: HTMLSelectElement;
 			setting.addDropdown((d) => {
 				dropdown = d.selectEl;
+				d.addOption("", "— nicht belegt —");
 				generalProviders.forEach((provider) => {
 					d.addOption(provider, generalProviderDisplayNames[provider]);
 				});
@@ -159,14 +161,11 @@ export class LawProviderSettingTab extends PluginSettingTab {
 					this.plugin.settings.lawProviderOptions?.[settingKey] ?? ""
 				);
 				d.onChange(async (value: string) => {
-					this.plugin.settings.lawProviderOptions[settingKey] =
-						value as LawProviderOption;
-					await this.plugin.saveSettings();
-					this.checkGeneralDuplicates();
+					await this.applyChoice(this.generalDropdowns, this.plugin.settings.lawProviderOptions, settingKey, value);
 				});
 			});
 
-			return { setting, errorSpan, dropdown: dropdown! };
+			return { key: settingKey, setting, errorSpan, dropdown: dropdown! };
 		};
 
 		this.generalDropdowns = [
@@ -196,8 +195,6 @@ export class LawProviderSettingTab extends PluginSettingTab {
 				"fifthOption"
 			),
 		];
-
-		this.checkGeneralDuplicates();
 	}
 
 	private renderStateTab(container: HTMLElement): void {
@@ -234,6 +231,7 @@ export class LawProviderSettingTab extends PluginSettingTab {
 			let dropdown: HTMLSelectElement;
 			setting.addDropdown((d) => {
 				dropdown = d.selectEl;
+				d.addOption("", "— nicht belegt —");
 				stateProviders.forEach((provider) => {
 					d.addOption(provider, stateProviderDisplayNames[provider]);
 				});
@@ -241,14 +239,11 @@ export class LawProviderSettingTab extends PluginSettingTab {
 					this.plugin.settings.stateLawProviderOptions?.[settingKey] ?? ""
 				);
 				d.onChange(async (value: string) => {
-					this.plugin.settings.stateLawProviderOptions[settingKey] =
-						value as StateLawProviderOption;
-					await this.plugin.saveSettings();
-					this.checkStateDuplicates();
+					await this.applyChoice(this.stateDropdowns, this.plugin.settings.stateLawProviderOptions, settingKey, value);
 				});
 			});
 
-			return { setting, errorSpan, dropdown: dropdown! };
+			return { key: settingKey, setting, errorSpan, dropdown: dropdown! };
 		};
 
 		this.stateDropdowns = [
@@ -268,8 +263,6 @@ export class LawProviderSettingTab extends PluginSettingTab {
 				"thirdOption"
 			),
 		];
-
-		this.checkStateDuplicates();
 	}
 
 	private renderEuTab(container: HTMLElement): void {
@@ -331,6 +324,7 @@ export class LawProviderSettingTab extends PluginSettingTab {
 			let dropdown: HTMLSelectElement;
 			setting.addDropdown((d) => {
 				dropdown = d.selectEl;
+				d.addOption("", "— nicht belegt —");
 				euProviders.forEach((provider) => {
 					d.addOption(provider, euProviderDisplayNames[provider]);
 				});
@@ -338,14 +332,11 @@ export class LawProviderSettingTab extends PluginSettingTab {
 					this.plugin.settings.euLawProviderOptions?.[settingKey] ?? ""
 				);
 				d.onChange(async (value: string) => {
-					this.plugin.settings.euLawProviderOptions[settingKey] =
-						value as EuLawProviderOption;
-					await this.plugin.saveSettings();
-					this.checkEuDuplicates();
+					await this.applyChoice(this.euDropdowns, this.plugin.settings.euLawProviderOptions, settingKey, value);
 				});
 			});
 
-			return { setting, errorSpan, dropdown: dropdown! };
+			return { key: settingKey, setting, errorSpan, dropdown: dropdown! };
 		};
 
 		this.euDropdowns = [
@@ -375,41 +366,34 @@ export class LawProviderSettingTab extends PluginSettingTab {
 				"fifthOption"
 			),
 		];
-
-		this.checkEuDuplicates();
 	}
 
-	private checkGroupDuplicates(items: DropdownItem[]): void {
-		const selectedValues = items
-			.map((d) => d.dropdown?.value)
-			.filter((value): value is string => Boolean(value));
-
-		items.forEach((item, index) => {
-			if (!item.dropdown) return;
-			const currentValue = selectedValues[index];
-			const isDuplicate =
-				currentValue !== undefined &&
-				selectedValues.indexOf(currentValue) !== index;
-
-			if (isDuplicate) {
-				item.errorSpan.classList.add("visible");
-				item.errorSpan.textContent = "Dieser Anbieter wurde bereits ausgewählt.";
-			} else {
-				item.errorSpan.classList.remove("visible");
-				item.errorSpan.textContent = "";
+	// Neue Wahl gewinnt: gleiche Anbieter in anderen Stufen werden geleert und markiert.
+	private async applyChoice(
+		items: DropdownItem[],
+		store: object,
+		key: string,
+		value: string
+	): Promise<void> {
+		const rec = store as Record<string, string | null>;
+		rec[key] = value || null;
+		items.forEach((item) => {
+			if (item.key === key) {
+				this.setConflict(item, false);
+			} else if (value && item.dropdown.value === value) {
+				item.dropdown.value = "";
+				rec[item.key] = null;
+				this.setConflict(item, true);
 			}
 		});
+		await this.plugin.saveSettings();
 	}
 
-	private checkStateDuplicates(): void {
-		this.checkGroupDuplicates(this.stateDropdowns);
-	}
-
-	private checkGeneralDuplicates(): void {
-		this.checkGroupDuplicates(this.generalDropdowns);
-	}
-
-	private checkEuDuplicates(): void {
-		this.checkGroupDuplicates(this.euDropdowns);
+	private setConflict(item: DropdownItem, on: boolean): void {
+		item.setting.settingEl.toggleClass("law-provider-conflict", on);
+		item.errorSpan.toggleClass("visible", on);
+		item.errorSpan.textContent = on
+			? "Hier war eine Doppelbelegung, dieses Feld ist nun wieder unbesetzt."
+			: "";
 	}
 }

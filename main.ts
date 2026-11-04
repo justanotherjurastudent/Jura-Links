@@ -57,7 +57,14 @@ export default class LegalReferencePlugin extends Plugin {
 			editorCallback: async (editor: Editor) => {
 				const content = editor.getDoc().getValue();
 				const newContent = this.findAndLinkLegalReferences(content);
-				editor.setValue(await newContent);
+				const result = await newContent;
+				if (result === content) return;
+				// Cursor und Scrollposition erhalten (setValue springt sonst an den Anfang)
+				const cursor = editor.getCursor();
+				const scroll = editor.getScrollInfo();
+				editor.setValue(result);
+				editor.setCursor(cursor);
+				editor.scrollTo(scroll.left, scroll.top);
 			},
 		});
 	}

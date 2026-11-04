@@ -179,3 +179,10 @@
     color: var(--text-muted);
     font-size: 0.9em;
 }
+
+.law-provider-conflict {
+    border: 1px solid var(--text-error);
+    border-radius: var(--radius-s);
+    padding: 8px;
+}
+
