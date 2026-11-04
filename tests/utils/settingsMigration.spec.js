@@ -28,3 +28,4 @@ test("migrateFederalOptions: entfernt Buzer und landesrecht.online, behaelt Reih
 		fifthOption: "jurafuchs",
 	});
 });
+
