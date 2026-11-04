@@ -8,7 +8,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   update-laws:
@@ -17,6 +16,8 @@ jobs:
     steps:
       - name: Quellcode auschecken
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Node.js einrichten
         uses: actions/setup-node@v4
@@ -34,6 +35,9 @@ jobs:
 
       - name: Gesetzesdatenbanken aktualisieren
         run: |
+          echo "Aktualisiere dejure.org..."
+          node src/static/updateDejureGesetze.mjs
+
           echo "Aktualisiere Rewis.io..."
           node src/static/updateRewisGesetze.mjs
 
@@ -52,30 +56,52 @@ jobs:
           echo "Aktualisiere Gesetzesabkürzungen..."
           python src/static/lawsabkuerzung.py
 
+      - name: Prüfe auf Änderungen
+        id: check_changes
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+            echo "Änderungen in den Gesetzesdaten festgestellt."
+          else
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+            echo "Keine Änderungen in den Gesetzesdaten festgestellt."
+          fi
+
       - name: Tests ausführen
+        if: steps.check_changes.outputs.has_changes == 'true'
         run: npm test
 
-      - name: Build prüfen
+      - name: Git konfigurieren
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Datenänderungen committen
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          git add src/static/
+          git commit -m "chore(data): monatliche Aktualisierung der Gesetzesdaten [skip ci]"
+
+      - name: Version bumpen (Patch)
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          npm version patch --tag-version-prefix="" -m "chore(release): %s [skip ci]"
+
+      - name: Produktions-Build erstellen
+        if: steps.check_changes.outputs.has_changes == 'true'
         run: npm run build
 
-      - name: Pull Request erstellen
-        uses: peter-evans/create-pull-request@v7
-        with:
-          commit-message: "chore(data): monatliche Aktualisierung der Gesetzesdaten"
-          title: "chore(data): monatliche Aktualisierung der Gesetzesdaten"
-          body: |
-            Automatisierte Aktualisierung der Gesetzesbestände:
-            - Rewis.io (`src/static/rewisGesetze.ts`)
-            - gesetze.io (`src/static/gesetzeIoGesetze.ts`)
-            - Gesetze.co (`src/static/gesetzeCoGesetze.ts`)
-            - Jurafuchs (`src/static/jurafuchsGesetze.ts`)
-            - LexMea (`src/static/lexmeaGesetze.ts`)
-            - Abkürzungsverzeichnis (`src/static/lawsAbbrs.ts`)
+      - name: Änderungen und Tag pushen
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: git push origin master --follow-tags
 
-            Alle Tests und der TypeScript-Build wurden erfolgreich ausgeführt.
-          branch: automated-laws-update
-          delete-branch: true
-          labels: |
-            dependencies
-            automated
-
+      - name: GitHub Release erstellen
+        if: steps.check_changes.outputs.has_changes == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          NEW_VERSION=$(node -e "console.log(JSON.parse(require('fs').readFileSync('manifest.json','utf8')).version)")
+          gh release create "$NEW_VERSION" manifest.json main.js styles.css \
+            --title "$NEW_VERSION" \
+            --notes "Automatisierte monatliche Aktualisierung der Gesetzesdatenbestände (dejure.org, Rewis.io, gesetze.io, Gesetze.co, Jurafuchs, LexMea)."
